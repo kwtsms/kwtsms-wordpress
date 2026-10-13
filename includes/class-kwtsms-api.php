@@ -532,7 +532,8 @@ class KwtSMS_API {
 
 		foreach ( $chunks as $chunk_index => $chunk ) {
 			// Throttle: 500ms delay between batches to stay under the API rate
-			// limit (max 5 req/s, recommended max 2/s). Skip delay on first batch.
+			// limit (max 10 req/s per IP). Skip delay on first batch.
+			// 2026-10-13 13:15 +03: API limit corrected from 5 to 10 req/s (server limit raised).
 			if ( $chunk_index > 0 ) {
 				usleep( 500000 );
 			}

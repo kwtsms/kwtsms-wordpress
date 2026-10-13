@@ -437,7 +437,7 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 		<!-- API rate limiting -->
 		<h3><?php esc_html_e( 'API requests being blocked (rate limit)', 'kwtsms' ); ?></h3>
 		<p>
-			<?php esc_html_e( 'The kwtSMS API allows a maximum of 5 requests per second from a single IP address. Exceeding this limit causes your server\'s IP to be temporarily blocked by kwtSMS. Under normal use this limit is never reached, each OTP send is one request. If you are running bulk sends or automated tests, introduce a delay between requests.', 'kwtsms' ); ?>
+			<?php esc_html_e( 'The kwtSMS API allows a maximum of 10 requests per second from a single IP address. Exceeding this limit causes your server\'s IP to be temporarily blocked by kwtSMS. Under normal use this limit is never reached, each OTP send is one request. If you are running bulk sends or automated tests, introduce a delay between requests.', 'kwtsms' ); ?>
 		</p>
 
 		<h3><?php esc_html_e( 'Users get "Session expired" error', 'kwtsms' ); ?></h3>
