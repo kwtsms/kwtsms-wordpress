@@ -14,7 +14,8 @@ Only the latest stable release receives security fixes.
 
 Please **do not** open a public GitHub issue for security vulnerabilities.
 
-Report security issues by emailing **support@kwtsms.com** with:
+Report security issues through kwtSMS support (https://www.kwtsms.com/support.html) with:
+<!-- 2026-10-18 01:10 +03: direct contact replaced with the support page link (task 344). -->
 
 - A clear description of the vulnerability
 - Steps to reproduce

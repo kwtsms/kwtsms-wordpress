@@ -1605,9 +1605,10 @@ class KwtSMS_API {
 	 * Handles all common input variants:
 	 *   +96598765432      96598765432
 	 *   0096598765432     96598765432
-	 *   965 9922 0322     96598765432
-	 *   965-9922-0322     96598765432
-	 *   ٩٦٥٩٩٢٢٠٣٢٢       96598765432  (Arabic/Hindi numerals)
+	 *   965 9876 5432     96598765432
+	 *   965-9876-5432     96598765432
+	 *   96598765432 written in Arabic-Indic or Persian digits -> 96598765432
+	 *   (2026-10-18 01:10 +03: examples use the fictional docs number only, task 344.)
 	 *
 	 * @param string $phone Raw phone input from user.
 	 *
