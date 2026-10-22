@@ -1806,7 +1806,8 @@ class KwtSMS_API {
 			'ERR025' => __( 'Phone number is not valid. Please enter a valid mobile number with country code.', 'kwtsms' ),
 			'ERR026' => __( 'No SMS coverage for this destination. Please contact the site administrator.', 'kwtsms' ),
 			'ERR027' => __( 'Message contains unsupported characters. Please contact the site administrator.', 'kwtsms' ),
-			'ERR028' => __( 'Please wait at least 15 seconds before requesting another code to the same number.', 'kwtsms' ),
+			// 2026-10-22 15:37 +03: ERR028 is opt-in duplicate SMS protection with a per-account window (10 s default), never a fixed 15 s.
+			'ERR028' => __( 'This number was sent the same message too recently. Please try again shortly.', 'kwtsms' ),
 			'ERR029' => __( 'Message not found or message ID is incorrect.', 'kwtsms' ),
 			'ERR030' => __( 'Message is stuck in queue. Please contact the site administrator.', 'kwtsms' ),
 			'ERR031' => __( 'Message was rejected due to policy violations. Please contact the site administrator.', 'kwtsms' ),

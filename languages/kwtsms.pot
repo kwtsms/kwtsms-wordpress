@@ -471,7 +471,8 @@ msgid "Message contains unsupported characters. Please contact the site administ
 msgstr ""
 
 #: includes/class-kwtsms-api.php:284
-msgid "Please wait at least 15 seconds before requesting another code to the same number."
+# 2026-10-22 15:37 +03: ERR028 string replaced, the old one claimed a fixed 15-second wait.
+msgid "This number was sent the same message too recently. Please try again shortly."
 msgstr ""
 
 #: includes/class-kwtsms-api.php:285
