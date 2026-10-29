@@ -1,11 +1,11 @@
 # kwtSMS: OTP & SMS Notifications, WordPress Plugin
 
-[![CI](https://github.com/boxlinknet/kwtsms-wordpress/actions/workflows/ci.yml/badge.svg)](https://github.com/boxlinknet/kwtsms-wordpress/actions/workflows/ci.yml)
-[![Semgrep](https://github.com/boxlinknet/kwtsms-wordpress/actions/workflows/codeql.yml/badge.svg)](https://github.com/boxlinknet/kwtsms-wordpress/actions/workflows/codeql.yml)
+[![CI](https://github.com/kwtsms/kwtsms-wordpress/actions/workflows/ci.yml/badge.svg)](https://github.com/kwtsms/kwtsms-wordpress/actions/workflows/ci.yml)
+[![Semgrep](https://github.com/kwtsms/kwtsms-wordpress/actions/workflows/codeql.yml/badge.svg)](https://github.com/kwtsms/kwtsms-wordpress/actions/workflows/codeql.yml)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759b.svg?logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4.svg?logo=php&logoColor=white)](https://php.net)
-[![Release](https://img.shields.io/github/v/release/boxlinknet/kwtsms-wordpress)](https://github.com/boxlinknet/kwtsms-wordpress/releases)
+[![Release](https://img.shields.io/github/v/release/kwtsms/kwtsms-wordpress)](https://github.com/kwtsms/kwtsms-wordpress/releases)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-optional-96588a.svg?logo=woocommerce&logoColor=white)](https://woocommerce.com)
 
 Replace passwords with SMS codes, automate WooCommerce order updates, and verify phone numbers on any contact form. Built on the [kwtSMS](https://www.kwtsms.com) gateway.
@@ -42,7 +42,7 @@ kwtSMS is a Kuwaiti SMS gateway trusted by top businesses to deliver messages an
 
 ### Option 2: Upload via WordPress Admin
 
-1. Download the latest `kwtsms.zip` from the [Releases page](https://github.com/boxlinknet/kwtsms-wordpress/releases).
+1. Download the latest `kwtsms.zip` from the [Releases page](https://github.com/kwtsms/kwtsms-wordpress/releases).
 2. In your WordPress dashboard, go to **Plugins → Add New Plugin → Upload Plugin**.
 3. Choose the downloaded `.zip` file and click **Install Now**.
 4. Click **Activate Plugin**.
@@ -50,7 +50,7 @@ kwtSMS is a Kuwaiti SMS gateway trusted by top businesses to deliver messages an
 ### Option 3: WP-CLI
 
 ```bash
-wp plugin install https://github.com/boxlinknet/kwtsms-wordpress/releases/latest/download/kwtsms.zip --activate
+wp plugin install https://github.com/kwtsms/kwtsms-wordpress/releases/latest/download/kwtsms.zip --activate
 ```
 
 ### Initial Setup
@@ -113,7 +113,7 @@ Each integration supports two modes: **Notification** (send confirmation SMS on 
 | WPForms | ✓ | ✓ | ✓ |
 | Ninja Forms | ✓ | ✓ | ✓ |
 
-Need a specific plugin supported? [Open an issue](https://github.com/boxlinknet/kwtsms-wordpress/issues) and we will look into it.
+Need a specific plugin supported? [Open an issue](https://github.com/kwtsms/kwtsms-wordpress/issues) and we will look into it.
 
 ### Balance & Gateway
 - Account balance displayed on Gateway and Help pages without re-verifying credentials
@@ -242,7 +242,7 @@ Alternatively, use WP-CLI to remove the phone from your account: `wp user meta d
 - **[Sender ID Help](https://www.kwtsms.com/sender-id-help.html)**: Sender ID registration and guidelines.
 - **[kwtSMS Dashboard](https://www.kwtsms.com/login/)**: Recharge credits, buy Sender IDs, view message logs, and manage coverage.
 - **[Other Integrations](https://www.kwtsms.com/integrations.html)**: Plugins and integrations for other platforms and languages.
-- **[Plugin Issues](https://github.com/boxlinknet/kwtsms-wordpress/issues)**: Report bugs or request features.
+- **[Plugin Issues](https://github.com/kwtsms/kwtsms-wordpress/issues)**: Report bugs or request features.
 
 ---
 
