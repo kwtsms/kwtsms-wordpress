@@ -182,7 +182,8 @@ class KwtSMS_Woo_Metabox {
 			. ' } );'
 			. '} );';
 
-		wp_register_script( 'kwtsms-woo-metabox', '', array( 'jquery' ), KWTSMS_OTP_VERSION, true );
+		// 2026-11-04 21:53 +03: src false, not '' (PHPStan with current WP stubs, CI red since today; inline-only handle).
+		wp_register_script( 'kwtsms-woo-metabox', false, array( 'jquery' ), KWTSMS_OTP_VERSION, true );
 		wp_enqueue_script( 'kwtsms-woo-metabox' );
 		wp_add_inline_script( 'kwtsms-woo-metabox', $metabox_js, 'after' );
 	}

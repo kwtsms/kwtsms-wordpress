@@ -159,7 +159,8 @@ $kwtsms_template_placeholders = array(
 
 <?php
 // Inline JS for tab switching (uses wp_add_inline_script pattern via PHP output buffer).
-wp_register_script( 'kwtsms-tpl-tabs', '', array(), KWTSMS_OTP_VERSION, true );
+// 2026-11-04 21:53 +03: src false, not '' (PHPStan with current WP stubs, CI red since today; inline-only handle).
+wp_register_script( 'kwtsms-tpl-tabs', false, array(), KWTSMS_OTP_VERSION, true );
 wp_enqueue_script( 'kwtsms-tpl-tabs' );
 wp_add_inline_script(
 	'kwtsms-tpl-tabs',

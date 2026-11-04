@@ -208,7 +208,8 @@ $kwtsms_tpl_placeholders = array(
 		?>
 
 		<?php
-		wp_register_script( 'kwtsms-alert-tpl-tabs', '', array(), KWTSMS_OTP_VERSION, true );
+		// 2026-11-04 21:53 +03: src false, not '' (PHPStan with current WP stubs, CI red since today; inline-only handle).
+		wp_register_script( 'kwtsms-alert-tpl-tabs', false, array(), KWTSMS_OTP_VERSION, true );
 		wp_enqueue_script( 'kwtsms-alert-tpl-tabs' );
 		wp_add_inline_script(
 			'kwtsms-alert-tpl-tabs',

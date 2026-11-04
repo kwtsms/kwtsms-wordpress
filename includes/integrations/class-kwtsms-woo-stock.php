@@ -289,7 +289,8 @@ class KwtSMS_Woo_Stock {
 			<span id="kwtsms-bis-msg" style="display:none;margin-left:8px;font-size:13px;"></span>
 		</div>
 		<?php
-		wp_register_script( 'kwtsms-bis', '', array(), KWTSMS_OTP_VERSION, true );
+		// 2026-11-04 21:53 +03: src false, not '' (PHPStan with current WP stubs, CI red since today; inline-only handle).
+		wp_register_script( 'kwtsms-bis', false, array(), KWTSMS_OTP_VERSION, true );
 		wp_enqueue_script( 'kwtsms-bis' );
 		wp_localize_script(
 			'kwtsms-bis',
