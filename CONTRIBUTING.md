@@ -10,7 +10,7 @@
 ## Setup
 
 ```bash
-git clone https://github.com/boxlinknet/kwtsms-wordpress.git wp-kwtsms
+git clone https://github.com/kwtsms/kwtsms-wordpress.git wp-kwtsms
 cd wp-kwtsms
 composer install
 ```

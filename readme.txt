@@ -102,7 +102,7 @@ Ships with English (default) and Arabic translations. The plugin admin UI and al
 
 = Method 2: Upload via WordPress Admin =
 
-1. Download the plugin zip file from the [GitHub releases page](https://github.com/boxlinknet/kwtsms-wordpress/releases).
+1. Download the plugin zip file from the [GitHub releases page](https://github.com/kwtsms/kwtsms-wordpress/releases).
 2. In your WordPress admin, go to **Plugins > Add New Plugin**.
 3. Click the **Upload Plugin** button at the top of the page.
 4. Click **Choose File**, select the downloaded `wp-kwtsms-x.x.x.zip` file, and click **Install Now**.
@@ -111,7 +111,7 @@ Ships with English (default) and Arabic translations. The plugin admin UI and al
 
 = Method 3: Manual FTP / SFTP Upload =
 
-1. Download the plugin zip file from the [GitHub releases page](https://github.com/boxlinknet/kwtsms-wordpress/releases).
+1. Download the plugin zip file from the [GitHub releases page](https://github.com/kwtsms/kwtsms-wordpress/releases).
 2. Unzip the file on your computer. You will get a folder named `wp-kwtsms`.
 3. Upload the `wp-kwtsms` folder to `/wp-content/plugins/` on your server using an FTP or SFTP client (FileZilla, Cyberduck, etc.).
 4. In your WordPress admin, go to **Plugins > Installed Plugins**.
@@ -179,7 +179,7 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * **[Sender ID Help](https://www.kwtsms.com/sender-id-help.html)**: Sender ID registration and guidelines.
 * **[kwtSMS Dashboard](https://www.kwtsms.com/login/)**: Recharge credits, buy Sender IDs, view message logs, and manage coverage.
 * **[Other Integrations](https://www.kwtsms.com/integrations.html)**: Plugins and integrations for other platforms and languages.
-* **[Plugin Issues](https://github.com/boxlinknet/kwtsms-wordpress/issues)**: Report bugs or request features for this WordPress plugin.
+* **[Plugin Issues](https://github.com/kwtsms/kwtsms-wordpress/issues)**: Report bugs or request features for this WordPress plugin.
 
 == Screenshots ==
 
