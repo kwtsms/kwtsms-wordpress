@@ -573,7 +573,7 @@ msgid "Enter OTP code (leave blank to receive code first)"
 msgstr "أدخل رمز التحقق (اتركه فارغاً لتصلك رسالة بالرمز أولاً)"
 
 msgid "An OTP has been sent to your phone. Enter it above and place the order again."
-msgstr "أرسلنا رمز التحقق إلى هاتفك. أدخله في الحقل أعلاه ثم اضغط تأكيد الطلب مرة أخرى."
+msgstr "أرسلنا رمز التحقق إلى هاتفك. أدخله في الحقل أعلاه ثم اضغط تقديم طلب مرة أخرى."
 
 msgid "Session expired. Please refresh and try again."
 msgstr "انتهت الجلسة. حدّث الصفحة وحاول مرة أخرى."
