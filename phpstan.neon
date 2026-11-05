@@ -94,6 +94,8 @@ parameters:
         - '#^(Class|Parameter .+ has invalid type) WC_(Order|Checkout|Session|Cart|Product|Coupon)\b#'
         - '#^Call to method .+ on an unknown class WC_(Order|Checkout|Session|Cart|Product|Coupon)\b#'
         - '#^Instantiated class WC_Coupon not found\.#'
+        # 2026-11-05 17:11 +03: Store API exception thrown by the checkout block OTP gate (WooCommerce only), wp-blockcheckout.
+        - '#Automattic\\WooCommerce\\StoreApi\\Exceptions\\RouteException#'
         - '#^Function (wc_(get_order|get_product|get_customer_last_order|price|add_notice|get_order_status_name|get_cart_url|get_products|get_page_id)|get_woocommerce_currency) not found\.#'
 
         # ── Elementor Pro (optional dependency) ────────────────────────────────

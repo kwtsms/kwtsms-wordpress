@@ -50,6 +50,15 @@ class KwtSMS_Woo {
 	const CHECKOUT_OTP_PREFIX = 'kwtsms_checkout_otp_';
 
 	/**
+	 * Additional Checkout Fields API id of the checkout block OTP code field.
+	 *
+	 * 2026-11-05 17:10 +03: id of the block checkout code field (namespace/name as the API requires), wp-blockcheckout.
+	 *
+	 * @var string
+	 */
+	const BLOCK_OTP_FIELD = 'kwtsms/otp-code';
+
+	/**
 	 * Constructor.
 	 *
 	 * Registers all WooCommerce hooks. If the WooCommerce integration is
@@ -95,6 +104,13 @@ class KwtSMS_Woo {
 			add_action( 'woocommerce_after_order_notes', array( $this, 'render_checkout_otp_field' ) );
 			add_action( 'woocommerce_checkout_process', array( $this, 'process_checkout_otp' ) );
 			add_action( 'woocommerce_checkout_order_created', array( $this, 'clear_checkout_otp_session' ) );
+
+			// 2026-11-05 17:10 +03: Checkout block (Store API) gate: an optional order field for the code plus
+			// server-side enforcement before the draft order becomes a pending order; the classic hooks above never
+			// fire on the block checkout, so block stores had no verification, wp-blockcheckout.
+			add_action( 'woocommerce_init', array( $this, 'register_block_checkout_otp_field' ) );
+			add_action( 'woocommerce_store_api_checkout_update_order_from_request', array( $this, 'process_block_checkout_otp' ), 10, 2 );
+			add_action( 'woocommerce_store_api_checkout_order_processed', array( $this, 'clear_checkout_otp_session' ) );
 		}
 	}
 
@@ -480,12 +496,37 @@ class KwtSMS_Woo {
 		$otp_code = preg_replace( '/\D/', '', sanitize_text_field( wp_unslash( $_POST['kwtsms_checkout_otp_code'] ?? '' ) ) );
 
 		// Get billing phone.
-		$raw_phone  = sanitize_text_field( wp_unslash( $_POST['billing_phone'] ?? '' ) );
+		$raw_phone = sanitize_text_field( wp_unslash( $_POST['billing_phone'] ?? '' ) );
+
+		// 2026-11-05 17:10 +03: send/verify steps moved to run_checkout_otp_step() so the block checkout reuses the
+		// exact same rate limits, cooldown, SMS and verification; classic notices and order unchanged, wp-blockcheckout.
+		$error = $this->run_checkout_otp_step( $raw_phone, (string) $otp_code, $token, $session_key );
+		if ( '' !== $error ) {
+			wc_add_notice( $error, 'error' );
+		}
+	}
+
+	/**
+	 * Shared checkout OTP step for the classic checkout and the checkout block.
+	 *
+	 * 2026-11-05 17:10 +03: extracted from process_checkout_otp() unchanged, so both checkouts enforce one
+	 * implementation (rate limits, send cooldown, OTP SMS, verification, session flag), wp-blockcheckout.
+	 *
+	 * With no code: rate-limit, generate and send the OTP, remember the phone, and block the order with the
+	 * "OTP has been sent" message. With a code: check it against the same phone and, when valid, mark the
+	 * WooCommerce session as verified.
+	 *
+	 * @param string      $raw_phone   Billing phone as entered by the shopper.
+	 * @param string      $otp_code    Digits-only OTP code, or '' on the first submit.
+	 * @param string      $token       Identifier of this checkout attempt (OTP and pending-phone transient key).
+	 * @param string|null $session_key WooCommerce session customer id, or null when no session exists.
+	 * @return string '' when the order may proceed, otherwise the message that blocks it.
+	 */
+	private function run_checkout_otp_step( $raw_phone, $otp_code, $token, $session_key ) {
 		$raw_phone  = KwtSMS_API::prepend_country_code_if_local( $raw_phone, KwtSMS_API::get_default_dial_code() );
 		$normalized = KwtSMS_API::normalize_phone( $raw_phone );
 		if ( is_wp_error( $normalized ) ) {
-			wc_add_notice( $normalized->get_error_message(), 'error' );
-			return;
+			return $normalized->get_error_message();
 		}
 
 		$transient_key = self::CHECKOUT_OTP_PREFIX . $token;
@@ -493,12 +534,10 @@ class KwtSMS_Woo {
 		if ( '' === $otp_code ) {
 			// First (or repeated) submit — enforce per-phone and per-IP rate limits.
 			if ( $this->plugin->otp->is_rate_limited( $normalized, 'checkout' ) ) {
-				wc_add_notice( __( 'Too many OTP requests for this phone number. Please wait before trying again.', 'kwtsms' ), 'error' );
-				return;
+				return __( 'Too many OTP requests for this phone number. Please wait before trying again.', 'kwtsms' );
 			}
 			if ( $this->plugin->otp->is_ip_rate_limited( 'checkout' ) ) {
-				wc_add_notice( __( 'Too many requests from your connection. Please wait before trying again.', 'kwtsms' ), 'error' );
-				return;
+				return __( 'Too many requests from your connection. Please wait before trying again.', 'kwtsms' );
 			}
 
 			// Generate (or reuse) OTP.
@@ -515,29 +554,26 @@ class KwtSMS_Woo {
 					'checkout'
 				);
 				if ( is_wp_error( $result ) ) {
-					wc_add_notice( $result->get_error_message(), 'error' );
-					return;
+					return $result->get_error_message();
 				}
 				$this->plugin->otp->set_send_cooldown( $checkout_id );
 			}
 
 			// Store the phone so we can verify the same number on the second submit.
 			set_transient( $transient_key . '_pending', $normalized, 15 * MINUTE_IN_SECONDS );
-			wc_add_notice( __( 'An OTP has been sent to your phone. Enter it above and place the order again.', 'kwtsms' ), 'error' );
-			return; // Prevent order creation on first submit.
+			// Prevent order creation on first submit.
+			return __( 'An OTP has been sent to your phone. Enter it above and place the order again.', 'kwtsms' );
 		}
 
 		// Second submit — verify OTP.
 		$stored_phone = get_transient( $transient_key . '_pending' );
 		if ( ! $stored_phone || $stored_phone !== $normalized ) {
-			wc_add_notice( __( 'Session expired. Please refresh and try again.', 'kwtsms' ), 'error' );
-			return;
+			return __( 'Session expired. Please refresh and try again.', 'kwtsms' );
 		}
 
 		$result = $this->plugin->otp->verify( 'checkout_' . $token, $otp_code, 'checkout' );
 		if ( 'valid' !== $result ) {
-			wc_add_notice( __( 'Incorrect or expired OTP. Please try again.', 'kwtsms' ), 'error' );
-			return;
+			return __( 'Incorrect or expired OTP. Please try again.', 'kwtsms' );
 		}
 
 		// Mark session as verified so subsequent page loads do not re-prompt.
@@ -545,6 +581,105 @@ class KwtSMS_Woo {
 			set_transient( self::CHECKOUT_OTP_PREFIX . $session_key, 1, HOUR_IN_SECONDS );
 		}
 		delete_transient( $transient_key . '_pending' );
+		return '';
+	}
+
+	// =========================================================================
+	// Checkout OTP gate: Checkout block (Store API)
+	// =========================================================================
+
+	/**
+	 * Register the OTP code field on the Checkout block.
+	 *
+	 * 2026-11-05 17:10 +03: optional text field in the block's Order information section, registered through
+	 * the Additional Checkout Fields API (WooCommerce 8.9+; no-op on older versions or classic-only stores).
+	 * Reuses the classic strings so existing translations apply. In COD-only mode the field is hidden for other
+	 * payment methods with a conditional schema (WooCommerce 9.9+), wp-blockcheckout.
+	 *
+	 * Hooked to woocommerce_init, as the API requires.
+	 */
+	public function register_block_checkout_otp_field() {
+		if ( ! function_exists( 'woocommerce_register_additional_checkout_field' ) ) {
+			$this->plugin->api->write_debug_log( 'woo_checkout', 'Checkout block OTP field not registered: WooCommerce has no Additional Checkout Fields API (needs 8.9+).' );
+			return;
+		}
+
+		$field = array(
+			'id'            => self::BLOCK_OTP_FIELD,
+			'label'         => __( 'Phone Verification', 'kwtsms' ),
+			'optionalLabel' => __( 'Enter OTP code (leave blank to receive code first)', 'kwtsms' ),
+			'location'      => 'order',
+			'type'          => 'text',
+			'required'      => false,
+			'attributes'    => array(
+				'autocomplete' => 'one-time-code',
+			),
+		);
+
+		$cod_only = (bool) $this->plugin->settings->get( 'integrations.woo_checkout_otp_cod_only', 0 );
+		if ( $cod_only && defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '9.9.0', '>=' ) ) {
+			$field['hidden'] = array(
+				'checkout' => array(
+					'properties' => array(
+						'payment_method' => array(
+							'not' => array( 'const' => 'cod' ),
+						),
+					),
+				),
+			);
+		}
+
+		woocommerce_register_additional_checkout_field( $field );
+	}
+
+	/**
+	 * Enforce the checkout OTP on the Checkout block, server-side.
+	 *
+	 * 2026-11-05 17:10 +03: runs inside the Store API checkout POST after the payment method and additional
+	 * fields are applied to the draft order and before it is saved as pending; throwing a RouteException stops
+	 * the order and shows the message in the block, the same two-submit flow as the classic checkout. PUT/PATCH
+	 * draft updates are ignored so no SMS is sent while the shopper is still typing, wp-blockcheckout.
+	 *
+	 * @param WC_Order         $order   Draft order being placed.
+	 * @param \WP_REST_Request $request Store API checkout request.
+	 * @throws \Automattic\WooCommerce\StoreApi\Exceptions\RouteException When the order must not be placed yet.
+	 */
+	public function process_block_checkout_otp( $order, $request ) {
+		if ( 'POST' !== $request->get_method() ) {
+			return;
+		}
+
+		$fields   = $request->get_param( 'additional_fields' );
+		$raw_code = ( is_array( $fields ) && isset( $fields[ self::BLOCK_OTP_FIELD ] ) ) ? (string) $fields[ self::BLOCK_OTP_FIELD ] : '';
+		$otp_code = (string) preg_replace( '/\D/', '', sanitize_text_field( $raw_code ) );
+
+		// A one-time code has no business on the order: drop the value the Fields API copied to the order meta.
+		$order->delete_meta_data( '_wc_other/' . self::BLOCK_OTP_FIELD );
+
+		$session_key = $this->get_checkout_session_key();
+		if ( $session_key && get_transient( self::CHECKOUT_OTP_PREFIX . $session_key ) ) {
+			$this->plugin->api->write_debug_log( 'woo_checkout', 'Checkout block OTP skipped: phone already verified in this session.' );
+			return;
+		}
+
+		$cod_only = (bool) $this->plugin->settings->get( 'integrations.woo_checkout_otp_cod_only', 0 );
+		if ( $cod_only && 'cod' !== $order->get_payment_method() ) {
+			$this->plugin->api->write_debug_log( 'woo_checkout', 'Checkout block OTP skipped: COD-only mode and payment method is not cod.' );
+			return;
+		}
+
+		if ( ! $session_key ) {
+			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException(
+				'kwtsms_checkout_otp',
+				esc_html__( 'Session expired. Please refresh and try again.', 'kwtsms' ),
+				400
+			);
+		}
+
+		$error = $this->run_checkout_otp_step( (string) $order->get_billing_phone(), $otp_code, 'blk_' . $session_key, $session_key );
+		if ( '' !== $error ) {
+			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'kwtsms_checkout_otp', esc_html( $error ), 400 );
+		}
 	}
 
 	/**
