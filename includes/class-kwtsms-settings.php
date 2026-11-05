@@ -71,17 +71,25 @@ class KwtSMS_Settings {
 			'coverage'             => array(),    // Cached from last login.
 		),
 		'templates'    => array(
-			'login_otp'   => array(
+			'login_otp'    => array(
 				'enabled' => 1,
 				'en'      => 'Your {site_name} login code is: {otp}. Valid for {expiry_minutes} minutes. Do not share this code.',
 				'ar'      => 'رمزك: {otp}. صالح {expiry_minutes} دقيقة. {site_name}',
 			),
-			'reset_otp'   => array(
+			// 2026-11-05 19:07 +03: own template for WooCommerce checkout phone verification, so the code is not sent with
+			// the login wording. 2026-11-05 19:08 +03: Arabic default from marketing; if an admin clears it, build_message()
+			// sends the English text instead, wp-otp-template.
+			'checkout_otp' => array(
+				'enabled' => 1,
+				'en'      => 'Your {site_name} order verification code is: {otp}. Valid for {expiry_minutes} minutes. Do not share this code.',
+				'ar'      => 'رمز تأكيد طلبك: {otp}. صالح {expiry_minutes} دقيقة. لا تشاركه. {site_name}',
+			),
+			'reset_otp'    => array(
 				'enabled' => 1,
 				'en'      => 'Your {site_name} password reset code is: {otp}. Valid for {expiry_minutes} minutes.',
 				'ar'      => 'رمز إعادة التعيين: {otp}. {expiry_minutes} دقيقة. {site_name}',
 			),
-			'welcome_sms' => array(
+			'welcome_sms'  => array(
 				'enabled' => 0,
 				'en'      => 'Welcome to {site_name}, {name}! Your account has been created.',
 				'ar'      => 'مرحباً بك في {site_name}، {name}! تم إنشاء حسابك بنجاح.',

@@ -546,7 +546,10 @@ class KwtSMS_Woo {
 
 			// Send SMS only if outside the send-cooldown (prevents double-send on double-click).
 			if ( ! $this->plugin->otp->is_send_cooldown_active( $checkout_id ) ) {
-				$msg    = $this->plugin->otp->build_message( $otp, 'login_otp' );
+				// 2026-11-05 19:07 +03: checkout uses its own template; when an admin disables it, fall back to login_otp so
+				// the store keeps phone verification, wp-otp-template.
+				$tpl_id = $this->plugin->settings->get( 'templates.checkout_otp.enabled', 1 ) ? 'checkout_otp' : 'login_otp';
+				$msg    = $this->plugin->otp->build_message( $otp, $tpl_id );
 				$result = $this->plugin->api->send(
 					$normalized,
 					$this->plugin->settings->get( 'gateway.sender_id', '' ),

@@ -14,30 +14,40 @@ defined( 'ABSPATH' ) || exit;
 // phpcs:ignore Squiz.PHP.CommentedOutCode.Found -- @var KwtSMS_Admin $this, injected by admin controller.
 $kwtsms_templates = $this->plugin->settings->get_all_templates();
 
+// 2026-11-05 19:07 +03: checkout_otp tab (WooCommerce checkout phone verification), wp-otp-template.
 $kwtsms_template_labels = array(
-	'login_otp'   => __( 'Login OTP', 'kwtsms' ),
-	'reset_otp'   => __( 'Password Reset OTP', 'kwtsms' ),
-	'welcome_sms' => __( 'Welcome SMS', 'kwtsms' ),
+	'login_otp'    => __( 'Login OTP', 'kwtsms' ),
+	'checkout_otp' => __( 'Checkout Verification OTP', 'kwtsms' ),
+	'reset_otp'    => __( 'Password Reset OTP', 'kwtsms' ),
+	'welcome_sms'  => __( 'Welcome SMS', 'kwtsms' ),
 );
 
+// 2026-11-05 19:07 +03: checkout_otp tab (WooCommerce checkout phone verification), wp-otp-template.
 $kwtsms_template_descriptions = array(
-	'login_otp'   => __( 'Sent when a user requests a login OTP code.', 'kwtsms' ),
-	'reset_otp'   => __( 'Sent when a user requests a password reset via OTP.', 'kwtsms' ),
-	'welcome_sms' => __( 'Sent after a new user account is created. (Optional)', 'kwtsms' ),
+	'login_otp'    => __( 'Sent when a user requests a login OTP code.', 'kwtsms' ),
+	'checkout_otp' => __( 'Sent when a WooCommerce customer verifies their phone number at checkout. If disabled, the Login OTP template is sent instead. If the Arabic text is empty, the English text is sent.', 'kwtsms' ),
+	'reset_otp'    => __( 'Sent when a user requests a password reset via OTP.', 'kwtsms' ),
+	'welcome_sms'  => __( 'Sent after a new user account is created. (Optional)', 'kwtsms' ),
 );
 
+// 2026-11-05 19:07 +03: checkout_otp tab (WooCommerce checkout phone verification), wp-otp-template.
 $kwtsms_template_placeholders = array(
-	'login_otp'   => array(
+	'login_otp'    => array(
 		'{otp}'            => __( 'The generated OTP code', 'kwtsms' ),
 		'{site_name}'      => __( 'Your WordPress site name', 'kwtsms' ),
 		'{expiry_minutes}' => __( 'OTP validity period in minutes', 'kwtsms' ),
 	),
-	'reset_otp'   => array(
+	'checkout_otp' => array(
 		'{otp}'            => __( 'The generated OTP code', 'kwtsms' ),
 		'{site_name}'      => __( 'Your WordPress site name', 'kwtsms' ),
 		'{expiry_minutes}' => __( 'OTP validity period in minutes', 'kwtsms' ),
 	),
-	'welcome_sms' => array(
+	'reset_otp'    => array(
+		'{otp}'            => __( 'The generated OTP code', 'kwtsms' ),
+		'{site_name}'      => __( 'Your WordPress site name', 'kwtsms' ),
+		'{expiry_minutes}' => __( 'OTP validity period in minutes', 'kwtsms' ),
+	),
+	'welcome_sms'  => array(
 		'{name}'      => __( 'User display name', 'kwtsms' ),
 		'{site_name}' => __( 'Your WordPress site name', 'kwtsms' ),
 	),
@@ -101,6 +111,22 @@ $kwtsms_template_placeholders = array(
 					<h3><?php echo esc_html( $kwtsms_label ); ?></h3>
 				</div>
 				<p class="description"><?php echo esc_html( $kwtsms_template_descriptions[ $kwtsms_key ] ); ?></p>
+				<?php
+				// 2026-11-05 19:07 +03: enabled toggle for checkout_otp only. The sanitizer stores enabled from the posted
+				// checkbox, so without it every save would switch checkout back to the login wording, wp-otp-template.
+				if ( 'checkout_otp' === $kwtsms_key ) :
+					?>
+				<p>
+					<label>
+						<input type="checkbox"
+							name="kwtsms_otp_templates[checkout_otp][enabled]"
+							id="tpl_checkout_otp_enabled"
+							value="1"
+							<?php checked( ! empty( $kwtsms_tpl['enabled'] ) ); ?> />
+						<?php esc_html_e( 'Use this template for checkout verification', 'kwtsms' ); ?>
+					</label>
+				</p>
+				<?php endif; ?>
 
 				<div class="kwtsms-lang-tabs">
 					<div class="kwtsms-tab-nav">

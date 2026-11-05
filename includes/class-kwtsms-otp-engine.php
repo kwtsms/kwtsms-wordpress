@@ -368,6 +368,12 @@ class KwtSMS_OTP_Engine {
 		$lang    = ( strpos( $locale, 'ar' ) === 0 ) ? 'ar' : 'en';
 		$message = $template[ $lang ] ?? $template['en'] ?? '';
 
+		// 2026-11-05 19:07 +03: if the checkout_otp Arabic text is blank (admin cleared it), send the English text rather
+		// than an empty SMS. Scoped to this template so other templates keep their behaviour, wp-otp-template.
+		if ( 'checkout_otp' === $template_id && 'ar' === $lang && '' === trim( (string) $message ) ) {
+			$message = $template['en'] ?? '';
+		}
+
 		// Replace standard placeholders.
 		$expiry    = (int) $this->settings->get( 'general.otp_expiry', 5 );
 		$site_name = get_bloginfo( 'name' );

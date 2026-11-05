@@ -622,8 +622,9 @@ class KwtSMS_Admin {
 			return array();
 		}
 
+		// 2026-11-05 19:07 +03: checkout_otp added so the Templates page can save it, wp-otp-template.
 		$sanitized    = array();
-		$allowed_keys = array( 'login_otp', 'reset_otp', 'welcome_sms' );
+		$allowed_keys = array( 'login_otp', 'checkout_otp', 'reset_otp', 'welcome_sms' );
 
 		foreach ( $allowed_keys as $key ) {
 			if ( ! isset( $raw[ $key ] ) || ! is_array( $raw[ $key ] ) ) {
