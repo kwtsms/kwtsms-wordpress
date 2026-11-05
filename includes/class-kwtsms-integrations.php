@@ -2,6 +2,8 @@
 /**
  * Integration Loader.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Detects active third-party plugins and boots the corresponding integration
  * classes. Each integration is self-contained and lazy-loaded only when
  * the parent plugin is active.
@@ -46,7 +48,7 @@ class KwtSMS_Integrations {
 	 * Detect active plugins and instantiate their integrations.
 	 *
 	 * Each integration file is only require_once'd when the corresponding
-	 * plugin is active — keeping the plugin footprint minimal on sites that
+	 * plugin is active, keeping the plugin footprint minimal on sites that
 	 * do not use these third-party tools.
 	 */
 	public function boot() {
@@ -54,15 +56,15 @@ class KwtSMS_Integrations {
 			require_once KWTSMS_OTP_DIR . 'includes/integrations/class-kwtsms-woo.php';
 			new KwtSMS_Woo( $this->plugin );
 
-			// D1+D2 — Stock alerts and new product SMS.
+			// D1+D2: Stock alerts and new product SMS.
 			require_once KWTSMS_OTP_DIR . 'includes/integrations/class-kwtsms-woo-stock.php';
 			new KwtSMS_Woo_Stock( $this->plugin );
 
-			// D4 — Instant order alerts and multivendor SMS.
+			// D4: Instant order alerts and multivendor SMS.
 			require_once KWTSMS_OTP_DIR . 'includes/integrations/class-kwtsms-woo-multivendor.php';
 			new KwtSMS_Woo_Multivendor( $this->plugin );
 
-			// D3 — Cart abandonment recovery.
+			// D3: Cart abandonment recovery.
 			require_once KWTSMS_OTP_DIR . 'includes/integrations/class-kwtsms-woo-cart.php';
 			$this->plugin->woo_cart = new KwtSMS_Woo_Cart( $this->plugin );
 

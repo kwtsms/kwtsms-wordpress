@@ -2,6 +2,8 @@
 /**
  * Password Reset via OTP.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Replaces (or supplements) the default WordPress email-based password reset
  * with an SMS OTP verification step.
  *
@@ -67,7 +69,7 @@ class KwtSMS_Reset_OTP {
 	/**
 	 * Intercept the lostpassword form submission early, before any output.
 	 *
-	 * Fires on `login_init` at priority 1 — before login_header() is called
+	 * Fires on `login_init` at priority 1, before login_header() is called
 	 * and before login_form_lostpassword outputs content, so wp_safe_redirect
 	 * can send headers cleanly.
 	 *
@@ -99,7 +101,7 @@ class KwtSMS_Reset_OTP {
 		$resolved_user = $this->resolve_user( $input );
 
 		if ( ! ( $resolved_user instanceof WP_User ) ) {
-			// No user found — fall through to WP default (generic confirmation).
+			// No user found: fall through to WP default (generic confirmation).
 			return;
 		}
 
@@ -165,13 +167,13 @@ class KwtSMS_Reset_OTP {
 
 			if ( is_wp_error( $result ) ) {
 				$this->plugin->api->write_debug_log( 'reset_otp', 'SMS failed for user ' . $resolved_user->ID . ': ' . $result->get_error_message() );
-				// Fail gracefully — fall back to email reset.
+				// Fail gracefully: fall back to email reset.
 				return;
 			}
 		}
 
 		// Sliding-window counters are recorded inside is_rate_limited(),
-		// is_ip_rate_limited(), and is_user_rate_limited() — no separate
+		// is_ip_rate_limited(), and is_user_rate_limited(); no separate
 		// increment calls needed.
 
 		// Store reset session.
@@ -191,7 +193,7 @@ class KwtSMS_Reset_OTP {
 		// Prevent WP from sending the email reset.
 		add_filter( 'send_retrieve_password_email', '__return_false' );
 
-		// Redirect to OTP page — no output has been sent yet, so headers are clean.
+		// Redirect to OTP page: no output has been sent yet, so headers are clean.
 		wp_safe_redirect(
 			add_query_arg( 'action', 'kwtsms_reset_otp', wp_login_url() )
 		);
@@ -312,7 +314,7 @@ class KwtSMS_Reset_OTP {
 			case 'invalid':
 				$remaining = $this->plugin->otp->get_remaining_attempts( $user_id );
 				if ( 0 === $remaining ) {
-					// Transient expired between verify() and get_remaining_attempts() — treat as expired.
+					// Transient expired between verify() and get_remaining_attempts(): treat as expired.
 					$this->render_reset_otp_page(
 						__( 'Your code has expired. Please go back and request a new one.', 'kwtsms' )
 					);

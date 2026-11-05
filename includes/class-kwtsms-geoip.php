@@ -1,6 +1,8 @@
 <?php
 /**
- * GeoIP Detection — detect the visitor's country from their IP address.
+ * GeoIP Detection: detect the visitor's country from their IP address.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Uses the ipapi.co free endpoint (no API key required, 30 000 req/day limit,
  * HTTPS). Results are cached in a transient for 24 hours to minimise external
@@ -42,7 +44,7 @@ class KwtSMS_GeoIP {
 			return '' !== $cached ? $cached : null;
 		}
 
-		// Call ipapi.co — returns plain-text ISO2 country code (HTTPS, free tier).
+		// Call ipapi.co: returns plain-text ISO2 country code (HTTPS, free tier).
 		$response = wp_remote_get(
 			'https://ipapi.co/' . rawurlencode( $ip ) . '/country/',
 			array( 'timeout' => 3 )
@@ -73,7 +75,7 @@ class KwtSMS_GeoIP {
 	 * Get the real client IP, handling common proxy headers.
 	 *
 	 * NOTE: X-Forwarded-For and X-Real-IP headers can be spoofed. This is used
-	 * only for GeoIP pre-selection (cosmetic UX) — not for security decisions.
+	 * only for GeoIP pre-selection (cosmetic UX), not for security decisions.
 	 *
 	 * @return string Validated IP address, or empty string if none found.
 	 */

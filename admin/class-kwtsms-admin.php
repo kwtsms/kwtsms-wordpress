@@ -1,6 +1,8 @@
 <?php
 /**
- * Admin Controller — menus, settings registration, admin notices.
+ * Admin Controller: menus, settings registration, admin notices.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Registers three subpages under a top-level "kwtSMS" menu:
  *   - General Settings  (OTP behaviour, CAPTCHA)
@@ -223,7 +225,7 @@ class KwtSMS_Admin {
 		// calling remove_submenu_page(). remove_submenu_page() strips the entry
 		// from $submenu but WordPress then cannot resolve the page's parent slug
 		// for the hookname check, resulting in a "not allowed" error on direct
-		// URL access — which breaks the redirect from the view itself.
+		// URL access, which breaks the redirect from the view itself.
 		if ( 0 === (int) $nophone_count ) {
 			add_action(
 				'admin_head',
@@ -481,7 +483,7 @@ class KwtSMS_Admin {
 			return $raw;
 		}
 
-		// test_phone is intentionally not persisted — the field has no name attribute.
+		// test_phone is intentionally not persisted: the field has no name attribute.
 		$test_phone = '';
 
 		// Warn if the API username looks like a phone number.
@@ -527,7 +529,7 @@ class KwtSMS_Admin {
 		// When called from a form POST, $raw only contains the HTML form fields
 		// (balance, coverage, sender_ids are absent from the POST body).
 		// When called via update_option() from an AJAX handler the full option
-		// array is passed as $raw, so we must prefer those values — otherwise
+		// array is passed as $raw, so we must prefer those values; otherwise
 		// the sanitize filter silently overwrites the freshly-fetched data with
 		// the old values that were in the DB when the filter fired.
 		$sender_ids        = is_array( $raw['sender_ids'] ?? null )
@@ -668,7 +670,7 @@ class KwtSMS_Admin {
 		}
 
 		// _save_section identifies which integration sub-form was submitted.
-		// 'all' or empty means the legacy full-page form — sanitize everything.
+		// 'all' or empty means the legacy full-page form: sanitize everything.
 		$section = sanitize_key( $raw['_save_section'] ?? 'all' );
 
 		$valid_modes = array( 'notification', 'gate' );
@@ -725,7 +727,7 @@ class KwtSMS_Admin {
 			}
 		}
 
-		// D1+D2 — Stock alerts (saved from stock_alerts tab).
+		// D1+D2: Stock alerts (saved from stock_alerts tab).
 		if ( $update_stock_alerts ) {
 			$sanitized['woo_stock_admin_phone']     = sanitize_text_field( wp_unslash( $raw['woo_stock_admin_phone'] ?? '' ) );
 			$sanitized['woo_low_stock_enabled']     = ! empty( $raw['woo_low_stock_enabled'] ) ? 1 : 0;
@@ -742,7 +744,7 @@ class KwtSMS_Admin {
 			}
 		}
 
-		// D4 — Instant order + multivendor (saved from multivendor tab).
+		// D4: Instant order + multivendor (saved from multivendor tab).
 		if ( $update_multivendor ) {
 			$sanitized['woo_instant_order_enabled'] = ! empty( $raw['woo_instant_order_enabled'] ) ? 1 : 0;
 			$sanitized['woo_instant_order_phone']   = sanitize_text_field( wp_unslash( $raw['woo_instant_order_phone'] ?? '' ) );
@@ -756,7 +758,7 @@ class KwtSMS_Admin {
 			}
 		}
 
-		// D3 — Cart abandonment recovery (saved from cart_abandonment tab).
+		// D3: Cart abandonment recovery (saved from cart_abandonment tab).
 		if ( $update_cart_abandonment ) {
 			$sanitized['woo_cart_abandon_enabled'] = ! empty( $raw['woo_cart_abandon_enabled'] ) ? 1 : 0;
 
@@ -834,7 +836,7 @@ class KwtSMS_Admin {
 			$out[ $key ] = ! empty( $raw[ $key ] ) ? 1 : 0;
 		}
 
-		// Per-event templates (EN + AR) — uses sanitize_template_content() to strip
+		// Per-event templates (EN + AR): uses sanitize_template_content() to strip
 		// emoji, hidden Unicode, and invalid characters, consistent with other templates.
 		$tpl_keys = array( 'tpl_user_register', 'tpl_wp_login', 'tpl_post_published', 'tpl_comment_posted', 'tpl_core_update' );
 		foreach ( $tpl_keys as $tkey ) {
@@ -949,7 +951,7 @@ class KwtSMS_Admin {
 					'sent'               => __( 'Test SMS sent! Check your phone.', 'kwtsms' ),
 					'characters'         => __( 'characters', 'kwtsms' ),
 					'smsPages'           => __( 'SMS page(s)', 'kwtsms' ),
-					'usernameIsPhone'    => __( 'This looks like a phone number. Your API Username must be your kwtSMS account username — not a phone number. Sign up at kwtsms.com to obtain API credentials.', 'kwtsms' ),
+					'usernameIsPhone'    => __( 'This looks like a phone number. Your API Username must be your kwtSMS account username, not a phone number. Sign up at kwtsms.com to obtain API credentials.', 'kwtsms' ),
 					'loadingCoverage'    => __( 'Loading coverage...', 'kwtsms' ),
 					'coverageError'      => __( 'Could not load coverage data.', 'kwtsms' ),
 					'credentialsMissing' => __( 'Please enter your API username and password, then click "Save Settings" before performing this action.', 'kwtsms' ),
@@ -961,7 +963,7 @@ class KwtSMS_Admin {
 					'ofPurchased'        => __( '· of %s purchased', 'kwtsms' ),
 					'testPhoneMissing'   => __( 'Please enter a test phone number first.', 'kwtsms' ),
 					'phoneTooShort'      => __( 'Number is too short. Enter the country code followed by the full local number, e.g. 96512345678 (Kuwait: 965 + 8 digits).', 'kwtsms' ),
-					'testModeResult'     => __( 'Test mode ON — message queued in kwtSMS account queue, will not be delivered. Delete to recover credits.', 'kwtsms' ),
+					'testModeResult'     => __( 'Test mode ON: message queued in kwtSMS account queue, will not be delivered. Delete to recover credits.', 'kwtsms' ),
 					'testSmsResult'      => __( 'SMS delivered to %phone%. Check your messages.', 'kwtsms' ),
 					'testSmsFailed'      => __( 'Send failed. Check your API credentials and phone number.', 'kwtsms' ),
 					'unsavedTitle'       => __( 'Unsaved Changes', 'kwtsms' ),
@@ -978,7 +980,7 @@ class KwtSMS_Admin {
 	// =========================================================================
 
 	/**
-	 * Hook callback for admin_notices — skips plugin pages (they render inline).
+	 * Hook callback for admin_notices: skips plugin pages (they render inline).
 	 *
 	 * This prevents duplicate rendering: plugin pages call render_page_notices()
 	 * directly inside the .wrap div so notices appear before the logo header.
@@ -995,7 +997,7 @@ class KwtSMS_Admin {
 			true
 		) || strpos( $screen->id, 'kwtsms' ) !== false;
 
-		// Plugin pages render notices inline (before the logo) — skip here.
+		// Plugin pages render notices inline (before the logo): skip here.
 		if ( $is_plugin_page ) {
 			return;
 		}
@@ -1020,7 +1022,7 @@ class KwtSMS_Admin {
 		$se_html = str_replace( "class='notice ", "class='notice inline ", $se_html );
 		echo wp_kses_post( $se_html );
 
-		// Notice: site is not HTTPS — suppressed on localhost/127.0.0.1 dev environments.
+		// Notice: site is not HTTPS; suppressed on localhost/127.0.0.1 dev environments.
 		// The 'inline' class prevents WP admin JS from relocating the notice
 		// to after the first <h1> (which is inside our flex header row).
 		if ( ! is_ssl() ) {
@@ -1206,7 +1208,7 @@ class KwtSMS_Admin {
 	// =========================================================================
 
 	/**
-	 * AJAX handler — fetch SMS coverage data.
+	 * AJAX handler: fetch SMS coverage data.
 	 *
 	 * Security: nonce + manage_options capability.
 	 */
@@ -1233,7 +1235,7 @@ class KwtSMS_Admin {
 	// =========================================================================
 
 	/**
-	 * AJAX: Logout — clear verified flag and all data fetched from the API.
+	 * AJAX: Logout, clear verified flag and all data fetched from the API.
 	 *
 	 * Resets credentials_verified, sender_ids, sender_id, coverage, and
 	 * balance so the UI shows a clean state until the user logs in again.
@@ -1273,7 +1275,7 @@ class KwtSMS_Admin {
 	// =========================================================================
 
 	/**
-	 * AJAX handler — save a phone number for a given user.
+	 * AJAX handler: save a phone number for a given user.
 	 *
 	 * Called from the "Users Without Phone" admin page. Normalizes the phone
 	 * using the same pipeline as OTP login, then stores it in user meta.
@@ -1354,9 +1356,9 @@ class KwtSMS_Admin {
 	 *
 	 * Hooked on admin_init so Content-Type / Content-Disposition headers can
 	 * be sent before WordPress outputs any HTML. Handles three actions:
-	 *   - export_csv          — stream SMS history or OTP attempt log as CSV
-	 *   - download_debug_log  — stream the debug log file as a download
-	 *   - clear_debug_log     — truncate the debug log file then redirect
+	 *   - export_csv          - stream SMS history or OTP attempt log as CSV
+	 *   - download_debug_log  - stream the debug log file as a download
+	 *   - clear_debug_log     - truncate the debug log file then redirect
 	 *
 	 * Security: capability check + per-action nonce verification on every branch.
 	 */
@@ -1379,7 +1381,7 @@ class KwtSMS_Admin {
 		$csv_sms_ok = wp_verify_nonce( $nonce_value, 'kwtsms_export_csv_sms_history' );
 		$csv_att_ok = wp_verify_nonce( $nonce_value, 'kwtsms_export_csv_attempt_log' );
 
-		// No valid nonce for any action — nothing to do.
+		// No valid nonce for any action: nothing to do.
 		if ( ! $download_ok && ! $clear_ok && ! $csv_sms_ok && ! $csv_att_ok ) {
 			return;
 		}

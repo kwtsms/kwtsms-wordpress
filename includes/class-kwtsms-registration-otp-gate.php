@@ -1,6 +1,8 @@
 <?php
 /**
- * Registration OTP Gate — verify phone number before creating a WordPress account.
+ * Registration OTP Gate: verify phone number before creating a WordPress account.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Flow:
  *   1. User submits the registration form with a phone number.
@@ -184,7 +186,7 @@ class KwtSMS_Registration_OTP_Gate {
 
 		$result = $this->send_registration_otp( $sanitized_user_login, $user_email, $password, $phone );
 		// send_registration_otp() calls wp_safe_redirect() + exit on success (returns null).
-		// If it returns a WP_Error, SMS failed — block registration and surface the error.
+		// If it returns a WP_Error, SMS failed: block registration and surface the error.
 		if ( is_wp_error( $result ) ) {
 			$errors->add( $result->get_error_code(), $result->get_error_message() );
 		}
@@ -253,7 +255,7 @@ class KwtSMS_Registration_OTP_Gate {
 
 		$result = $this->send_registration_otp( $username, $email, $password, $phone );
 		// send_registration_otp() calls wp_safe_redirect() + exit on success (returns null).
-		// If it returns a WP_Error, SMS failed — block registration and surface the error.
+		// If it returns a WP_Error, SMS failed: block registration and surface the error.
 		if ( is_wp_error( $result ) ) {
 			$errors->add( $result->get_error_code(), $result->get_error_message() );
 		}
@@ -355,7 +357,7 @@ class KwtSMS_Registration_OTP_Gate {
 
 		if ( 'valid' !== $result ) {
 			if ( 'invalid' === $result ) {
-				// Wrong code — redirect back to OTP entry page with error.
+				// Wrong code: redirect back to OTP entry page with error.
 				$redirect = add_query_arg(
 					array(
 						'action'            => 'kwtsms_reg_otp',
@@ -369,7 +371,7 @@ class KwtSMS_Registration_OTP_Gate {
 				exit;
 			}
 
-			// Expired or max attempts — send back to registration form.
+			// Expired or max attempts: send back to registration form.
 			$error = 'expired' === $result ? 'expired' : 'max_attempts';
 			$url   = add_query_arg(
 				array(
@@ -382,7 +384,7 @@ class KwtSMS_Registration_OTP_Gate {
 			exit;
 		}
 
-		// OTP is valid — create the user account.
+		// OTP is valid: create the user account.
 		delete_transient( $transient_key );
 
 		// Create the user with a temporary random password; the pre-hashed
@@ -406,7 +408,7 @@ class KwtSMS_Registration_OTP_Gate {
 		}
 
 		// Write the pre-hashed password directly to avoid double-hashing.
-		// Do NOT call wp_set_password() here — it re-hashes the value.
+		// Do NOT call wp_set_password() here: it re-hashes the value.
 		global $wpdb;
 		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->users,
@@ -464,7 +466,7 @@ class KwtSMS_Registration_OTP_Gate {
 		$phone = KwtSMS_API::normalize_phone( $phone );
 
 		if ( is_wp_error( $phone ) ) {
-			// Invalid phone format — block registration with a descriptive error.
+			// Invalid phone format: block registration with a descriptive error.
 			return $sms_error;
 		}
 
@@ -472,7 +474,7 @@ class KwtSMS_Registration_OTP_Gate {
 		// create a second pending transient. TTL matches the OTP expiry window.
 		$email_guard_key = 'kwtsms_pending_reg_email_' . md5( $email );
 		if ( get_transient( $email_guard_key ) ) {
-			// A registration flow for this email is already in progress — silently
+			// A registration flow for this email is already in progress: silently
 			// return the send-failed error so the gate blocks this duplicate request.
 			return $sms_error;
 		}
@@ -585,7 +587,7 @@ class KwtSMS_Registration_OTP_Gate {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title><?php echo esc_html( __( 'Verify Your Phone Number', 'kwtsms' ) . ' — ' . $site_name ); ?></title>
+	<title><?php echo esc_html( __( 'Verify Your Phone Number', 'kwtsms' ) . ' - ' . $site_name ); ?></title>
 		<?php wp_head(); ?>
 </head>
 <body class="login wp-core-ui">

@@ -2,6 +2,8 @@
 /**
  * KwtSMS REST API Client.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Wraps all calls to the kwtsms JSON REST API (v4.1).
  * Always uses HTTPS + POST as required by the API documentation.
  * Credentials are never logged or output to the browser.
@@ -845,7 +847,7 @@ class KwtSMS_API {
 			$log,
 			array(
 				'time'      => time(),
-				'phone'     => sanitize_text_field( $phone ), // Full phone — admin-only view.
+				'phone'     => sanitize_text_field( $phone ), // Full phone: admin-only view.
 				'status'    => $status,
 				'type'      => sanitize_key( $type ),
 				'sender_id' => sanitize_text_field( $sender_id ),
@@ -864,7 +866,7 @@ class KwtSMS_API {
 	 * Append a full (unredacted) SMS send entry to the SMS history log.
 	 *
 	 * Stored in wp_options as kwtsms_otp_sms_history (max 500 entries).
-	 * The full phone number and message text are stored here — only visible
+	 * The full phone number and message text are stored here; only visible
 	 * to administrators via the Logs page.
 	 *
 	 * @param string $phone          Full normalised phone number (e.g. 965XXXXXXXX).
@@ -972,7 +974,7 @@ class KwtSMS_API {
 	}
 
 	// =========================================================================
-	// Message sanitisation (static — used by send() and build_message)
+	// Message sanitisation (static, used by send() and build_message)
 	// =========================================================================
 
 	/**
@@ -980,21 +982,21 @@ class KwtSMS_API {
 	 *
 	 * Performs four passes in order:
 	 *
-	 *  1. Strip HTML tags — admin-entered templates or WooCommerce order data can
+	 *  1. Strip HTML tags: admin-entered templates or WooCommerce order data can
 	 *     contain markup that looks fine in a browser but breaks SMS encoding.
 	 *
-	 *  2. Replace non-breaking space (U+00A0) with a plain space — copy-pasted
+	 *  2. Replace non-breaking space (U+00A0) with a plain space: copy-pasted
 	 *     content from web pages often contains NBSP which appears identical on
 	 *     screen but is encoded differently and can corrupt UTF-8 SMS messages.
 	 *
-	 *  3. Strip invisible / directional Unicode characters — zero-width spaces,
+	 *  3. Strip invisible / directional Unicode characters: zero-width spaces,
 	 *     joiners, BOM, RTL/LTR marks, soft hyphen, and emoji variation selectors.
 	 *     These are invisible to the eye but can cause the gateway to reject the
 	 *     message or increase segment count unexpectedly.
 	 *
-	 *  4. Strip emoji and non-SMS-compatible symbols — the kwtsms API silently
+	 *  4. Strip emoji and non-SMS-compatible symbols: the kwtsms API silently
 	 *     queues messages that contain emoji without delivering them. Covers all
-	 *     known Unicode emoji blocks as of Unicode 15 (U+00A9–U+1FFFF + Tags).
+	 *     known Unicode emoji blocks as of Unicode 15 (U+00A9-U+1FFFF + Tags).
 	 *
 	 * Arabic and other BMP characters are preserved untouched.
 	 *
@@ -1016,7 +1018,7 @@ class KwtSMS_API {
 		// U+200D  Zero Width Joiner (used in emoji ZWJ sequences)
 		// U+200E  Left-to-Right Mark
 		// U+200F  Right-to-Left Mark
-		// U+202A–U+202E  Directional formatting (LRE, RLE, PDF, LRO, RLO)
+		// U+202A-U+202E  Directional formatting (LRE, RLE, PDF, LRO, RLO)
 		// U+2060  Word Joiner
 		// U+FEFF  BOM / Zero Width No-Break Space
 		// U+FE0E  Variation Selector-15 (force text presentation)
@@ -1028,31 +1030,31 @@ class KwtSMS_API {
 		) ?? $message;
 
 		// 4. Emoji and non-SMS-compatible symbols (Unicode 15, all known emoji blocks):
-		// U+00A9–U+00AE   © ®
+		// U+00A9-U+00AE   © ®
 		// U+203C U+2049   ‼ ⁉
 		// U+2122 U+2139   ™ ℹ
-		// U+2194–U+2199   Arrow symbols
-		// U+21A9–U+21AA   Hooking arrows
-		// U+231A–U+231B   Watch / Hourglass
+		// U+2194-U+2199   Arrow symbols
+		// U+21A9-U+21AA   Hooking arrows
+		// U+231A-U+231B   Watch / Hourglass
 		// U+2328          Keyboard
 		// U+23CF          Eject
-		// U+23E9–U+23F3   Media / clock buttons
-		// U+23F8–U+23FA   Pause / Stop / Record
+		// U+23E9-U+23F3   Media / clock buttons
+		// U+23F8-U+23FA   Pause / Stop / Record
 		// U+24C2          Circled M
-		// U+25AA–U+25AB   Small squares
+		// U+25AA-U+25AB   Small squares
 		// U+25B6 U+25C0   Play / Reverse
-		// U+25FB–U+25FE   Medium squares
-		// U+2600–U+26FF   Miscellaneous Symbols (sun, phone, etc.)
-		// U+2702–U+27B0   Dingbats
+		// U+25FB-U+25FE   Medium squares
+		// U+2600-U+26FF   Miscellaneous Symbols (sun, phone, etc.)
+		// U+2702-U+27B0   Dingbats
 		// U+27BF          Double curly loop
-		// U+2934–U+2935   Curved arrows
-		// U+2B05–U+2B07   Arrow buttons
-		// U+2B1B–U+2B1C   Large squares
+		// U+2934-U+2935   Curved arrows
+		// U+2B05-U+2B07   Arrow buttons
+		// U+2B1B-U+2B1C   Large squares
 		// U+2B50 U+2B55   Star / Circle
 		// U+3030 U+303D   Wavy dash / Part alternation mark
 		// U+3297 U+3299   Circled CJK ideographs
-		// U+1F000–U+1FFFF Full supplementary emoji plane
-		// U+E0000–U+E007F Tags (used in keycap / flag sequences)
+		// U+1F000-U+1FFFF Full supplementary emoji plane
+		// U+E0000-U+E007F Tags (used in keycap / flag sequences)
 		$message = preg_replace(
 			'/[' .
 			'\x{00A9}\x{00AE}' .
@@ -1076,15 +1078,15 @@ class KwtSMS_API {
 	}
 
 	// =========================================================================
-	// Phone normalisation (static — used throughout the plugin)
+	// Phone normalisation (static, used throughout the plugin)
 	// =========================================================================
 
 	/**
 	 * Country-specific phone number validation rules.
 	 *
 	 * Each entry maps a dial code string to:
-	 *   local_lengths  — valid digit counts AFTER the country code.
-	 *   mobile_start   — valid first character(s) of the local number.
+	 *   local_lengths  - valid digit counts AFTER the country code.
+	 *   mobile_start   - valid first character(s) of the local number.
 	 *                    If empty, any starting digit is accepted.
 	 *
 	 * Sources: ITU-T E.164, Wikipedia "Telephone numbers in [Country]",
@@ -1546,7 +1548,7 @@ class KwtSMS_API {
 	 * Validate a normalised phone number against country-specific format rules.
 	 *
 	 * Checks local number length and (where defined) mobile starting digits.
-	 * Numbers with no matching country rule pass through — only generic E.164
+	 * Numbers with no matching country rule pass through; only generic E.164
 	 * length validation (already done in normalize_phone) applies to them.
 	 *
 	 * @param string $phone Normalised phone (digits only, no leading zeros).
@@ -1555,7 +1557,7 @@ class KwtSMS_API {
 	public static function validate_phone_format( string $phone ) {
 		$cc = self::find_country_code( $phone );
 		if ( null === $cc ) {
-			return true; // No country-specific rules — generic E.164 length is enough.
+			return true; // No country-specific rules: generic E.164 length is enough.
 		}
 
 		$rules        = self::get_phone_rules();
@@ -1639,10 +1641,10 @@ class KwtSMS_API {
 		// 3. Remove all non-digit characters (spaces, dashes, dots, parentheses).
 		$phone = preg_replace( '/\D/', '', $phone );
 
-		// 4. Strip all leading zeros (trunk/international prefix: 0xxx, 00xxx, 000xxx…).
+		// 4. Strip all leading zeros (trunk/international prefix: 0xxx, 00xxx, 000xxx...).
 		$phone = ltrim( $phone, '0' );
 
-		// 5. Validate: must be digits only, 7–15 characters (E.164 minimum is 7).
+		// 5. Validate: must be digits only, 7-15 characters (E.164 minimum is 7).
 		if ( ! preg_match( '/^\d{7,15}$/', $phone ) ) {
 			return new WP_Error(
 				'invalid_phone',
@@ -1726,12 +1728,12 @@ class KwtSMS_API {
 	/**
 	 * Auto-prepend the default country dial code to a local (short) number.
 	 *
-	 * If the stripped digit-only value has 5–8 digits it is treated as a local
+	 * If the stripped digit-only value has 5-8 digits it is treated as a local
 	 * number and the dial code is prepended. Numbers that already contain a
 	 * country code (> 9 stripped digits) are returned unchanged.
 	 *
-	 * Handles trunk-prefixed local numbers (single leading 0, e.g. Saudi 0559…,
-	 * UAE 050…) in addition to the double-zero international prefix (00xxx).
+	 * Handles trunk-prefixed local numbers (single leading 0, e.g. Saudi 0559...,
+	 * UAE 050...) in addition to the double-zero international prefix (00xxx).
 	 * The threshold is 9 digits to cover countries whose local numbers are 9
 	 * digits (Saudi Arabia, UAE, Jordan, etc.) matching the TypeScript normalize()
 	 * implementation in kwtsms_shopify/app/lib/kwtsms/phone.ts.
@@ -1743,7 +1745,7 @@ class KwtSMS_API {
 	public static function prepend_country_code_if_local( string $phone, string $dial_code ): string {
 		$stripped = preg_replace( '/\D/', '', ltrim( trim( $phone ), '+' ) );
 		$stripped = preg_replace( '/^00/', '', $stripped ); // Strip 00 international prefix.
-		$stripped = preg_replace( '/^0/', '', $stripped );  // Strip single trunk digit (e.g. 0559… → 559…).
+		$stripped = preg_replace( '/^0/', '', $stripped );  // Strip single trunk digit (e.g. 0559... → 559...).
 		if ( strlen( $stripped ) >= 5 && strlen( $stripped ) <= 9 ) {
 			return $dial_code . $stripped;
 		}
@@ -1785,7 +1787,7 @@ class KwtSMS_API {
 	 * Map a kwtsms API error code to a user-friendly translated message.
 	 *
 	 * Error codes are defined in the kwtsms API Documentation v4.1, pages 11-12.
-	 * Raw error codes are NEVER shown to end users — only the mapped messages.
+	 * Raw error codes are NEVER shown to end users; only the mapped messages.
 	 *
 	 * @param string $code API error code (e.g. 'ERR003').
 	 *
@@ -1888,7 +1890,7 @@ class KwtSMS_API {
 
 		$url = self::BASE_URL . ltrim( $endpoint, '/' );
 
-		// Log the endpoint-specific payload only — credentials are in $body, never in $payload,
+		// Log the endpoint-specific payload only; credentials are in $body, never in $payload,
 		// so username and password are never written to the log file.
 		$this->write_debug_log( "request({$endpoint})", 'POST ' . $url . ' payload=' . wp_json_encode( $payload ) );
 
@@ -1939,7 +1941,7 @@ class KwtSMS_API {
 			$description = $data['description'] ?? '';
 			$this->write_debug_log(
 				"request({$endpoint})",
-				"API ERROR: code={$error_code} description={$description} — this usually means wrong credentials, no Sender ID, or no credits."
+				"API ERROR: code={$error_code} description={$description}. This usually means wrong credentials, no Sender ID, or no credits."
 			);
 			return new WP_Error(
 				'kwtsms_api_error_' . strtolower( $error_code ),

@@ -2,6 +2,8 @@
 /**
  * WooCommerce per-order custom SMS metabox.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Adds a "Send Custom SMS" metabox to the WooCommerce order edit screen.
  * Compatible with both Classic Orders and HPOS (High-Performance Order Storage,
  * WooCommerce 8.6+) via the stable wc_get_page_screen_id() API.
@@ -190,16 +192,16 @@ class KwtSMS_Woo_Metabox {
 	}
 
 	/**
-	 * AJAX handler — send a custom SMS for a WooCommerce order.
+	 * AJAX handler: send a custom SMS for a WooCommerce order.
 	 *
 	 * Validates the nonce and the edit_shop_orders capability before sending.
 	 * Phone is normalised via KwtSMS_API::normalize_phone().
 	 *
 	 * Expected POST fields:
-	 *   nonce    — kwtsms_woo_custom_sms nonce
-	 *   order_id — WooCommerce order ID
-	 *   phone    — Destination phone number
-	 *   message  — SMS message text
+	 *   nonce    - kwtsms_woo_custom_sms nonce
+	 *   order_id - WooCommerce order ID
+	 *   phone    - Destination phone number
+	 *   message  - SMS message text
 	 */
 	public function ajax_send_custom_sms() {
 		check_ajax_referer( 'kwtsms_woo_custom_sms', 'nonce' );

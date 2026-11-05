@@ -1,5 +1,7 @@
 /**
- * kwtSMS — Admin JavaScript
+ * kwtSMS: Admin JavaScript
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Handles:
  *   - CAPTCHA provider field show/hide
@@ -39,7 +41,7 @@
 	setDependentFeatures( credentialsVerified );
 
 	// =========================================================================
-	// API Username — warn if it looks like a phone number
+	// API Username: warn if it looks like a phone number
 	// =========================================================================
 
 	$( '#kwtsms_api_username' ).on( 'blur', function () {
@@ -74,7 +76,7 @@
 	updateCaptchaFields(); // Initial state.
 
 	// =========================================================================
-	// Login button — verify credentials + persist state
+	// Login button: verify credentials + persist state
 	// =========================================================================
 
 	function handleVerifyResponse( resp, $status, $loginStatus ) {
@@ -240,7 +242,7 @@
 
 		$btn.prop( 'disabled', true ).text( '↻ ' + ( s.reloading || 'Reloading...' ) );
 
-		// Use the dedicated reload action — it reads stored credentials from the
+		// Use the dedicated reload action: it reads stored credentials from the
 		// database so the password never needs to be present in the DOM.
 		$.post( ajaxUrl, {
 			action: 'kwtsms_reload_all',
@@ -269,7 +271,7 @@
 		const username = $( '#kwtsms_api_username' ).val().trim();
 		const password = $( '#kwtsms_api_password' ).val().trim();
 
-		// When already connected, the password is not in the DOM — skip this check.
+		// When already connected, the password is not in the DOM: skip this check.
 		if ( ! credentialsVerified && ( ! username || ! password ) ) {
 			$result.text( s.credentialsMissing || 'Please save your API credentials first (Gateway Settings → Save Settings).' ).css( 'color', '#dc3232' );
 			return;
@@ -288,7 +290,7 @@
 			$field.val( phone ); // update the field so user sees the full number
 		}
 
-		// Reject numbers that are too short — must have country code + local number (min 10 digits).
+		// Reject numbers that are too short: must have country code + local number (min 10 digits).
 		const digitsNorm = phone.replace( /^\+/, '' ).replace( /^00/, '' ).replace( /\D/g, '' );
 		if ( digitsNorm.length < 10 ) {
 			$result.text( s.phoneTooShort || 'Number is too short. Enter the country code followed by the full local number, e.g. 96512345678 (Kuwait: 965 + 8 digits).' ).css( 'color', '#dc3232' );
@@ -307,7 +309,7 @@
 			if ( resp.success ) {
 				const d   = resp.data || {};
 				const msg = d.test_mode
-					? ( s.testModeResult || 'Test mode ON — message queued, not delivered.' )
+					? ( s.testModeResult || 'Test mode ON: message queued, not delivered.' )
 					: ( s.testSmsResult || 'SMS sent to %phone%. Check your messages.' ).replace( '%phone%', d.phone || '' );
 				$result.text( msg ).css( 'color', '#46b450' );
 				// Update balance display if server returned an updated balance.
@@ -460,7 +462,7 @@
 
 		// Hide balance bar and show signup note.
 		$( '#kwtsms-balance-card' ).hide();
-		$( '#kwtsms-balance' ).text( '—' );
+		$( '#kwtsms-balance' ).text( '-' );
 		$( '#kwtsms-balance-purchased' ).text( '' );
 		$( '.kwtsms-signup-note' ).show();
 		$( '#kwtsms-row-username' ).show();
@@ -494,7 +496,7 @@
 	// handles button enable/disable state on init, so no JS restore is needed.
 
 	// =========================================================================
-	// Integrations page — tab switching
+	// Integrations page: tab switching
 	// All tab content is always in the DOM (single form); we show/hide via JS.
 	// =========================================================================
 
@@ -534,7 +536,7 @@
 	}() );
 
 	// =========================================================================
-	// Unsaved changes — custom branded modal
+	// Unsaved changes: custom branded modal
 	//
 	// For in-page link navigation: intercepts the click and shows our own
 	// dialog so we control the title, body, and button labels (and they are
@@ -543,7 +545,7 @@
 	// For browser refresh (F5), back/forward, and tab-close: a beforeunload
 	// listener is registered so the browser shows its own "Leave page?" dialog.
 	// Modern browsers ignore any custom message text and always display their
-	// own generic prompt — the two dialogs cannot look identical, but both
+	// own generic prompt; the two dialogs cannot look identical, but both
 	// warn the user before discarding their changes.
 	// =========================================================================
 
@@ -600,7 +602,7 @@
 			$overlay.removeClass( 'is-visible' );
 		}
 
-		// "Save Changes" — submit the form, then navigate to the pending destination.
+		// "Save Changes": submit the form, then navigate to the pending destination.
 		// pendingHref is stored in sessionStorage so it survives the page reload
 		// caused by the WordPress settings save redirect.
 		//
@@ -622,12 +624,12 @@
 			if ( e.target === this ) { hideModal(); }
 		} );
 
-		// Esc key — stay.
+		// Esc key: stay.
 		$( document ).on( 'keydown', function ( e ) {
 			if ( e.key === 'Escape' && $overlay.hasClass( 'is-visible' ) ) { hideModal(); }
 		} );
 
-		// "Leave Page" — proceed with stored navigation target.
+		// "Leave Page": proceed with stored navigation target.
 		$( '#kwtsms-unsaved-leave' ).on( 'click', function () {
 			dirty = false;
 			var href = pendingHref;
@@ -647,7 +649,7 @@
 
 		// ── beforeunload safety net (refresh / back / tab-close) ──────────
 		// Modern browsers show their own generic "Leave page?" dialog and
-		// ignore the custom message text — but the message is preserved here
+		// ignore the custom message text, but the message is preserved here
 		// for any browser that still honours it.
 		window.addEventListener( 'beforeunload', function ( e ) {
 			if ( ! dirty ) { return; }

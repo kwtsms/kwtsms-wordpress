@@ -1,5 +1,7 @@
 /**
- * form-otp.js — OTP Verification Gate for CF7, WPForms, and Elementor Pro forms.
+ * form-otp.js: OTP Verification Gate for CF7, WPForms, and Elementor Pro forms.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * When any integration is configured in "OTP Gate" mode, this script intercepts
  * the form submit event and forces the visitor to verify their phone number via
@@ -204,7 +206,7 @@
 			}
 		} );
 
-		// Resend button — go back to phone step.
+		// Resend button: go back to phone step.
 		$( document ).on( 'click', '#kwtsms-resend-btn', function () {
 			$( '#kwtsms-step-code' ).hide();
 			$( '#kwtsms-step-phone' ).show();
@@ -355,7 +357,7 @@
 		) {
 			return true;
 		}
-		// WPForms names inputs as wpforms[fields][N] — detect phone via label text.
+		// WPForms names inputs as wpforms[fields][N]: detect phone via label text.
 		var hasPhoneLabel = false;
 		$form.find( 'label' ).each( function () {
 			if ( /phone/i.test( $( this ).text() ) ) {

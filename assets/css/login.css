@@ -1,14 +1,16 @@
 /**
- * kwtSMS — Login Page Styles
+ * kwtSMS: Login Page Styles
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Used on the OTP entry page (wp-login.php?action=kwtsms_otp) and the
  * passwordless login page (wp-login.php?action=kwtsms_passwordless).
  *
- * Inherits WordPress core login page colours and typography — no custom
+ * Inherits WordPress core login page colours and typography: no custom
  * brand overrides.  Only structural/layout rules live here.
  */
 
-/* Base reset / body — no font or colour overrides; WP handles these */
+/* Base reset / body: no font or colour overrides; WP handles these */
 body.login {
 	background: #f0f0f1;
 }
@@ -102,7 +104,7 @@ body.login {
 }
 
 /* =========================================================================
-   Submit button — structural only; colours come from WP button-primary
+   Submit button: structural only; colours come from WP button-primary
    ========================================================================= */
 
 .kwtsms-btn {
@@ -118,7 +120,7 @@ body.login {
 }
 
 /* =========================================================================
-   Remove WordPress core login form border/padding — we style via .kwtsms-otp-box
+   Remove WordPress core login form border/padding: we style via .kwtsms-otp-box
    ========================================================================= */
 
 #kwtsms-passwordless-form,
@@ -131,7 +133,7 @@ body.login {
 }
 
 /* =========================================================================
-   Brand colours — kwtsms orange (#FFA200)
+   Brand colours: kwtsms orange (#FFA200)
    Override WP default blue on our custom login pages only.
    ========================================================================= */
 
@@ -239,10 +241,10 @@ body.login {
 }
 
 /* =========================================================================
-   Country dial code — unified input group + searchable dropdown
+   Country dial code: unified input group + searchable dropdown
    ========================================================================= */
 
-/* Phone group — dial button + number input share a single outer border */
+/* Phone group: dial button + number input share a single outer border */
 .kwtsms-phone-group {
 	display: flex;
 	margin-bottom: 16px;

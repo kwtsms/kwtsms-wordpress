@@ -1,18 +1,20 @@
 <?php
 /**
- * OTP Engine — generate, store, verify, rate-limit.
+ * OTP Engine: generate, store, verify, rate-limit.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Uses WordPress Transients API for ephemeral storage.
  * OTP codes are compared with hash_equals() to prevent timing attacks.
  * Codes are single-use: deleted immediately on successful verification.
  *
  * Transient key schema:
- *   kwtsms_otp_{md5(identifier)}         — the OTP record
- *   kwtsms_otp_cd_{md5(identifier)}      — send-cooldown lock (SEND_COOLDOWN seconds)
- *   kwtsms_otp_rate_{md5(phone)}         — sliding-window timestamp array per phone
- *   kwtsms_otp_ip_{md5(ip)}             — sliding-window timestamp array per IP address
- *   kwtsms_otp_acct_{md5(user_id)}      — sliding-window timestamp array per WordPress user ID
- *   kwtsms_otp_lock_{md5(identifier)}    — lockout flag after max attempts
+ *   kwtsms_otp_{md5(identifier)}         - the OTP record
+ *   kwtsms_otp_cd_{md5(identifier)}      - send-cooldown lock (SEND_COOLDOWN seconds)
+ *   kwtsms_otp_rate_{md5(phone)}         - sliding-window timestamp array per phone
+ *   kwtsms_otp_ip_{md5(ip)}             - sliding-window timestamp array per IP address
+ *   kwtsms_otp_acct_{md5(user_id)}      - sliding-window timestamp array per WordPress user ID
+ *   kwtsms_otp_lock_{md5(identifier)}    - lockout flag after max attempts
  *
  * @package KwtSMS_OTP
  */
@@ -105,7 +107,7 @@ class KwtSMS_OTP_Engine {
 	 * @param int|string $identifier User ID (int) or phone number (string for passwordless).
 	 * @param string     $action     Context: 'login' | 'reset' | 'passwordless' | 'checkout' | 'registration'.
 	 *
-	 * @return string The plaintext OTP code (for sending via SMS — not stored).
+	 * @return string The plaintext OTP code (for sending via SMS, not stored).
 	 */
 	public function generate( $identifier, $action ) {
 		$key    = $this->transient_key( $identifier );
@@ -168,12 +170,12 @@ class KwtSMS_OTP_Engine {
 			return 'expired';
 		}
 
-		// Timing-safe comparison — hash the submitted code before comparing to the stored hash.
+		// Timing-safe comparison: hash the submitted code before comparing to the stored hash.
 		$stored_hash = isset( $data['code_hash'] ) ? (string) $data['code_hash'] : '';
 		if ( '' === $stored_hash || ! hash_equals( $stored_hash, hash_hmac( 'sha256', (string) $submitted, wp_salt( 'auth' ) ) ) ) {
 			++$data['attempts'];
 			if ( $data['attempts'] >= $max_attempts ) {
-				// Delete OTP on lockout — user must request a new one.
+				// Delete OTP on lockout: user must request a new one.
 				delete_transient( $key );
 				KwtSMS_API::append_attempt_log( $user_id, $phone, $ip, $action, 'locked' );
 				return 'max_attempts';
@@ -185,7 +187,7 @@ class KwtSMS_OTP_Engine {
 			return 'invalid';
 		}
 
-		// Valid — delete immediately to make it single-use.
+		// Valid: delete immediately to make it single-use.
 		delete_transient( $key );
 		KwtSMS_API::append_attempt_log( $user_id, $phone, $ip, $action, 'success' );
 		return 'valid';
@@ -262,7 +264,7 @@ class KwtSMS_OTP_Engine {
 	public function is_ip_rate_limited( $action = 'login', $user_id = null, $phone = '' ) {
 		$ip = $this->get_client_ip();
 		if ( '' === $ip ) {
-			return false; // Cannot determine IP — fail open.
+			return false; // Cannot determine IP: fail open.
 		}
 		// Skip rate limiting for allowlisted IPs.
 		if ( $this->is_ip_allowlisted( $ip ) ) {
@@ -321,7 +323,7 @@ class KwtSMS_OTP_Engine {
 	 *
 	 * Used by callers to skip re-sending an SMS when an OTP was just dispatched
 	 * (e.g. double-click or page refresh). The OTP transient itself remains
-	 * valid — the user can still enter the code they already received.
+	 * valid: the user can still enter the code they already received.
 	 *
 	 * @param int|string $identifier User ID or phone.
 	 * @param string     $action     Action context ('login'|'reset'|'passwordless'|'checkout'|'').
@@ -407,7 +409,7 @@ class KwtSMS_OTP_Engine {
 	 * to prevent enumeration of the block list by attackers.
 	 *
 	 * Returns 'cooldown' (string) when an OTP was already sent within the last
-	 * SEND_COOLDOWN seconds. Callers should silently proceed — the existing OTP
+	 * SEND_COOLDOWN seconds. Callers should silently proceed: the existing OTP
 	 * is still valid and the user can enter the code they already received.
 	 *
 	 * @param string $normalized_phone Normalised E.164-style phone number (digits only).
@@ -421,13 +423,13 @@ class KwtSMS_OTP_Engine {
 	 *                           or array ['otp_code','message','phone','sender','action'].
 	 */
 	public function request_otp( $normalized_phone, $identifier, $template_id, $action, $sender_id ) {
-		// Blocklisted IP: silently pretend success — identical response to phone-blocked.
+		// Blocklisted IP: silently pretend success, identical response to phone-blocked.
 		$client_ip = $this->get_client_ip();
 		if ( '' !== $client_ip && $this->is_ip_blocklisted( $client_ip ) ) {
 			return true; // pretend success, no SMS sent.
 		}
 
-		// Blocked phone: silently pretend success — no SMS sent, no error exposed.
+		// Blocked phone: silently pretend success; no SMS sent, no error exposed.
 		if ( $this->is_phone_blocked( $normalized_phone ) ) {
 			return true; // pretend success, no SMS sent.
 		}
@@ -601,7 +603,7 @@ class KwtSMS_OTP_Engine {
 	}
 
 	// =========================================================================
-	// IP reputation check — IPHub (A5)
+	// IP reputation check: IPHub (A5)
 	// =========================================================================
 
 	/**
@@ -613,9 +615,9 @@ class KwtSMS_OTP_Engine {
 	 * Allowlisted IPs bypass this check entirely.
 	 *
 	 * Block levels returned by IPHub:
-	 *   0 — clean / residential.
-	 *   1 — confirmed proxy or VPN.
-	 *   2 — mixed (some residential, some proxy).
+	 *   0 - clean / residential.
+	 *   1 - confirmed proxy or VPN.
+	 *   2 - mixed (some residential, some proxy).
 	 *
 	 * The raw block level (integer) is cached per IP so subsequent OTP requests
 	 * from the same IP do not trigger an extra HTTP call. The action (block/log/allow)
@@ -719,7 +721,7 @@ class KwtSMS_OTP_Engine {
 	/**
 	 * Sliding-window rate-limit primitive.
 	 *
-	 * The transient stores an array of Unix timestamps — one entry per
+	 * The transient stores an array of Unix timestamps, one entry per
 	 * recorded request. On every call:
 	 *
 	 *  1. Load the existing array (or start with an empty one).
@@ -765,7 +767,7 @@ class KwtSMS_OTP_Engine {
 		);
 
 		if ( count( $data ) >= $max ) {
-			// At limit — persist the pruned array but do NOT record the current
+			// At limit: persist the pruned array but do NOT record the current
 			// timestamp; the caller is blocked.
 			//
 			// Use a TTL derived from the oldest timestamp so the transient
@@ -780,9 +782,9 @@ class KwtSMS_OTP_Engine {
 		}
 
 		if ( $record ) {
-			// Under limit — record the current request timestamp.
+			// Under limit: record the current request timestamp.
 			// Note: timestamp is recorded here before the SMS send. If the send
-			// fails, the slot is still consumed. This is intentional — it
+			// fails, the slot is still consumed. This is intentional: it
 			// prevents an attacker from making unlimited attempts by triggering
 			// gateway errors.
 			$data[] = $now;
@@ -863,7 +865,7 @@ class KwtSMS_OTP_Engine {
 		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
 
 		// Only trust proxy headers when REMOTE_ADDR is a known private/loopback range.
-		// Note: 172.16.0.0/12 is private; the full 172.0.0.0/8 is NOT — do not use '172.' prefix.
+		// Note: 172.16.0.0/12 is private; the full 172.0.0.0/8 is NOT, so do not use '172.' prefix.
 		$private_cidrs = array( '127.0.0.0/8', '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', '::1/128', 'fc00::/7' );
 		$is_private    = false;
 		foreach ( $private_cidrs as $cidr ) {

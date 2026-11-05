@@ -2,6 +2,8 @@
 /**
  * WPForms Integration.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Supports two modes, configurable per-site in the Integrations admin page:
  *
  *  - Notification mode (default): sends a confirmation SMS when a WPForms
@@ -76,7 +78,7 @@ class KwtSMS_WPForms {
 	// =========================================================================
 
 	/**
-	 * Gate mode — add a validation error if the OTP token is absent or unverified.
+	 * Gate mode: add a validation error if the OTP token is absent or unverified.
 	 *
 	 * Hooked to `wpforms_process_initial_errors`. The filter receives and must
 	 * return the errors array (keyed by field ID, value is error string). We
@@ -88,7 +90,7 @@ class KwtSMS_WPForms {
 	 * @return array Possibly augmented errors array.
 	 */
 	public function gate_add_error( $errors, $form_data ) {
-		// Verify our gate nonce — created at page load via wp_localize_script and injected into the form by form-otp.js after successful OTP verification.
+		// Verify our gate nonce: created at page load via wp_localize_script and injected into the form by form-otp.js after successful OTP verification.
 		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_kwtsms_gate_nonce'] ?? '' ) ), 'kwtsms_gate_verify' ) ) {
 			$form_id                      = absint( $form_data['id'] ?? 0 );
 			$errors[ $form_id ]['header'] = __( 'Please verify your phone number before submitting this form.', 'kwtsms' );
@@ -102,7 +104,7 @@ class KwtSMS_WPForms {
 			return $errors;
 		}
 
-		// Token is verified — consume it immediately (single-use) to prevent replay.
+		// Token is verified: consume it immediately (single-use) to prevent replay.
 		// Note: form_id in the transient is stored for audit purposes.
 		// Token is single-use (consumed on success) so cross-form replay is prevented.
 		delete_transient( 'kwtsms_form_otp_' . $token );

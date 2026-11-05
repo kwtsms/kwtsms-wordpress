@@ -1,6 +1,8 @@
 <?php
 /**
- * CAPTCHA Provider — Google reCAPTCHA v3 and Cloudflare Turnstile.
+ * CAPTCHA Provider: Google reCAPTCHA v3 and Cloudflare Turnstile.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Loads and verifies CAPTCHA widgets on the OTP request forms (login + reset).
  * The active provider is determined by the `general.captcha_provider` setting.
@@ -166,7 +168,7 @@ class KwtSMS_Captcha {
 			return $this->verify_turnstile( $token );
 		}
 
-		// No CAPTCHA configured — pass through.
+		// No CAPTCHA configured: pass through.
 		return true;
 	}
 
@@ -189,7 +191,7 @@ class KwtSMS_Captcha {
 
 		$secret = $this->settings->get( 'general.recaptcha_secret_key', '' );
 		if ( empty( $secret ) ) {
-			// Secret not configured — skip verification.
+			// Secret not configured: skip verification.
 			return true;
 		}
 
@@ -205,7 +207,7 @@ class KwtSMS_Captcha {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			// Network failure — fail open to avoid blocking legitimate users.
+			// Network failure: fail open to avoid blocking legitimate users.
 			return true;
 		}
 

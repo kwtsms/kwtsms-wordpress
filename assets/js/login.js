@@ -1,15 +1,17 @@
 /**
- * kwtSMS — Login Page JavaScript
+ * kwtSMS: Login Page JavaScript
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Handles the resend countdown timer and OTP resend AJAX call.
- * No jQuery dependency — uses vanilla JS only (lighter for login page).
+ * No jQuery dependency: uses vanilla JS only (lighter for login page).
  */
 
 ( function () {
 	'use strict';
 
 	// =========================================================================
-	// Country dial code — custom searchable dropdown (passwordless page).
+	// Country dial code: custom searchable dropdown (passwordless page).
 	// =========================================================================
 
 	const dialWrap = document.getElementById( 'kwtsms-dial-wrap' );
@@ -91,7 +93,7 @@
 	}
 
 	// =========================================================================
-	// Passwordless phone form — combine dial code + local number on submit.
+	// Passwordless phone form: combine dial code + local number on submit.
 	// =========================================================================
 	const passwordlessForm = document.getElementById( 'kwtsms-passwordless-form' );
 	if ( passwordlessForm ) {
@@ -109,7 +111,7 @@
 	}
 
 	// =========================================================================
-	// OTP page — resend countdown timer and submit handler.
+	// OTP page: resend countdown timer and submit handler.
 	// =========================================================================
 
 	const btn     = document.getElementById( 'kwtsms-resend-btn' );
@@ -161,7 +163,7 @@
 			const submitBtn = form.querySelector( '[type="submit"]' );
 			if ( submitBtn ) {
 				submitBtn.disabled = true;
-				submitBtn.value = 'Verifying…';
+				submitBtn.value = 'Verifying...';
 			}
 		} );
 	}
@@ -185,7 +187,7 @@
 	}
 
 	/**
-	 * Resend button click — AJAX request.
+	 * Resend button click: AJAX request.
 	 */
 	btn.addEventListener( 'click', function () {
 		const ajaxUrl = btn.dataset.ajax;

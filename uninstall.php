@@ -2,6 +2,8 @@
 /**
  * Uninstall routine for kwtSMS: OTP & SMS Notifications.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * @package KwtSMS_OTP
  */
 
@@ -13,7 +15,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * Uninstall routine for kwtSMS: OTP & SMS Notifications.
  *
  * WordPress only runs this file when the plugin is deleted (not just deactivated).
- * The WP_UNINSTALL_PLUGIN check is required — it prevents direct execution.
+ * The WP_UNINSTALL_PLUGIN check is required: it prevents direct execution.
  *
  * Data removed:
  * - All kwtsms_otp_* options from wp_options

@@ -2,6 +2,8 @@
 /**
  * WooCommerce Integration.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Provides:
  * - Order status SMS notifications (processing, shipped, completed, cancelled)
  * - Phone field on WC registration form + welcome SMS after registration
@@ -123,7 +125,7 @@ class KwtSMS_Woo {
 	 *
 	 * Supported transitions:
 	 *   pending|on-hold  processing  (order confirmed / payment received)
-	 *   processing       on-hold     (order shipped — labelled "Shipped")
+	 *   processing       on-hold     (order shipped, labelled "Shipped")
 	 *   *                completed   (order completed)
 	 *   *                cancelled   (order cancelled)
 	 *
@@ -145,7 +147,7 @@ class KwtSMS_Woo {
 			return;
 		}
 
-		// Get customer phone — prefer kwtsms_phone user meta, fall back to billing phone.
+		// Get customer phone: prefer kwtsms_phone user meta, fall back to billing phone.
 		$user_id = $order->get_customer_id();
 		$phone   = '';
 		if ( $user_id ) {
@@ -179,7 +181,7 @@ class KwtSMS_Woo {
 			array( 'order_id' => $order->get_id() )
 		);
 
-		// Admin SMS notification — send to configured admin phone(s) for selected statuses.
+		// Admin SMS notification: send to configured admin phone(s) for selected statuses.
 		$admin_phone     = $this->plugin->settings->get( 'integrations.woo_admin_phone', '' );
 		$notify_statuses = $this->plugin->settings->get( 'integrations.woo_notify_admin_statuses', array() );
 		if ( ! empty( $admin_phone ) && in_array( $new_status, (array) $notify_statuses, true ) ) {
@@ -279,7 +281,7 @@ class KwtSMS_Woo {
 	/**
 	 * Render phone field on the WooCommerce registration form (My Account page).
 	 *
-	 * The field is optional — an empty submission is silently skipped.
+	 * The field is optional: an empty submission is silently skipped.
 	 * Re-populates the field value from $_POST on validation failure.
 	 */
 	public function render_wc_phone_field() {
@@ -356,7 +358,7 @@ class KwtSMS_Woo {
 	 * before storage. If normalisation fails the whole step is skipped.
 	 *
 	 * Welcome SMS is handled by the `user_register` hook in KwtSMS_Plugin
-	 * (fires for all registration types — WC checkout, WC My Account, standard WP).
+	 * (fires for all registration types: WC checkout, WC My Account, standard WP).
 	 *
 	 * @param int $customer_id New customer user ID.
 	 */
@@ -532,7 +534,7 @@ class KwtSMS_Woo {
 		$transient_key = self::CHECKOUT_OTP_PREFIX . $token;
 
 		if ( '' === $otp_code ) {
-			// First (or repeated) submit — enforce per-phone and per-IP rate limits.
+			// First (or repeated) submit: enforce per-phone and per-IP rate limits.
 			if ( $this->plugin->otp->is_rate_limited( $normalized, 'checkout' ) ) {
 				return __( 'Too many OTP requests for this phone number. Please wait before trying again.', 'kwtsms' );
 			}
@@ -568,7 +570,7 @@ class KwtSMS_Woo {
 			return __( 'An OTP has been sent to your phone. Enter it above and place the order again.', 'kwtsms' );
 		}
 
-		// Second submit — verify OTP.
+		// Second submit: verify OTP.
 		$stored_phone = get_transient( $transient_key . '_pending' );
 		if ( ! $stored_phone || $stored_phone !== $normalized ) {
 			return __( 'Session expired. Please refresh and try again.', 'kwtsms' );

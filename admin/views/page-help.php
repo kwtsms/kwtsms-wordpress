@@ -2,6 +2,8 @@
 /**
  * Admin View: Help & Support Page.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Getting started guide, feature overview, troubleshooting, and support links.
  *
  * @package KwtSMS_OTP
@@ -18,7 +20,7 @@ $kwtsms_has_credentials      = $kwtsms_credentials_verified
 $kwtsms_has_sender           = $kwtsms_credentials_verified && ! empty( $kwtsms_settings->get( 'gateway.sender_id', '' ) );
 $kwtsms_test_mode            = (bool) $kwtsms_settings->get( 'gateway.test_mode', 1 );
 $kwtsms_debug_logging        = (bool) $kwtsms_settings->get( 'general.debug_logging', 0 );
-// Relative content path for display — uses wp_upload_dir() per WP.org guidelines.
+// Relative content path for display: uses wp_upload_dir() per WP.org guidelines.
 $kwtsms_upload_dir  = wp_upload_dir();
 $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 ?>
@@ -114,7 +116,7 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 			</tr>
 			<tr>
 				<td style="padding:6px 0;"><strong><?php esc_html_e( 'Plugin Version', 'kwtsms' ); ?></strong></td>
-				<td><?php echo esc_html( defined( 'KWTSMS_OTP_VERSION' ) ? KWTSMS_OTP_VERSION : '—' ); ?></td>
+				<td><?php echo esc_html( defined( 'KWTSMS_OTP_VERSION' ) ? KWTSMS_OTP_VERSION : '-' ); ?></td>
 			</tr>
 		</table>
 	</div><!-- .kwtsms-settings-card-body -->
@@ -221,7 +223,7 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 		<h2><?php esc_html_e( 'Features Overview', 'kwtsms' ); ?></h2>
 
 		<h3><?php esc_html_e( 'OTP Two-Factor Authentication (2FA)', 'kwtsms' ); ?></h3>
-		<p><?php esc_html_e( 'After a user enters their password, an OTP code is sent to their registered phone. They must enter the code to complete login. Configure code length (4 or 6 digits), expiry (1–30 min), and max wrong attempts in General Settings.', 'kwtsms' ); ?></p>
+		<p><?php esc_html_e( 'After a user enters their password, an OTP code is sent to their registered phone. They must enter the code to complete login. Configure code length (4 or 6 digits), expiry (1 to 30 min), and max wrong attempts in General Settings.', 'kwtsms' ); ?></p>
 
 		<h3><?php esc_html_e( 'Passwordless Login', 'kwtsms' ); ?></h3>
 		<p><?php esc_html_e( 'Users can log in with just their phone number, no password needed. An OTP is sent to their phone and they are logged in on success. Enable via OTP Mode  Passwordless or Both. A country-code dropdown with GeoIP pre-selection is shown on the login form.', 'kwtsms' ); ?></p>
@@ -308,7 +310,7 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 
 		<div style="background:#e7f5ff;border-left:4px solid #72aee6;padding:14px 18px;border-radius:0 4px 4px 0;margin-bottom:24px;font-size:14px;">
 			<strong><?php esc_html_e( 'Tip: Check who is missing a phone number', 'kwtsms' ); ?></strong><br>
-			<?php esc_html_e( 'Go to Users in the admin, then look for the Phone Number column. Any user showing "—" or a blank value has no phone on file and will bypass 2FA until one is added.', 'kwtsms' ); ?>
+			<?php esc_html_e( 'Go to Users in the admin, then look for the Phone Number column. Any user showing "-" or a blank value has no phone on file and will bypass 2FA until one is added.', 'kwtsms' ); ?>
 			<a href="<?php echo esc_url( admin_url( 'users.php' ) ); ?>"><?php esc_html_e( 'View all users ', 'kwtsms' ); ?></a>
 		</div>
 

@@ -2,6 +2,8 @@
 /**
  * User Phone Number Meta Field.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Adds a phone number field to WordPress user profiles for OTP delivery.
  * Phone numbers are normalised to international format (digits only) on save.
  * Nonce + capability checks guard every save operation.
@@ -17,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 class KwtSMS_User_Meta {
 
 	/**
-	 * Constructor — registers hooks.
+	 * Constructor: registers hooks.
 	 */
 	public function __construct() {
 		add_action( 'show_user_profile', array( $this, 'render_phone_field' ) );
@@ -193,7 +195,7 @@ class KwtSMS_User_Meta {
 			}
 		}
 
-		// Empty value — clear the meta.
+		// Empty value: clear the meta.
 		if ( '' === $raw_phone ) {
 			delete_user_meta( $user_id, 'kwtsms_phone' );
 			return;
@@ -377,7 +379,7 @@ class KwtSMS_User_Meta {
 		$phone = sanitize_text_field( wp_unslash( $_POST['kwtsms_phone_reg'] ?? '' ) );
 
 		if ( '' === $phone ) {
-			return $errors; // Optional field — no validation needed.
+			return $errors; // Optional field: no validation needed.
 		}
 
 		$phone      = KwtSMS_API::prepend_country_code_if_local( $phone, KwtSMS_API::get_default_dial_code() );

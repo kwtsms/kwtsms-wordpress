@@ -2,6 +2,8 @@
 /**
  * Main plugin manager / service locator.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Bootstraps and wires all plugin modules. Uses a singleton pattern so only
  * one instance is created per request. Each module is responsible for
  * registering its own hooks in its constructor.
@@ -66,7 +68,7 @@ class KwtSMS_Plugin {
 	}
 
 	/**
-	 * Constructor — private to enforce singleton.
+	 * Constructor: private to enforce singleton.
 	 *
 	 * Instantiates all modules. Module constructors register their own hooks,
 	 * keeping this class thin.
@@ -81,12 +83,12 @@ class KwtSMS_Plugin {
 		);
 		$this->otp      = new KwtSMS_OTP_Engine( $this->settings );
 
-		// Admin-only modules — only load on admin requests to keep frontend lean.
+		// Admin-only modules: only load on admin requests to keep frontend lean.
 		if ( is_admin() ) {
 			new KwtSMS_Admin( $this );
 		}
 
-		// Frontend / login modules — load on all requests.
+		// Frontend / login modules: load on all requests.
 		new KwtSMS_User_Meta();
 
 		// Load login/reset OTP only when enabled in settings.
@@ -97,13 +99,13 @@ class KwtSMS_Plugin {
 			new KwtSMS_Reset_OTP( $this );
 		}
 
-		// CAPTCHA module — always loaded so it can enqueue on login page.
+		// CAPTCHA module: always loaded so it can enqueue on login page.
 		new KwtSMS_Captcha( $this->settings );
 
 		// Third-party plugin integrations (WooCommerce, CF7, WPForms, Ninja Forms).
 		new KwtSMS_Integrations( $this );
 
-		// Registration OTP Gate — verify phone before account creation.
+		// Registration OTP Gate: verify phone before account creation.
 		if ( 'disabled' !== $this->settings->get( 'general.registration_otp_gate', 'disabled' ) ) {
 			new KwtSMS_Registration_OTP_Gate( $this->settings, $this->api, $this->otp );
 		}
@@ -111,7 +113,7 @@ class KwtSMS_Plugin {
 		// Admin Site Alerts: notify admin phone(s) on key site events.
 		new KwtSMS_Admin_Alerts( $this );
 
-		// Welcome SMS: fires for all registrations — WC checkout, WC My Account, standard WP.
+		// Welcome SMS: fires for all registrations (WC checkout, WC My Account, standard WP).
 		add_action( 'user_register', array( $this, 'maybe_send_welcome_on_register' ), 20 );
 
 		// AJAX handlers.
@@ -156,9 +158,9 @@ class KwtSMS_Plugin {
 	 *
 	 * Fires on `user_register` with priority 20 (after WC saves phone meta at 10).
 	 * Phone resolution order:
-	 *   1. $_POST['kwtsms_phone_reg'] — WC My Account registration field.
-	 *   2. $_POST['billing_phone']    — WC checkout registration.
-	 *   3. kwtsms_phone user meta     — set before user_register fires (some custom forms).
+	 *   1. $_POST['kwtsms_phone_reg'] - WC My Account registration field.
+	 *   2. $_POST['billing_phone']    - WC checkout registration.
+	 *   3. kwtsms_phone user meta     - set before user_register fires (some custom forms).
 	 *
 	 * @param int $user_id Newly created user ID.
 	 */
@@ -207,18 +209,18 @@ class KwtSMS_Plugin {
 		add_action( 'wp_ajax_kwtsms_verify_credentials', array( $this, 'ajax_verify_credentials' ) );
 		add_action( 'wp_ajax_kwtsms_reload_all', array( $this, 'ajax_reload_all' ) );
 
-		// OTP resend (guests — not yet logged in).
+		// OTP resend (guests, not yet logged in).
 		add_action( 'wp_ajax_nopriv_kwtsms_resend_otp', array( $this, 'ajax_resend_otp' ) );
 		add_action( 'wp_ajax_kwtsms_resend_otp', array( $this, 'ajax_resend_otp' ) );
 
 		// Test SMS send (admin only).
 		add_action( 'wp_ajax_kwtsms_send_test_sms', array( $this, 'ajax_send_test_sms' ) );
 
-		// Form OTP gate — send OTP to phone before form submission (guests).
+		// Form OTP gate: send OTP to phone before form submission (guests).
 		add_action( 'wp_ajax_nopriv_kwtsms_form_send_otp', array( $this, 'ajax_form_send_otp' ) );
 		add_action( 'wp_ajax_kwtsms_form_send_otp', array( $this, 'ajax_form_send_otp' ) );
 
-		// Form OTP gate — verify code and mark transient as verified (guests).
+		// Form OTP gate: verify code and mark transient as verified (guests).
 		add_action( 'wp_ajax_nopriv_kwtsms_form_verify_otp', array( $this, 'ajax_form_verify_otp' ) );
 		add_action( 'wp_ajax_kwtsms_form_verify_otp', array( $this, 'ajax_form_verify_otp' ) );
 
@@ -268,20 +270,20 @@ class KwtSMS_Plugin {
 	}
 
 	// =========================================================================
-	// AJAX: Form OTP gate — send OTP
+	// AJAX: Form OTP gate, send OTP
 	// =========================================================================
 
 	/**
 	 * AJAX: normalise a phone number, send an OTP, and store the transient.
 	 *
 	 * Expected POST params:
-	 *   nonce  — kwtsms_form_otp_nonce
-	 *   phone  — raw phone number entered by the visitor
+	 *   nonce  - kwtsms_form_otp_nonce
+	 *   phone  - raw phone number entered by the visitor
 	 *
 	 * Returns JSON success with { token } on success so the JS can store the
 	 * token in a hidden input, or JSON error with { message } on failure.
 	 *
-	 * Security: nonce verified; no capability check (nopriv endpoint — used by
+	 * Security: nonce verified; no capability check (nopriv endpoint, used by
 	 * logged-out visitors filling in public forms).
 	 */
 	public function ajax_form_send_otp() {
@@ -360,16 +362,16 @@ class KwtSMS_Plugin {
 	}
 
 	// =========================================================================
-	// AJAX: Form OTP gate — verify OTP
+	// AJAX: Form OTP gate, verify OTP
 	// =========================================================================
 
 	/**
 	 * AJAX: verify the submitted OTP code against the stored hash.
 	 *
 	 * Expected POST params:
-	 *   nonce  — kwtsms_form_otp_nonce
-	 *   token  — 32-char hex session token (from hidden input)
-	 *   code   — OTP code entered by the visitor
+	 *   nonce  - kwtsms_form_otp_nonce
+	 *   token  - 32-char hex session token (from hidden input)
+	 *   code   - OTP code entered by the visitor
 	 *
 	 * On success, updates the transient to set verified=true and returns
 	 * JSON success. On failure returns JSON error with { message }.
@@ -411,7 +413,7 @@ class KwtSMS_Plugin {
 
 		// Verify the submitted code against the stored bcrypt hash.
 		if ( ! wp_check_password( $code, $data['otp_hash'] ) ) {
-			// Wrong code — increment attempt counter and persist.
+			// Wrong code: increment attempt counter and persist.
 			$data['attempts'] = $attempts + 1;
 			set_transient( $transient_key, $data, 900 );
 			wp_send_json_error( array( 'message' => __( 'Incorrect code. Please try again.', 'kwtsms' ) ) );
@@ -557,7 +559,7 @@ class KwtSMS_Plugin {
 				$_ciso2 = '';
 			}
 
-			// Clear name if it is an API status string (OK, ERROR, FAIL, …).
+			// Clear name if it is an API status string (OK, ERROR, FAIL, ...).
 			if ( in_array( strtoupper( $_cname ), $_cov_api_codes, true ) ) {
 				$_cname = '';
 			}
@@ -631,7 +633,7 @@ class KwtSMS_Plugin {
 	}
 
 	/**
-	 * AJAX: Reload — refresh sender IDs, balance, and coverage using saved credentials.
+	 * AJAX: Reload, refresh sender IDs, balance, and coverage using saved credentials.
 	 *
 	 * Unlike ajax_verify_credentials (which expects credentials in the POST body),
 	 * this handler reads the stored API username and password from the database so
@@ -785,7 +787,7 @@ class KwtSMS_Plugin {
 			return;
 		}
 
-		// Server-side send-cooldown guard — prevents rapid-fire resend requests even
+		// Server-side send-cooldown guard: prevents rapid-fire resend requests even
 		// if the client-side countdown is bypassed (e.g. via direct AJAX call).
 		if ( $this->otp->is_send_cooldown_active( $user_id, $otp_action ) ) {
 			wp_send_json_error(
@@ -815,7 +817,7 @@ class KwtSMS_Plugin {
 		$this->otp->set_send_cooldown( $user_id, $otp_action );
 
 		// Sliding-window counters are recorded inside is_rate_limited(),
-		// is_ip_rate_limited(), and is_user_rate_limited() — no separate
+		// is_ip_rate_limited(), and is_user_rate_limited(); no separate
 		// increment calls needed.
 
 		wp_send_json_success(
@@ -1033,7 +1035,7 @@ class KwtSMS_Plugin {
 			return;
 		}
 
-		// Reject numbers that are too short — country code + local number must be at least 10 digits.
+		// Reject numbers that are too short: country code + local number must be at least 10 digits.
 		// e.g. Kuwait: 965 (3) + 8 local = 11 total. Anything under 10 is clearly incomplete.
 		if ( strlen( $normalized ) < 10 ) {
 			wp_send_json_error(

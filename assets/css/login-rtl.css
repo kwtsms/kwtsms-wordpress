@@ -1,5 +1,7 @@
 /**
- * kwtSMS — Login Page RTL overrides (Arabic)
+ * kwtSMS: Login Page RTL overrides (Arabic)
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Applied when WordPress is configured with an RTL language (e.g. Arabic).
  *

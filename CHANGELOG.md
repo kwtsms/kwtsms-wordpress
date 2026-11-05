@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Checkout phone verification now also works with the WooCommerce Checkout block (the default checkout since WooCommerce 8.3).
+- Plain ASCII punctuation in all messages and texts, so no SMS is switched to the more expensive Unicode encoding by a dash or curly quote.
 
 ### Docs
 - ERR028 visitor message no longer claims a fixed 15-second wait: duplicate SMS protection is opt-in per account with a configurable window (10 seconds by default)

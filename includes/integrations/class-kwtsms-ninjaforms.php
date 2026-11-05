@@ -2,6 +2,8 @@
 /**
  * Ninja Forms Integration.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Supports two modes, configurable per-site in the Integrations admin page:
  *
  *  - Notification mode (default): sends a confirmation SMS after a successful
@@ -54,7 +56,7 @@ class KwtSMS_NinjaForms {
 	 * no hook is registered and the class exits immediately.
 	 *
 	 * @param KwtSMS_Plugin        $plugin    The main plugin instance.
-	 * @param KwtSMS_Settings|null $_settings Unused — accepted for DI parity with
+	 * @param KwtSMS_Settings|null $_settings Unused: accepted for DI parity with
 	 *                                         the GF class; settings are always
 	 *                                         accessed via $plugin->settings.
 	 */
@@ -90,7 +92,7 @@ class KwtSMS_NinjaForms {
 	// =========================================================================
 
 	/**
-	 * Gate mode — inject a field-level error if the OTP token is absent or unverified.
+	 * Gate mode: inject a field-level error if the OTP token is absent or unverified.
 	 *
 	 * Hooked to `ninja_forms_submit_fields` (filter). NF passes the fields array
 	 * for the current submission. Each field entry is an associative array; adding
@@ -102,7 +104,7 @@ class KwtSMS_NinjaForms {
 	 * @return array Possibly annotated fields array.
 	 */
 	public function gate_validate_fields( $fields ) {
-		// Verify our gate nonce — created at page load via wp_localize_script and injected into the form by form-otp.js after successful OTP verification.
+		// Verify our gate nonce: created at page load via wp_localize_script and injected into the form by form-otp.js after successful OTP verification.
 		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_kwtsms_gate_nonce'] ?? '' ) ), 'kwtsms_gate_verify' ) ) {
 			foreach ( $fields as &$field ) {
 				if ( $this->is_phone_field( $field ) ) {
@@ -127,7 +129,7 @@ class KwtSMS_NinjaForms {
 			return $fields;
 		}
 
-		// Token is verified — consume it immediately (single-use) to prevent replay.
+		// Token is verified: consume it immediately (single-use) to prevent replay.
 		delete_transient( 'kwtsms_form_otp_' . $token );
 
 		return $fields;

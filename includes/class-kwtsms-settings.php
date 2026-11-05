@@ -2,6 +2,8 @@
 /**
  * Settings storage and retrieval helper.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * All plugin settings are stored in four wp_options entries:
  *   - kwtsms_otp_general   : OTP behaviour, CAPTCHA, IPHub proxy detection
  *   - kwtsms_otp_gateway   : API credentials, sender ID, test mode
@@ -44,7 +46,7 @@ class KwtSMS_Settings {
 			'default_country_code'  => 'KW',       // ISO2 default for phone dropdown.
 			'allowed_countries'     => array( 'KW', 'SA', 'AE', 'BH', 'QA', 'OM' ), // GCC default.
 			'debug_logging'         => 0,          // Write detailed logs to wp-content/kwtsms-debug.log.
-			'balance_failure_mode'  => 'block',    // block or allow — action when SMS credits run out.
+			'balance_failure_mode'  => 'block',    // block or allow: action when SMS credits run out.
 			'blocked_phones'        => '',         // Newline or comma-separated normalized phone numbers.
 			'ip_allowlist'          => '',         // Newline-separated IPs or CIDRs. Allowlisted IPs skip rate limiting and proxy checks.
 			'ip_blocklist'          => '',         // Newline-separated IPs or CIDRs. Blocklisted IPs receive a silent rate-limit response.
@@ -140,7 +142,7 @@ class KwtSMS_Settings {
 			),
 			'woo_admin_phone'           => '',
 			'woo_notify_admin_statuses' => array(),
-			// D1 — Stock & inventory alerts (to admin phone).
+			// D1: Stock & inventory alerts (to admin phone).
 			'woo_stock_admin_phone'     => '',
 			'woo_low_stock_enabled'     => 1,
 			'woo_no_stock_enabled'      => 1,
@@ -157,19 +159,19 @@ class KwtSMS_Settings {
 				'en' => '{site_name}: {product_name} is now on backorder.',
 				'ar' => '{site_name}: {product_name} أصبح تحت الطلب المسبق.',
 			),
-			// D2 — New product published.
+			// D2: New product published.
 			'woo_new_product_enabled'   => 0,
 			'woo_tpl_new_product'       => array(
 				'en' => '{site_name}: New product available: {product_name}. Check it out!',
 				'ar' => '{site_name}: منتج جديد: {product_name}. اكتشفه الآن!',
 			),
-			// D1 — Back-in-stock subscriber notifications.
+			// D1: Back-in-stock subscriber notifications.
 			'woo_back_in_stock_enabled' => 0,
 			'woo_tpl_back_in_stock'     => array(
 				'en' => '{site_name}: Good news! {product_name} is back in stock.',
 				'ar' => '{site_name}: بشرى! {product_name} عاد إلى المخزون.',
 			),
-			// D3 — Cart abandonment recovery.
+			// D3: Cart abandonment recovery.
 			'woo_cart_abandon_enabled'  => 0,
 			'woo_cart_abandon_delay'    => 60,   // Minutes before sending recovery SMS.
 			'woo_cart_abandon_coupon'   => 10,   // Discount percentage (0 = no coupon).
@@ -178,7 +180,7 @@ class KwtSMS_Settings {
 				'en' => '{site_name}: Hi {first_name}, you left something behind! Your cart total is {cart_total}. Use code {coupon_code} for {discount}% off: {cart_url}',
 				'ar' => '{site_name}: مرحبا {first_name}، نسيت شيئاً! مجموع سلتك {cart_total}. استخدم كود {coupon_code} للحصول على خصم {discount}%: {cart_url}',
 			),
-			// D4 — Instant new order alert and multivendor SMS.
+			// D4: Instant new order alert and multivendor SMS.
 			'woo_instant_order_enabled' => 0,
 			'woo_instant_order_phone'   => '',
 			'woo_tpl_instant_order'     => array(

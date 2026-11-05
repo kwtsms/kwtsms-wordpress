@@ -1,6 +1,8 @@
 <?php
 /**
- * Country codes data — dial code, ISO2, and display name.
+ * Country codes data: dial code, ISO2, and display name.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Used by the phone number country selector on client login pages
  * and the Allowed Countries manager in admin settings.

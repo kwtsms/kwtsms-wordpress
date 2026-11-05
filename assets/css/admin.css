@@ -1,5 +1,7 @@
 /**
- * kwtSMS — Admin Styles
+ * kwtSMS: Admin Styles
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Brand tokens:
  *   Primary:   #FFA200  (orange)
@@ -33,7 +35,7 @@
 	min-width: 0;
 }
 
-/* WPForms strips #wpcontent padding-left on its admin pages — restore it. */
+/* WPForms strips #wpcontent padding-left on its admin pages: restore it. */
 body.wpforms-admin-page .kwtsms-admin-wrap {
 	padding-left: 20px;
 }
@@ -366,7 +368,7 @@ body[class*="kwtsms_page_kwtsms-otp"] #footer-upgrade {
 }
 
 /* =========================================================================
-   Integrations page — inactive plugin badge on tab links
+   Integrations page: inactive plugin badge on tab links
    ========================================================================= */
 
 .kwtsms-badge-inactive {

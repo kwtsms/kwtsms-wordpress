@@ -1,6 +1,8 @@
 <?php
 /**
- * OTP Entry Page — rendered via login_init hook on wp-login.php?action=kwtsms_otp
+ * OTP Entry Page: rendered via login_init hook on wp-login.php?action=kwtsms_otp
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Available variables (set by the calling render method):
  *
@@ -21,7 +23,7 @@ $kwtsms_is_reset  = $is_reset ?? false;
 $kwtsms_site_name = get_bloginfo( 'name' );
 $kwtsms_login_url = wp_login_url();
 
-// Build site logo — matches WordPress login page header behaviour.
+// Build site logo: matches WordPress login page header behaviour.
 $kwtsms_custom_logo_id = get_theme_mod( 'custom_logo' );
 if ( $kwtsms_custom_logo_id ) {
 	// Custom logo set via Customizer.
@@ -32,10 +34,10 @@ if ( $kwtsms_custom_logo_id ) {
 		array( 'alt' => $kwtsms_site_name )
 	);
 } elseif ( has_site_icon() ) {
-	// Site icon — WordPress login page uses this as fallback since WP 5.5.
+	// Site icon: WordPress login page uses this as fallback since WP 5.5.
 	$kwtsms_logo_html = '<img src="' . esc_url( get_site_icon_url( 84 ) ) . '" alt="' . esc_attr( $kwtsms_site_name ) . '" style="max-height:84px;width:auto;" />';
 } else {
-	// No logo — visually hide the text with screen-reader-text so WordPress login CSS
+	// No logo: visually hide the text with screen-reader-text so WordPress login CSS
 	// (#login h1 a background-image) shows the WordPress logo instead.
 	$kwtsms_logo_html = '<span class="screen-reader-text">' . esc_html( $kwtsms_site_name ) . '</span>';
 }

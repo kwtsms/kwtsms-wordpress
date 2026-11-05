@@ -241,12 +241,12 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 
 = 3.3.0 =
 * New: WooCommerce HPOS (High-Performance Order Storage) compatibility declaration
-* New: COD-only OTP gate option — require OTP only for Cash on Delivery orders
-* New: Stock alert SMS — low stock, out of stock, backorder notifications to admin
+* New: COD-only OTP gate option: require OTP only for Cash on Delivery orders
+* New: Stock alert SMS: low stock, out of stock, backorder notifications to admin
 * New: New product published SMS notification to admin
-* New: Back-in-stock subscriber notifications — customers opt-in, SMS sent on restock
+* New: Back-in-stock subscriber notifications: customers opt-in, SMS sent on restock
 * New: Instant new order SMS (fires once per order regardless of status)
-* New: Multivendor support — vendor SMS for Dokan, WCFM, WC Vendors
+* New: Multivendor support: vendor SMS for Dokan, WCFM, WC Vendors
 * New: Cart abandonment recovery SMS with coupon code generation
 * New: Cart abandonment dashboard card with recovery stats
 
@@ -268,10 +268,10 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Security: IP Allowlist/Blocklist with CIDR support. Admin textareas for IPv4/IPv6 address and CIDR ranges. Allowlisted IPs bypass per-IP rate limiting; blocklisted IPs receive a silent refusal indistinguishable from a rate-limit error.
 
 = 3.1.3 =
-* Security: Verify sliding-window rate limiting — per-phone, per-IP, and per-account limiters use timestamp arrays that self-prune, making fixed-window boundary exploits impossible.
+* Security: Verify sliding-window rate limiting: per-phone, per-IP, and per-account limiters use timestamp arrays that self-prune, making fixed-window boundary exploits impossible.
 
 = 3.1.2 =
-* Security: Verify duplicate OTP guard — generate() reuses existing valid OTP and resets expiry clock to prevent double-SMS on double-click or page refresh.
+* Security: Verify duplicate OTP guard: generate() reuses existing valid OTP and resets expiry clock to prevent double-SMS on double-click or page refresh.
 
 = 3.1.1 =
 * Enhancement: Dashboard widget now pinned to the right column for all users.

@@ -1,9 +1,11 @@
 <?php
 /**
- * Admin View: Logs Page — SMS History + OTP Attempts.
+ * Admin View: Logs Page: SMS History + OTP Attempts.
  *
- * Tab 1 — SMS History: full unredacted send log (phone + message).
- * Tab 2 — OTP Attempts: verification events with IP, action, and result.
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
+ * Tab 1, SMS History: full unredacted send log (phone + message).
+ * Tab 2, OTP Attempts: verification events with IP, action, and result.
  *
  * Both logs support pagination (20 rows/page) and CSV export.
  *
@@ -24,7 +26,7 @@ $kwtsms_active_tab     = isset( $kwtsms_active_tab ) ? $kwtsms_active_tab : 'sms
 $kwtsms_current_page   = isset( $kwtsms_current_page ) ? (int) $kwtsms_current_page : 1;
 $kwtsms_items_per_page = 20;
 
-// Debug log tab variables — only relevant when debug_logging is enabled.
+// Debug log tab variables: only relevant when debug_logging is enabled.
 // NOTE: download/clear/export handlers are registered on admin_init in KwtSMS_Admin::handle_log_exports()
 // so that Content-Type headers can be sent before any HTML output.
 $kwtsms_uploads_dir      = wp_upload_dir();
@@ -234,7 +236,7 @@ function kwtsms_attempt_result_label( $result ) {
 						? $kwtsms_user_data->user_login . ' (#' . (int) $kwtsms_user_id . ')'
 						: '#' . (int) $kwtsms_user_id;
 				} else {
-					$kwtsms_user_label = '—';
+					$kwtsms_user_label = '-';
 				}
 				?>
 			<tr>

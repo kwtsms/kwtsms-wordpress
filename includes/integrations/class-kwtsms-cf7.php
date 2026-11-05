@@ -2,6 +2,8 @@
 /**
  * Contact Form 7 Integration.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Supports two modes, configurable per-site in the Integrations admin page:
  *
  *  - Notification mode (default): sends a confirmation SMS after a successful
@@ -69,7 +71,7 @@ class KwtSMS_CF7 {
 			add_filter( 'wpcf7_before_send_mail', array( $this, 'gate_verify_token' ), 10, 3 );
 		} else {
 			// Notification mode: send SMS after a valid CF7 form submission.
-			// wpcf7_submit fires regardless of SMTP status — SMS is delivered even
+			// wpcf7_submit fires regardless of SMTP status: SMS is delivered even
 			// when no email server is configured. Status is checked to exclude
 			// validation failures, spam, and aborted (gate-blocked) submissions.
 			add_action( 'wpcf7_submit', array( $this, 'send_confirmation_sms_on_submit' ), 10, 2 );
@@ -81,7 +83,7 @@ class KwtSMS_CF7 {
 	// =========================================================================
 
 	/**
-	 * Gate mode — verify the OTP token before CF7 sends mail.
+	 * Gate mode: verify the OTP token before CF7 sends mail.
 	 *
 	 * Hooked to `wpcf7_before_send_mail` with priority 10. CF7 calls this
 	 * filter and, if the return value is false, aborts mail delivery and
@@ -94,7 +96,7 @@ class KwtSMS_CF7 {
 	 * @return WPCF7_ContactForm The (possibly mutated) form instance.
 	 */
 	public function gate_verify_token( $cf7, &$abort, $submission ) {
-		// Verify our gate nonce — injected into the form by form-otp.js after successful OTP verification.
+		// Verify our gate nonce: injected into the form by form-otp.js after successful OTP verification.
 		// The nonce is in $_POST (not CF7's get_posted_data) because it is a JS-injected hidden input,
 		// not a registered CF7 form tag. Nonce IS verified on the next line (fail-early pattern).
 		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_kwtsms_gate_nonce'] ?? '' ) ), 'kwtsms_gate_verify' ) ) {
@@ -125,7 +127,7 @@ class KwtSMS_CF7 {
 			return $cf7;
 		}
 
-		// Token is verified — consume it immediately (single-use) to prevent replay.
+		// Token is verified: consume it immediately (single-use) to prevent replay.
 		// Note: form_id in the transient is stored for audit purposes.
 		// Token is single-use (consumed on success) so cross-form replay is prevented.
 		delete_transient( 'kwtsms_form_otp_' . $token );

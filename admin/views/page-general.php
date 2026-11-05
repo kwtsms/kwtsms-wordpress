@@ -2,8 +2,10 @@
 /**
  * Admin View: General Settings Page.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Renders the OTP behaviour and CAPTCHA configuration form.
- * Uses the WordPress Settings API — form data is saved to kwtsms_otp_general.
+ * Uses the WordPress Settings API: form data is saved to kwtsms_otp_general.
  *
  * @package KwtSMS_OTP
  */
@@ -89,10 +91,10 @@ foreach ( $kwtsms_all_countries as $kwtsms_cc ) {
 	<!-- Balance Display (mirrors Gateway page) -->
 	<div class="kwtsms-balance-bar" id="kwtsms-balance-card"<?php echo $kwtsms_credentials_verified ? '' : ' style="display:none;"'; ?>>
 		<?php esc_html_e( 'Available balance:', 'kwtsms' ); ?>
-		<strong id="kwtsms-balance"><?php echo null !== $kwtsms_bal_available ? esc_html( number_format( (float) $kwtsms_bal_available, 2 ) ) : '—'; ?></strong>
+		<strong id="kwtsms-balance"><?php echo null !== $kwtsms_bal_available ? esc_html( number_format( (float) $kwtsms_bal_available, 2 ) ) : '-'; ?></strong>
 		&nbsp;|&nbsp;
 		<?php esc_html_e( 'Total purchased:', 'kwtsms' ); ?>
-		<span id="kwtsms-balance-purchased"><?php echo ( null !== $kwtsms_bal_purchased && $kwtsms_bal_purchased > 0 ) ? esc_html( number_format( (float) $kwtsms_bal_purchased, 2 ) ) : '—'; ?></span>
+		<span id="kwtsms-balance-purchased"><?php echo ( null !== $kwtsms_bal_purchased && $kwtsms_bal_purchased > 0 ) ? esc_html( number_format( (float) $kwtsms_bal_purchased, 2 ) ) : '-'; ?></span>
 		<a href="https://www.kwtsms.com/login/" target="_blank" rel="noopener" style="margin-left:auto;font-size:13px;font-weight:600;"><?php esc_html_e( 'Recharge/Buy credits ', 'kwtsms' ); ?></a>
 	</div>
 

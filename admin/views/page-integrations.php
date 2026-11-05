@@ -2,6 +2,8 @@
 /**
  * Admin View: Integrations Overview Page.
  *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
+ *
  * Shows all supported integrations with install status.
  * Installed integrations link to their own dedicated settings sub-page.
  *
@@ -92,7 +94,7 @@ $kwtsms_icons = array(
 				$kwtsms_plugin_file  = $kwtsms_int['plugin_file'] ?? '';
 				$kwtsms_is_installed = $kwtsms_plugin_file && file_exists( WP_PLUGIN_DIR . '/' . $kwtsms_plugin_file );
 
-				// Activate URL — only for installed-but-inactive plugins; requires nonce.
+				// Activate URL: only for installed-but-inactive plugins; requires nonce.
 				$kwtsms_activate_url = ( $kwtsms_is_installed && ! $kwtsms_int['active'] && current_user_can( 'activate_plugins' ) )
 					? wp_nonce_url(
 						admin_url( 'plugins.php?action=activate&plugin=' . rawurlencode( $kwtsms_plugin_file ) ),
@@ -100,7 +102,7 @@ $kwtsms_icons = array(
 					)
 					: null;
 
-				// Install URL — only when plugin is not on disk at all.
+				// Install URL: only when plugin is not on disk at all.
 				$kwtsms_install_url = ( ! $kwtsms_is_installed && ! empty( $kwtsms_int['wp_slug'] ) )
 					? admin_url( 'plugin-install.php?tab=plugin-information&plugin=' . rawurlencode( $kwtsms_int['wp_slug'] ) )
 					: null;

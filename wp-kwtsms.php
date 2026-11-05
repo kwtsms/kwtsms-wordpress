@@ -58,7 +58,9 @@ function kwtsms_otp_autoload( $class_name ) {
 spl_autoload_register( 'kwtsms_otp_autoload' );
 
 /**
- * Activation hook — runs when plugin is first activated.
+ * Activation hook: runs when plugin is first activated.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * Sets default options and records the installed version.
  * Must be registered at top-level (not inside another hook).
@@ -93,7 +95,7 @@ register_activation_hook( KWTSMS_OTP_FILE, 'kwtsms_otp_activate' );
 /**
  * Deactivation hook.
  *
- * Does not remove data — that is handled by uninstall.php.
+ * Does not remove data; that is handled by uninstall.php.
  */
 function kwtsms_otp_deactivate() {
 	// Clear the cart abandonment cron job on deactivation.
@@ -114,7 +116,7 @@ function kwtsms_otp_init() {
 	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Kept for GitHub-distributed installs where WP auto-loading does not apply.
 	load_plugin_textdomain( 'kwtsms', false, dirname( KWTSMS_OTP_BASENAME ) . '/languages' );
 
-	// Emergency bypass — if defined in wp-config.php, skip all OTP logic.
+	// Emergency bypass: if defined in wp-config.php, skip all OTP logic.
 	// Useful when an admin is locked out. See Help page for instructions.
 	if ( defined( 'KWTSMS_OTP_DISABLED' ) && KWTSMS_OTP_DISABLED ) {
 		return;

@@ -1,6 +1,8 @@
 <?php
 /**
- * OTP Login — 2FA and Passwordless flows.
+ * OTP Login: 2FA and Passwordless flows.
+ *
+ * 2026-11-05 21:15 +03: banned dash/quote characters replaced with ASCII (SMS cost, project rule), int-dashes
  *
  * 2FA Flow:
  *   1. authenticate filter (priority 30): intercepts validated WP_User,
@@ -101,7 +103,7 @@ class KwtSMS_Login_OTP {
 			}
 			$intersect = array_intersect( $user_roles, (array) $required_roles );
 			if ( empty( $intersect ) ) {
-				// User's role is not in the required list — bypass OTP, allow direct login.
+				// User's role is not in the required list: bypass OTP, allow direct login.
 				return $user;
 			}
 		}
@@ -165,7 +167,7 @@ class KwtSMS_Login_OTP {
 		if ( ! $this->plugin->otp->is_send_cooldown_active( $user->ID, 'login' ) ) {
 			$this->plugin->otp->set_send_cooldown( $user->ID, 'login' );
 
-			// Generate OTP — reuses existing valid code if one was sent recently.
+			// Generate OTP: reuses existing valid code if one was sent recently.
 			$otp_code = $this->plugin->otp->generate( $user->ID, 'login' );
 			$message  = $this->plugin->otp->build_message( $otp_code, 'login_otp' );
 			$result   = $this->plugin->api->send(
@@ -179,18 +181,18 @@ class KwtSMS_Login_OTP {
 				$error_code = $result->get_error_code();
 				$this->plugin->api->write_debug_log( 'login_otp', 'SMS send failed for user ' . $user->ID . ': ' . $result->get_error_message() );
 
-				// Gateway not configured — OTP feature is not active yet. Skip silently.
+				// Gateway not configured: OTP feature is not active yet. Skip silently.
 				if ( in_array( $error_code, array( 'kwtsms_no_credentials', 'kwtsms_missing_sender_id' ), true ) ) {
 					return $user;
 				}
 
-				// Insufficient credits — OTP was active but can no longer send. Alert the admin.
+				// Insufficient credits: OTP was active but can no longer send. Alert the admin.
 				// The admin-configured balance_failure_mode decides whether to block or allow.
 				if ( 'no_balance' === $error_code ) {
 					$this->notify_admin_no_balance();
 					$mode = $this->plugin->settings->get( 'general.balance_failure_mode', 'block' );
 					if ( 'allow' === $mode ) {
-						// Admin opted to keep users accessible — fail-open and let login continue.
+						// Admin opted to keep users accessible: fail-open and let login continue.
 						return $user;
 					}
 					return new WP_Error(
@@ -207,13 +209,13 @@ class KwtSMS_Login_OTP {
 					return new WP_Error( 'kwtsms_otp_required', '' );
 				}
 
-				// Temporary failure (network, API down) — fail-open to avoid lockout.
+				// Temporary failure (network, API down): fail-open to avoid lockout.
 				return $user;
 			}
 		}
 
 		// Sliding-window counters are recorded inside is_rate_limited(),
-		// is_ip_rate_limited(), and is_user_rate_limited() — no separate
+		// is_ip_rate_limited(), and is_user_rate_limited(); no separate
 		// increment calls needed.
 
 		// Create partial auth session.
@@ -236,7 +238,7 @@ class KwtSMS_Login_OTP {
 	}
 
 	/**
-	 * After login failure — redirect to OTP page if our error caused it.
+	 * After login failure: redirect to OTP page if our error caused it.
 	 *
 	 * @param string   $username Username.
 	 * @param WP_Error $error    The error returned from authenticate.
@@ -353,7 +355,7 @@ class KwtSMS_Login_OTP {
 		$raw_code   = sanitize_text_field( wp_unslash( $_POST['kwtsms_code'] ?? '' ) );
 		$submitted  = preg_replace( '/\D/', '', $raw_code ); // Digits only.
 
-		// Detect suspicious input — log as hacking attempt before processing.
+		// Detect suspicious input: log as hacking attempt before processing.
 		$expected_length = (int) $this->plugin->settings->get( 'general.otp_length', 6 );
 		$raw_ip          = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
 		$ip              = filter_var( $raw_ip, FILTER_VALIDATE_IP ) ? $raw_ip : '';
@@ -361,14 +363,14 @@ class KwtSMS_Login_OTP {
 
 		// Log if: raw input had non-digit chars, code is empty, or code length is wrong.
 		$is_suspicious = ( $raw_len > 0 && strlen( $submitted ) !== $raw_len ) // non-digit chars present.
-			|| ( $raw_len > $expected_length + 4 ) // excessively long — possible injection.
+			|| ( $raw_len > $expected_length + 4 ) // excessively long: possible injection.
 			|| ( $raw_len > 0 && strlen( $submitted ) !== $expected_length && strlen( $submitted ) !== 0 ); // wrong length.
 
 		if ( $is_suspicious ) {
 			KwtSMS_API::append_attempt_log( $user_id, $otp_phone, $ip, $otp_action, 'invalid_input' );
 		}
 
-		// Empty code — no point calling verify.
+		// Empty code: no point calling verify.
 		if ( '' === $submitted ) {
 			$this->render_otp_page( __( 'Please enter your verification code.', 'kwtsms' ), $token );
 			exit;
@@ -387,7 +389,7 @@ class KwtSMS_Login_OTP {
 			case 'invalid':
 				$remaining = $this->plugin->otp->get_remaining_attempts( $user_id );
 				if ( 0 === $remaining ) {
-					// Transient expired between verify() and get_remaining_attempts() — treat as expired.
+					// Transient expired between verify() and get_remaining_attempts(): treat as expired.
 					$this->render_otp_page(
 						__( 'Your code has expired. Click "Resend" to get a new one.', 'kwtsms' ),
 						$token
@@ -527,7 +529,7 @@ class KwtSMS_Login_OTP {
 			exit;
 		}
 
-		// Generic response — prevents phone enumeration.
+		// Generic response: prevents phone enumeration.
 		$generic_message = __( 'If an account is associated with this number, an OTP will be sent shortly.', 'kwtsms' );
 
 		// Look up user by kwtsms_phone meta.
@@ -541,7 +543,7 @@ class KwtSMS_Login_OTP {
 		);
 
 		if ( empty( $users ) ) {
-			// No match — show generic message, no OTP sent.
+			// No match: show generic message, no OTP sent.
 			$this->render_passwordless_page( '', $generic_message );
 			exit;
 		}
@@ -555,14 +557,14 @@ class KwtSMS_Login_OTP {
 		if ( ! empty( $required_roles ) ) {
 			$user_obj   = get_userdata( $user_id );
 			$user_roles = $user_obj ? $user_obj->roles : array();
-			// On multisite, super admins have an empty roles array —
+			// On multisite, super admins have an empty roles array;
 			// treat them as 'administrator' for the purpose of this check.
 			if ( empty( $user_roles ) && function_exists( 'is_super_admin' ) && is_super_admin( $user_id ) ) {
 				$user_roles = array( 'administrator' );
 			}
 			$intersect = array_intersect( $user_roles, (array) $required_roles );
 			if ( empty( $intersect ) ) {
-				// User's role is not subject to OTP — issue auth cookies directly.
+				// User's role is not subject to OTP: issue auth cookies directly.
 				$this->issue_auth_and_redirect( $user_id );
 			}
 		}
@@ -607,13 +609,13 @@ class KwtSMS_Login_OTP {
 				$error_code = $result->get_error_code();
 				$this->plugin->api->write_debug_log( 'login_otp', 'Passwordless SMS failed: ' . $result->get_error_message() );
 
-				// Gateway not configured — show actionable error on the phone form.
+				// Gateway not configured: show actionable error on the phone form.
 				if ( in_array( $error_code, array( 'kwtsms_no_credentials', 'kwtsms_missing_sender_id' ), true ) ) {
 					$this->render_passwordless_page( __( 'SMS login is not available. Please contact the site administrator.', 'kwtsms' ) );
 					exit;
 				}
 
-				// Insufficient credits — alert admin; mode decides whether to block or allow.
+				// Insufficient credits: alert admin; mode decides whether to block or allow.
 				if ( 'no_balance' === $error_code ) {
 					$this->notify_admin_no_balance();
 					$mode = $this->plugin->settings->get( 'general.balance_failure_mode', 'block' );
@@ -621,7 +623,7 @@ class KwtSMS_Login_OTP {
 						$this->render_passwordless_page( __( 'Your verification code could not be sent. Please contact the site administrator.', 'kwtsms' ) );
 						exit;
 					}
-					// 'allow' mode — fall through and show OTP screen (user will not receive a code
+					// 'allow' mode: fall through and show OTP screen (user will not receive a code
 					// but is not logged in; this is safer than auto-logging-in without a phone lookup).
 				}
 
@@ -633,13 +635,13 @@ class KwtSMS_Login_OTP {
 					exit;
 				}
 
-				// Temporary failure — proceed to OTP screen; user cannot complete it
+				// Temporary failure: proceed to OTP screen; user cannot complete it
 				// but is not logged in either, which is safer than showing nothing.
 			}
 		}
 
 		// Sliding-window counters are recorded inside is_rate_limited(),
-		// is_ip_rate_limited(), and is_user_rate_limited() — no separate
+		// is_ip_rate_limited(), and is_user_rate_limited(); no separate
 		// increment calls needed.
 
 		// Create partial auth session.
@@ -733,7 +735,7 @@ class KwtSMS_Login_OTP {
 			$allowed_countries = $all_countries;
 		}
 
-		// GeoIP detect — pre-select visitor's country (or fall back to default).
+		// GeoIP detect: pre-select visitor's country (or fall back to default).
 		$detected_iso2 = KwtSMS_GeoIP::detect_iso2() ?? $default_iso2;
 
 		// If detected country not in allowed list, fall back to default.
@@ -768,7 +770,7 @@ class KwtSMS_Login_OTP {
 
 		$subject = sprintf(
 			/* translators: %s: site name */
-			__( '[%s] kwtSMS: OTP delivery failed — account balance is zero', 'kwtsms' ),
+			__( '[%s] kwtSMS: OTP delivery failed, account balance is zero', 'kwtsms' ),
 			$site_name
 		);
 
