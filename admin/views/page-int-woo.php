@@ -47,9 +47,9 @@ $kwtsms_all_vtab_defs = array(
 				'placeholders' => '{order_id}, {total}, {site_name}, {customer_name}',
 			),
 			'woo_shipped'    => array(
-				'tab_label'    => __( 'Shipped', 'kwtsms' ),
-				'label'        => __( 'Order Shipped (On-Hold)', 'kwtsms' ),
-				'description'  => __( 'Sent when the order status is set to On-Hold, typically used to indicate the order has been shipped.', 'kwtsms' ),
+				'tab_label'    => __( 'On Hold', 'kwtsms' ),
+				'label'        => __( 'Order On Hold (awaiting payment)', 'kwtsms' ),
+				'description'  => __( 'Sent when the order status is set to On-Hold. In WooCommerce this means the order waits for payment confirmation, for example a bank transfer.', 'kwtsms' ),
 				'placeholders' => '{order_id}, {site_name}, {customer_name}',
 			),
 			'woo_completed'  => array(
@@ -164,8 +164,8 @@ $kwtsms_customer_status_labels = array(
 		'hint'  => __( 'Fires when the payment attempt fails and the order is not confirmed. Disabled by default.', 'kwtsms' ),
 	),
 	'woo_shipped'    => array(
-		'label' => __( 'Order Shipped (On-Hold)', 'kwtsms' ),
-		'hint'  => __( 'Fires when the order status is set to On-Hold, typically used to indicate the order has been shipped.', 'kwtsms' ),
+		'label' => __( 'Order On Hold (awaiting payment)', 'kwtsms' ),
+		'hint'  => __( 'Fires when the order status is set to On-Hold: the order waits for payment confirmation, for example a bank transfer.', 'kwtsms' ),
 	),
 	'woo_completed'  => array(
 		'label' => __( 'Order Completed', 'kwtsms' ),
@@ -368,7 +368,7 @@ wp_add_inline_script(
 							'processing' => __( 'New Order / Order Confirmed (Processing)', 'kwtsms' ),
 							'pending'    => __( 'New Order: Awaiting Payment (Pending)', 'kwtsms' ),
 							'failed'     => __( 'Payment Failed: Order Not Confirmed', 'kwtsms' ),
-							'on-hold'    => __( 'Order Shipped (On-Hold)', 'kwtsms' ),
+							'on-hold'    => __( 'Order On Hold (awaiting payment)', 'kwtsms' ),
 							'completed'  => __( 'Order Completed', 'kwtsms' ),
 							'cancelled'  => __( 'Order Cancelled', 'kwtsms' ),
 							'refunded'   => __( 'Order Refunded', 'kwtsms' ),

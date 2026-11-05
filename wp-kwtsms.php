@@ -130,6 +130,39 @@ function kwtsms_otp_init() {
 add_action( 'plugins_loaded', 'kwtsms_otp_init' );
 
 /**
+ * One-time upgrade steps for sites updating from an older version.
+ *
+ * 2026-11-05 23:54 +03: added for q-wp-onhold. Before 3.6.1 the On-Hold SMS default said the order was shipped,
+ * but WooCommerce On-Hold means awaiting payment. A saved text that still equals the old default is
+ * replaced with the new default; any text the store owner wrote is left untouched.
+ */
+function kwtsms_otp_maybe_upgrade() {
+	$installed = (string) get_option( 'kwtsms_otp_version', '0' );
+	if ( version_compare( $installed, KWTSMS_OTP_VERSION, '>=' ) ) {
+		return;
+	}
+	if ( version_compare( $installed, '3.6.1', '<' ) ) {
+		$integrations = get_option( 'kwtsms_otp_integrations', array() );
+		if ( is_array( $integrations ) && isset( $integrations['woo_shipped'] ) && is_array( $integrations['woo_shipped'] ) ) {
+			$old_defaults = array(
+				'en' => '{site_name}: Your order #{order_id} has been shipped and is on its way!',
+				'ar' => '{site_name}: طلبك رقم #{order_id} قيد الشحن وفي طريقه إليك!',
+			);
+			$new_defaults = KwtSMS_Settings::DEFAULTS['integrations']['woo_shipped'];
+			foreach ( $old_defaults as $lang => $old_text ) {
+				if ( isset( $integrations['woo_shipped'][ $lang ] ) && $old_text === $integrations['woo_shipped'][ $lang ] ) {
+					$integrations['woo_shipped'][ $lang ] = $new_defaults[ $lang ];
+				}
+			}
+			update_option( 'kwtsms_otp_integrations', $integrations );
+		}
+	}
+	update_option( 'kwtsms_otp_version', KWTSMS_OTP_VERSION );
+}
+add_action( 'plugins_loaded', 'kwtsms_otp_maybe_upgrade', 5 );
+
+
+/**
  * Declare compatibility with WooCommerce High-Performance Order Storage (HPOS).
  *
  * This silences the WooCommerce admin notice introduced in WooCommerce 8.5+ for

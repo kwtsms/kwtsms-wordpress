@@ -28,7 +28,7 @@ Built for Arabic-speaking markets (Kuwait, Saudi Arabia, UAE, Bahrain, Qatar, Om
 
 = WooCommerce Integration =
 
-* **7 order status notifications:** Processing, On-Hold (Shipped), Completed, Cancelled, Pending Payment, Refunded, Failed
+* **7 order status notifications:** Processing, On-Hold (awaiting payment), Completed, Cancelled, Pending Payment, Refunded, Failed
 * **Admin order notifications:** automatically notify a configurable admin phone number on any order status change
 * **Checkout OTP Gate:** require phone verification before the customer can place an order, on the classic checkout and the Checkout block (all methods or COD-only)
 * **Per-status templates:** independent English + Arabic SMS template for every order status

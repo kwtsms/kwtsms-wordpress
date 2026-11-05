@@ -92,7 +92,7 @@ After activation:
 - Emergency bypass option for admin lockout recovery
 
 ### WooCommerce
-- **7 order status SMS**: Processing, On-Hold (Shipped), Completed, Cancelled, Pending Payment, Refunded, Failed
+- **7 order status SMS**: Processing, On-Hold (awaiting payment), Completed, Cancelled, Pending Payment, Refunded, Failed
 - **Admin SMS notifications:** notify a configurable phone number on any order status change
 - **Per-order custom SMS:** send a free-text SMS to the customer from the order edit screen
 - **OTP gate on checkout:** verify phone before placing order, on the classic checkout and the Checkout block, with optional COD-only mode and its own SMS template
