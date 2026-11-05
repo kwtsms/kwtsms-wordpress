@@ -72,6 +72,14 @@ class KwtSMS_API {
 	private $debug_mode;
 
 	/**
+	 * User-Agent sent to the kwtSMS API, built on first use.
+	 * 2026-11-05 14:51 +03: added so kwtSMS can count accounts per integration (name and version only, no personal data), #939.
+	 *
+	 * @var string|null
+	 */
+	private $user_agent = null;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string $username   kwtsms API username.
@@ -1826,6 +1834,29 @@ class KwtSMS_API {
 	// =========================================================================
 
 	/**
+	 * The User-Agent token this plugin sends: "kwtsms-wordpress/<version>".
+	 *
+	 * The version is read from the plugin header (Version:), the one WordPress shows;
+	 * the KWTSMS_OTP_VERSION constant is only a fallback.
+	 * 2026-11-05 14:51 +03: added for per-integration counts (no personal data), #939.
+	 *
+	 * @return string
+	 */
+	public function get_user_agent() {
+		if ( null === $this->user_agent ) {
+			$version = defined( 'KWTSMS_OTP_VERSION' ) ? KWTSMS_OTP_VERSION : '0';
+			if ( defined( 'KWTSMS_OTP_FILE' ) && function_exists( 'get_file_data' ) ) {
+				$header = get_file_data( KWTSMS_OTP_FILE, array( 'Version' => 'Version' ) );
+				if ( ! empty( $header['Version'] ) ) {
+					$version = $header['Version'];
+				}
+			}
+			$this->user_agent = 'kwtsms-wordpress/' . preg_replace( '/[^0-9A-Za-z.+-]/', '', (string) $version );
+		}
+		return $this->user_agent;
+	}
+
+	/**
 	 * Send a POST request to the kwtsms JSON API.
 	 *
 	 * Always uses HTTPS. Always sends credentials in the JSON body (never in URL).
@@ -1864,14 +1895,16 @@ class KwtSMS_API {
 		$response = wp_remote_post(
 			$url,
 			array(
-				'timeout'   => self::TIMEOUT,
-				'headers'   => array(
+				'timeout'    => self::TIMEOUT,
+				// 2026-11-05 14:51 +03: user-agent identifies the plugin and its version to kwtSMS (keys realigned for WPCS), #939.
+				'headers'    => array(
 					'Content-Type' => 'application/json',
 					'Accept'       => 'application/json',
 				),
-				'body'      => wp_json_encode( $body ),
+				'user-agent' => $this->get_user_agent(),
+				'body'       => wp_json_encode( $body ),
 				// Enforce SSL verification.
-				'sslverify' => true,
+				'sslverify'  => true,
 			)
 		);
 

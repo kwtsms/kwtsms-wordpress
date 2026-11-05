@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Requests to kwtSMS carry the integration name and version (no personal data) so kwtSMS can see which integrations are in use.
+
 ### Docs
 - ERR028 visitor message no longer claims a fixed 15-second wait: duplicate SMS protection is opt-in per account with a configurable window (10 seconds by default)
 - Example phone numbers in placeholders, help text, error messages and translations now use the placeholder 965XXXXXXXX instead of a real-looking number
