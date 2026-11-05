@@ -10,6 +10,7 @@
  * Author URI:        https://www.kwtsms.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * WC tested up to:   11.2
  * Text Domain:       kwtsms
  * Domain Path:       /languages
  *

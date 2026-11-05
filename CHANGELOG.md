@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Full Arabic translation of the admin screens (808 of 808 strings).
+- The plugin now tells WooCommerce it is tested up to WooCommerce 11.2, so stores see it as compatible.
+
+### Fixed
+
+- The WordPress.org package no longer contains a hidden .git folder from the build.
+
 ## [3.6.0] - 2026-11-05
 
 ### Added
