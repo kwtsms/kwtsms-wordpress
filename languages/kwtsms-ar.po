@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: kwtsms 2.8.0\n"
-"Report-Msgid-Bugs-To: https://www.kwtsms.com\n"
-"POT-Creation-Date: 2026-02-28 07:40+0000\n"
+"Project-Id-Version: kwtsms 3.6.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kwtsms\n"
+"POT-Creation-Date: 2026-11-05T18:18:07+00:00\n"
 "PO-Revision-Date: 2026-02-28 07:40+0000\n"
 "Last-Translator: kwtsms Team <support@kwtsms.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -21,6 +21,37 @@ msgstr ""
 "X-Generator: kwtsms\n"
 "X-Domain: kwtsms\n"
 
+#. Plugin Name of the plugin
+#: wp-kwtsms.php
+msgid "kwtSMS: OTP & SMS Notifications"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: wp-kwtsms.php
+msgid "https://www.kwtsms.com/integrations.html"
+msgstr ""
+
+#. Description of the plugin
+#: wp-kwtsms.php
+msgid ""
+"Replace passwords with SMS codes, send WooCommerce order updates "
+"automatically, and verify phone numbers on any contact form, all in one "
+"plugin. Supports 2FA, passwordless login, WooCommerce order update, and OTP-"
+"gated forms for CF7, WPForms, and Ninja Forms. Arabic support included."
+msgstr ""
+
+#. Author of the plugin
+#: wp-kwtsms.php
+msgid "kwtsms"
+msgstr ""
+
+#. Author URI of the plugin
+#: wp-kwtsms.php
+msgid "https://www.kwtsms.com"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:79 admin/class-kwtsms-admin.php:80
+#: admin/class-kwtsms-admin.php:1498
 #, fuzzy
 msgid "kwtSMS"
 msgstr ""
@@ -29,238 +60,3369 @@ msgstr ""
 "#-#-#-#-#  kwtsms-ar.po (kwtsms 2.8.0)  #-#-#-#-#\n"
 "كود التحقق - kwtSMS"
 
+#: admin/class-kwtsms-admin.php:90 admin/views/page-general.php:77
+#: admin/views/page-users-no-phone.php:130
 msgid "General Settings"
 msgstr "الإعدادات العامة"
 
+#: admin/class-kwtsms-admin.php:91
 msgid "General"
 msgstr "عام"
 
+#: admin/class-kwtsms-admin.php:99 admin/views/page-alerts.php:42
+msgid "Admin Alerts"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:100
+msgid "Alerts"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:108 admin/views/page-gateway.php:46
 msgid "Gateway Settings"
 msgstr "إعدادات البوابة"
 
+#: admin/class-kwtsms-admin.php:109
 msgid "Gateway"
 msgstr "البوابة"
 
+#: admin/class-kwtsms-admin.php:117 admin/views/page-alerts.php:105
+#: admin/views/page-help.php:237 admin/views/page-int-woo.php:593
+#: admin/views/page-templates.php:62
+#, fuzzy
+msgid "SMS Templates"
+msgstr "القوالب"
+
+#: admin/class-kwtsms-admin.php:118
 msgid "Templates"
 msgstr "القوالب"
 
-msgid "Two-Factor Authentication (2FA) — password + OTP"
-msgstr "المصادقة الثنائية (2FA) — كلمة المرور + رمز التحقق"
+#: admin/class-kwtsms-admin.php:126 admin/class-kwtsms-admin.php:127
+#: admin/views/page-integrations.php:71
+msgid "Integrations"
+msgstr ""
 
-msgid "Passwordless — phone + OTP only"
-msgstr "بدون كلمة مرور — رقم الهاتف + رمز التحقق فقط"
+#: admin/class-kwtsms-admin.php:142 admin/views/page-integrations.php:21
+msgid "WooCommerce"
+msgstr ""
 
-msgid "Both — users can choose"
-msgstr "كلاهما — يختار المستخدم"
+#: admin/class-kwtsms-admin.php:143 admin/views/page-int-form.php:28
+#: admin/views/page-integrations.php:30
+msgid "Contact Form 7"
+msgstr ""
 
+#: admin/class-kwtsms-admin.php:144 admin/views/page-int-form.php:38
+#: admin/views/page-integrations.php:39
+msgid "WPForms"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:145 admin/views/page-int-form.php:47
+#: admin/views/page-integrations.php:48
+msgid "Ninja Forms"
+msgstr ""
+
+#. translators: %s: integration name (e.g. WooCommerce)
+#. translators: %s: integration label e.g. "WPForms"
+#: admin/class-kwtsms-admin.php:155 admin/views/page-int-form.php:84
+#, fuzzy, php-format
+msgid "%s Settings"
+msgstr "الإعدادات العامة"
+
+#: admin/class-kwtsms-admin.php:165
+msgid "kwtSMS Logs"
+msgstr "سجلات kwtSMS"
+
+#: admin/class-kwtsms-admin.php:166 admin/views/page-help.php:264
+#: admin/views/page-logs.php:100
+msgid "Logs"
+msgstr "السجلات"
+
+#. translators: %s: HTML span element containing the count of users missing a phone number.
+#: admin/class-kwtsms-admin.php:206
+#, php-format
+msgid "Users %s"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:210
+msgid "Users"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:217 admin/views/page-users-no-phone.php:98
+#, fuzzy
+msgid "Users Without Phone"
+msgstr "رقم هاتف الاختبار"
+
+#: admin/class-kwtsms-admin.php:257
+msgid "kwtSMS Help & Support"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:258
+msgid "Help"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:286
+msgid "OTP Behaviour"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:293 admin/views/page-general.php:441
+msgid "CAPTCHA Protection"
+msgstr "حماية CAPTCHA"
+
+#: admin/class-kwtsms-admin.php:495
+msgid ""
+"API Username appears to be a phone number. Please enter your kwtSMS API "
+"username, not your phone number. Sign up at kwtsms.com to obtain API access."
+msgstr ""
+"يبدو أن اسم مستخدم API رقم هاتف. يُرجى إدخال اسم مستخدم API الخاص بحساب "
+"kwtSMS وليس رقم الهاتف."
+
+#. translators: %s: error message from kwtSMS API
+#: admin/class-kwtsms-admin.php:563
+#, fuzzy, php-format
+msgid "API credentials could not be verified: %s"
+msgstr "تم التحقق من بيانات الاعتماد!"
+
+#: admin/class-kwtsms-admin.php:592
+#, fuzzy
+msgid "API credentials verified successfully."
+msgstr "تم التحقق من بيانات الاعتماد!"
+
+#: admin/class-kwtsms-admin.php:947 includes/class-kwtsms-plugin.php:474
+msgid "Verifying..."
+msgstr "جارٍ التحقق..."
+
+#: admin/class-kwtsms-admin.php:948
+msgid "Credentials verified!"
+msgstr "تم التحقق من بيانات الاعتماد!"
+
+#: admin/class-kwtsms-admin.php:949
+msgid "Verification failed."
+msgstr "فشل التحقق."
+
+#: admin/class-kwtsms-admin.php:950 includes/class-kwtsms-plugin.php:471
+msgid "Sending..."
+msgstr "جارٍ الإرسال..."
+
+#: admin/class-kwtsms-admin.php:951
+msgid "Test SMS sent! Check your phone."
+msgstr "تم إرسال SMS الاختبار! تحقق من هاتفك."
+
+#: admin/class-kwtsms-admin.php:952 admin/views/page-alerts.php:175
+#: admin/views/page-alerts.php:191 admin/views/page-int-form.php:212
+#: admin/views/page-int-form.php:228 admin/views/page-int-woo.php:662
+#: admin/views/page-int-woo.php:678 admin/views/page-templates.php:147
+#: admin/views/page-templates.php:163
+msgid "characters"
+msgstr "حرف"
+
+#: admin/class-kwtsms-admin.php:953 admin/views/page-alerts.php:176
+#: admin/views/page-alerts.php:192 admin/views/page-int-form.php:213
+#: admin/views/page-int-form.php:229 admin/views/page-int-woo.php:663
+#: admin/views/page-int-woo.php:679 admin/views/page-templates.php:148
+#: admin/views/page-templates.php:164
+#, fuzzy
+msgid "SMS page(s)"
+msgstr "التغطية"
+
+#: admin/class-kwtsms-admin.php:954
+#, fuzzy
+msgid ""
+"This looks like a phone number. Your API Username must be your kwtSMS "
+"account username, not a phone number. Sign up at kwtsms.com to obtain API "
+"credentials."
+msgstr ""
+"يبدو أن اسم مستخدم API رقم هاتف. يُرجى إدخال اسم مستخدم API الخاص بحساب "
+"kwtSMS وليس رقم الهاتف."
+
+#: admin/class-kwtsms-admin.php:955
+#, fuzzy
+msgid "Loading coverage..."
+msgstr "تحميل التغطية النشطة"
+
+#: admin/class-kwtsms-admin.php:956
+msgid "Could not load coverage data."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:957
+msgid ""
+"Please enter your API username and password, then click \"Save Settings\" "
+"before performing this action."
+msgstr ""
+
+#. translators: %s: API username
+#: admin/class-kwtsms-admin.php:959 admin/views/page-gateway.php:125
+#, php-format
+msgid "Connected as %s"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:960 admin/views/page-gateway.php:116
+#: admin/views/page-gateway.php:137
+msgid "Reload"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:961
+#, fuzzy
+msgid "Reloading..."
+msgstr "جارٍ الإرسال..."
+
+#. translators: %s: total purchased SMS credits
+#: admin/class-kwtsms-admin.php:963
+#, php-format
+msgid "· of %s purchased"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:964
+msgid "Please enter a test phone number first."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:965
+msgid ""
+"Number is too short. Enter the country code followed by the full local "
+"number, e.g. 96512345678 (Kuwait: 965 + 8 digits)."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:966
+#, fuzzy
+msgid ""
+"Test mode ON: message queued in kwtSMS account queue, will not be delivered. "
+"Delete to recover credits."
+msgstr ""
+"إضافة kwtSMS في وضع الاختبار. سيتم وضع رسائل SMS في قائمة الانتظار دون "
+"إرسالها. تُكتب رموز التحقق في wp-content/debug.log."
+
+#: admin/class-kwtsms-admin.php:967
+msgid "SMS delivered to %phone%. Check your messages."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:968
+msgid "Send failed. Check your API credentials and phone number."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:969
+msgid "Unsaved Changes"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:970
+msgid "You have unsaved changes. Leaving this page will discard them."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:971
+msgid "Save Changes"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:972
+msgid "Leave Page"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1035
+msgid "kwtSMS Warning:"
+msgstr "تحذير kwtSMS:"
+
+#: admin/class-kwtsms-admin.php:1036
+msgid ""
+"Your site is not served over HTTPS. OTP codes may be intercepted in transit. "
+"Enable SSL for security."
+msgstr ""
+"موقعك لا يعمل عبر HTTPS. قد يتم اعتراض رموز التحقق أثناء النقل. يرجى تفعيل "
+"SSL للأمان."
+
+#: admin/class-kwtsms-admin.php:1045
+msgid "kwtSMS:"
+msgstr "kwtSMS:"
+
+#: admin/class-kwtsms-admin.php:1046
+msgid "API credentials are not configured."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1048
+#, fuzzy
+msgid "Configure now"
+msgstr "تهيئة الآن ←"
+
+#: admin/class-kwtsms-admin.php:1049 admin/views/page-gateway.php:69
+msgid "Don't have a kwtSMS account?"
+msgstr "ليس لديك حساب في kwtSMS؟"
+
+#: admin/class-kwtsms-admin.php:1051
+#, fuzzy
+msgid "Sign up for free"
+msgstr "سجّل مجاناً ←"
+
+#. translators: %s: link to kwtSMS account dashboard
+#: admin/class-kwtsms-admin.php:1059
+#, fuzzy, php-format
+msgid ""
+"kwtSMS is in Test Mode. SMS messages will be queued but not delivered. "
+"Delete from %s queue to recover credits."
+msgstr ""
+"إضافة kwtSMS في وضع الاختبار. سيتم وضع رسائل SMS في قائمة الانتظار دون "
+"إرسالها. تُكتب رموز التحقق في wp-content/debug.log."
+
+#: admin/class-kwtsms-admin.php:1060 admin/views/page-gateway.php:214
+#, fuzzy
+msgid "kwtSMS account"
+msgstr "ليس لديك حساب في kwtSMS؟"
+
+#: admin/class-kwtsms-admin.php:1074 admin/class-kwtsms-admin.php:1084
+#: admin/class-kwtsms-admin.php:1094 admin/class-kwtsms-admin.php:1104
+#: admin/class-kwtsms-admin.php:1114 admin/class-kwtsms-admin.php:1124
+#: admin/class-kwtsms-admin.php:1135 admin/class-kwtsms-admin.php:1146
+#: admin/class-kwtsms-admin.php:1157 admin/class-kwtsms-admin.php:1178
+#: admin/class-kwtsms-admin.php:1188 admin/class-kwtsms-admin.php:1201
+#: admin/views/page-logs.php:20
+msgid "You do not have permission to access this page."
+msgstr "ليس لديك صلاحية للوصول إلى هذه الصفحة."
+
+#: admin/class-kwtsms-admin.php:1219 admin/class-kwtsms-admin.php:1249
+#: admin/class-kwtsms-admin.php:1290 includes/class-kwtsms-plugin.php:500
+#: includes/class-kwtsms-plugin.php:648 includes/class-kwtsms-plugin.php:976
+#: includes/class-kwtsms-plugin.php:1003 includes/class-kwtsms-plugin.php:1020
+msgid "Insufficient permissions."
+msgstr "صلاحيات غير كافية."
+
+#: admin/class-kwtsms-admin.php:1301
+msgid "Phone number is too long."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1308
+#, fuzzy
+msgid "Invalid user."
+msgstr "جلسة غير صالحة."
+
+#: admin/class-kwtsms-admin.php:1313 includes/class-kwtsms-plugin.php:295
+msgid "Phone number is required."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1322
+msgid "Phone number must contain digits."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1344
+msgid "Phone saved."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1573
+msgid "Test mode is active."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1580
+#, fuzzy
+msgid "Balance:"
+msgstr "رصيد الحساب"
+
+#: admin/class-kwtsms-admin.php:1581
+msgid "credits"
+msgstr ""
+
+#. translators: %s: time elapsed since balance was last fetched
+#: admin/class-kwtsms-admin.php:1583
+#, php-format
+msgid "updated %s ago"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1589
+msgid "OTPs sent today:"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1592
+msgid "failed"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1600
+msgid "Time"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1601 admin/views/page-logs.php:171
+#: admin/views/page-logs.php:223
+#: includes/integrations/class-kwtsms-woo-metabox.php:134
+msgid "Phone"
+msgstr "الهاتف"
+
+#: admin/class-kwtsms-admin.php:1602 admin/views/page-gateway.php:160
+#: admin/views/page-help.php:56 admin/views/page-logs.php:169
+msgid "Sender ID"
+msgstr "معرّف المرسل"
+
+#: admin/class-kwtsms-admin.php:1603 admin/views/page-logs.php:173
+msgid "Status"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1613 admin/views/page-logs.php:186
+msgid "Sent"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1613 admin/views/page-int-woo.php:80
+#: admin/views/page-logs.php:186
+msgid "Failed"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1620
+msgid "View full log"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1621 admin/class-kwtsms-admin.php:1625
+msgid "kwtSMS Dashboard &rsaquo;"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1637
+msgid "Cart Abandonment (all time)"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1639
+msgid "Abandoned carts"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1640
+msgid "Recovery SMS sent"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1641
+msgid "Recovered"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1642
+msgid "Recovery rate"
+msgstr ""
+
+#: admin/views/page-alerts.php:21
+msgid "New User Registered"
+msgstr ""
+
+#: admin/views/page-alerts.php:22
+#, fuzzy
+msgid "User Login"
+msgstr "مسح السجل"
+
+#: admin/views/page-alerts.php:23
+msgid "Post Published"
+msgstr ""
+
+#: admin/views/page-alerts.php:24
+msgid "Comment Posted"
+msgstr ""
+
+#: admin/views/page-alerts.php:25
+#, fuzzy
+msgid "WordPress Core Updated"
+msgstr "اسم موقع WordPress الخاص بك"
+
+#: admin/views/page-alerts.php:52
+msgid "Recipient Phone Numbers"
+msgstr ""
+
+#: admin/views/page-alerts.php:58 admin/views/page-int-woo.php:258
+msgid "Admin Phone Numbers"
+msgstr ""
+
+#: admin/views/page-alerts.php:67
+msgid ""
+"Comma-separated phone numbers with country code. All enabled alert types are "
+"sent to every number listed here."
+msgstr ""
+
+#: admin/views/page-alerts.php:77
+msgid "WordPress Event Alerts"
+msgstr ""
+
+#: admin/views/page-alerts.php:81
+msgid ""
+"Enable or disable each event alert. Configure the message text in the "
+"Templates section below."
+msgstr ""
+
+#: admin/views/page-alerts.php:93
+msgid "Enabled"
+msgstr "مفعّل"
+
+#: admin/views/page-alerts.php:109
+msgid "Customise the SMS message for each event in English and Arabic."
+msgstr ""
+
+#. translators: %s: comma-separated list of placeholder names
+#: admin/views/page-alerts.php:153
+#, fuzzy, php-format
+msgid "Available placeholders: %s"
+msgstr "العناصر النائبة المتاحة:"
+
+#: admin/views/page-alerts.php:161 admin/views/page-int-form.php:198
+#: admin/views/page-int-woo.php:648 admin/views/page-templates.php:133
+#, fuzzy
+msgid "English"
+msgstr "الإنجليزية (يسار إلى يمين)"
+
+#: admin/views/page-alerts.php:162 admin/views/page-int-form.php:199
+#: admin/views/page-int-woo.php:649 admin/views/page-templates.php:134
+#, fuzzy
+msgid "Arabic"
+msgstr "العربية (يمين إلى يسار)"
+
+#: admin/views/page-alerts.php:201 admin/views/page-int-form.php:237
+#: admin/views/page-int-woo.php:687 admin/views/page-templates.php:172
+msgid "Reset to Default"
+msgstr ""
+
+#: admin/views/page-alerts.php:239
+#, fuzzy
+msgid "Save Alert Settings"
+msgstr "الإعدادات العامة"
+
+#: admin/views/page-gateway.php:56 admin/views/page-general.php:93
+#, fuzzy
+msgid "Available balance:"
+msgstr "العناصر النائبة المتاحة:"
+
+#: admin/views/page-gateway.php:59 admin/views/page-general.php:96
+msgid "Total purchased:"
+msgstr ""
+
+#: admin/views/page-gateway.php:61 admin/views/page-general.php:98
+#: admin/views/page-help.php:110
+msgid "Recharge/Buy credits "
+msgstr ""
+
+#: admin/views/page-gateway.php:71
+msgid "Sign up for free "
+msgstr "سجّل مجاناً ←"
+
+#: admin/views/page-gateway.php:79
+msgid "API Information"
+msgstr ""
+
+#: admin/views/page-gateway.php:85
+msgid "API Username"
+msgstr "اسم المستخدم"
+
+#: admin/views/page-gateway.php:90
+msgid ""
+"Your kwtSMS API username, found in your kwtSMS account under API Settings, "
+"not your login mobile."
+msgstr ""
+
+#: admin/views/page-gateway.php:96
+msgid "API Password"
+msgstr "كلمة المرور"
+
+#: admin/views/page-gateway.php:100
+msgid "(leave blank to keep current password)"
+msgstr ""
+
+#: admin/views/page-gateway.php:102
+msgid ""
+"Your kwtSMS API password, found in your kwtSMS account under API Settings, "
+"not your login password."
+msgstr ""
+
+#: admin/views/page-gateway.php:112 admin/views/page-gateway.php:133
+#, fuzzy
+msgid "Login"
+msgstr "رمز التحقق لتسجيل الدخول"
+
+#: admin/views/page-gateway.php:119 admin/views/page-gateway.php:140
+msgid "Logout"
+msgstr ""
+
+#: admin/views/page-gateway.php:130 admin/views/page-gateway.php:144
+#, fuzzy
+msgid ""
+"Fetches latest Sender IDs, coverage, and balance from your kwtSMS account."
+msgstr "حدد معرّف المرسل المعتمد لحساب kwtsms الخاص بك."
+
+#: admin/views/page-gateway.php:166
+#, fuzzy
+msgid "Active Sender ID"
+msgstr "معرّف المرسل"
+
+#: admin/views/page-gateway.php:181
+#, fuzzy
+msgid "Select Sender ID"
+msgstr "معرّف المرسل"
+
+#: admin/views/page-gateway.php:184
+msgid ""
+"This is the name recipients see as the sender of your SMS messages. Choose "
+"from the sender IDs registered on your kwtSMS account."
+msgstr ""
+
+#: admin/views/page-gateway.php:187
+msgid "Register or request a Sender ID at kwtSMS "
+msgstr "سجّل أو اطلب معرّف المرسل في kwtSMS ←"
+
+#: admin/views/page-gateway.php:200 admin/views/page-help.php:67
+msgid "Test Mode"
+msgstr "وضع الاختبار"
+
+#: admin/views/page-gateway.php:205
+msgid "Enable Test Mode"
+msgstr "تفعيل وضع الاختبار"
+
+#. translators: %s: link to kwtSMS account dashboard
+#: admin/views/page-gateway.php:213
+#, php-format
+msgid ""
+"Messages are queued but not delivered. Delete from %s queue to recover "
+"credits."
+msgstr ""
+
+#: admin/views/page-gateway.php:220
+msgid "Test Mode is ON. SMS will be queued but NOT delivered to phones."
+msgstr ""
+
+#: admin/views/page-gateway.php:230 admin/views/page-general.php:716
+#: admin/views/page-int-form.php:244
+#, fuzzy
+msgid "Save Settings"
+msgstr "إعدادات البوابة"
+
+#: admin/views/page-gateway.php:237
+msgid "SMS Coverage"
+msgstr "التغطية"
+
+#: admin/views/page-gateway.php:242
+#, fuzzy
+msgid "Active Coverage"
+msgstr "تحميل التغطية النشطة"
+
+#: admin/views/page-gateway.php:309
+msgid ""
+"These are the countries your account can currently send SMS to. To send to "
+"additional countries, request coverage from your kwtSMS account."
+msgstr ""
+
+#: admin/views/page-gateway.php:310
+#, fuzzy
+msgid "Request more coverage "
+msgstr "أضف المزيد من الدول إلى تغطيتك ←"
+
+#: admin/views/page-gateway.php:321
+#, fuzzy
+msgid "Gateway Test"
+msgstr "البوابة"
+
+#: admin/views/page-gateway.php:327
+#, fuzzy
+msgid "Test Phone Number"
+msgstr "رقم هاتف الاختبار"
+
+#: admin/views/page-gateway.php:331
+msgid "e.g. 96512345678"
+msgstr ""
+
+#: admin/views/page-gateway.php:332
+msgid ""
+"Enter the full number with country code. e.g. Kuwait: 965 + 8 digits = "
+"96512345678 (11 digits total)."
+msgstr ""
+
+#: admin/views/page-gateway.php:335
+msgid ""
+"⚠ Test Mode is ON. The SMS will be queued but will NOT be delivered to your "
+"phone."
+msgstr ""
+
+#: admin/views/page-gateway.php:339
+msgid ""
+"Test Mode is currently OFF. The SMS will be delivered to the phone number "
+"above. SMS credits will be consumed."
+msgstr ""
+
+#: admin/views/page-gateway.php:344
+#, fuzzy
+msgid "Send Test SMS"
+msgstr "إرسال رسالة اختبار الآن"
+
+#: admin/views/page-general.php:83
+msgid ""
+"kwtSMS is a Kuwaiti SMS gateway trusted by top businesses to deliver "
+"messages anywhere in the world, with private Sender ID, free API testing, "
+"non-expiring credits, and competitive flat-rate pricing. Secure, simple to "
+"integrate, built to last."
+msgstr ""
+
+#: admin/views/page-general.php:86
+msgid ""
+"Open a free account easily under 1 minute, no papers or payment required."
+msgstr ""
+
+#: admin/views/page-general.php:87
+msgid "🚀 Click here to get started "
+msgstr ""
+
+#: admin/views/page-general.php:107
+msgid "Plugin Status"
+msgstr ""
+
+#: admin/views/page-general.php:112
+#, fuzzy
+msgid "SMS Sending"
+msgstr "جارٍ الإرسال..."
+
+#: admin/views/page-general.php:117
+msgid "Enable SMS sending across the entire plugin"
+msgstr ""
+
+#: admin/views/page-general.php:120
+msgid ""
+"This is the master switch for kwtSMS. When turned off, all SMS features are "
+"paused: OTP login codes, password resets, WooCommerce order notifications, "
+"form verifications, and admin alerts. No SMS credits are consumed while "
+"disabled."
+msgstr ""
+
+#: admin/views/page-general.php:124
+msgid "SMS is currently OFF. All SMS features are paused."
+msgstr ""
+
+#: admin/views/page-general.php:136
+msgid "Login Behaviour"
+msgstr ""
+
+#: admin/views/page-general.php:142
 msgid "Enable Login OTP"
 msgstr "تفعيل رمز التحقق عند تسجيل الدخول"
 
+#: admin/views/page-general.php:146
+msgid "Require OTP on login"
+msgstr ""
+
+#: admin/views/page-general.php:152
+msgid "Enable Password Reset OTP"
+msgstr "تفعيل رمز التحقق لإعادة تعيين كلمة المرور"
+
+#: admin/views/page-general.php:156
 msgid "Use SMS OTP for password reset (instead of email link)"
 msgstr ""
 "استخدام رمز التحقق عبر SMS لإعادة تعيين كلمة المرور (بدلاً من رابط البريد "
 "الإلكتروني)"
 
+#: admin/views/page-general.php:162
+#, fuzzy
+msgid "Enable Registration OTP"
+msgstr "تفعيل رمز التحقق عند تسجيل الدخول"
+
+#: admin/views/page-general.php:165
+#, fuzzy
+msgid "Disabled"
+msgstr "مفعّل"
+
+#: admin/views/page-general.php:166
+msgid "Optional (verify phone if provided)"
+msgstr ""
+
+#: admin/views/page-general.php:167
+msgid "Required (phone and OTP mandatory)"
+msgstr ""
+
+#: admin/views/page-general.php:169
+msgid ""
+"Require OTP phone verification before creating a new user account. Works for "
+"standard WordPress registration and WooCommerce My Account registration."
+msgstr ""
+
+#: admin/views/page-general.php:174
+#, fuzzy
+msgid "Enable Welcome SMS"
+msgstr "رسالة الترحيب"
+
+#: admin/views/page-general.php:179
+msgid "Send a welcome SMS to every new user when they register."
+msgstr ""
+
+#. translators: %s: link to Templates page
+#: admin/views/page-general.php:185
+#, php-format
+msgid "Configure the message text on the %s."
+msgstr ""
+
+#: admin/views/page-general.php:186
+#, fuzzy
+msgid "Templates page"
+msgstr "القوالب"
+
+#: admin/views/page-general.php:194
+#, fuzzy
+msgid "OTP Mode"
+msgstr "وضع الاختبار"
+
+#: admin/views/page-general.php:198
+#, fuzzy
+msgid "Two-Factor Authentication (2FA): password + OTP"
+msgstr "المصادقة الثنائية (2FA): كلمة المرور + رمز التحقق"
+
+#: admin/views/page-general.php:199
+#, fuzzy
+msgid "Passwordless: phone + OTP only"
+msgstr "بدون كلمة مرور: رقم الهاتف + رمز التحقق فقط"
+
+#: admin/views/page-general.php:200
+#, fuzzy
+msgid "Both: users can choose"
+msgstr "كلاهما: يختار المستخدم"
+
+#: admin/views/page-general.php:215
+msgid "Require OTP for"
+msgstr ""
+
+#: admin/views/page-general.php:227
+msgid ""
+"Check roles that must complete OTP verification. Unchecked roles log in "
+"directly without OTP. Administrators are unchecked by default to prevent "
+"lockout. On multisite, super admins are treated as administrators."
+msgstr ""
+
+#. translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag
+#: admin/views/page-general.php:234
+#, php-format
+msgid ""
+"%1$d user(s) in OTP-required roles have no phone number saved and will "
+"bypass OTP. %2$sAdd phone numbers now.%3$s"
+msgstr ""
+
+#: admin/views/page-general.php:246
 msgid "OTP Code Length"
 msgstr "طول رمز التحقق"
 
+#: admin/views/page-general.php:249
 msgid "4 digits"
 msgstr "4 أرقام"
 
+#: admin/views/page-general.php:250
 msgid "6 digits (recommended)"
 msgstr "6 أرقام (موصى به)"
 
+#: admin/views/page-general.php:256
 msgid "Code Expiry"
 msgstr "انتهاء صلاحية الرمز"
 
-msgid "Max Verification Attempts"
-msgstr "الحد الأقصى لمحاولات التحقق"
-
-msgid "Resend Cooldown"
-msgstr "فترة الانتظار قبل إعادة الإرسال"
-
-msgid "seconds"
-msgstr "ثانية"
-
+#: admin/views/page-general.php:260
 msgid "minutes"
 msgstr "دقيقة"
 
-msgid "CAPTCHA Protection"
-msgstr "حماية CAPTCHA"
+#: admin/views/page-general.php:261
+msgid ""
+"Recommended: 5 minutes. Shorter = more secure, longer = more user-friendly."
+msgstr ""
 
+#: admin/views/page-general.php:266
+msgid "Max Verification Attempts"
+msgstr "الحد الأقصى لمحاولات التحقق"
+
+#: admin/views/page-general.php:270
+msgid "Number of wrong OTP attempts before the code is invalidated."
+msgstr ""
+
+#: admin/views/page-general.php:275
+msgid "Resend Cooldown"
+msgstr "فترة الانتظار قبل إعادة الإرسال"
+
+#: admin/views/page-general.php:279 admin/views/page-general.php:649
+msgid "seconds"
+msgstr "ثانية"
+
+#: admin/views/page-general.php:280
+msgid ""
+"Minimum time between resend requests per user. Recommended: 120 seconds."
+msgstr ""
+
+#: admin/views/page-general.php:291
+msgid "Phone & Country Settings"
+msgstr "إعدادات الهاتف والدولة"
+
+#: admin/views/page-general.php:298
+msgid "Default Country Code"
+msgstr "رمز الدولة الافتراضي"
+
+#: admin/views/page-general.php:309
+msgid ""
+"This is pre-filled as the default dial code on login forms. Users only need "
+"to enter their local phone number without the country code. GeoIP detection "
+"will override this automatically when available."
+msgstr ""
+
+#: admin/views/page-general.php:314 admin/views/page-help.php:272
+msgid "Allowed Countries"
+msgstr "الدول المسموح بها"
+
+#: admin/views/page-general.php:324 admin/views/page-general.php:823
+msgid "Remove"
+msgstr ""
+
+#: admin/views/page-general.php:334
+msgid "Add a country"
+msgstr ""
+
+#: admin/views/page-general.php:344
+msgid "Add"
+msgstr ""
+
+#: admin/views/page-general.php:354
+msgid ""
+"Controls which countries appear in the OTP login dial-code dropdown and "
+"which phone numbers this plugin will accept."
+msgstr ""
+
+#: admin/views/page-general.php:357
+msgid "Important:"
+msgstr ""
+
+#. translators: %s: link to the Gateway page
+#: admin/views/page-general.php:361
+#, php-format
+msgid ""
+"Adding a country here does NOT enable SMS delivery to that country. Delivery "
+"depends on which countries are active in your kwtSMS account coverage. Check "
+"your %s to see which countries you can currently send to. If a country is "
+"listed here but not covered in your account, SMS will silently fail."
+msgstr ""
+
+#: admin/views/page-general.php:362
+msgid "Gateway page (SMS Coverage section)"
+msgstr ""
+
+#: admin/views/page-general.php:376
+msgid "On Balance Failure"
+msgstr ""
+
+#: admin/views/page-general.php:380
+msgid ""
+"Decides what happens when kwtSMS cannot send an OTP because your SMS credit "
+"balance is zero. An admin email is always sent when this condition is first "
+"detected."
+msgstr ""
+
+#: admin/views/page-general.php:385
+msgid "When credits run out"
+msgstr ""
+
+#: admin/views/page-general.php:391
+#, fuzzy
+msgid "Block logins (Recommended)"
+msgstr "6 أرقام (موصى به)"
+
+#: admin/views/page-general.php:393
+msgid ""
+"Users who require OTP cannot log in until the account is recharged. This "
+"keeps OTP enforcement intact and makes the outage visible."
+msgstr ""
+
+#: admin/views/page-general.php:399
+msgid "Allow login without OTP (password only)"
+msgstr ""
+
+#: admin/views/page-general.php:401
+msgid ""
+"Users bypass OTP and log in with password alone until credits are restored. "
+"Choose this only if uninterrupted access is more important than 2FA "
+"enforcement."
+msgstr ""
+
+#: admin/views/page-general.php:415
+msgid "Attribution Footer"
+msgstr ""
+
+#: admin/views/page-general.php:421
+msgid "Show credit link"
+msgstr ""
+
+#: admin/views/page-general.php:426
+#, fuzzy
+msgid "Display \"SMS by kwtSMS.com\" footer on login pages (opt-in)"
+msgstr "عرض \"خدمة الرسائل بواسطة kwtSMS.com\" في صفحات تسجيل الدخول"
+
+#: admin/views/page-general.php:428
+msgid "The link text is fixed and cannot be customized."
+msgstr ""
+
+#: admin/views/page-general.php:447
 msgid "CAPTCHA Provider"
 msgstr "مزود CAPTCHA"
 
+#: admin/views/page-general.php:451
 msgid "None"
 msgstr "بدون"
 
+#: admin/views/page-general.php:452
 msgid "Google reCAPTCHA v3 (invisible)"
 msgstr "Google reCAPTCHA v3 (غير مرئي)"
 
+#: admin/views/page-general.php:453
 msgid "Cloudflare Turnstile"
 msgstr "Cloudflare Turnstile"
 
+#: admin/views/page-general.php:469
+msgid "reCAPTCHA v3 Keys"
+msgstr "مفاتيح reCAPTCHA v3"
+
+#: admin/views/page-general.php:473 admin/views/page-general.php:490
+msgid "Site Key"
+msgstr "مفتاح الموقع"
+
+#: admin/views/page-general.php:476 admin/views/page-general.php:493
+#, fuzzy
+msgid "Secret Key"
+msgstr "مفتاح الموقع"
+
+#: admin/views/page-general.php:479
+msgid "Get keys from Google reCAPTCHA Admin Console "
+msgstr "احصل على المفاتيح من وحدة تحكم Google reCAPTCHA ←"
+
+#: admin/views/page-general.php:486
+msgid "Turnstile Keys"
+msgstr "مفاتيح Turnstile"
+
+#: admin/views/page-general.php:496
+msgid "Get keys from Cloudflare Dashboard "
+msgstr "احصل على المفاتيح من لوحة تحكم Cloudflare ←"
+
+#: admin/views/page-general.php:509 admin/views/page-help.php:256
+msgid "Security"
+msgstr ""
+
+#: admin/views/page-general.php:516
+msgid "Blocked Phone Numbers"
+msgstr ""
+
+#: admin/views/page-general.php:524
+msgid ""
+"One per line or comma-separated, with country code (digits only). These "
+"numbers will never receive OTP SMS. Blocked requests return a silent success "
+"to prevent enumeration."
+msgstr ""
+
+#: admin/views/page-general.php:536
+msgid "IP Rules"
+msgstr ""
+
+#: admin/views/page-general.php:540
+msgid ""
+"One IPv4 or IPv6 address or CIDR per line (e.g. 192.168.1.0/24). Allowlisted "
+"IPs skip per-IP rate limiting. Blocklisted IPs receive a silent refusal."
+msgstr ""
+
+#: admin/views/page-general.php:546
+msgid "IP Allowlist"
+msgstr ""
+
+#: admin/views/page-general.php:553
+msgid ""
+"These IPs skip the per-IP rate limit and proxy detection (when enabled). OTP "
+"is still required."
+msgstr ""
+
+#: admin/views/page-general.php:560
+msgid "IP Blocklist"
+msgstr ""
+
+#: admin/views/page-general.php:567
+msgid ""
+"These IPs are silently refused. The response is identical to a rate-limit "
+"error to prevent enumeration of this list."
+msgstr ""
+
+#: admin/views/page-general.php:579
+msgid "Proxy and VPN Detection (IPHub)"
+msgstr ""
+
+#. translators: %s: IPHub website link
+#: admin/views/page-general.php:586
+#, php-format
+msgid ""
+"Uses the %s API to identify and act on OTP requests from known proxy or VPN "
+"IP addresses. Allowlisted IPs (above) always bypass this check."
+msgstr ""
+
+#: admin/views/page-general.php:594
+msgid "Enable IPHub Detection"
+msgstr ""
+
+#: admin/views/page-general.php:599
+msgid "Check each OTP request IP against the IPHub reputation database."
+msgstr ""
+
+#: admin/views/page-general.php:605
+msgid "IPHub API Key"
+msgstr ""
+
+#: admin/views/page-general.php:610
+msgid "Paste your IPHub API key here"
+msgstr ""
+
+#: admin/views/page-general.php:613
+msgid ""
+"Get a free API key from IPHub.info (up to 1,000 lookups/day on the free "
+"plan) "
+msgstr ""
+
+#: admin/views/page-general.php:620
+msgid "Action for Level 1 (Proxy/VPN)"
+msgstr ""
+
+#: admin/views/page-general.php:623
+#, fuzzy
+msgid "Block silently (recommended)"
+msgstr "6 أرقام (موصى به)"
+
+#: admin/views/page-general.php:624
+msgid "Log only, allow through"
+msgstr ""
+
+#: admin/views/page-general.php:625 admin/views/page-general.php:637
+msgid "Allow (no action)"
+msgstr ""
+
+#: admin/views/page-general.php:627
+msgid "IP identified as a confirmed proxy or VPN exit node."
+msgstr ""
+
+#: admin/views/page-general.php:632
+msgid "Action for Level 2 (Mixed)"
+msgstr ""
+
+#: admin/views/page-general.php:635
+msgid "Log only, allow through (recommended)"
+msgstr ""
+
+#: admin/views/page-general.php:636
+msgid "Block silently"
+msgstr ""
+
+#: admin/views/page-general.php:639
+msgid "IP from a range that contains a mix of residential and proxy traffic."
+msgstr ""
+
+#: admin/views/page-general.php:644
+msgid "Cache TTL"
+msgstr ""
+
+#: admin/views/page-general.php:651
+msgid ""
+"How long to cache each IP reputation result (min: 1 hour = 3600 s, max: 7 "
+"days = 604800 s, default: 86400 s = 1 day). Cached results avoid repeated "
+"API calls for the same IP."
+msgstr ""
+
+#: admin/views/page-general.php:663
+msgid "Developer Tools"
+msgstr ""
+
+#: admin/views/page-general.php:669 admin/views/page-help.php:77
+msgid "Debug Logging"
+msgstr ""
+
+#: admin/views/page-general.php:674
+msgid "Enable detailed logging for troubleshooting."
+msgstr ""
+
+#: admin/views/page-general.php:678
+msgid "⚠ Debug Logging is ON, disable this on production sites."
+msgstr ""
+
+#. translators: %s: path to the debug log file
+#: admin/views/page-general.php:689
+#, php-format
+msgid "Log file: %s"
+msgstr ""
+
+#: admin/views/page-general.php:694
+msgid "See Help page for troubleshooting guide "
+msgstr ""
+
+#: admin/views/page-general.php:710
+msgid "Show Advanced Options"
+msgstr ""
+
+#: admin/views/page-general.php:712
+msgid "CAPTCHA, Security, IP Rules, Proxy Detection, Developer Tools"
+msgstr ""
+
+#: admin/views/page-help.php:33
+msgid "Help &amp; Support"
+msgstr ""
+
+#: admin/views/page-help.php:40
+msgid "Current Status"
+msgstr ""
+
+#: admin/views/page-help.php:45
 msgid "API Credentials"
 msgstr "بيانات الاعتماد"
 
-msgid "API Username"
-msgstr "اسم المستخدم"
+#: admin/views/page-help.php:48
+#, fuzzy
+msgid "Configured"
+msgstr "تهيئة الآن ←"
 
-msgid "API Password"
-msgstr "كلمة المرور"
-
-msgid "Your kwtsms account username."
-msgstr "اسم المستخدم لحساب kwtsms."
-
-msgid ""
-"Your kwtsms account password. Stored server-side only, never exposed to the "
-"browser."
+#: admin/views/page-help.php:50
+msgid "Not configured"
 msgstr ""
-"كلمة مرور حساب kwtsms. مخزنة من جانب الخادم فقط، لا تُعرض في المتصفح أبداً."
 
-msgid "Sender ID"
-msgstr "معرّف المرسل"
+#: admin/views/page-help.php:51 admin/views/page-help.php:62
+#: admin/views/page-help.php:113
+#, fuzzy
+msgid "Go to Gateway Settings "
+msgstr "إعدادات البوابة"
 
-msgid "— Save & Verify to load —"
-msgstr "— احفظ للتحميل —"
+#: admin/views/page-help.php:61
+msgid "Not selected"
+msgstr ""
 
-msgid "Select the sender ID approved for your kwtsms account."
-msgstr "حدد معرّف المرسل المعتمد لحساب kwtsms الخاص بك."
+#: admin/views/page-help.php:70
+msgid "ON, no real SMS is sent"
+msgstr ""
 
-msgid "Test Mode"
-msgstr "وضع الاختبار"
+#: admin/views/page-help.php:72
+msgid "OFF, live SMS delivery"
+msgstr ""
 
-msgid "Enable Test Mode"
-msgstr "تفعيل وضع الاختبار"
+#: admin/views/page-help.php:80
+msgid "ON"
+msgstr ""
 
-msgid "Test Phone"
-msgstr "رقم هاتف الاختبار"
+#: admin/views/page-help.php:83
+msgid "OFF"
+msgstr ""
 
-msgid "Send Test SMS Now"
-msgstr "إرسال رسالة اختبار الآن"
+#: admin/views/page-help.php:84
+#, fuzzy
+msgid "Enable in General Settings "
+msgstr "الإعدادات العامة"
 
+#: admin/views/page-help.php:89
 msgid "Account Balance"
 msgstr "رصيد الحساب"
 
-msgid "Credentials verified!"
-msgstr "تم التحقق من بيانات الاعتماد!"
+#. translators: %s: human-readable time difference
+#: admin/views/page-help.php:104
+#, php-format
+msgid "(updated %s ago)"
+msgstr ""
 
-msgid "Verification failed."
-msgstr "فشل التحقق."
+#: admin/views/page-help.php:112
+msgid "Not available, login on the Gateway page first."
+msgstr ""
 
+#: admin/views/page-help.php:118
+msgid "Plugin Version"
+msgstr ""
+
+#: admin/views/page-help.php:128
+msgid "Support &amp; Resources"
+msgstr ""
+
+#: admin/views/page-help.php:133
+#, fuzzy
+msgid "kwtSMS FAQ:"
+msgstr "kwtSMS:"
+
+#: admin/views/page-help.php:135
+msgid ""
+"answers to common questions about credits, sender IDs, OTP, and delivery."
+msgstr ""
+
+#: admin/views/page-help.php:138
+#, fuzzy
+msgid "kwtSMS Support:"
+msgstr "kwtSMS:"
+
+#: admin/views/page-help.php:140
+msgid "open a support ticket or browse help articles."
+msgstr ""
+
+#: admin/views/page-help.php:143
+#, fuzzy
+msgid "Contact kwtSMS:"
+msgstr "kwtSMS:"
+
+#: admin/views/page-help.php:145
+msgid ""
+"reach the kwtSMS team directly for Sender ID registration and account issues."
+msgstr ""
+
+#: admin/views/page-help.php:148
+msgid "kwtSMS API Documentation:"
+msgstr ""
+
+#: admin/views/page-help.php:152
+msgid "kwtSMS Dashboard (balance, coverage, sender IDs):"
+msgstr ""
+
+#: admin/views/page-help.php:156
+#, fuzzy
+msgid "kwtSMS Integrations:"
+msgstr "kwtSMS: الإعدادات العامة"
+
+#: admin/views/page-help.php:158
+msgid "other platforms and integrations supported by kwtSMS."
+msgstr ""
+
+#: admin/views/page-help.php:168
+msgid "Getting Started"
+msgstr ""
+
+#: admin/views/page-help.php:174
+#, fuzzy
+msgid "Create a kwtSMS account"
+msgstr "ليس لديك حساب في kwtSMS؟"
+
+#: admin/views/page-help.php:175
+msgid ""
+"Go to kwtsms.com, sign up, log in, and request API access. Your API username "
+"and password will be provided in your account dashboard."
+msgstr ""
+
+#: admin/views/page-help.php:176
+#, fuzzy
+msgid "Sign up "
+msgstr "سجّل مجاناً ←"
+
+#: admin/views/page-help.php:179
+#, fuzzy
+msgid "Register a Sender ID"
+msgstr "سجّل أو اطلب معرّف المرسل في kwtSMS ←"
+
+#: admin/views/page-help.php:180
+msgid ""
+"A Sender ID is the name or number your recipients see. Apply for one in your "
+"kwtSMS dashboard. This is required before sending."
+msgstr ""
+
+#: admin/views/page-help.php:181
+msgid "Learn more "
+msgstr ""
+
+#: admin/views/page-help.php:184
+#, fuzzy
+msgid "Configure Gateway Settings"
+msgstr "إعدادات البوابة"
+
+#: admin/views/page-help.php:185
+msgid ""
+"Go to kwtSMS  Gateway. Enter your API username and password, then click "
+"\"Login\" to verify your credentials and load your approved Sender IDs. "
+"Select a Sender ID and save."
+msgstr ""
+
+#: admin/views/page-help.php:186
+#, fuzzy
+msgid "Go to Gateway "
+msgstr "البوابة"
+
+#: admin/views/page-help.php:189
+#, fuzzy
+msgid "Set up General Settings"
+msgstr "الإعدادات العامة"
+
+#: admin/views/page-help.php:190
+msgid ""
+"Choose your OTP mode (2FA, Passwordless, or Both), code length, expiry, and "
+"default country for the dial-code dropdown."
+msgstr ""
+
+#: admin/views/page-help.php:191
+#, fuzzy
+msgid "Go to General "
+msgstr "عام"
+
+#: admin/views/page-help.php:194
+msgid "Add phone numbers to user profiles"
+msgstr ""
+
+#: admin/views/page-help.php:195
+msgid ""
+"Each user must have a phone number in their profile (Users  Edit User  Phone "
+"Number)."
+msgstr ""
+
+#: admin/views/page-help.php:196
+msgid "Without a phone number, 2FA is skipped for that user."
+msgstr ""
+
+#: admin/views/page-help.php:199
+#, fuzzy
+msgid "Send a test SMS"
+msgstr "إرسال رسالة اختبار الآن"
+
+#: admin/views/page-help.php:200
+msgid ""
+"On the Gateway page, enter a test phone number and click \"Send Test SMS\". "
+"With Test Mode ON, the message is queued in your kwtSMS account but not "
+"delivered to the phone. Turn Test Mode OFF for real delivery."
+msgstr ""
+
+#: admin/views/page-help.php:206
+msgid "Test Mode and Credits: Important"
+msgstr ""
+
+#: admin/views/page-help.php:208
+msgid ""
+"When Test Mode is ON, messages are queued on the kwtSMS servers but never "
+"delivered to the recipient's phone."
+msgstr ""
+
+#: admin/views/page-help.php:209
+msgid " Credits are still deducted"
+msgstr ""
+
+#: admin/views/page-help.php:210
+msgid "kwtSMS charges for queued messages even in test mode."
+msgstr ""
+
+#: admin/views/page-help.php:213
+msgid ""
+"To recover credits from test messages, log in to your kwtSMS dashboard and "
+"delete the queued messages from the outbox queue."
+msgstr ""
+
+#: admin/views/page-help.php:214 admin/views/page-help.php:358
+msgid "kwtSMS Dashboard "
+msgstr ""
+
+#: admin/views/page-help.php:217
+msgid "How to tell:"
+msgstr ""
+
+#: admin/views/page-help.php:218
+msgid ""
+"An orange \"Test Mode\" notice appears at the top of every kwtSMS admin page "
+"when active. To disable it, go to Gateway Settings and uncheck Test Mode."
+msgstr ""
+
+#: admin/views/page-help.php:223
+msgid "Features Overview"
+msgstr ""
+
+#: admin/views/page-help.php:225
+#, fuzzy
+msgid "OTP Two-Factor Authentication (2FA)"
+msgstr "المصادقة الثنائية (2FA): كلمة المرور + رمز التحقق"
+
+#: admin/views/page-help.php:226
+msgid ""
+"After a user enters their password, an OTP code is sent to their registered "
+"phone. They must enter the code to complete login. Configure code length (4 "
+"or 6 digits), expiry (1 to 30 min), and max wrong attempts in General "
+"Settings."
+msgstr ""
+
+#: admin/views/page-help.php:228
+#, fuzzy
+msgid "Passwordless Login"
+msgstr "إعادة تعيين كلمة المرور"
+
+#: admin/views/page-help.php:229
+msgid ""
+"Users can log in with just their phone number, no password needed. An OTP is "
+"sent to their phone and they are logged in on success. Enable via OTP Mode  "
+"Passwordless or Both. A country-code dropdown with GeoIP pre-selection is "
+"shown on the login form."
+msgstr ""
+
+#: admin/views/page-help.php:231
+#, fuzzy
+msgid "Password Reset via SMS"
+msgstr "إعادة تعيين كلمة المرور"
+
+#: admin/views/page-help.php:232
+msgid ""
+"Replaces the default email reset link with an SMS OTP. Users receive a code "
+"by SMS to verify their identity, then are taken to the reset form. Enable "
+"via General Settings  Enable Password Reset OTP."
+msgstr ""
+
+#: admin/views/page-help.php:234
+msgid "Per-Role OTP Enforcement"
+msgstr ""
+
+#: admin/views/page-help.php:235
+msgid ""
+"Choose which user roles require OTP (e.g. require it for Administrators but "
+"skip it for Subscribers). Excluded roles bypass OTP entirely. Configure "
+"under General Settings  Authentication."
+msgstr ""
+
+#: admin/views/page-help.php:238
+msgid ""
+"Customise the message text for each event (login, reset, welcome). "
+"Placeholders like {otp}, {site_name}, and {expiry_minutes} are replaced "
+"automatically. Separate English and Arabic templates are supported."
+msgstr ""
+
+#: admin/views/page-help.php:240 admin/views/page-int-woo.php:237
+msgid "WooCommerce Integration"
+msgstr ""
+
+#: admin/views/page-help.php:241
+msgid ""
+"When WooCommerce is active, the plugin can send SMS to customers when order "
+"status changes. Supported statuses: Processing, On-Hold (Shipped), "
+"Completed, Cancelled, Pending Payment, Refunded, and Failed. Each status has "
+"its own configurable template (English + Arabic). Additional features:"
+msgstr ""
+
+#: admin/views/page-help.php:243
+msgid ""
+"Admin SMS notifications: send a copy to a store phone number on any status "
+"change."
+msgstr ""
+
+#: admin/views/page-help.php:244
+msgid "Per-order custom SMS: send a custom message from the order edit screen."
+msgstr ""
+
+#: admin/views/page-help.php:245
+msgid ""
+"Checkout OTP gate: require phone verification before an order is placed."
+msgstr ""
+
+#: admin/views/page-help.php:247
+#, fuzzy
+msgid "Integrations Settings "
+msgstr "الإعدادات العامة"
+
+#: admin/views/page-help.php:249
+msgid "Form Integrations (Contact Form 7, WPForms, Ninja Forms)"
+msgstr ""
+
+#: admin/views/page-help.php:250
+msgid "Each form plugin integration supports two modes:"
+msgstr ""
+
+#: admin/views/page-help.php:252
+#, fuzzy
+msgid "Notification mode"
+msgstr "رمز التحقق"
+
+#: admin/views/page-help.php:252
+msgid ""
+"Send a confirmation SMS to the customer after a successful form submission."
+msgstr ""
+
+#: admin/views/page-help.php:253
+msgid "OTP Gate mode"
+msgstr ""
+
+#: admin/views/page-help.php:253
+msgid ""
+"Block the form submission until the user verifies their phone number with an "
+"OTP. An overlay modal appears on submit, asking the user to enter and "
+"confirm their phone."
+msgstr ""
+
+#: admin/views/page-help.php:258
+msgid "Sliding-window rate limiting"
+msgstr ""
+
+#: admin/views/page-help.php:258
+msgid ""
+"OTP requests are limited per phone, per IP, and per account. The sliding-"
+"window algorithm prevents gaming at window boundaries."
+msgstr ""
+
+#: admin/views/page-help.php:259
+msgid "Phone blocking list"
+msgstr ""
+
+#: admin/views/page-help.php:259
+msgid ""
+"Block specific numbers from ever receiving an OTP. Blocked numbers receive a "
+"silent success response (anti-enumeration)."
+msgstr ""
+
+#: admin/views/page-help.php:260
+#, fuzzy
+msgid "Bot protection"
+msgstr "حماية CAPTCHA"
+
+#: admin/views/page-help.php:260
+msgid "Optional Google reCAPTCHA v3 or Cloudflare Turnstile on OTP forms."
+msgstr ""
+
+#: admin/views/page-help.php:261
+msgid "Emergency bypass"
+msgstr ""
+
+#: admin/views/page-help.php:261
+msgid ""
+"Add define( 'KWTSMS_OTP_DISABLED', true ) to wp-config.php to disable all "
+"OTP logic if you are locked out."
+msgstr ""
+
+#: admin/views/page-help.php:265
+msgid "The Logs page shows three tabs:"
+msgstr ""
+
+#: admin/views/page-help.php:267 admin/views/page-logs.php:114
+msgid "SMS History"
+msgstr "سجل الرسائل"
+
+#: admin/views/page-help.php:267
+msgid ""
+"Full unredacted log of all SMS sends (phone, message, status, message ID, "
+"gateway result)."
+msgstr ""
+
+#: admin/views/page-help.php:268 admin/views/page-logs.php:118
+msgid "OTP Attempts"
+msgstr "محاولات OTP"
+
+#: admin/views/page-help.php:268
+msgid ""
+"Every verification attempt with result, IP address, and user. Useful for "
+"detecting brute-force attacks."
+msgstr ""
+
+#: admin/views/page-help.php:269 admin/views/page-logs.php:123
+msgid "Debug Log"
+msgstr ""
+
+#: admin/views/page-help.php:269
+msgid ""
+"Full API request/response log (visible only when Debug Logging is enabled in "
+"General Settings)."
+msgstr ""
+
+#: admin/views/page-help.php:273
+msgid ""
+"In General Settings you can restrict which countries are shown in the dial-"
+"code dropdown and accepted for OTP. Default is GCC countries. This prevents "
+"OTPs from being sent to unintended regions."
+msgstr ""
+
+#: admin/views/page-help.php:276
+msgid "How to Collect Phone Numbers from Users"
+msgstr ""
+
+#: admin/views/page-help.php:278
+msgid ""
+"The plugin sends OTP codes and SMS notifications to the phone number stored "
+"in each user's profile. Without a phone number on file, 2FA is silently "
+"bypassed and no SMS is ever sent to that user."
+msgstr ""
+
+#: admin/views/page-help.php:279
+msgid "Make sure every user has a phone number before enabling 2FA."
+msgstr ""
+
+#: admin/views/page-help.php:281
+msgid ""
+"Choose the collection method that matches how your users join your site:"
+msgstr ""
+
+#: admin/views/page-help.php:283
+msgid "Method 1: WooCommerce Registration (recommended for WooCommerce stores)"
+msgstr ""
+
+#: admin/views/page-help.php:284
+msgid ""
+"When WooCommerce is active, the plugin automatically adds a Phone Number "
+"field to the WooCommerce My Account registration form and to checkout. The "
+"number is saved to the user profile on account creation, no extra steps "
+"needed."
+msgstr ""
+
+#: admin/views/page-help.php:286
+msgid ""
+"Enable the WooCommerce integration: Integrations  WooCommerce  Enable "
+"WooCommerce SMS Integration."
+msgstr ""
+
+#: admin/views/page-help.php:287
+msgid ""
+"Phone collection is active automatically on the My Account registration form "
+"and checkout page."
+msgstr ""
+
+#: admin/views/page-help.php:288
+msgid ""
+"Test by registering a new account on /my-account and verifying the phone "
+"appears under Users  Edit User  Phone Number."
+msgstr ""
+
+#: admin/views/page-help.php:291
+msgid "Method 2: Manual entry by the admin"
+msgstr ""
+
+#: admin/views/page-help.php:292
+msgid ""
+"You can add or update a phone number for any existing user directly in the "
+"WordPress admin panel."
+msgstr ""
+
+#: admin/views/page-help.php:294
+msgid "Go to Users in the WordPress admin menu."
+msgstr ""
+
+#: admin/views/page-help.php:295
+msgid "Click Edit under the user's name."
+msgstr ""
+
+#: admin/views/page-help.php:296
+msgid "Scroll down to the Phone Number field (added by this plugin)."
+msgstr ""
+
+#: admin/views/page-help.php:298
+msgid "Enter the number with country code, e.g. 965XXXXXXXX for Kuwait."
+msgstr ""
+
+#: admin/views/page-help.php:299
+msgid "Click Update User to save."
+msgstr ""
+
+#: admin/views/page-help.php:302
+msgid "Method 3: Ask users to update their own profile"
+msgstr ""
+
+#: admin/views/page-help.php:303
+msgid ""
+"Users can add their own phone number from the front-end WordPress profile "
+"page."
+msgstr ""
+
+#: admin/views/page-help.php:305
+msgid ""
+"Direct users to their profile page: /wp-admin/profile.php (or the equivalent "
+"front-end profile page if your theme provides one)."
+msgstr ""
+
+#: admin/views/page-help.php:306
+msgid ""
+"They will see a Phone Number field. Ask them to enter their number with "
+"country code."
+msgstr ""
+
+#: admin/views/page-help.php:307
+msgid "They click Update Profile to save."
+msgstr ""
+
+#: admin/views/page-help.php:308
+msgid ""
+"Once saved, 2FA and SMS notifications will work for that user on their next "
+"login."
+msgstr ""
+
+#: admin/views/page-help.php:312
+msgid "Tip: Check who is missing a phone number"
+msgstr ""
+
+#: admin/views/page-help.php:313
+msgid ""
+"Go to Users in the admin, then look for the Phone Number column. Any user "
+"showing \"-\" or a blank value has no phone on file and will bypass 2FA "
+"until one is added."
+msgstr ""
+
+#: admin/views/page-help.php:314
+msgid "View all users "
+msgstr ""
+
+#: admin/views/page-help.php:318
+msgid "Styling &amp; Customisation"
+msgstr ""
+
+#: admin/views/page-help.php:320
+msgid ""
+"The OTP and passwordless login pages use the plugin's own stylesheet (assets/"
+"css/login.css). This stylesheet is intentionally minimal, it uses standard "
+"WordPress blue (#2271b1) for interactive elements and inherits the base "
+"WordPress login page layout. It does NOT override your theme colours or "
+"fonts."
+msgstr ""
+
+#: admin/views/page-help.php:323
+msgid ""
+"To customise the appearance, you do NOT need a customisation page. Simply "
+"add CSS overrides to your theme's Additional CSS (Appearance  Customise  "
+"Additional CSS) or your child theme's style.css. Key selectors:"
+msgstr ""
+
+#: admin/views/page-help.php:326
+msgid "outer container of OTP entry form"
+msgstr ""
+
+#: admin/views/page-help.php:327
+msgid "white card around the form"
+msgstr ""
+
+#: admin/views/page-help.php:328
+msgid "the OTP code input field"
+msgstr ""
+
+#: admin/views/page-help.php:329
+msgid "the Submit / Verify button"
+msgstr ""
+
+#: admin/views/page-help.php:330
+msgid "country code + phone input wrapper"
+msgstr ""
+
+#: admin/views/page-help.php:331
+msgid ""
+"\"SMS by kwtSMS.com\" footer (opt-in, off by default, enabled via General "
+"Settings &gt; Show credit link)"
+msgstr ""
+
+#: admin/views/page-help.php:334
+msgid ""
+"No customisation page is needed. Full CSS control is available through "
+"standard WordPress/theme overrides."
+msgstr ""
+
+#: admin/views/page-help.php:344
+msgid "Troubleshooting"
+msgstr ""
+
+#: admin/views/page-help.php:349
+msgid "Messages not being delivered: step by step"
+msgstr ""
+
+#: admin/views/page-help.php:352
+msgid "Check whether Test Mode is ON."
+msgstr ""
+
+#: admin/views/page-help.php:353
+msgid ""
+"Look for the orange \"kwtSMS is in Test Mode\" notice at the top of this "
+"page. If it appears, messages are being queued but not delivered. Go to "
+"Gateway Settings, uncheck Test Mode, and save. Credits are consumed even in "
+"test mode, delete queued messages from the kwtSMS dashboard to recover them."
+msgstr ""
+
+#: admin/views/page-help.php:356
+#, fuzzy
+msgid "Verify your API credentials."
+msgstr "بيانات الاعتماد"
+
+#: admin/views/page-help.php:357
+msgid ""
+"On the Gateway page, click Login. If it fails, your API username or password "
+"is incorrect. Log in to kwtsms.com  API Settings to get the correct "
+"credentials."
+msgstr ""
+
+#: admin/views/page-help.php:361
+msgid "Confirm a Sender ID is selected."
+msgstr ""
+
+#: admin/views/page-help.php:362
+msgid ""
+"The Sender ID dropdown on the Gateway page must have a selection. If it is "
+"empty, click Reload after verifying credentials. Without a Sender ID, no "
+"message can be sent."
+msgstr ""
+
+#: admin/views/page-help.php:365
+#, fuzzy
+msgid "Check your account balance."
+msgstr "رصيد الحساب"
+
+#: admin/views/page-help.php:366
+msgid ""
+"You need at least 1 credit per message. Your current balance is shown on the "
+"Gateway page and in the Current Status table above. Insufficient credits "
+"cause error ERR010 or ERR011."
+msgstr ""
+
+#: admin/views/page-help.php:369
+msgid "Check the SMS History log."
+msgstr ""
+
+#: admin/views/page-help.php:370
+msgid ""
+"Go to Logs  SMS History. If the send attempt is listed with Status: Failed, "
+"the Result column shows the API error code. Match it to the error table "
+"below."
+msgstr ""
+
+#: admin/views/page-help.php:371
+#, fuzzy
+msgid "SMS History "
+msgstr "سجل الرسائل"
+
+#: admin/views/page-help.php:374
+msgid "Enable Debug Logging for full API details."
+msgstr ""
+
+#: admin/views/page-help.php:375
+msgid ""
+"Go to General  Developer Tools and turn Debug Logging ON. Trigger a send "
+"again. Then view the full request and response (including the exact error "
+"from kwtSMS) in the Debug Log."
+msgstr ""
+
+#: admin/views/page-help.php:376
+msgid "Debug Log "
+msgstr ""
+
+#: admin/views/page-help.php:379
+msgid "Check destination coverage."
+msgstr ""
+
+#: admin/views/page-help.php:380
+msgid ""
+"The SMS Coverage table on the Gateway page lists which countries are "
+"supported. If the destination country is not covered or shows as inactive, "
+"add coverage via your kwtSMS dashboard."
+msgstr ""
+
+#: admin/views/page-help.php:383
+msgid "Run a Gateway Test SMS."
+msgstr ""
+
+#: admin/views/page-help.php:384
+msgid ""
+"On the Gateway page, enter a phone number including country code and click "
+"\"Send Test SMS\". This isolates whether the issue is the API connection or "
+"a specific trigger in the plugin."
+msgstr ""
+
+#: admin/views/page-help.php:390
+msgid ""
+"⛔ KWT-SMS Promotional Sender ID: For Testing Only. Do Not Use in Production"
+msgstr ""
+
+#: admin/views/page-help.php:392
+msgid ""
+"The shared \"KWT-SMS\" sender ID is a public promotional channel. It is only "
+"suitable for initial testing while you are setting up the plugin. It must "
+"not be used in a live production site."
+msgstr ""
+
+#: admin/views/page-help.php:396
+msgid "Severe delivery delays:"
+msgstr ""
+
+#: admin/views/page-help.php:397
+msgid ""
+"Promotional sender IDs are lower priority by design. Delivery can take 120 "
+"seconds or more, far too slow for OTP codes that users expect in seconds."
+msgstr ""
+
+#: admin/views/page-help.php:400
+msgid "Virgin Mobile (Zain-MVNO) numbers never receive the message:"
+msgstr ""
+
+#: admin/views/page-help.php:401
+msgid ""
+"Kuwait numbers starting with 4 (Virgin subscribers) do not receive messages "
+"from promotional sender IDs at all. Those users will never get an OTP."
+msgstr ""
+
+#: admin/views/page-help.php:404
+msgid "Do Not Disturb (DND) filters:"
+msgstr ""
+
+#: admin/views/page-help.php:405
+msgid ""
+"Promotional messages are blocked for users who have enabled DND on their "
+"number, causing lost credits and undelivered OTPs."
+msgstr ""
+
+#: admin/views/page-help.php:408
+msgid "Brand damage:"
+msgstr ""
+
+#: admin/views/page-help.php:409
+msgid ""
+"Recipients see \"KWT-SMS\" as the sender, not your business name. This "
+"reduces trust and makes messages look like spam."
+msgstr ""
+
+#: admin/views/page-help.php:413
+msgid "What to do:"
+msgstr ""
+
+#: admin/views/page-help.php:414
+msgid ""
+"Register a private alphanumeric Sender ID in your kwtSMS account using your "
+"brand name (e.g. \"MyShop\"). Private sender IDs have fast delivery, reach "
+"all Kuwaiti operators including Virgin, bypass DND filters, and build "
+"customer trust."
+msgstr ""
+
+#: admin/views/page-help.php:417
+msgid "Why you need a private Sender ID for OTP "
+msgstr ""
+
+#: admin/views/page-help.php:419
+msgid "Contact kwtSMS to register your Sender ID "
+msgstr ""
+
+#: admin/views/page-help.php:424
+msgid "Message shows as Sent but was never delivered (Kuwait numbers)"
+msgstr ""
+
+#: admin/views/page-help.php:425
+msgid ""
+"Delivery Reports (DLR) are not available for messages sent to Kuwait mobile "
+"numbers. The API returns \"OK\" (sent) as soon as the message is handed off "
+"to the operator, but there is no delivery confirmation for Kuwait. If a "
+"customer says they did not receive the SMS and the Logs page shows \"Sent\", "
+"check:"
+msgstr ""
+
+#: admin/views/page-help.php:427
+msgid ""
+"Is the customer using Virgin (Zain-MVNO)? If so, switch from KWT-SMS to a "
+"private sender ID."
+msgstr ""
+
+#: admin/views/page-help.php:428
+msgid ""
+"Check the kwtSMS API error log in your kwtSMS account dashboard (API  Error "
+"Log)."
+msgstr ""
+
+#: admin/views/page-help.php:429
+msgid ""
+"Use the Debug Log (enable in General  Developer Tools) for the full API "
+"request and response."
+msgstr ""
+
+#: admin/views/page-help.php:433
+msgid "Messages not reaching international numbers"
+msgstr ""
+
+#: admin/views/page-help.php:435
+msgid ""
+"International SMS coverage is disabled by default on all new kwtSMS "
+"accounts. To enable coverage for countries outside Kuwait, contact kwtSMS "
+"support."
+msgstr ""
+
+#: admin/views/page-help.php:436
+#, fuzzy
+msgid "kwtSMS Contact "
+msgstr "سجلات kwtSMS"
+
+#: admin/views/page-help.php:438
+msgid ""
+"The Gateway page shows your current coverage list. If a destination country "
+"is missing, it has not been enabled."
+msgstr ""
+
+#: admin/views/page-help.php:441
+msgid "API requests being blocked (rate limit)"
+msgstr ""
+
+#: admin/views/page-help.php:443
+msgid ""
+"The kwtSMS API allows a maximum of 10 requests per second from a single IP "
+"address. Exceeding this limit causes your server's IP to be temporarily "
+"blocked by kwtSMS. Under normal use this limit is never reached, each OTP "
+"send is one request. If you are running bulk sends or automated tests, "
+"introduce a delay between requests."
+msgstr ""
+
+#: admin/views/page-help.php:446
+msgid "Users get \"Session expired\" error"
+msgstr ""
+
+#: admin/views/page-help.php:447
+msgid ""
+"The OTP session is stored as a 15-minute transient. This can be cleared by "
+"object cache flushes or plugin conflicts. Check that no caching plugin is "
+"clearing transients too aggressively."
+msgstr ""
+
+#: admin/views/page-help.php:449
+msgid "⚠ Admin Lockout: Cannot Receive OTP"
+msgstr ""
+
+#: admin/views/page-help.php:452
+msgid ""
+"If your admin account has a phone number set and you cannot receive the OTP "
+"(lost phone, changed number, gateway issue), you will be locked out of "
+"WordPress. Use one of the emergency bypass methods below."
+msgstr ""
+
+#: admin/views/page-help.php:455
+msgid "Option 1: Emergency bypass constant (fastest)"
+msgstr ""
+
+#: admin/views/page-help.php:456
+msgid ""
+"Add this line to your wp-config.php (before the \"stop editing\" comment):"
+msgstr ""
+
+#: admin/views/page-help.php:458
+msgid ""
+"This completely disables all OTP logic. Log in normally, fix your phone "
+"number or gateway, then remove the line."
+msgstr ""
+
+#: admin/views/page-help.php:460
+msgid "Option 2: Remove phone via WP-CLI"
+msgstr ""
+
+#: admin/views/page-help.php:462
+msgid ""
+"Replace &lt;user_id&gt; with your user ID (usually 1 for the first admin). "
+"This removes the phone from your account so OTP is skipped on next login."
+msgstr ""
+
+#: admin/views/page-help.php:464
+msgid "Option 3: Disable the plugin via SFTP/FTP"
+msgstr ""
+
+#: admin/views/page-help.php:466
+msgid ""
+"Connect via SFTP/FTP and rename the plugin folder from wp-kwtsms to _wp-"
+"kwtsms. WordPress will deactivate the plugin automatically, allowing normal "
+"login. Rename it back to re-enable."
+msgstr ""
+
+#: admin/views/page-help.php:470
+msgid "Where is the debug log?"
+msgstr ""
+
+#. translators: 1: path to debug log file, 2: link to Logs page
+#: admin/views/page-help.php:476
+#, php-format
+msgid ""
+"When Debug Logging is enabled, all API activity is recorded in %1$s. You can "
+"view, scroll, and download it directly from %2$s."
+msgstr ""
+
+#: admin/views/page-help.php:478
+msgid "Logs  Debug Log"
+msgstr ""
+
+#: admin/views/page-int-form.php:33
+msgid "Setup tip: add a tel field named kwtsms_phone to your CF7 form:"
+msgstr ""
+
+#: admin/views/page-int-form.php:43
+msgid ""
+"WPForms automatically detects Phone fields. Add a Phone field to your form "
+"to enable SMS delivery."
+msgstr ""
+
+#: admin/views/page-int-form.php:52
+msgid ""
+"Add a Phone field (type=tel) to your Ninja Form. kwtSMS will detect it "
+"automatically."
+msgstr ""
+
+#: admin/views/page-int-form.php:58
+msgid "Unknown integration."
+msgstr ""
+
+#: admin/views/page-int-form.php:94 admin/views/page-int-woo.php:215
+msgid "All Integrations"
+msgstr ""
+
+#. translators: %s: integration name (e.g. WooCommerce)
+#: admin/views/page-int-form.php:111
+#, php-format
+msgid "%s Integration"
+msgstr ""
+
+#. translators: %s: integration name (e.g. WooCommerce)
+#: admin/views/page-int-form.php:118
+#, php-format
+msgid "Send a confirmation SMS after a %s form is submitted successfully."
+msgstr ""
+
+#: admin/views/page-int-form.php:124 admin/views/page-int-woo.php:246
+msgid "Enable Integration"
+msgstr ""
+
+#. translators: %s: integration name (e.g. WooCommerce)
+#: admin/views/page-int-form.php:134
+#, php-format
+msgid "Enable %s SMS Integration"
+msgstr ""
+
+#: admin/views/page-int-form.php:141
+#, fuzzy
+msgid "Integration Mode"
+msgstr "رمز التحقق"
+
+#: admin/views/page-int-form.php:149
+#, fuzzy
+msgid "Notification"
+msgstr "التحقق بخطوتين"
+
+#: admin/views/page-int-form.php:150
+msgid "Send a confirmation SMS after form submit."
+msgstr ""
+
+#: admin/views/page-int-form.php:157
+#, fuzzy
+msgid "OTP Gate"
+msgstr "محاولات OTP"
+
+#: admin/views/page-int-form.php:158
+msgid "Block submission until the phone number is verified via OTP."
+msgstr ""
+
+#: admin/views/page-int-form.php:163
+msgid ""
+"OTP Gate is active. Visitors must verify their phone number before this form "
+"submits."
+msgstr ""
+
+#: admin/views/page-int-form.php:187
+msgid "Form Submission Confirmation"
+msgstr ""
+
+#: admin/views/page-int-form.php:189
+msgid "Sent to the submitter after a successful form submission."
+msgstr ""
+
+#: admin/views/page-int-form.php:192 admin/views/page-int-woo.php:642
+#, fuzzy
+msgid "Placeholders:"
+msgstr "العناصر النائبة المتاحة:"
+
+#: admin/views/page-int-woo.php:41
+#, fuzzy
+msgid "Order Templates"
+msgstr "القوالب"
+
+#: admin/views/page-int-woo.php:44
+msgid "Processing"
+msgstr ""
+
+#: admin/views/page-int-woo.php:45 admin/views/page-int-woo.php:155
+#: admin/views/page-int-woo.php:368
+msgid "New Order / Order Confirmed (Processing)"
+msgstr ""
+
+#: admin/views/page-int-woo.php:46
+msgid ""
+"Sent immediately when a paid order is placed (credit card, PayPal, COD). "
+"This is the main 'new order' notification."
+msgstr ""
+
+#: admin/views/page-int-woo.php:50
+msgid "Shipped"
+msgstr ""
+
+#: admin/views/page-int-woo.php:51 admin/views/page-int-woo.php:167
+#: admin/views/page-int-woo.php:371
+msgid "Order Shipped (On-Hold)"
+msgstr ""
+
+#: admin/views/page-int-woo.php:52
+msgid ""
+"Sent when the order status is set to On-Hold, typically used to indicate the "
+"order has been shipped."
+msgstr ""
+
+#: admin/views/page-int-woo.php:56
+msgid "Completed"
+msgstr ""
+
+#: admin/views/page-int-woo.php:57 admin/views/page-int-woo.php:171
+#: admin/views/page-int-woo.php:372
+msgid "Order Completed"
+msgstr ""
+
+#: admin/views/page-int-woo.php:58
+msgid "Sent when the order is marked as fully delivered and complete."
+msgstr ""
+
+#: admin/views/page-int-woo.php:62
+msgid "Cancelled"
+msgstr ""
+
+#: admin/views/page-int-woo.php:63 admin/views/page-int-woo.php:175
+#: admin/views/page-int-woo.php:373
+msgid "Order Cancelled"
+msgstr ""
+
+#: admin/views/page-int-woo.php:64
+msgid "Sent when the order is cancelled by the customer or admin."
+msgstr ""
+
+#: admin/views/page-int-woo.php:68
+#, fuzzy
+msgid "Pending"
+msgstr "جارٍ الإرسال..."
+
+#: admin/views/page-int-woo.php:69 admin/views/page-int-woo.php:159
+#: admin/views/page-int-woo.php:369
+msgid "New Order: Awaiting Payment (Pending)"
+msgstr ""
+
+#: admin/views/page-int-woo.php:70
+msgid ""
+"Sent when an order is placed but payment not yet received (e.g. bank "
+"transfer). Disabled by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:74
+msgid "Refunded"
+msgstr ""
+
+#: admin/views/page-int-woo.php:75 admin/views/page-int-woo.php:179
+#: admin/views/page-int-woo.php:374
+msgid "Order Refunded"
+msgstr ""
+
+#: admin/views/page-int-woo.php:76
+msgid "Sent when a refund is issued for the order. Disabled by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:81 admin/views/page-int-woo.php:163
+#: admin/views/page-int-woo.php:370
+msgid "Payment Failed: Order Not Confirmed"
+msgstr ""
+
+#: admin/views/page-int-woo.php:82
+msgid ""
+"Sent when the payment attempt fails and the order is not confirmed. Disabled "
+"by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:88 admin/views/page-int-woo.php:396
+msgid "Stock Alerts"
+msgstr ""
+
+#: admin/views/page-int-woo.php:91 admin/views/page-int-woo.php:416
+msgid "Low Stock"
+msgstr ""
+
+#: admin/views/page-int-woo.php:92
+msgid "Low Stock Alert"
+msgstr ""
+
+#: admin/views/page-int-woo.php:93
+msgid ""
+"Sent to the stock admin phone when a product reaches its low stock threshold."
+msgstr ""
+
+#: admin/views/page-int-woo.php:97 admin/views/page-int-woo.php:428
+msgid "Out of Stock"
+msgstr ""
+
+#: admin/views/page-int-woo.php:98
+msgid "Out of Stock Alert"
+msgstr ""
+
+#: admin/views/page-int-woo.php:99
+msgid "Sent to the stock admin phone when a product goes out of stock."
+msgstr ""
+
+#: admin/views/page-int-woo.php:103 admin/views/page-int-woo.php:440
+msgid "Backorder"
+msgstr ""
+
+#: admin/views/page-int-woo.php:104
+msgid "Backorder Alert"
+msgstr ""
+
+#: admin/views/page-int-woo.php:105
+msgid "Sent to the stock admin phone when a product is placed on backorder."
+msgstr ""
+
+#: admin/views/page-int-woo.php:109 admin/views/page-int-woo.php:452
+msgid "New Product"
+msgstr ""
+
+#: admin/views/page-int-woo.php:110
+msgid "New Product SMS"
+msgstr ""
+
+#: admin/views/page-int-woo.php:111
+msgid ""
+"Sent to the stock admin phone when a new product is first published. "
+"Disabled by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:115 admin/views/page-int-woo.php:464
+msgid "Back in Stock"
+msgstr ""
+
+#: admin/views/page-int-woo.php:116
+msgid "Back-in-Stock Notification"
+msgstr ""
+
+#: admin/views/page-int-woo.php:117
+msgid ""
+"When enabled, out-of-stock product pages show a subscribe form. Subscribers "
+"receive an SMS when the product comes back in stock."
+msgstr ""
+
+#: admin/views/page-int-woo.php:123
+msgid "Abandoned Cart"
+msgstr ""
+
+#: admin/views/page-int-woo.php:126
+msgid "Cart Recovery"
+msgstr ""
+
+#: admin/views/page-int-woo.php:127
+msgid "Cart Abandonment Recovery SMS"
+msgstr ""
+
+#: admin/views/page-int-woo.php:128
+msgid "Message sent to the customer when their cart is considered abandoned."
+msgstr ""
+
+#: admin/views/page-int-woo.php:134
+msgid "Multivendor"
+msgstr ""
+
+#: admin/views/page-int-woo.php:137
+msgid "Instant Order"
+msgstr ""
+
+#: admin/views/page-int-woo.php:138
+msgid "Instant New Order Alert"
+msgstr ""
+
+#: admin/views/page-int-woo.php:139
+msgid ""
+"Send an SMS to the admin immediately when any new order is placed, before "
+"any status changes."
+msgstr ""
+
+#: admin/views/page-int-woo.php:143 admin/views/page-int-woo.php:573
+msgid "Vendor SMS"
+msgstr ""
+
+#: admin/views/page-int-woo.php:144
+msgid "Vendor New Order SMS"
+msgstr ""
+
+#: admin/views/page-int-woo.php:145
+msgid ""
+"Requires Dokan, WCFM, or WC Vendors. Sends an SMS to each vendor whose "
+"product appears in a new order. Vendors must save their phone number in "
+"their WordPress user profile."
+msgstr ""
+
+#: admin/views/page-int-woo.php:156
+msgid ""
+"Fires immediately when a paid order is placed (credit card, PayPal, COD). "
+"This is the main 'new order' notification."
+msgstr ""
+
+#: admin/views/page-int-woo.php:160
+msgid ""
+"Fires when an order is placed but payment has not been received yet (e.g. "
+"bank transfer). Disabled by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:164
+msgid ""
+"Fires when the payment attempt fails and the order is not confirmed. "
+"Disabled by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:168
+msgid ""
+"Fires when the order status is set to On-Hold, typically used to indicate "
+"the order has been shipped."
+msgstr ""
+
+#: admin/views/page-int-woo.php:172
+msgid "Fires when the order is marked as fully delivered and complete."
+msgstr ""
+
+#: admin/views/page-int-woo.php:176
+msgid "Fires when the order is cancelled by the customer or admin."
+msgstr ""
+
+#: admin/views/page-int-woo.php:180
+msgid "Fires when a refund is issued for the order. Disabled by default."
+msgstr ""
+
+#: admin/views/page-int-woo.php:213
+#, fuzzy
+msgid "WooCommerce Settings"
+msgstr "الإعدادات العامة"
+
+#: admin/views/page-int-woo.php:222
+msgid ""
+"WooCommerce is not installed or activated. The settings below will be saved "
+"and applied once WooCommerce is active."
+msgstr ""
+
+#: admin/views/page-int-woo.php:241
+msgid ""
+"Send SMS notifications for order status changes and registration events."
+msgstr ""
+
+#: admin/views/page-int-woo.php:253
+msgid "Enable WooCommerce SMS Integration"
+msgstr ""
+
+#: admin/views/page-int-woo.php:265
+#, fuzzy
+msgid "e.g. 965XXXXXXXX, 965XXXXXXXX"
+msgstr "مثال: 965XXXXXXXX"
+
+#: admin/views/page-int-woo.php:266
+msgid ""
+"All WooCommerce SMS alerts are sent to these numbers. Individual features "
+"below can override this."
+msgstr ""
+
+#: admin/views/page-int-woo.php:270
+#, fuzzy
+msgid "Checkout OTP"
+msgstr "رمز التحقق عند إتمام الطلب"
+
+#: admin/views/page-int-woo.php:278
+msgid "Require OTP verification before placing an order"
+msgstr ""
+
+#: admin/views/page-int-woo.php:281
+msgid ""
+"When enabled, customers must verify their billing phone with an OTP before "
+"checkout completes. Recommended for reducing fraudulent orders."
+msgstr ""
+
+#: admin/views/page-int-woo.php:286
+msgid "COD Only"
+msgstr ""
+
+#: admin/views/page-int-woo.php:293
+msgid "Require OTP only for Cash on Delivery orders"
+msgstr ""
+
+#: admin/views/page-int-woo.php:295
+msgid ""
+"When enabled, card and other payment methods bypass the OTP gate. Only COD "
+"customers must verify."
+msgstr ""
+
+#: admin/views/page-int-woo.php:318
+msgid "Customer SMS per Order Status"
+msgstr ""
+
+#: admin/views/page-int-woo.php:322
+msgid "Select which order status changes trigger a customer SMS notification."
+msgstr ""
+
+#: admin/views/page-int-woo.php:326
+#, fuzzy
+msgid "Enabled statuses"
+msgstr "تفعيل وضع الاختبار"
+
+#: admin/views/page-int-woo.php:344
+msgid "Edit message text in the SMS Templates section below."
+msgstr ""
+
+#: admin/views/page-int-woo.php:355
+msgid "Admin SMS Notifications"
+msgstr ""
+
+#: admin/views/page-int-woo.php:359
+msgid ""
+"Send an SMS to a store admin phone number when selected order status changes "
+"occur."
+msgstr ""
+
+#: admin/views/page-int-woo.php:363
+msgid "Notify admin for statuses"
+msgstr ""
+
+#: admin/views/page-int-woo.php:386
+msgid "Select which status changes trigger an admin SMS notification."
+msgstr ""
+
+#: admin/views/page-int-woo.php:400
+msgid ""
+"SMS alerts for stock level changes. Edit message templates in the SMS "
+"Templates section below."
+msgstr ""
+
+#: admin/views/page-int-woo.php:405 admin/views/page-int-woo.php:562
+#, fuzzy
+msgid "Phone Override (optional)"
+msgstr "التحقق من رقم الهاتف"
+
+#: admin/views/page-int-woo.php:411 admin/views/page-int-woo.php:568
+msgid "Leave blank to use main admin phone"
+msgstr ""
+
+#: admin/views/page-int-woo.php:412
+msgid ""
+"Override the main admin phone for stock alerts only. Leave empty to use the "
+"main phone above."
+msgstr ""
+
+#: admin/views/page-int-woo.php:423
+msgid "Send SMS on low stock"
+msgstr ""
+
+#: admin/views/page-int-woo.php:435
+msgid "Send SMS on out of stock"
+msgstr ""
+
+#: admin/views/page-int-woo.php:447
+msgid "Send SMS on backorder"
+msgstr ""
+
+#: admin/views/page-int-woo.php:459
+msgid "Send SMS when a new product is published"
+msgstr ""
+
+#: admin/views/page-int-woo.php:471
+msgid "Enable back-in-stock subscriber notifications"
+msgstr ""
+
+#: admin/views/page-int-woo.php:482
+msgid "Cart Abandonment Recovery"
+msgstr ""
+
+#: admin/views/page-int-woo.php:486
+msgid ""
+"Automatically send a recovery SMS with an optional coupon code to customers "
+"who add items to their cart but do not complete checkout. Edit the message "
+"template in the SMS Templates section below."
+msgstr ""
+
+#: admin/views/page-int-woo.php:490
+#, fuzzy
+msgid "Enable"
+msgstr "مفعّل"
+
+#: admin/views/page-int-woo.php:497
+msgid "Enable cart abandonment recovery SMS"
+msgstr ""
+
+#: admin/views/page-int-woo.php:502
+msgid "Send delay (minutes)"
+msgstr ""
+
+#: admin/views/page-int-woo.php:509
+msgid "Minutes of inactivity before the recovery SMS is sent."
+msgstr ""
+
+#: admin/views/page-int-woo.php:513
+msgid "Coupon discount (%)"
+msgstr ""
+
+#: admin/views/page-int-woo.php:521
+msgid ""
+"Set to 0 to disable coupon generation. Otherwise, a single-use percentage "
+"coupon will be created and included in the message."
+msgstr ""
+
+#: admin/views/page-int-woo.php:525
+msgid "Coupon expiry (hours)"
+msgstr ""
+
+#: admin/views/page-int-woo.php:532
+msgid "Hours until the generated coupon expires."
+msgstr ""
+
+#: admin/views/page-int-woo.php:542
+msgid "Multivendor SMS"
+msgstr ""
+
+#: admin/views/page-int-woo.php:546
+msgid ""
+"Instant new order alerts and vendor-specific SMS notifications for "
+"multivendor stores. Edit message templates in the SMS Templates section "
+"below."
+msgstr ""
+
+#: admin/views/page-int-woo.php:550
+msgid "Instant Order Alert"
+msgstr ""
+
+#: admin/views/page-int-woo.php:557
+msgid "Send SMS on new order"
+msgstr ""
+
+#: admin/views/page-int-woo.php:569
+msgid ""
+"Override the main admin phone for instant order alerts only. Leave empty to "
+"use the main phone above."
+msgstr ""
+
+#: admin/views/page-int-woo.php:580
+msgid "Send SMS to vendors on new order"
+msgstr ""
+
+#: admin/views/page-int-woo.php:582
+msgid ""
+"Requires Dokan, WCFM, or WC Vendors. Vendors must save their phone number in "
+"their WordPress user profile."
+msgstr ""
+
+#: admin/views/page-int-woo.php:595
+msgid "Edit the SMS message text for each notification type."
+msgstr ""
+
+#: admin/views/page-int-woo.php:699
+msgid "Save WooCommerce Settings"
+msgstr ""
+
+#: admin/views/page-integrations.php:22
+msgid ""
+"Order status SMS notifications (7 statuses), checkout OTP gate, admin "
+"alerts, and per-order custom SMS from the order metabox."
+msgstr ""
+
+#: admin/views/page-integrations.php:31 admin/views/page-integrations.php:40
+msgid ""
+"Send a confirmation SMS on form submission, or enable OTP gate to verify the "
+"phone before the form submits."
+msgstr ""
+
+#: admin/views/page-integrations.php:49
+msgid ""
+"Send a confirmation SMS on submission, or gate the form behind phone OTP "
+"verification. Your form must include a phone field for SMS to trigger."
+msgstr ""
+
+#: admin/views/page-integrations.php:76
+msgid ""
+"Configure SMS for each supported plugin. Settings pages appear for installed "
+"and active plugins only."
+msgstr ""
+
+#: admin/views/page-integrations.php:83
+msgid "Integration"
+msgstr ""
+
+#: admin/views/page-integrations.php:84
+msgid "What it does"
+msgstr ""
+
+#: admin/views/page-integrations.php:85
+msgid "Plugin"
+msgstr ""
+
+#: admin/views/page-integrations.php:86
+#, fuzzy
+msgid "SMS"
+msgstr ""
+"#-#-#-#-#  kwtsms-ar.po (kwtsms 2.8.0)  #-#-#-#-#\n"
+"kwtSMS\n"
+"#-#-#-#-#  kwtsms-ar.po (kwtsms 2.8.0)  #-#-#-#-#\n"
+"كود التحقق - kwtSMS"
+
+#: admin/views/page-integrations.php:122
+msgid "Active"
+msgstr ""
+
+#: admin/views/page-integrations.php:124
+msgid "Inactive"
+msgstr ""
+
+#: admin/views/page-integrations.php:126
+msgid "View on WordPress.org"
+msgstr ""
+
+#: admin/views/page-integrations.php:127 admin/views/page-integrations.php:130
+msgid "Not installed"
+msgstr ""
+
+#: admin/views/page-integrations.php:135
+msgid "N/A"
+msgstr ""
+
+#: admin/views/page-integrations.php:137
+msgid "On"
+msgstr ""
+
+#: admin/views/page-integrations.php:139
+msgid "Off"
+msgstr ""
+
+#: admin/views/page-integrations.php:145
+#, fuzzy
+msgid "Configure"
+msgstr "تهيئة الآن ←"
+
+#: admin/views/page-integrations.php:149
+msgid "Activate"
+msgstr ""
+
+#: admin/views/page-integrations.php:153
+msgid "Install"
+msgstr ""
+
+#: admin/views/page-logs.php:83
+msgid "Success"
+msgstr "نجح"
+
+#: admin/views/page-logs.php:84
+msgid "Wrong code"
+msgstr "رمز خاطئ"
+
+#: admin/views/page-logs.php:85
+msgid "Expired"
+msgstr ""
+
+#: admin/views/page-logs.php:86
+msgid "Locked (max attempts)"
+msgstr "مقفل (تجاوز الحد الأقصى للمحاولات)"
+
+#: admin/views/page-logs.php:87
+msgid "Rate limited"
+msgstr "تم تقييد الطلبات"
+
+#: admin/views/page-logs.php:88
+msgid "⚠ Brute force"
+msgstr ""
+
+#: admin/views/page-logs.php:106
+#, fuzzy
+msgid "SMS Logs"
+msgstr "سجلات kwtSMS"
+
+#: admin/views/page-logs.php:145
+msgid "Export CSV"
+msgstr "تصدير CSV"
+
+#. translators: %d total entries
+#: admin/views/page-logs.php:152
+#, php-format
+msgid "%d entries total"
+msgstr ""
+
+#: admin/views/page-logs.php:163
+msgid "No SMS history yet."
+msgstr "لا يوجد سجل رسائل بعد."
+
+#: admin/views/page-logs.php:168 admin/views/page-logs.php:221
+#, fuzzy
+msgid "Date / Time"
+msgstr "تم تقييد الطلبات"
+
+#: admin/views/page-logs.php:170
+#: includes/integrations/class-kwtsms-woo-metabox.php:146
+msgid "Message"
+msgstr ""
+
+#: admin/views/page-logs.php:172
+msgid "Type"
+msgstr ""
+
+#: admin/views/page-logs.php:174 admin/views/page-logs.php:226
+msgid "Result"
+msgstr ""
+
+#: admin/views/page-logs.php:196
+msgid "OK"
+msgstr ""
+
+#: admin/views/page-logs.php:200
+msgid "Error"
+msgstr ""
+
+#: admin/views/page-logs.php:216
+msgid "No OTP attempts logged yet."
+msgstr "لم تُسجَّل أي محاولة بعد."
+
+#: admin/views/page-logs.php:222 admin/views/page-users-no-phone.php:149
+msgid "User"
+msgstr ""
+
+#: admin/views/page-logs.php:224
+msgid "IP Address"
+msgstr ""
+
+#: admin/views/page-logs.php:225
+msgid "Action"
+msgstr ""
+
+#: admin/views/page-logs.php:289
+msgid "Download"
+msgstr ""
+
+#: admin/views/page-logs.php:306
+#, fuzzy
+msgid "Clear the debug log? This cannot be undone."
+msgstr ""
+"هل أنت متأكد من رغبتك في مسح هذا السجل؟ لا يمكن التراجع عن هذا الإجراء."
+
+#: admin/views/page-logs.php:307
+msgid "Clear Log"
+msgstr "مسح السجل"
+
+#. translators: %d: number of log lines
+#: admin/views/page-logs.php:314
+#, php-format
+msgid "%d lines total"
+msgstr ""
+
+#: admin/views/page-logs.php:329
+msgid "The debug log is empty."
+msgstr ""
+
+#: admin/views/page-templates.php:19
 msgid "Login OTP"
 msgstr "رمز التحقق لتسجيل الدخول"
 
-msgid "Sent when a user requests a login OTP code."
-msgstr "يُرسل عندما يطلب المستخدم رمز التحقق لتسجيل الدخول."
+#: admin/views/page-templates.php:20
+msgid "Checkout Verification OTP"
+msgstr "رمز التحقق عند إتمام الطلب"
 
+#: admin/views/page-templates.php:21
+#, fuzzy
+msgid "Password Reset OTP"
+msgstr "إعادة تعيين كلمة المرور"
+
+#: admin/views/page-templates.php:22
 msgid "Welcome SMS"
 msgstr "رسالة الترحيب"
 
+#: admin/views/page-templates.php:27
+msgid "Sent when a user requests a login OTP code."
+msgstr "يُرسل عندما يطلب المستخدم رمز التحقق لتسجيل الدخول."
+
+#: admin/views/page-templates.php:28
+msgid ""
+"Sent when a WooCommerce customer verifies their phone number at checkout. If "
+"disabled, the Login OTP template is sent instead. If the Arabic text is "
+"empty, the English text is sent."
+msgstr ""
+"يُرسل عندما يتحقق عميل WooCommerce من رقم هاتفه عند إتمام الطلب. إذا عُطّل، "
+"يُرسل قالب رمز التحقق لتسجيل الدخول بدلاً منه. وإذا كان النص العربي فارغاً، "
+"يُرسل النص الإنجليزي."
+
+#: admin/views/page-templates.php:29
+msgid "Sent when a user requests a password reset via OTP."
+msgstr "يُرسل عندما يطلب المستخدم إعادة تعيين كلمة المرور عبر رمز التحقق."
+
+#: admin/views/page-templates.php:30
 msgid "Sent after a new user account is created. (Optional)"
 msgstr "يُرسل بعد إنشاء حساب مستخدم جديد. (اختياري)"
 
-msgid "Enabled"
-msgstr "مفعّل"
-
-msgid "English (LTR)"
-msgstr "الإنجليزية (يسار إلى يمين)"
-
-msgid "Arabic (RTL)"
-msgstr "العربية (يمين إلى يسار)"
-
-msgid "Available placeholders:"
-msgstr "العناصر النائبة المتاحة:"
-
+#: admin/views/page-templates.php:36 admin/views/page-templates.php:41
+#: admin/views/page-templates.php:46
 msgid "The generated OTP code"
 msgstr "رمز التحقق المُنشأ"
 
+#: admin/views/page-templates.php:37 admin/views/page-templates.php:42
+#: admin/views/page-templates.php:47 admin/views/page-templates.php:52
 msgid "Your WordPress site name"
 msgstr "اسم موقع WordPress الخاص بك"
 
-msgid "User display name (welcome SMS only)"
+#: admin/views/page-templates.php:38 admin/views/page-templates.php:43
+#: admin/views/page-templates.php:48
+msgid "OTP validity period in minutes"
+msgstr ""
+
+#: admin/views/page-templates.php:51
+#, fuzzy
+msgid "User display name"
 msgstr "الاسم المعروض للمستخدم (لرسالة الترحيب فقط)"
 
-msgid "characters"
-msgstr "حرف"
+#: admin/views/page-templates.php:98
+msgid "Available placeholders:"
+msgstr "العناصر النائبة المتاحة:"
 
-msgid "Enter Your Verification Code"
-msgstr "أدخل رمز التحقق الخاص بك"
+#: admin/views/page-templates.php:126
+msgid "Use this template for checkout verification"
+msgstr "استخدم هذا القالب للتحقق عند إتمام الطلب"
 
-msgid "Verify Your Identity — Password Reset"
-msgstr "تحقق من هويتك — إعادة تعيين كلمة المرور"
+#: admin/views/page-templates.php:182
+#, fuzzy
+msgid "Save Templates"
+msgstr "القوالب"
 
-msgid "Two-Step Verification"
-msgstr "التحقق بخطوتين"
+#: admin/views/page-users-no-phone.php:107
+msgid "Users need a phone number"
+msgstr ""
 
-msgid "Password Reset"
-msgstr "إعادة تعيين كلمة المرور"
+#: admin/views/page-users-no-phone.php:108
+msgid ""
+"These users are required to verify via OTP but will bypass it until a phone "
+"is saved."
+msgstr ""
 
-msgid "We sent a %d-digit code to %s"
-msgstr "لقد أرسلنا رمزاً مكوناً من %d أرقام إلى %s"
+#: admin/views/page-users-no-phone.php:112
+msgid "All users covered"
+msgstr ""
 
-msgid "Enter the %d-digit code sent to your phone."
-msgstr "أدخل الرمز المكوّن من %d أرقام المُرسل إلى هاتفك."
+#: admin/views/page-users-no-phone.php:113
+msgid ""
+"Every user in an OTP-required role has a phone number. OTP is enforced for "
+"all of them."
+msgstr ""
 
-msgid "Verification code"
-msgstr "رمز التحقق"
+#. translators: 1: comma-separated role names, 2: link to General Settings
+#: admin/views/page-users-no-phone.php:128
+#, php-format
+msgid "Filtered to OTP-required roles: %1$s. Change roles in %2$s."
+msgstr ""
 
-msgid "Verify Code"
-msgstr "تحقق من الرمز"
+#. translators: %s: link to General Settings
+#: admin/views/page-users-no-phone.php:137
+#, php-format
+msgid "No roles configured. Showing all users without a phone. %s"
+msgstr ""
 
-msgid "Verifying..."
-msgstr "جارٍ التحقق..."
+#: admin/views/page-users-no-phone.php:138
+#, fuzzy
+msgid "Configure OTP roles."
+msgstr "تهيئة الآن ←"
 
-msgid "Back to login"
-msgstr "العودة إلى تسجيل الدخول"
+#: admin/views/page-users-no-phone.php:150
+msgid "Role"
+msgstr ""
 
-msgid "Resend code (%d)"
-msgstr "إعادة إرسال الرمز (%d)"
+#: admin/views/page-users-no-phone.php:151
+#, fuzzy
+msgid "Phone Number"
+msgstr "رقم الهاتف (لرمز التحقق عبر SMS)"
 
-msgid "Resend code"
-msgstr "إعادة إرسال الرمز"
+#: admin/views/page-users-no-phone.php:200 includes/class-kwtsms-plugin.php:479
+#: includes/class-kwtsms-user-meta.php:281
+#: includes/integrations/class-kwtsms-woo-metabox.php:142
+#: includes/integrations/class-kwtsms-woo.php:308
+msgid "e.g. 965XXXXXXXX"
+msgstr "مثال: 965XXXXXXXX"
 
-msgid "Login with SMS"
-msgstr "تسجيل الدخول عبر SMS"
+#: admin/views/page-users-no-phone.php:211
+#: admin/views/page-users-no-phone.php:246
+msgid "Save"
+msgstr ""
 
+#: admin/views/page-users-no-phone.php:223
+msgid "All users are covered"
+msgstr ""
+
+#: admin/views/page-users-no-phone.php:224
+msgid ""
+"Every user in an OTP-required role has a phone number saved. OTP is fully "
+"enforced."
+msgstr ""
+
+#: admin/views/page-users-no-phone.php:226
+#, fuzzy
+msgid "Back to General Settings"
+msgstr "الإعدادات العامة"
+
+#: admin/views/page-users-no-phone.php:244
+msgid "Saving\\u2026"
+msgstr ""
+
+#: admin/views/page-users-no-phone.php:245
+msgid "Could not save phone."
+msgstr ""
+
+#: admin/views/page-users-no-phone.php:247
+msgid "Request failed. Try again."
+msgstr ""
+
+#: admin/views/page-users-no-phone.php:248
+msgid "Please enter a phone number."
+msgstr ""
+
+#: admin/views/page-users-no-phone.php:249
+msgid "Number too short. Include country code, e.g. 96512345678."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:239
+msgid "SMS sending is disabled. Enable it in kwtSMS > General Settings."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:249
+#, fuzzy
+msgid ""
+"kwtSMS API credentials are not configured. Go to kwtSMS > Gateway and enter "
+"your API username and password."
+msgstr ""
+"لم يتم تهيئة بيانات اعتماد kwtSMS API. يرجى الانتقال إلى الإعدادات ← kwtSMS "
+"← البوابة وإدخال اسم المستخدم وكلمة المرور."
+
+#: includes/class-kwtsms-api.php:262
+msgid ""
+"Cannot send SMS: message is empty. Please check your SMS templates in "
+"Settings > kwtSMS > Templates."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:299
+msgid ""
+"Cannot send SMS: no Sender ID configured. Go to kwtSMS > Gateway, save your "
+"API credentials, then choose a Sender ID from the dropdown. Click Save "
+"Settings."
+msgstr ""
+
+#. translators: 1: number of pages, 2: max pages allowed
+#: includes/class-kwtsms-api.php:339
+#, php-format
+msgid ""
+"Message is too long (%1$d SMS pages). Maximum is %2$d pages. Shorten the "
+"message or split it into multiple sends."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:353
+msgid ""
+"Cannot send SMS: phone number is missing. Please check user phone in their "
+"profile."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:421
+msgid "Cannot send SMS: no valid phone numbers provided."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:450 includes/class-kwtsms-api.php:485
+msgid "SMS to this country is not enabled."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:784
+#, fuzzy
+msgid "Insufficient SMS credits. Recharge at kwtsms.com and try again."
+msgstr "رصيد SMS غير كافٍ. يرجى التواصل مع مدير الموقع."
+
+#. translators: 1: country name, 2: expected digit count(s), 3: dial code, 4: actual digit count
+#: includes/class-kwtsms-api.php:1577
+#, php-format
+msgid "Invalid %1$s number: expected %2$s local digits after +%3$s, got %4$d."
+msgstr ""
+
+#. translators: 1: country name, 2: dial code, 3: comma-separated list of valid starting digits
+#: includes/class-kwtsms-api.php:1600
+#, php-format
+msgid ""
+"Invalid %1$s mobile number: local part after +%2$s must start with %3$s."
+msgstr ""
+
+#. translators: %s: the entered phone number
+#: includes/class-kwtsms-api.php:1653
+#, php-format
+msgid ""
+"Please enter a valid phone number with country code (e.g. 965XXXXXXXX). Got: "
+"%s"
+msgstr ""
+
+#: includes/class-kwtsms-api.php:1798
+msgid "SMS service is temporarily unavailable. Please try again later."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:1799
+msgid "Gateway configuration error. Please contact the site administrator."
+msgstr "خطأ في تهيئة البوابة. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1800
+msgid "Gateway authentication failed. Please contact the site administrator."
+msgstr "فشل مصادقة البوابة. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1801
+#, fuzzy
+msgid ""
+"SMS gateway is not enabled on this account. Please contact the site "
+"administrator."
+msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1802
+#, fuzzy
+msgid ""
+"SMS gateway account is suspended. Please contact the site administrator."
+msgstr "فشل مصادقة البوابة. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1803
+msgid "Phone number is not valid for SMS delivery."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:1804
+msgid "Too many recipients. Please try again."
+msgstr "مستلمون كثيرون جداً. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-api.php:1805
+msgid ""
+"The configured sender ID is not allowed. Please contact the site "
+"administrator."
+msgstr "معرّف المرسل المهيّأ غير مسموح به. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1806
+#, fuzzy
+msgid "SMS template is empty. Please contact the site administrator."
+msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1807 includes/class-kwtsms-api.php:1808
+msgid "Insufficient SMS credits. Please contact the site administrator."
+msgstr "رصيد SMS غير كافٍ. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1809
+msgid "Message is too long. Please contact the site administrator."
+msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1810
+msgid "SMS queue is full. Please try again in a few minutes."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:1811
+msgid "Delivery report not found."
+msgstr "تقرير التسليم غير موجود."
+
+#: includes/class-kwtsms-api.php:1812
+msgid "Message not found."
+msgstr "الرسالة غير موجودة."
+
+#: includes/class-kwtsms-api.php:1813
+msgid "Delivery report is not available for this message."
+msgstr "تقرير التسليم غير متاح لهذه الرسالة."
+
+#: includes/class-kwtsms-api.php:1814
+msgid "Delivery reports are not ready yet. Please check back in 24 hours."
+msgstr "تقارير التسليم غير جاهزة بعد. يرجى التحقق مرة أخرى خلال 24 ساعة."
+
+#: includes/class-kwtsms-api.php:1815
+msgid "Could not retrieve delivery report."
+msgstr "تعذّر استرداد تقرير التسليم."
+
+#: includes/class-kwtsms-api.php:1816
+msgid ""
+"Your request was blocked by a security policy. Please contact the site "
+"administrator."
+msgstr "تم حظر طلبك بسبب سياسة أمان. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1817
+msgid ""
+"Phone number is not valid. Please enter a valid mobile number with country "
+"code."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:1818
+#, fuzzy
+msgid ""
+"No SMS coverage for this destination. Please contact the site administrator."
+msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1819
+msgid ""
+"Message contains unsupported characters. Please contact the site "
+"administrator."
+msgstr "الرسالة تحتوي على أحرف غير مدعومة. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1821
+msgid ""
+"This number was sent the same message too recently. Please try again shortly."
+msgstr ""
+
+#: includes/class-kwtsms-api.php:1822
+msgid "Message not found or message ID is incorrect."
+msgstr "الرسالة غير موجودة أو معرّف الرسالة غير صحيح."
+
+#: includes/class-kwtsms-api.php:1823
+msgid "Message is stuck in queue. Please contact the site administrator."
+msgstr "الرسالة عالقة في قائمة الانتظار. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1824
+#, fuzzy
+msgid ""
+"Message was rejected due to policy violations. Please contact the site "
+"administrator."
+msgstr "تم رفض الرسالة كرسالة مزعجة. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1825
+msgid "Message was rejected as spam. Please contact the site administrator."
+msgstr "تم رفض الرسالة كرسالة مزعجة. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-api.php:1826
+#, fuzzy
+msgid "No SMS coverage configured. Please contact the site administrator."
+msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
+
+#. translators: %s: internal error code
+#: includes/class-kwtsms-api.php:1831
+#, php-format
+msgid "An unexpected error occurred (%s). Please try again."
+msgstr "حدث خطأ غير متوقع (%s). يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-api.php:1876
+msgid ""
+"kwtSMS API credentials are not configured. Please go to Settings  kwtSMS  "
+"Gateway and enter your API username and password."
+msgstr ""
+"لم يتم تهيئة بيانات اعتماد kwtSMS API. يرجى الانتقال إلى الإعدادات ← kwtSMS "
+"← البوابة وإدخال اسم المستخدم وكلمة المرور."
+
+#: includes/class-kwtsms-api.php:1916
+msgid ""
+"Could not connect to the SMS gateway. Please check your internet connection."
+msgstr "تعذّر الاتصال ببوابة SMS. يرجى التحقق من اتصالك بالإنترنت."
+
+#. translators: %d: HTTP status code
+#: includes/class-kwtsms-api.php:1932
+#, fuzzy, php-format
+msgid ""
+"Unexpected response from SMS gateway (HTTP %d). This may indicate a server-"
+"side issue at kwtsms.com."
+msgstr "استجابة غير متوقعة من بوابة SMS (HTTP %d)."
+
+#: includes/class-kwtsms-captcha.php:188 includes/class-kwtsms-captcha.php:219
+msgid "CAPTCHA verification failed. Please try again."
+msgstr "فشل التحقق من CAPTCHA. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-captcha.php:226
+msgid "Your request was flagged as suspicious. Please try again."
+msgstr "تم وضع علامة على طلبك كمشبوه. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-captcha.php:244
+msgid "Please complete the security check before continuing."
+msgstr ""
+
+#: includes/class-kwtsms-captcha.php:273
+#: includes/class-kwtsms-registration-otp-gate.php:308
+#, fuzzy
+msgid "Security check failed. Please try again."
+msgstr "فشل فحص الأمان. يرجى العودة والمحاولة مرة أخرى."
+
+#: includes/class-kwtsms-login-otp.php:132
+msgid ""
+"Too many OTP requests for this number. Please wait a few minutes before "
+"trying again."
+msgstr ""
+"طلبات رمز تحقق كثيرة جداً لهذا الرقم. يرجى الانتظار بضع دقائق قبل المحاولة."
+
+#: includes/class-kwtsms-login-otp.php:138
+#, fuzzy
+msgid ""
+"Too many OTP requests from this location. Please wait a few minutes before "
+"trying again."
+msgstr ""
+"طلبات رمز تحقق كثيرة جداً لهذا الرقم. يرجى الانتظار بضع دقائق قبل المحاولة."
+
+#: includes/class-kwtsms-login-otp.php:144
+#, fuzzy
+msgid ""
+"Too many OTP requests for this account. Please wait a few minutes before "
+"trying again."
+msgstr ""
+"طلبات رمز تحقق كثيرة جداً لهذا الرقم. يرجى الانتظار بضع دقائق قبل المحاولة."
+
+#: includes/class-kwtsms-login-otp.php:200
+#: includes/class-kwtsms-login-otp.php:623
+#, fuzzy
+msgid ""
+"Your verification code could not be sent. Please contact the site "
+"administrator."
+msgstr "رصيد SMS غير كافٍ. يرجى التواصل مع مدير الموقع."
+
+#: includes/class-kwtsms-login-otp.php:315
 msgid "Login with SMS OTP"
 msgstr "تسجيل الدخول برمز SMS"
 
-msgid "Login with SMS — "
-msgstr "تسجيل الدخول عبر SMS — "
+#: includes/class-kwtsms-login-otp.php:335
+#: includes/class-kwtsms-login-otp.php:493
+#: includes/class-kwtsms-reset-otp.php:244
+msgid "Security check failed. Please go back and try again."
+msgstr "فشل فحص الأمان. يرجى العودة والمحاولة مرة أخرى."
 
-msgid "Enter your registered phone number to receive a one-time login code."
-msgstr "أدخل رقم هاتفك المسجل لتلقي رمز تسجيل الدخول."
-
-msgid "Send OTP Code"
-msgstr "إرسال رمز التحقق"
-
-msgid ""
-"If an account is associated with this number, an OTP will be sent shortly."
-msgstr "إذا كان هناك حساب مرتبط بهذا الرقم، سيتم إرسال رمز التحقق قريباً."
-
-msgid ""
-"If your account has a phone number registered, an OTP will be sent instead "
-"of an email reset link."
-msgstr ""
-"إذا كان حسابك يحتوي على رقم هاتف مسجل، سيتم إرسال رمز التحقق بدلاً من رابط "
-"إعادة تعيين البريد الإلكتروني."
-
-msgid "A new code has been sent to your phone."
-msgstr "تم إرسال رمز جديد إلى هاتفك."
-
+#: includes/class-kwtsms-login-otp.php:341
+#: includes/class-kwtsms-login-otp.php:348 includes/class-kwtsms-plugin.php:731
 msgid "Session expired. Please log in again."
 msgstr "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى."
 
-msgid "Session expired. Please start over."
-msgstr "انتهت الجلسة. يرجى البدء من جديد."
+#: includes/class-kwtsms-login-otp.php:375
+#: includes/class-kwtsms-reset-otp.php:278
+#, fuzzy
+msgid "Please enter your verification code."
+msgstr "أدخل رمز التحقق الخاص بك"
 
+#: includes/class-kwtsms-login-otp.php:394
+#: includes/class-kwtsms-login-otp.php:416
 msgid "Your code has expired. Click \"Resend\" to get a new one."
 msgstr "انتهت صلاحية رمزك. انقر على \"إعادة الإرسال\" للحصول على رمز جديد."
 
-msgid "Your code has expired. Please go back and request a new one."
-msgstr "انتهت صلاحية رمزك. يرجى العودة وطلب رمز جديد."
-
+#. translators: %d: number of remaining attempts
+#. translators: %d: remaining attempts
+#: includes/class-kwtsms-login-otp.php:401
+#: includes/class-kwtsms-reset-otp.php:325
+#, php-format
 msgid "Incorrect code. %d attempt remaining."
 msgid_plural "Incorrect code. %d attempts remaining."
 msgstr[0] "رمز غير صحيح. لا محاولات متبقية."
@@ -270,330 +3432,594 @@ msgstr[3] "رمز غير صحيح. متبقية %d محاولات."
 msgstr[4] "رمز غير صحيح. متبقية %d محاولة."
 msgstr[5] "رمز غير صحيح. متبقية %d محاولة."
 
+#: includes/class-kwtsms-login-otp.php:425
 msgid "Too many incorrect attempts. Please log in again to request a new code."
 msgstr "محاولات خاطئة كثيرة. يرجى تسجيل الدخول مرة أخرى لطلب رمز جديد."
 
-msgid ""
-"Too many incorrect attempts. Please start the password reset process again."
-msgstr "محاولات خاطئة كثيرة. يرجى إعادة عملية إعادة تعيين كلمة المرور."
+#: includes/class-kwtsms-login-otp.php:430
+#: includes/class-kwtsms-reset-otp.php:352
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
 
+#: includes/class-kwtsms-login-otp.php:521
+#: includes/class-kwtsms-login-otp.php:575
+#: includes/class-kwtsms-reset-otp.php:127
 msgid "Too many requests. Please wait a few minutes before trying again."
 msgstr "طلبات كثيرة جداً. يرجى الانتظار بضع دقائق قبل المحاولة مرة أخرى."
 
+#: includes/class-kwtsms-login-otp.php:527
+#, fuzzy
 msgid ""
-"Too many OTP requests for this number. Please wait a few minutes before "
+"Too many requests from this location. Please wait a few minutes before "
 "trying again."
 msgstr ""
 "طلبات رمز تحقق كثيرة جداً لهذا الرقم. يرجى الانتظار بضع دقائق قبل المحاولة."
 
-msgid "Could not generate reset link. Please try again."
-msgstr "تعذّر إنشاء رابط إعادة التعيين. يرجى المحاولة مرة أخرى."
+#: includes/class-kwtsms-login-otp.php:533
+msgid ""
+"If an account is associated with this number, an OTP will be sent shortly."
+msgstr "إذا كان هناك حساب مرتبط بهذا الرقم، سيتم إرسال رمز التحقق قريباً."
 
-msgid "Something went wrong. Please try again."
-msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+#: includes/class-kwtsms-login-otp.php:614
+#, fuzzy
+msgid "SMS login is not available. Please contact the site administrator."
+msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
 
-msgid "Security check failed. Please go back and try again."
-msgstr "فشل فحص الأمان. يرجى العودة والمحاولة مرة أخرى."
+#. translators: %s: site name
+#: includes/class-kwtsms-login-otp.php:773
+#, php-format
+msgid "[%s] kwtSMS: OTP delivery failed, account balance is zero"
+msgstr ""
 
-msgid "CAPTCHA verification failed. Please try again."
-msgstr "فشل التحقق من CAPTCHA. يرجى المحاولة مرة أخرى."
+#: includes/class-kwtsms-login-otp.php:779
+msgid ""
+"Users are currently allowed to log in without OTP (password only) until "
+"credits are restored."
+msgstr ""
 
+#: includes/class-kwtsms-login-otp.php:780
+msgid "Users who require OTP cannot log in until the account is recharged."
+msgstr ""
+
+#. translators: 1: site name, 2: gateway URL, 3: recharge URL, 4: behavior description
+#: includes/class-kwtsms-login-otp.php:784
+#, php-format
+msgid ""
+"Hello,\\n\\nkwtSMS on %1$s could not send OTP verification codes because "
+"your account has no SMS credits.\\n\\n%4$s\\n\\nTo restore OTP, please top "
+"up your kwtSMS account:\\n%3$s\\n\\nOnce recharged, OTP will resume "
+"automatically. You can also check your current balance on the Gateway "
+"settings page:\\n%2$s\\n\\nThis is an automated alert from the kwtSMS "
+"WordPress plugin."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:152
+#, fuzzy
+msgid "SMS by kwtSMS.com"
+msgstr "خدمة الرسائل بواسطة kwtSMS.com"
+
+#: includes/class-kwtsms-plugin.php:309 includes/class-kwtsms-plugin.php:313
+#, fuzzy
+msgid "Too many requests. Please try again later."
+msgstr "مستلمون كثيرون جداً. يرجى المحاولة مرة أخرى."
+
+#. translators: 1: site name, 2: OTP code
+#: includes/class-kwtsms-plugin.php:342
+#, php-format
+msgid "%1$s: Your verification code is %2$s. Valid for 15 minutes."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:388
+#, fuzzy
+msgid "Token and code are required."
+msgstr "اسم المستخدم وكلمة المرور مطلوبان."
+
+#: includes/class-kwtsms-plugin.php:394
+#, fuzzy
+msgid "Invalid token."
+msgstr "جلسة غير صالحة."
+
+#: includes/class-kwtsms-plugin.php:402
+#, fuzzy
+msgid "Session expired. Please request a new code."
+msgstr "انتهت الجلسة. يرجى البدء من جديد."
+
+#: includes/class-kwtsms-plugin.php:410
+#, fuzzy
+msgid "Too many incorrect attempts. Please request a new code."
+msgstr "محاولات خاطئة كثيرة. يرجى تسجيل الدخول مرة أخرى لطلب رمز جديد."
+
+#: includes/class-kwtsms-plugin.php:419
+#, fuzzy
+msgid "Incorrect code. Please try again."
+msgstr "رمز التحقق غير صحيح أو منتهي الصلاحية. حاول مرة أخرى."
+
+#: includes/class-kwtsms-plugin.php:427
+msgid "Phone number verified successfully."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:469
+msgid "Enter your phone number to verify"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:470
+#, fuzzy
+msgid "Send Code"
+msgstr "إرسال رمز التحقق"
+
+#: includes/class-kwtsms-plugin.php:472
+#, fuzzy
+msgid "Enter the code sent to your phone"
+msgstr "أدخل الرمز المكوّن من %d أرقام المُرسل إلى هاتفك."
+
+#: includes/class-kwtsms-plugin.php:473
+#, fuzzy
+msgid "Verify"
+msgstr "تحقق من الرمز"
+
+#: includes/class-kwtsms-plugin.php:475
+#, fuzzy
+msgid "Phone verified!"
+msgstr "التحقق من رقم الهاتف"
+
+#: includes/class-kwtsms-plugin.php:476
+#, fuzzy
+msgid "Resend Code"
+msgstr "إعادة إرسال الرمز"
+
+#: includes/class-kwtsms-plugin.php:477
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:480
+#, fuzzy
+msgid "6-digit code"
+msgstr "6 أرقام (موصى به)"
+
+#: includes/class-kwtsms-plugin.php:481
+#, fuzzy
+msgid "Phone Verification Required"
+msgstr "التحقق من رقم الهاتف"
+
+#: includes/class-kwtsms-plugin.php:482
+msgid "Your phone has been verified. Submitting form..."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:508
+msgid "Username and password are required."
+msgstr "اسم المستخدم وكلمة المرور مطلوبان."
+
+#: includes/class-kwtsms-plugin.php:657
+msgid "No API credentials saved. Please save your credentials first."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:715
+msgid "Invalid session."
+msgstr "جلسة غير صالحة."
+
+#: includes/class-kwtsms-plugin.php:725
+#, fuzzy
+msgid "Session expired. Please start the password reset process again."
+msgstr "محاولات خاطئة كثيرة. يرجى إعادة عملية إعادة تعيين كلمة المرور."
+
+#: includes/class-kwtsms-plugin.php:745
+msgid "No phone number on this account."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:753
 msgid "Too many requests. Please wait before trying again."
 msgstr "طلبات كثيرة جداً. يرجى الانتظار قبل المحاولة مرة أخرى."
 
-msgid "e.g. 965XXXXXXXX"
-msgstr "مثال: 965XXXXXXXX"
+#: includes/class-kwtsms-plugin.php:762
+#, fuzzy
+msgid "Too many requests from this location. Please wait before trying again."
+msgstr "طلبات كثيرة من اتصالك. انتظر قليلاً ثم حاول مرة أخرى."
 
+#: includes/class-kwtsms-plugin.php:771
+#, fuzzy
+msgid "Too many requests for this account. Please wait before trying again."
+msgstr "طلبات كثيرة لرمز التحقق لهذا الرقم. انتظر قليلاً ثم حاول مرة أخرى."
+
+#: includes/class-kwtsms-plugin.php:783 includes/class-kwtsms-plugin.php:825
+msgid "A new code has been sent to your phone."
+msgstr "تم إرسال رمز جديد إلى هاتفك."
+
+#: includes/class-kwtsms-plugin.php:795
+msgid "Please wait before requesting another code."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:869
+msgid "Trusted Devices"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:875
+msgid "No trusted devices."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:880
+msgid "Last seen"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:881
+msgid "Device"
+msgstr ""
+
+#. translators: %s: human-readable time difference
+#: includes/class-kwtsms-plugin.php:891
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:900
+msgid "Revoke"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:911
+msgid "Revoke all trusted devices"
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:982
+#, fuzzy
+msgid "Invalid token hash."
+msgstr "جلسة غير صالحة."
+
+#: includes/class-kwtsms-plugin.php:1043
+msgid ""
+"Phone number is too short. Enter the country code followed by the full local "
+"number, e.g. 96512345678 (Kuwait: 965 + 8 digits, 11 digits total)."
+msgstr ""
+
+#: includes/class-kwtsms-registration-otp-gate.php:122
+#, fuzzy
+msgid "Verification expired. Please register again."
+msgstr "انتهت الجلسة. يرجى تسجيل الدخول مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:123
+#, fuzzy
+msgid "Security check failed. Please register again."
+msgstr "فشل فحص الأمان. يرجى العودة والمحاولة مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:124
+#, fuzzy
+msgid "Account creation failed. Please try again."
+msgstr "فشل التحقق من CAPTCHA. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:125
+#, fuzzy
+msgid "Too many failed attempts. Please register again."
+msgstr "مستلمون كثيرون جداً. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:170
+#: includes/class-kwtsms-registration-otp-gate.php:243
+msgid "A phone number is required to register."
+msgstr ""
+
+#: includes/class-kwtsms-registration-otp-gate.php:229
+#, fuzzy
+msgid "Security verification failed. Please refresh and try again."
+msgstr "انتهت الجلسة. حدّث الصفحة وحاول مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:305
+#, fuzzy
+msgid "Invalid verification code. Please try again."
+msgstr "فشل التحقق من CAPTCHA. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:306
+#, fuzzy
+msgid "Your verification code has expired. Please start over."
+msgstr "انتهت الجلسة. يرجى البدء من جديد."
+
+#: includes/class-kwtsms-registration-otp-gate.php:307
+#, fuzzy
+msgid "Too many failed attempts. Please start over."
+msgstr "انتهت الجلسة. يرجى البدء من جديد."
+
+#: includes/class-kwtsms-registration-otp-gate.php:461
+#, fuzzy
+msgid "Unable to send verification code. Please try again."
+msgstr "فشل التحقق من CAPTCHA. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-registration-otp-gate.php:590
+#: includes/class-kwtsms-registration-otp-gate.php:603
+msgid "Verify Your Phone Number"
+msgstr ""
+
+#. translators: 1: number of digits, 2: masked phone number
+#. translators: %s: partially masked phone number
+#: includes/class-kwtsms-registration-otp-gate.php:610
+#: includes/views/page-otp.php:92
+#, fuzzy, php-format
+msgid "We sent a %1$d-digit code to %2$s"
+msgstr "لقد أرسلنا رمزاً مكوناً من %d أرقام إلى %s"
+
+#. translators: %d: number of digits
+#: includes/class-kwtsms-registration-otp-gate.php:621
+#: includes/views/page-otp.php:103
+#, php-format
+msgid "Enter the %d-digit code sent to your phone."
+msgstr "أدخل الرمز المكوّن من %d أرقام المُرسل إلى هاتفك."
+
+#: includes/class-kwtsms-registration-otp-gate.php:639
+#: includes/views/page-otp.php:136
+msgid "Verification code"
+msgstr "رمز التحقق"
+
+#: includes/class-kwtsms-registration-otp-gate.php:657
+msgid "Verify and Create Account"
+msgstr ""
+
+#: includes/class-kwtsms-registration-otp-gate.php:662
+#: includes/views/page-otp.php:196 includes/views/page-passwordless.php:160
+msgid "Back to login"
+msgstr "العودة إلى تسجيل الدخول"
+
+#: includes/class-kwtsms-reset-otp.php:209
+msgid ""
+"If your account has a phone number registered, an OTP will be sent instead "
+"of an email reset link."
+msgstr ""
+"إذا كان حسابك يحتوي على رقم هاتف مسجل، سيتم إرسال رمز التحقق بدلاً من رابط "
+"إعادة تعيين البريد الإلكتروني."
+
+#: includes/class-kwtsms-reset-otp.php:249
+#: includes/class-kwtsms-reset-otp.php:256
+msgid "Session expired. Please start over."
+msgstr "انتهت الجلسة. يرجى البدء من جديد."
+
+#: includes/class-kwtsms-reset-otp.php:298
+msgid "Could not generate reset link. Please try again."
+msgstr "تعذّر إنشاء رابط إعادة التعيين. يرجى المحاولة مرة أخرى."
+
+#: includes/class-kwtsms-reset-otp.php:319
+#: includes/class-kwtsms-reset-otp.php:339
+msgid "Your code has expired. Please go back and request a new one."
+msgstr "انتهت صلاحية رمزك. يرجى العودة وطلب رمز جديد."
+
+#: includes/class-kwtsms-reset-otp.php:347
+msgid ""
+"Too many incorrect attempts. Please start the password reset process again."
+msgstr "محاولات خاطئة كثيرة. يرجى إعادة عملية إعادة تعيين كلمة المرور."
+
+#: includes/class-kwtsms-user-meta.php:91
+msgid "SMS OTP Authentication"
+msgstr ""
+
+#: includes/class-kwtsms-user-meta.php:95
 msgid "Phone Number (for SMS OTP)"
 msgstr "رقم الهاتف (لرمز التحقق عبر SMS)"
 
+#: includes/class-kwtsms-user-meta.php:115
+#: includes/views/page-passwordless.php:145
+msgid "Local number"
+msgstr ""
+
+#: includes/class-kwtsms-user-meta.php:123
+#, fuzzy
 msgid ""
-"Enter phone number with country code (e.g. 965XXXXXXXX for Kuwait). Arabic/"
-"Eastern Arabic numerals are accepted. Used to receive OTP codes for login "
-"and password reset."
+"Enter your phone number with country code. Used to receive OTP codes for "
+"login and password reset."
 msgstr ""
 "أدخل رقم الهاتف مع رمز الدولة (مثال: 965XXXXXXXX للكويت). يُقبل الأرقام "
 "العربية والأرقام العربية الشرقية. يُستخدم لاستقبال رموز التحقق عند تسجيل "
 "الدخول وإعادة تعيين كلمة المرور."
 
-msgid "Phone"
-msgstr "الهاتف"
-
-msgid "You do not have permission to access this page."
-msgstr "ليس لديك صلاحية للوصول إلى هذه الصفحة."
-
-msgid "Insufficient permissions."
-msgstr "صلاحيات غير كافية."
-
-msgid "Invalid session."
-msgstr "جلسة غير صالحة."
-
-msgid "Gateway authentication failed. Please contact the site administrator."
-msgstr "فشل مصادقة البوابة. يرجى التواصل مع مدير الموقع."
-
-msgid "Gateway configuration error. Please contact the site administrator."
-msgstr "خطأ في تهيئة البوابة. يرجى التواصل مع مدير الموقع."
-
-msgid ""
-"Could not connect to the SMS gateway. Please check your internet connection."
-msgstr "تعذّر الاتصال ببوابة SMS. يرجى التحقق من اتصالك بالإنترنت."
-
-msgid "Insufficient SMS credits. Please contact the site administrator."
-msgstr "رصيد SMS غير كافٍ. يرجى التواصل مع مدير الموقع."
-
-msgid ""
-"The configured sender ID is not allowed. Please contact the site "
-"administrator."
-msgstr "معرّف المرسل المهيّأ غير مسموح به. يرجى التواصل مع مدير الموقع."
-
-msgid "Message is too long. Please contact the site administrator."
-msgstr "الرسالة طويلة جداً. يرجى التواصل مع مدير الموقع."
-
-msgid ""
-"Message contains unsupported characters. Please contact the site "
-"administrator."
-msgstr "الرسالة تحتوي على أحرف غير مدعومة. يرجى التواصل مع مدير الموقع."
-
-msgid "Message was rejected as spam. Please contact the site administrator."
-msgstr "تم رفض الرسالة كرسالة مزعجة. يرجى التواصل مع مدير الموقع."
-
-msgid "Message is stuck in queue. Please contact the site administrator."
-msgstr "الرسالة عالقة في قائمة الانتظار. يرجى التواصل مع مدير الموقع."
-
-msgid ""
-"Your request was blocked by a security policy. Please contact the site "
-"administrator."
-msgstr "تم حظر طلبك بسبب سياسة أمان. يرجى التواصل مع مدير الموقع."
-
-msgid "Your request was flagged as suspicious. Please try again."
-msgstr "تم وضع علامة على طلبك كمشبوه. يرجى المحاولة مرة أخرى."
-
-msgid "An unexpected error occurred (%s). Please try again."
-msgstr "حدث خطأ غير متوقع (%s). يرجى المحاولة مرة أخرى."
-
-msgid "Unexpected response from SMS gateway (HTTP %d)."
-msgstr "استجابة غير متوقعة من بوابة SMS (HTTP %d)."
-
-msgid "Username and password are required."
-msgstr "اسم المستخدم وكلمة المرور مطلوبان."
-
-msgid ""
-"API credentials are not configured. The plugin will not be able to send SMS "
-"messages."
-msgstr "لم يتم تهيئة بيانات اعتماد API. لن تتمكن الإضافة من إرسال رسائل SMS."
-
-msgid ""
-"kwtSMS API credentials are not configured. Please go to Settings  kwtSMS  "
-"Gateway and enter your API username and password."
+#: includes/class-kwtsms-user-meta.php:127
+msgid "Saved:"
 msgstr ""
-"لم يتم تهيئة بيانات اعتماد kwtSMS API. يرجى الانتقال إلى الإعدادات ← kwtSMS "
-"← البوابة وإدخال اسم المستخدم وكلمة المرور."
 
+#: includes/class-kwtsms-user-meta.php:179
+#: includes/class-kwtsms-user-meta.php:305
+#, fuzzy
+msgid "Security check failed. Please reload the page and try again."
+msgstr "فشل فحص الأمان. يرجى العودة والمحاولة مرة أخرى."
+
+#: includes/class-kwtsms-user-meta.php:271
+#, fuzzy
+msgid "Phone Number (SMS OTP)"
+msgstr "رقم الهاتف (لرمز التحقق عبر SMS)"
+
+#: includes/class-kwtsms-user-meta.php:284
 msgid ""
-"Your site is not served over HTTPS. OTP codes may be intercepted in transit. "
-"Enable SSL for security."
+"Optional. Full international phone number (digits only, no + or spaces)."
 msgstr ""
-"موقعك لا يعمل عبر HTTPS. قد يتم اعتراض رموز التحقق أثناء النقل. يرجى تفعيل "
-"SSL للأمان."
 
-msgid ""
-"kwtSMS is in Test Mode. SMS messages will be queued but not delivered. OTP "
-"codes are written to wp-content/debug.log."
+#: includes/class-kwtsms-user-meta.php:343
+#: includes/integrations/class-kwtsms-woo.php:298
+#, fuzzy
+msgid "Phone Number (optional)"
+msgstr "رقم الهاتف (لرمز التحقق عبر SMS)"
+
+#: includes/class-kwtsms-user-meta.php:356
+msgid "Enter your phone with country code. Used for SMS verification."
 msgstr ""
-"إضافة kwtSMS في وضع الاختبار. سيتم وضع رسائل SMS في قائمة الانتظار دون "
-"إرسالها. تُكتب رموز التحقق في wp-content/debug.log."
 
-msgid "kwtSMS Warning:"
-msgstr "تحذير kwtSMS:"
-
-msgid "kwtSMS:"
-msgstr "kwtSMS:"
-
-msgid "Configure now "
-msgstr "تهيئة الآن ←"
-
-msgid "Test SMS sent to %s. Code: %s (check debug.log if in test mode)"
+#: includes/integrations/class-kwtsms-cf7.php:106
+#: includes/integrations/class-kwtsms-cf7.php:123
+#: includes/integrations/class-kwtsms-ninjaforms.php:111
+#: includes/integrations/class-kwtsms-ninjaforms.php:124
+#: includes/integrations/class-kwtsms-wpforms.php:96
+#: includes/integrations/class-kwtsms-wpforms.php:103
+msgid "Please verify your phone number before submitting this form."
 msgstr ""
-"تم إرسال SMS اختبار إلى %s. الرمز: %s (تحقق من debug.log إذا كنت في وضع "
-"الاختبار)"
 
-msgid "Test SMS sent! Check your phone."
-msgstr "تم إرسال SMS الاختبار! تحقق من هاتفك."
+#: includes/integrations/class-kwtsms-woo-metabox.php:75
+#, fuzzy
+msgid "Send Custom SMS"
+msgstr "إرسال رسالة اختبار الآن"
 
-msgid "Sending..."
-msgstr "جارٍ الإرسال..."
-
-msgid "kwtSMS — General Settings"
-msgstr "kwtSMS — الإعدادات العامة"
-
-msgid "kwtSMS — Gateway Settings"
-msgstr "kwtSMS — إعدادات البوابة"
-
-msgid "kwtSMS — SMS Templates"
-msgstr "kwtSMS — قوالب SMS"
-
-msgid "reCAPTCHA v3 Keys"
-msgstr "مفاتيح reCAPTCHA v3"
-
-msgid "Turnstile Keys"
-msgstr "مفاتيح Turnstile"
-
-msgid "Site Key"
-msgstr "مفتاح الموقع"
-
-msgid "Get keys from Google reCAPTCHA Admin Console "
-msgstr "احصل على المفاتيح من وحدة تحكم Google reCAPTCHA ←"
-
-msgid "Get keys from Cloudflare Dashboard "
-msgstr "احصل على المفاتيح من لوحة تحكم Cloudflare ←"
-
-msgid "Enable Password Reset OTP"
-msgstr "تفعيل رمز التحقق لإعادة تعيين كلمة المرور"
-
-msgid "Message not found."
-msgstr "الرسالة غير موجودة."
-
-msgid "Message not found or message ID is incorrect."
-msgstr "الرسالة غير موجودة أو معرّف الرسالة غير صحيح."
-
-msgid "Could not retrieve delivery report."
-msgstr "تعذّر استرداد تقرير التسليم."
-
-msgid "Delivery report is not available for this message."
-msgstr "تقرير التسليم غير متاح لهذه الرسالة."
-
-msgid "Delivery report not found."
-msgstr "تقرير التسليم غير موجود."
-
-msgid "Delivery reports are not ready yet. Please check back in 24 hours."
-msgstr "تقارير التسليم غير جاهزة بعد. يرجى التحقق مرة أخرى خلال 24 ساعة."
-
-msgid "Too many recipients. Please try again."
-msgstr "مستلمون كثيرون جداً. يرجى المحاولة مرة أخرى."
-
-msgid "Sent when a user requests a password reset via OTP."
-msgstr "يُرسل عندما يطلب المستخدم إعادة تعيين كلمة المرور عبر رمز التحقق."
-
-msgid "SMS service by kwtSMS.com"
-msgstr "خدمة الرسائل بواسطة kwtSMS.com"
-
-msgid "Don't have a kwtSMS account?"
-msgstr "ليس لديك حساب في kwtSMS؟"
-
-msgid "Sign up for free "
-msgstr "سجّل مجاناً ←"
-
-msgid "Register or request a Sender ID at kwtSMS "
-msgstr "سجّل أو اطلب معرّف المرسل في kwtSMS ←"
-
-msgid ""
-"API Username appears to be a phone number. Please enter your kwtSMS API "
-"username, not your phone number. Sign up at kwtsms.com to obtain API access."
-msgstr ""
-"يبدو أن اسم مستخدم API رقم هاتف. يُرجى إدخال اسم مستخدم API الخاص بحساب "
-"kwtSMS وليس رقم الهاتف."
-
-msgid "kwtSMS Logs"
+#: includes/integrations/class-kwtsms-woo-metabox.php:123
+#, fuzzy
+msgid "SMS Log"
 msgstr "سجلات kwtSMS"
 
-msgid "Log cleared."
-msgstr "تم مسح السجل."
+#: includes/integrations/class-kwtsms-woo-metabox.php:152
+msgid "Type your SMS message..."
+msgstr ""
 
-msgid "SMS History"
+#: includes/integrations/class-kwtsms-woo-metabox.php:163
+#, fuzzy
+msgid "Send SMS"
+msgstr "إرسال رسالة اختبار الآن"
+
+#: includes/integrations/class-kwtsms-woo-metabox.php:210
+msgid "Permission denied."
+msgstr ""
+
+#: includes/integrations/class-kwtsms-woo-metabox.php:220
+#, fuzzy
+msgid "Order, phone, and message are required."
+msgstr "اسم المستخدم وكلمة المرور مطلوبان."
+
+#: includes/integrations/class-kwtsms-woo-metabox.php:227
+#, fuzzy
+msgid "Order not found."
+msgstr "الرسالة غير موجودة."
+
+#: includes/integrations/class-kwtsms-woo-metabox.php:250
+#, fuzzy
+msgid "SMS sent."
 msgstr "سجل الرسائل"
 
-msgid "OTP Attempts"
-msgstr "محاولات OTP"
-
-msgid "Export CSV"
-msgstr "تصدير CSV"
-
-msgid "Clear Log"
-msgstr "مسح السجل"
-
-msgid "Are you sure you want to clear this log? This cannot be undone."
+#: includes/integrations/class-kwtsms-woo-stock.php:229
+msgid "Security check failed."
 msgstr ""
-"هل أنت متأكد من رغبتك في مسح هذا السجل؟ لا يمكن التراجع عن هذا الإجراء."
 
-msgid "No SMS history yet."
-msgstr "لا يوجد سجل رسائل بعد."
+#: includes/integrations/class-kwtsms-woo-stock.php:245
+msgid "Product not available for notification."
+msgstr ""
 
-msgid "No OTP attempts logged yet."
-msgstr "لم تُسجَّل أي محاولة بعد."
+#: includes/integrations/class-kwtsms-woo-stock.php:259
+msgid "You will be notified when this product is back in stock."
+msgstr ""
 
-msgid "Success"
-msgstr "نجح"
+#: includes/integrations/class-kwtsms-woo-stock.php:279
+msgid "Notify me when back in stock"
+msgstr ""
 
-msgid "Wrong code"
-msgstr "رمز خاطئ"
+#: includes/integrations/class-kwtsms-woo-stock.php:283
+#: includes/views/page-passwordless.php:80
+msgid "Phone number"
+msgstr ""
 
-msgid "Locked (max attempts)"
-msgstr "مقفل (تجاوز الحد الأقصى للمحاولات)"
+#: includes/integrations/class-kwtsms-woo-stock.php:287
+msgid "Notify Me"
+msgstr ""
 
-msgid "Rate limited"
-msgstr "تم تقييد الطلبات"
+#. translators: 1: order id 2: customer name 3: status 4: total
+#: includes/integrations/class-kwtsms-woo.php:190
+#, php-format
+msgid "New order #%1$s, %2$s, %3$s, %4$s"
+msgstr ""
 
-msgid "SMS Coverage"
-msgstr "التغطية"
+#: includes/integrations/class-kwtsms-woo.php:311
+msgid "Enter with country code. Used for SMS order notifications."
+msgstr ""
 
-msgid "Load Active Coverage"
-msgstr "تحميل التغطية النشطة"
+#: includes/integrations/class-kwtsms-woo.php:417
+#, fuzzy
+msgid "Phone verified"
+msgstr "التحقق من رقم الهاتف"
 
-msgid "Add more countries to your coverage "
-msgstr "أضف المزيد من الدول إلى تغطيتك ←"
-
-msgid "Phone & Country Settings"
-msgstr "إعدادات الهاتف والدولة"
-
-msgid "Default Country Code"
-msgstr "رمز الدولة الافتراضي"
-
-msgid "Allowed Countries"
-msgstr "الدول المسموح بها"
-
-msgid ""
-"Only phone numbers from these countries will be accepted for OTP. GCC "
-"countries are the default."
-msgstr "سيُقبل رمز OTP فقط لأرقام الهاتف من هذه الدول. دول الخليج الافتراضية."
-
-msgid "Show Referral Link"
-msgstr "عرض رابط الخدمة"
-
-msgid "Display \"SMS service by kwtSMS.com\" footer on login pages"
-msgstr "عرض \"خدمة الرسائل بواسطة kwtSMS.com\" في صفحات تسجيل الدخول"
-
-msgid "Logs"
-msgstr "السجلات"
-
-#. 2026-11-05 17:19 +03: checkout phone verification (classic and block), Arabic from marketing task #941
+#: includes/integrations/class-kwtsms-woo.php:426
+#: includes/integrations/class-kwtsms-woo.php:614
 msgid "Phone Verification"
 msgstr "التحقق من رقم الهاتف"
 
+#: includes/integrations/class-kwtsms-woo.php:427
+msgid "We will send an OTP to your billing phone to verify your order."
+msgstr ""
+
+#: includes/integrations/class-kwtsms-woo.php:436
+#: includes/integrations/class-kwtsms-woo.php:615
 msgid "Enter OTP code (leave blank to receive code first)"
 msgstr "أدخل رمز التحقق (اتركه فارغاً لتصلك رسالة بالرمز أولاً)"
 
-msgid "An OTP has been sent to your phone. Enter it above and place the order again."
-msgstr "أرسلنا رمز التحقق إلى هاتفك. أدخله في الحقل أعلاه ثم اضغط تقديم طلب مرة أخرى."
+#: includes/integrations/class-kwtsms-woo.php:486
+#, fuzzy
+msgid "Security check failed. Please refresh and try again."
+msgstr "فشل فحص الأمان. يرجى العودة والمحاولة مرة أخرى."
 
+#: includes/integrations/class-kwtsms-woo.php:539
+msgid ""
+"Too many OTP requests for this phone number. Please wait before trying again."
+msgstr "طلبات كثيرة لرمز التحقق لهذا الرقم. انتظر قليلاً ثم حاول مرة أخرى."
+
+#: includes/integrations/class-kwtsms-woo.php:542
+msgid ""
+"Too many requests from your connection. Please wait before trying again."
+msgstr "طلبات كثيرة من اتصالك. انتظر قليلاً ثم حاول مرة أخرى."
+
+#: includes/integrations/class-kwtsms-woo.php:570
+msgid ""
+"An OTP has been sent to your phone. Enter it above and place the order again."
+msgstr ""
+"أرسلنا رمز التحقق إلى هاتفك. أدخله في الحقل أعلاه ثم اضغط تقديم طلب مرة أخرى."
+
+#: includes/integrations/class-kwtsms-woo.php:576
+#: includes/integrations/class-kwtsms-woo.php:679
 msgid "Session expired. Please refresh and try again."
 msgstr "انتهت الجلسة. حدّث الصفحة وحاول مرة أخرى."
 
+#: includes/integrations/class-kwtsms-woo.php:581
 msgid "Incorrect or expired OTP. Please try again."
 msgstr "رمز التحقق غير صحيح أو منتهي الصلاحية. حاول مرة أخرى."
 
-msgid "Too many OTP requests for this phone number. Please wait before trying again."
-msgstr "طلبات كثيرة لرمز التحقق لهذا الرقم. انتظر قليلاً ثم حاول مرة أخرى."
+#: includes/views/page-otp.php:48
+#, fuzzy
+msgid "Verify Your Identity: Password Reset"
+msgstr "تحقق من هويتك: إعادة تعيين كلمة المرور"
 
-msgid "Too many requests from your connection. Please wait before trying again."
-msgstr "طلبات كثيرة من اتصالك. انتظر قليلاً ثم حاول مرة أخرى."
+#: includes/views/page-otp.php:49
+msgid "Enter Your Verification Code"
+msgstr "أدخل رمز التحقق الخاص بك"
 
-#. 2026-11-05 19:18 +03: checkout OTP template admin labels, Arabic from marketing task #953
-msgid "Checkout Verification OTP"
-msgstr "رمز التحقق عند إتمام الطلب"
+#: includes/views/page-otp.php:84
+msgid "Password Reset"
+msgstr "إعادة تعيين كلمة المرور"
 
-msgid "Sent when a WooCommerce customer verifies their phone number at checkout. If disabled, the Login OTP template is sent instead. If the Arabic text is empty, the English text is sent."
-msgstr "يُرسل عندما يتحقق عميل WooCommerce من رقم هاتفه عند إتمام الطلب. إذا عُطّل، يُرسل قالب رمز التحقق لتسجيل الدخول بدلاً منه. وإذا كان النص العربي فارغاً، يُرسل النص الإنجليزي."
+#: includes/views/page-otp.php:84
+msgid "Two-Step Verification"
+msgstr "التحقق بخطوتين"
 
-msgid "Use this template for checkout verification"
-msgstr "استخدم هذا القالب للتحقق عند إتمام الطلب"
+#: includes/views/page-otp.php:157
+msgid "Remember Me"
+msgstr ""
 
+#: includes/views/page-otp.php:163
+msgid "Trust this device for 30 days"
+msgstr ""
+
+#: includes/views/page-otp.php:168
+msgid "Verify Code"
+msgstr "تحقق من الرمز"
+
+#. translators: %d: seconds until resend is allowed
+#: includes/views/page-otp.php:186
+#, php-format
+msgid "Resend code (%d)"
+msgstr "إعادة إرسال الرمز (%d)"
+
+#: includes/views/page-otp.php:210 includes/views/page-passwordless.php:171
+msgid "SMS service by kwtSMS.com"
+msgstr "خدمة الرسائل بواسطة kwtSMS.com"
+
+#: includes/views/page-passwordless.php:52
+#, fuzzy
+msgid "Login with SMS: "
+msgstr "تسجيل الدخول عبر SMS"
+
+#: includes/views/page-passwordless.php:65
+msgid "Login with SMS"
+msgstr "تسجيل الدخول عبر SMS"
+
+#: includes/views/page-passwordless.php:66
+msgid "Enter your registered phone number to receive a one-time login code."
+msgstr "أدخل رقم هاتفك المسجل لتلقي رمز تسجيل الدخول."
+
+#: includes/views/page-passwordless.php:119
+msgid "Search country..."
+msgstr ""
+
+#: includes/views/page-passwordless.php:156
+msgid "Send OTP Code"
+msgstr "إرسال رمز التحقق"

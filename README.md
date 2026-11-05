@@ -95,7 +95,7 @@ After activation:
 - **7 order status SMS**: Processing, On-Hold (Shipped), Completed, Cancelled, Pending Payment, Refunded, Failed
 - **Admin SMS notifications:** notify a configurable phone number on any order status change
 - **Per-order custom SMS:** send a free-text SMS to the customer from the order edit screen
-- **OTP gate on checkout:** verify phone before placing order, with optional COD-only mode
+- **OTP gate on checkout:** verify phone before placing order, on the classic checkout and the Checkout block, with optional COD-only mode and its own SMS template
 - **Stock alerts:** low stock, out-of-stock, and backorder notifications to admin
 - **New product SMS:** notify admin when a product is first published
 - **Back-in-stock notifications:** customers subscribe via product page, SMS sent when stock returns

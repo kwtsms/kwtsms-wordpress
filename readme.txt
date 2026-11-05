@@ -2,9 +2,9 @@
 Contributors: kwtsms
 Tags: sms, otp, authentication, woocommerce, login
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.2
+Stable tag: 3.6.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,7 +30,7 @@ Built for Arabic-speaking markets (Kuwait, Saudi Arabia, UAE, Bahrain, Qatar, Om
 
 * **7 order status notifications:** Processing, On-Hold (Shipped), Completed, Cancelled, Pending Payment, Refunded, Failed
 * **Admin order notifications:** automatically notify a configurable admin phone number on any order status change
-* **Checkout OTP Gate:** require phone verification before the customer can place an order (all methods or COD-only)
+* **Checkout OTP Gate:** require phone verification before the customer can place an order, on the classic checkout and the Checkout block (all methods or COD-only)
 * **Per-status templates:** independent English + Arabic SMS template for every order status
 * **Admin SMS panel:** send a custom free-text SMS to any order's customer from the order edit screen
 * **Stock alerts:** low stock, out of stock, and backorder notifications to admin
@@ -196,6 +196,14 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 
 == Changelog ==
 
+= 3.6.0 =
+* Fix: checkout phone verification now works with the WooCommerce Checkout block (the default checkout since WooCommerce 8.3).
+* New: checkout phone verification has its own SMS template in English and Arabic (kwtSMS > Templates), so the code is no longer sent with the login wording.
+* New: Arabic translation for the checkout phone verification messages and the checkout template settings.
+* New: requests to kwtSMS carry the plugin name and version (no personal data).
+* Change: duplicate SMS (ERR028) message no longer promises a fixed 15 second wait.
+* Change: example phone numbers in placeholders, help text and translations now use 965XXXXXXXX.
+
 = 3.5.2 =
 * Fix: SMS sending was silently disabled after saving Gateway settings (sms_enabled overwritten to 0).
 * Fix: Remember Me checkbox now forwarded through the OTP verification flow.
@@ -323,6 +331,9 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 3.6.0 =
+Checkout phone verification now works with the WooCommerce Checkout block; a separate checkout SMS template was added.
 
 = 3.0.0 =
 Initial release. No upgrade required.

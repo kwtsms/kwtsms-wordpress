@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.6.0] - 2026-11-05
+
 ### Added
 - Requests to kwtSMS carry the integration name and version (no personal data) so kwtSMS can see which integrations are in use.
+- Arabic translation for the checkout phone verification messages and the checkout SMS template settings.
 
 ### Changed
-- Checkout phone verification has its own SMS template (Settings > Templates), so the code is no longer sent with the login wording.
+- Checkout phone verification has its own SMS template in English and Arabic (kwtSMS > Templates), so the code is no longer sent with the login wording.
 
 ### Fixed
 - Checkout phone verification now also works with the WooCommerce Checkout block (the default checkout since WooCommerce 8.3).
