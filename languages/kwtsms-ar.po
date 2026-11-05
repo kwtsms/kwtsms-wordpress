@@ -587,3 +587,13 @@ msgstr "طلبات كثيرة لرمز التحقق لهذا الرقم. انت�
 msgid "Too many requests from your connection. Please wait before trying again."
 msgstr "طلبات كثيرة من اتصالك. انتظر قليلاً ثم حاول مرة أخرى."
 
+#. 2026-11-05 19:18 +03: checkout OTP template admin labels, Arabic from marketing task #953
+msgid "Checkout Verification OTP"
+msgstr "رمز التحقق عند إتمام الطلب"
+
+msgid "Sent when a WooCommerce customer verifies their phone number at checkout. If disabled, the Login OTP template is sent instead. If the Arabic text is empty, the English text is sent."
+msgstr "يُرسل عندما يتحقق عميل WooCommerce من رقم هاتفه عند إتمام الطلب. إذا عُطّل، يُرسل قالب رمز التحقق لتسجيل الدخول بدلاً منه. وإذا كان النص العربي فارغاً، يُرسل النص الإنجليزي."
+
+msgid "Use this template for checkout verification"
+msgstr "استخدم هذا القالب للتحقق عند إتمام الطلب"
+
