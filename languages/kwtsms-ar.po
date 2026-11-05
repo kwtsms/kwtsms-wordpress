@@ -564,3 +564,26 @@ msgstr "عرض \"خدمة الرسائل بواسطة kwtSMS.com\" في صفحا
 
 msgid "Logs"
 msgstr "السجلات"
+
+#. 2026-11-05 17:19 +03: checkout phone verification (classic and block), Arabic from marketing task #941
+msgid "Phone Verification"
+msgstr "التحقق من رقم الهاتف"
+
+msgid "Enter OTP code (leave blank to receive code first)"
+msgstr "أدخل رمز التحقق (اتركه فارغاً لتصلك رسالة بالرمز أولاً)"
+
+msgid "An OTP has been sent to your phone. Enter it above and place the order again."
+msgstr "أرسلنا رمز التحقق إلى هاتفك. أدخله في الحقل أعلاه ثم اضغط تأكيد الطلب مرة أخرى."
+
+msgid "Session expired. Please refresh and try again."
+msgstr "انتهت الجلسة. حدّث الصفحة وحاول مرة أخرى."
+
+msgid "Incorrect or expired OTP. Please try again."
+msgstr "رمز التحقق غير صحيح أو منتهي الصلاحية. حاول مرة أخرى."
+
+msgid "Too many OTP requests for this phone number. Please wait before trying again."
+msgstr "طلبات كثيرة لرمز التحقق لهذا الرقم. انتظر قليلاً ثم حاول مرة أخرى."
+
+msgid "Too many requests from your connection. Please wait before trying again."
+msgstr "طلبات كثيرة من اتصالك. انتظر قليلاً ثم حاول مرة أخرى."
+
