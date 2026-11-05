@@ -29,3 +29,11 @@ assets/icon-*.png
 .gitignore
 .gitattributes
 .distignore
+# 2026-11-05 21:30 +03: VCS and local tool folders; .git reached the WordPress.org 3.6.0 package (wp-release-360)
+.git
+.phpunit.result.cache
+.playwright
+.playwright-cli
+.remember
+.worktrees
+node_modules
