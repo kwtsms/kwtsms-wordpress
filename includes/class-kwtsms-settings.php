@@ -114,7 +114,7 @@ class KwtSMS_Settings {
 			'woo_shipped'               => array(
 				'enabled' => 1,
 				'en'      => '{site_name}: Your order #{order_id} is on hold until we confirm your payment.',
-				'ar'      => '{site_name}: طلبك رقم #{order_id} معلّق حتى نتأكد من استلام الدفع.',
+				'ar'      => '{site_name}: طلبك رقم #{order_id} قيد الانتظار حتى نتأكد من استلام الدفع.',
 			),
 			'woo_completed'             => array(
 				'enabled' => 1,
