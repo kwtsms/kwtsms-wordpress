@@ -136,7 +136,8 @@ class KwtSMS_Woo_Metabox {
 					name="kwtsms_custom_sms_phone"
 					value="<?php echo esc_attr( $phone ); ?>"
 					class="widefat"
-					placeholder="<?php esc_attr_e( 'e.g. 96598765432', 'kwtsms' ); ?>"
+					<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces a real person's number, int-testnumber. */ ?>
+					placeholder="<?php esc_attr_e( 'e.g. 965XXXXXXXX', 'kwtsms' ); ?>"
 				>
 			</p>
 			<p>

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Docs
 - ERR028 visitor message no longer claims a fixed 15-second wait: duplicate SMS protection is opt-in per account with a configurable window (10 seconds by default)
+- Example phone numbers in placeholders, help text, error messages and translations now use the placeholder 965XXXXXXXX instead of a real-looking number
 
 ## [3.5.2] - 2026-03-25
 

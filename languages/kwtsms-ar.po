@@ -301,18 +301,18 @@ msgstr "فشل التحقق من CAPTCHA. يرجى المحاولة مرة أخ�
 msgid "Too many requests. Please wait before trying again."
 msgstr "طلبات كثيرة جداً. يرجى الانتظار قبل المحاولة مرة أخرى."
 
-msgid "e.g. 96598765432"
-msgstr "مثال: 96598765432"
+msgid "e.g. 965XXXXXXXX"
+msgstr "مثال: 965XXXXXXXX"
 
 msgid "Phone Number (for SMS OTP)"
 msgstr "رقم الهاتف (لرمز التحقق عبر SMS)"
 
 msgid ""
-"Enter phone number with country code (e.g. 96598765432 for Kuwait). Arabic/"
+"Enter phone number with country code (e.g. 965XXXXXXXX for Kuwait). Arabic/"
 "Eastern Arabic numerals are accepted. Used to receive OTP codes for login "
 "and password reset."
 msgstr ""
-"أدخل رقم الهاتف مع رمز الدولة (مثال: 96598765432 للكويت). يُقبل الأرقام "
+"أدخل رقم الهاتف مع رمز الدولة (مثال: 965XXXXXXXX للكويت). يُقبل الأرقام "
 "العربية والأرقام العربية الشرقية. يُستخدم لاستقبال رموز التحقق عند تسجيل "
 "الدخول وإعادة تعيين كلمة المرور."
 

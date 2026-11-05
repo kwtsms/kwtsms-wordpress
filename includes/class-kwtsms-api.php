@@ -859,7 +859,7 @@ class KwtSMS_API {
 	 * The full phone number and message text are stored here — only visible
 	 * to administrators via the Logs page.
 	 *
-	 * @param string $phone          Full normalised phone number (e.g. 96598765432).
+	 * @param string $phone          Full normalised phone number (e.g. 965XXXXXXXX).
 	 * @param string $message        The exact message that was sent.
 	 * @param string $status         'sent' or 'failed'.
 	 * @param string $type           Context: 'login'|'reset'|'passwordless'|'welcome'|'test'.
@@ -1603,12 +1603,13 @@ class KwtSMS_API {
 	 * Normalise a phone number to international format (digits only, no prefix).
 	 *
 	 * Handles all common input variants:
-	 *   +96598765432      96598765432
-	 *   0096598765432     96598765432
-	 *   965 9876 5432     96598765432
-	 *   965-9876-5432     96598765432
-	 *   96598765432 written in Arabic-Indic or Persian digits -> 96598765432
-	 *   (2026-10-18 01:10 +03: examples use the fictional docs number only, task 344.)
+	 *   +965XXXXXXXX      965XXXXXXXX
+	 *   00965XXXXXXXX     965XXXXXXXX
+	 *   965 XXXX XXXX     965XXXXXXXX
+	 *   965-XXXX-XXXX     965XXXXXXXX
+	 *   965XXXXXXXX written in Arabic-Indic or Persian digits -> 965XXXXXXXX
+	 *   (2026-11-05 11:20 +03: examples use the 965XXXXXXXX placeholder; the earlier sample
+	 *   number belongs to a real person, int-testnumber.)
 	 *
 	 * @param string $phone Raw phone input from user.
 	 *
@@ -1639,7 +1640,7 @@ class KwtSMS_API {
 				'invalid_phone',
 				sprintf(
 					/* translators: %s: the entered phone number */
-					__( 'Please enter a valid phone number with country code (e.g. 96598765432). Got: %s', 'kwtsms' ),
+					__( 'Please enter a valid phone number with country code (e.g. 965XXXXXXXX). Got: %s', 'kwtsms' ),
 					esc_html( $phone )
 				)
 			);

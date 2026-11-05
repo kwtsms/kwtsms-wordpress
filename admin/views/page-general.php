@@ -516,7 +516,8 @@ foreach ( $kwtsms_all_countries as $kwtsms_cc ) {
 				<td>
 					<textarea name="kwtsms_otp_general[blocked_phones]" id="kwtsms_blocked_phones"
 						rows="6" class="large-text code"
-						placeholder="96599000000&#10;96566000000"><?php echo esc_textarea( $kwtsms_blocked_phones ); ?></textarea>
+						<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces real-looking Kuwait numbers, int-testnumber. */ ?>
+						placeholder="965XXXXXXXX&#10;965XXXXXXXX"><?php echo esc_textarea( $kwtsms_blocked_phones ); ?></textarea>
 					<p class="description">
 						<?php esc_html_e( 'One per line or comma-separated, with country code (digits only). These numbers will never receive OTP SMS. Blocked requests return a silent success to prevent enumeration.', 'kwtsms' ); ?>
 					</p>

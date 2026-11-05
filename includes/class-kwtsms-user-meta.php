@@ -39,7 +39,8 @@ class KwtSMS_User_Meta {
 	 * Render the phone number field on the user profile page.
 	 *
 	 * Displays a country-code dropdown (from allowed countries) + local number input.
-	 * The combined value (e.g. 96598765432) is stored in kwtsms_phone user meta.
+	 * The combined value (e.g. 965XXXXXXXX) is stored in kwtsms_phone user meta.
+	 * (2026-11-05 11:21 +03: 965XXXXXXXX placeholders in this file replace a real person's number, int-testnumber.)
 	 *
 	 * @param WP_User $user The user being edited.
 	 */
@@ -275,7 +276,7 @@ class KwtSMS_User_Meta {
 						class="regular-text"
 						value=""
 						autocomplete="tel"
-						placeholder="<?php esc_attr_e( 'e.g. 96598765432', 'kwtsms' ); ?>"
+						placeholder="<?php esc_attr_e( 'e.g. 965XXXXXXXX', 'kwtsms' ); ?>"
 					/>
 					<p class="description">
 						<?php esc_html_e( 'Optional. Full international phone number (digits only, no + or spaces).', 'kwtsms' ); ?>
@@ -346,7 +347,7 @@ class KwtSMS_User_Meta {
 					value="<?php echo esc_attr( $phone ); ?>"
 					size="25"
 					autocomplete="tel"
-					placeholder="e.g. 96598765432"
+					placeholder="e.g. 965XXXXXXXX"
 				/>
 			</label>
 			<span class="description">

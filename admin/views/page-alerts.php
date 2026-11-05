@@ -62,7 +62,8 @@ $kwtsms_tpl_placeholders = array(
 						name="kwtsms_otp_alerts[admin_phones]"
 						value="<?php echo esc_attr( $kwtsms_alerts['admin_phones'] ); ?>"
 						class="regular-text"
-						placeholder="96598765432, 96512345678">
+						<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces a real person's number, int-testnumber. */ ?>
+						placeholder="965XXXXXXXX, 965XXXXXXXX">
 					<p class="description"><?php esc_html_e( 'Comma-separated phone numbers with country code. All enabled alert types are sent to every number listed here.', 'kwtsms' ); ?></p>
 				</td>
 			</tr>

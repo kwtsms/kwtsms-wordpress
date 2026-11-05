@@ -382,7 +382,7 @@ msgid "Save Templates"
 msgstr ""
 
 #: includes/class-kwtsms-api.php:237
-msgid "Please enter a valid phone number with country code (e.g. 96598765432). Got: %s"
+msgid "Please enter a valid phone number with country code (e.g. 965XXXXXXXX). Got: %s"
 msgstr ""
 
 #: includes/class-kwtsms-api.php:262
@@ -638,11 +638,11 @@ msgid "Phone Number (for SMS OTP)"
 msgstr ""
 
 #: includes/class-kwtsms-user-meta.php:51
-msgid "e.g. 96598765432"
+msgid "e.g. 965XXXXXXXX"
 msgstr ""
 
 #: includes/class-kwtsms-user-meta.php:54
-msgid "Enter phone number with country code (e.g. 96598765432 for Kuwait). Arabic/Eastern Arabic numerals are accepted. Used to receive OTP codes for login and password reset."
+msgid "Enter phone number with country code (e.g. 965XXXXXXXX for Kuwait). Arabic/Eastern Arabic numerals are accepted. Used to receive OTP codes for login and password reset."
 msgstr ""
 
 #: includes/class-kwtsms-user-meta.php:58
@@ -710,7 +710,7 @@ msgid "Phone number"
 msgstr ""
 
 #: includes/views/page-passwordless.php:63
-msgid "Phone number (e.g. 96598765432)"
+msgid "Phone number (e.g. 965XXXXXXXX)"
 msgstr ""
 
 #: includes/views/page-passwordless.php:70

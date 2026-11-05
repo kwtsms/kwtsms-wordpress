@@ -286,7 +286,8 @@ class KwtSMS_Woo {
 				id="kwtsms_phone_reg"
 				autocomplete="tel"
 				value="<?php echo esc_attr( $phone ); ?>"
-				placeholder="<?php esc_attr_e( 'e.g. 96598765432', 'kwtsms' ); ?>"
+				<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces a real person's number, int-testnumber. */ ?>
+				placeholder="<?php esc_attr_e( 'e.g. 965XXXXXXXX', 'kwtsms' ); ?>"
 			/>
 			<span class="description" style="font-size:12px;">
 				<?php esc_html_e( 'Enter with country code. Used for SMS order notifications.', 'kwtsms' ); ?>

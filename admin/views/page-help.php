@@ -292,7 +292,8 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 			<li><?php esc_html_e( 'Go to Users in the WordPress admin menu.', 'kwtsms' ); ?></li>
 			<li><?php esc_html_e( 'Click Edit under the user\'s name.', 'kwtsms' ); ?></li>
 			<li><?php esc_html_e( 'Scroll down to the Phone Number field (added by this plugin).', 'kwtsms' ); ?></li>
-			<li><?php esc_html_e( 'Enter the number with country code, e.g. 96599123456 for Kuwait.', 'kwtsms' ); ?></li>
+			<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces a real-looking Kuwait number, int-testnumber. */ ?>
+			<li><?php esc_html_e( 'Enter the number with country code, e.g. 965XXXXXXXX for Kuwait.', 'kwtsms' ); ?></li>
 			<li><?php esc_html_e( 'Click Update User to save.', 'kwtsms' ); ?></li>
 		</ol>
 

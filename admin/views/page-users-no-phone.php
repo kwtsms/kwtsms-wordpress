@@ -196,7 +196,8 @@ $kwtsms_role_colors = array(
 						<input
 							type="tel"
 							class="kwtsms-unphone-input"
-							placeholder="<?php esc_attr_e( 'e.g. 96598765432', 'kwtsms' ); ?>"
+							<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces a real person's number, int-testnumber. */ ?>
+							placeholder="<?php esc_attr_e( 'e.g. 965XXXXXXXX', 'kwtsms' ); ?>"
 							maxlength="15"
 							data-user-id="<?php echo (int) $kwtsms_user->ID; ?>"
 							autocomplete="off"

@@ -937,7 +937,8 @@ class KwtSMS_Admin {
 					'{total}'          => '10.000 KWD',
 					'{tracking}'       => 'TRK123456',
 					'{form_name}'      => 'Contact Form',
-					'{phone}'          => '96599220000',
+					// 2026-11-05 11:21 +03: same-length placeholder instead of a real-looking Kuwait number, int-testnumber.
+					'{phone}'          => '965XXXXXXXX',
 				),
 				'strings'               => array(
 					'verifying'          => __( 'Verifying...', 'kwtsms' ),

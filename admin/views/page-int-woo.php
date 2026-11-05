@@ -261,7 +261,8 @@ wp_add_inline_script(
 							name="kwtsms_otp_integrations[woo_admin_phone]"
 							value="<?php echo esc_attr( $kwtsms_int['woo_admin_phone'] ?? '' ); ?>"
 							class="regular-text"
-							placeholder="<?php esc_attr_e( 'e.g. 96598765432, 96599220333', 'kwtsms' ); ?>" />
+							<?php /* 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces real-looking numbers, int-testnumber. */ ?>
+							placeholder="<?php esc_attr_e( 'e.g. 965XXXXXXXX, 965XXXXXXXX', 'kwtsms' ); ?>" />
 						<p class="description"><?php esc_html_e( 'All WooCommerce SMS alerts are sent to these numbers. Individual features below can override this.', 'kwtsms' ); ?></p>
 					</td>
 				</tr>

@@ -473,7 +473,8 @@ class KwtSMS_Plugin {
 					'verified'         => __( 'Phone verified!', 'kwtsms' ),
 					'resend'           => __( 'Resend Code', 'kwtsms' ),
 					'close'            => __( 'Cancel', 'kwtsms' ),
-					'phonePlaceholder' => __( 'e.g. 96598765432', 'kwtsms' ),
+					// 2026-11-05 11:21 +03: placeholder 965XXXXXXXX replaces a real person's number, int-testnumber.
+					'phonePlaceholder' => __( 'e.g. 965XXXXXXXX', 'kwtsms' ),
 					'codePlaceholder'  => __( '6-digit code', 'kwtsms' ),
 					'modalTitle'       => __( 'Phone Verification Required', 'kwtsms' ),
 					'verifiedMsg'      => __( 'Your phone has been verified. Submitting form...', 'kwtsms' ),
