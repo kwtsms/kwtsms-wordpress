@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 
 // Plugin constants.
 // 2026-11-05 21:08 +03: 3.5.1 to 3.6.0, match the plugin header for the 3.6.0 release (constant lagged the 3.5.2 header), wp-release-360.
-// 2026-11-07 00:09 +03: 3.6.1 (On-Hold text fix with its upgrade step, full Arabic, package fix). wp-release-361
+// 2026-11-07 00:09 +03: 3.6.1 (On-Hold text fix with its upgrade step, full Arabic, package fix), task wp-release-361.
 define( 'KWTSMS_OTP_VERSION', '3.6.1' );
 define( 'KWTSMS_OTP_FILE', __FILE__ );
 define( 'KWTSMS_OTP_DIR', plugin_dir_path( __FILE__ ) );
