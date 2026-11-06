@@ -90,7 +90,8 @@ $kwtsms_referral_link_enabled = isset( $plugin_settings ) ? (bool) $plugin_setti
 			$kwtsms_flag_emoji = function ( $iso2 ) {
 				$chars = array();
 				foreach ( str_split( strtoupper( $iso2 ) ) as $kwtsms_c ) {
-					$chars[] = mb_chr( 0x1F1E6 + ( ord( $kwtsms_c ) - ord( 'A' ) ), 'UTF-8' );
+					// 2026-11-07 00:23 +03: html_entity_decode instead of mb_chr(): mb_chr needs the mbstring extension (WordPress polyfills it only from 7.1, we support 6.0); Plugin Check error. wp-release-361.
+					$chars[] = html_entity_decode( '&#' . ( 0x1F1E6 + ( ord( $kwtsms_c ) - ord( 'A' ) ) ) . ';', ENT_QUOTES, 'UTF-8' );
 				}
 				return implode( '', $chars );
 			};
