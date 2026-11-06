@@ -15,14 +15,14 @@ parameters:
         - tests/ (?)
 
     bootstrapFiles:
-        # WordPress stubs — also loaded by szepeviktor extension.neon, but
+        # WordPress stubs: also loaded by szepeviktor extension.neon, but
         # explicit here so our bootstrap below can safely depend on them.
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         # Plugin constants (KWTSMS_OTP_DIR, KWTSMS_OTP_URL, COOKIEHASH, COOKIEPATH).
         - phpstan-bootstrap.php
 
     dynamicConstantNames:
-        # Plugin constants — value depends on install path at runtime.
+        # Plugin constants: value depends on install path at runtime.
         - KWTSMS_OTP_DIR
         - KWTSMS_OTP_URL
         # COOKIEHASH is derived from siteurl at runtime.

@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPStan bootstrap — defines plugin constants so they are available
+ * PHPStan bootstrap: defines plugin constants so they are available
  * during static analysis without needing to load the full plugin.
  *
  * These values mirror the runtime definitions in wp-kwtsms.php.
@@ -8,7 +8,7 @@
  * @package KwtSMS_OTP
  */
 
-// This file is a dev-only PHPStan bootstrap — not loaded by WordPress.
+// This file is a dev-only PHPStan bootstrap: not loaded by WordPress.
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }

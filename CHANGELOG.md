@@ -68,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.3.3] - 2026-03-13
 
 ### Fixed
-- Local phone numbers with a trunk prefix (single leading zero, e.g. Saudi `0559…`, UAE `050…`) are now correctly normalized: the trunk digit is stripped before the local-number length check, and the threshold is raised from 8 to 9 digits to cover 9-digit local formats. Matches the TypeScript `normalize()` implementation.
+- Local phone numbers with a trunk prefix (single leading zero, e.g. Saudi `0559...`, UAE `050...`) are now correctly normalized: the trunk digit is stripped before the local-number length check, and the threshold is raised from 8 to 9 digits to cover 9-digit local formats. Matches the TypeScript `normalize()` implementation.
 
 ## [3.3.2] - 2026-03-13
 
