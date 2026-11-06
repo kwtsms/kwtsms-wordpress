@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The WooCommerce On-Hold SMS now says the order is waiting for payment confirmation (it said shipped). Saved texts equal to the old default are updated on upgrade; custom texts are kept.
+
 ### Added
 
 - Full Arabic translation of the admin screens (808 of 808 strings).

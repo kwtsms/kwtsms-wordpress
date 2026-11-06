@@ -92,7 +92,7 @@ After activation:
 - Emergency bypass option for admin lockout recovery
 
 ### WooCommerce
-- **7 order status SMS**: Processing, On-Hold (Shipped), Completed, Cancelled, Pending Payment, Refunded, Failed
+- **7 order status SMS**: Processing, On-Hold (awaiting payment), Completed, Cancelled, Pending Payment, Refunded, Failed
 - **Admin SMS notifications:** notify a configurable phone number on any order status change
 - **Per-order custom SMS:** send a free-text SMS to the customer from the order edit screen
 - **OTP gate on checkout:** verify phone before placing order, on the classic checkout and the Checkout block, with optional COD-only mode and its own SMS template
@@ -184,7 +184,7 @@ Requests to kwtSMS carry the integration name and version (no personal data) so 
 
 **2. ipapi.co** (optional): detects visitor country for dial-code pre-selection. [ipapi.co](https://ipapi.co) | [Terms](https://ipapi.co/terms/) | [Privacy](https://ipapi.co/privacy/)
 
-**3. IPHub** (optional): proxy/VPN detection on OTP requests. [iphub.info](https://iphub.info) | [Terms](https://iphub.info/legal) | [Privacy](https://iphub.info/legal)
+**3. IPHub** (optional): proxy/VPN detection on OTP requests. [iphub.info](https://iphub.info) | [Terms](https://iphub.info/legal/terms) | [Privacy](https://iphub.info/legal/privacy)
 
 **4. Google reCAPTCHA v3** (optional): bot protection on OTP forms. [google.com/recaptcha](https://www.google.com/recaptcha/) | [Terms](https://policies.google.com/terms) | [Privacy](https://policies.google.com/privacy)
 

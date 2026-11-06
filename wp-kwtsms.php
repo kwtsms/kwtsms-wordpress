@@ -3,7 +3,7 @@
  * Plugin Name:       kwtSMS: OTP & SMS Notifications
  * Plugin URI:        https://www.kwtsms.com/integrations.html
  * Description:       Replace passwords with SMS codes, send WooCommerce order updates automatically, and verify phone numbers on any contact form, all in one plugin. Supports 2FA, passwordless login, WooCommerce order update, and OTP-gated forms for CF7, WPForms, and Ninja Forms. Arabic support included.
- * Version:           3.6.0
+ * Version:           3.6.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            kwtsms
@@ -21,7 +21,8 @@ defined( 'ABSPATH' ) || exit;
 
 // Plugin constants.
 // 2026-11-05 21:08 +03: 3.5.1 to 3.6.0, match the plugin header for the 3.6.0 release (constant lagged the 3.5.2 header), wp-release-360.
-define( 'KWTSMS_OTP_VERSION', '3.6.0' );
+// 2026-11-07 00:09 +03: 3.6.1 (On-Hold text fix with its upgrade step, full Arabic, package fix), task wp-release-361.
+define( 'KWTSMS_OTP_VERSION', '3.6.1' );
 define( 'KWTSMS_OTP_FILE', __FILE__ );
 define( 'KWTSMS_OTP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'KWTSMS_OTP_URL', plugin_dir_url( __FILE__ ) );
@@ -128,6 +129,39 @@ function kwtsms_otp_init() {
 	KwtSMS_Plugin::get_instance();
 }
 add_action( 'plugins_loaded', 'kwtsms_otp_init' );
+
+/**
+ * One-time upgrade steps for sites updating from an older version.
+ *
+ * 2026-11-05 23:54 +03: added for q-wp-onhold. Before 3.6.1 the On-Hold SMS default said the order was shipped,
+ * but WooCommerce On-Hold means awaiting payment. A saved text that still equals the old default is
+ * replaced with the new default; any text the store owner wrote is left untouched.
+ */
+function kwtsms_otp_maybe_upgrade() {
+	$installed = (string) get_option( 'kwtsms_otp_version', '0' );
+	if ( version_compare( $installed, KWTSMS_OTP_VERSION, '>=' ) ) {
+		return;
+	}
+	if ( version_compare( $installed, '3.6.1', '<' ) ) {
+		$integrations = get_option( 'kwtsms_otp_integrations', array() );
+		if ( is_array( $integrations ) && isset( $integrations['woo_shipped'] ) && is_array( $integrations['woo_shipped'] ) ) {
+			$old_defaults = array(
+				'en' => '{site_name}: Your order #{order_id} has been shipped and is on its way!',
+				'ar' => '{site_name}: طلبك رقم #{order_id} قيد الشحن وفي طريقه إليك!',
+			);
+			$new_defaults = KwtSMS_Settings::DEFAULTS['integrations']['woo_shipped'];
+			foreach ( $old_defaults as $lang => $old_text ) {
+				if ( isset( $integrations['woo_shipped'][ $lang ] ) && $old_text === $integrations['woo_shipped'][ $lang ] ) {
+					$integrations['woo_shipped'][ $lang ] = $new_defaults[ $lang ];
+				}
+			}
+			update_option( 'kwtsms_otp_integrations', $integrations );
+		}
+	}
+	update_option( 'kwtsms_otp_version', KWTSMS_OTP_VERSION );
+}
+add_action( 'plugins_loaded', 'kwtsms_otp_maybe_upgrade', 5 );
+
 
 /**
  * Declare compatibility with WooCommerce High-Performance Order Storage (HPOS).

@@ -4172,3 +4172,15 @@ msgstr "ابحث عن دولة..."
 #: includes/views/page-passwordless.php:156
 msgid "Send OTP Code"
 msgstr "إرسال رمز التحقق"
+
+msgid "Order On Hold (awaiting payment)"
+msgstr "الطلب قيد الانتظار (بانتظار الدفع)"
+
+msgid "On Hold"
+msgstr "قيد الانتظار"
+
+msgid "Sent when the order status is set to On-Hold. In WooCommerce this means the order waits for payment confirmation, for example a bank transfer."
+msgstr "تُرسل عند تغيير حالة الطلب إلى قيد الانتظار. في WooCommerce يعني ذلك أن الطلب بانتظار تأكيد الدفع، مثل التحويل البنكي."
+
+msgid "Fires when the order status is set to On-Hold: the order waits for payment confirmation, for example a bank transfer."
+msgstr "تُرسل عند تغيير حالة الطلب إلى قيد الانتظار: الطلب بانتظار تأكيد الدفع، مثل التحويل البنكي."

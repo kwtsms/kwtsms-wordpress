@@ -110,10 +110,11 @@ class KwtSMS_Settings {
 				'en'      => '{site_name}: Your order #{order_id} has been confirmed. Total: {total}. Thank you!',
 				'ar'      => '{site_name}: تم تأكيد طلبك رقم #{order_id}. المجموع: {total}. شكرًا لك!',
 			),
+			// 2026-11-05 23:54 +03: On-Hold means awaiting payment in WooCommerce (its own on-hold email says so), not shipped; key kept so saved settings survive. q-wp-onhold
 			'woo_shipped'               => array(
 				'enabled' => 1,
-				'en'      => '{site_name}: Your order #{order_id} has been shipped and is on its way!',
-				'ar'      => '{site_name}: طلبك رقم #{order_id} قيد الشحن وفي طريقه إليك!',
+				'en'      => '{site_name}: Your order #{order_id} is on hold until we confirm your payment.',
+				'ar'      => '{site_name}: طلبك رقم #{order_id} قيد الانتظار حتى نتأكد من استلام الدفع.',
 			),
 			'woo_completed'             => array(
 				'enabled' => 1,

@@ -4,7 +4,7 @@ Tags: sms, otp, authentication, woocommerce, login
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.6.0
+Stable tag: 3.6.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,7 +28,7 @@ Built for Arabic-speaking markets (Kuwait, Saudi Arabia, UAE, Bahrain, Qatar, Om
 
 = WooCommerce Integration =
 
-* **7 order status notifications:** Processing, On-Hold (Shipped), Completed, Cancelled, Pending Payment, Refunded, Failed
+* **7 order status notifications:** Processing, On-Hold (awaiting payment), Completed, Cancelled, Pending Payment, Refunded, Failed
 * **Admin order notifications:** automatically notify a configurable admin phone number on any order status change
 * **Checkout OTP Gate:** require phone verification before the customer can place an order, on the classic checkout and the Checkout block (all methods or COD-only)
 * **Per-status templates:** independent English + Arabic SMS template for every order status
@@ -74,7 +74,7 @@ Requests to kwtSMS carry the integration name and version (no personal data) so 
 
 **2. ipapi.co** (optional): detects visitor country for dial-code pre-selection. [ipapi.co](https://ipapi.co) | [Terms](https://ipapi.co/terms/) | [Privacy](https://ipapi.co/privacy/)
 
-**3. IPHub** (optional): proxy/VPN detection on OTP requests. [iphub.info](https://iphub.info) | [Terms](https://iphub.info/legal) | [Privacy](https://iphub.info/legal)
+**3. IPHub** (optional): proxy/VPN detection on OTP requests. [iphub.info](https://iphub.info) | [Terms](https://iphub.info/legal/terms) | [Privacy](https://iphub.info/legal/privacy)
 
 **4. Google reCAPTCHA v3** (optional): bot protection on OTP forms. [google.com/recaptcha](https://www.google.com/recaptcha/) | [Terms](https://policies.google.com/terms) | [Privacy](https://policies.google.com/privacy)
 
@@ -195,6 +195,12 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 8. SMS Logs: full send history with date, Sender ID, message preview, phone, type, status, and API response.
 
 == Changelog ==
+
+= 3.6.1 =
+* Fix: the WooCommerce On-Hold SMS now says the order is waiting for payment confirmation. It used to say the order was shipped. If you never edited that text, it is updated for you; your own wording is kept.
+* New: the admin screens are fully translated into Arabic.
+* New: the plugin declares compatibility with WooCommerce up to 11.2.
+* Fix: the WordPress.org package no longer contains a hidden .git folder.
 
 = 3.6.0 =
 * Fix: checkout phone verification now works with the WooCommerce Checkout block (the default checkout since WooCommerce 8.3).
@@ -331,6 +337,9 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 3.6.1 =
+The On-Hold order SMS no longer says the order was shipped. Check kwtSMS > WooCommerce if you changed that text yourself.
 
 = 3.6.0 =
 Checkout phone verification now works with the WooCommerce Checkout block; a separate checkout SMS template was added.
