@@ -1,0 +1,20 @@
+# 2026-11-11 14:26 +03: readme/assets-only update on WordPress.org (trunk + stable tag readme) without a new version.
+# Why: Boss 2026-11-11 14:25: public changelogs say only "Security fix", no details; the live 3.6.2 readme had to change.
+name: WordPress.org readme update
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Update readme and assets on WordPress.org
+        uses: 10up/action-wordpress-plugin-asset-update@2.2.0
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: kwtsms
+          ASSETS_DIR: wporg-assets
+          IGNORE_OTHER_FILES: true

@@ -56,12 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.5.1] - 2026-03-22
 
 ### Fixed
-- Security: back-in-stock subscribe nonce changed to a static action so product_id is never read before authentication.
-- Security: all nonce values now passed through sanitize_key() before wp_verify_nonce().
-- Security: sanitize_url() replaced with esc_url_raw().
-- Security: absint() calls on POST user_id now include wp_unslash().
-- Security: GET page parameter compared using sanitize_key() in log export handler.
-- Security: printf output in SMS history log now escapes at point of output.
+- Security fix.
 
 ### Added
 - Clear Log button added to debug log tab.
@@ -80,13 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Country-specific phone number validation: `normalize_phone()` now checks local digit length and mobile starting digits for 70+ countries (GCC, Levant, MENA, Europe, Asia, Americas, Africa, Oceania). Rules are kept in sync with the TypeScript PHONE_RULES table. Numbers from countries not in the table continue to pass through with generic E.164 length validation only.
 
 ### Fixed
-- Security: OTP codes are now stored as HMAC-SHA256 hashes in transients instead of plaintext. A database read can no longer reveal active OTP values.
-- Security: Cart abandonment read-modify-write operations are now protected by a MySQL advisory lock, preventing concurrent race conditions.
-- Security: Debug log and CSV export responses now include `X-Content-Type-Options: nosniff` header.
-- Security: Private IP detection in rate limiting now uses correct `172.16.0.0/12` CIDR instead of the overly broad `172.` prefix match, which incorrectly treated `172.0.0.0`-`172.15.255.255` as private.
-- Security: API password is now saved with `wp_unslash()` only (not `sanitize_text_field()`), preserving special characters such as `<`, `>`, `&`, `"`, and `'` that `sanitize_text_field()` stripped.
-- Security: Checkout OTP send path now enforces per-phone and per-IP rate limits before issuing a code.
-- Security: Cart recovery coupon codes now use `bin2hex(random_bytes(4))` for cryptographically secure entropy instead of a truncated MD5 hash.
+- Security fix.
 - Added missing `is_ip_in_cidr()` method to `KwtSMS_OTP_Engine` that was referenced but never defined, causing a fatal error on every OTP attempt.
 
 ## [3.3.1] - 2026-03-13

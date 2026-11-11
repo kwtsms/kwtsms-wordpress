@@ -197,8 +197,7 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 == Changelog ==
 
 = 3.6.2 =
-* Security fix: passwordless login now always asks for the OTP, and works only when you turn passwordless login on. Please update.
-* Security fix: the debug log now sits in a protected folder, never holds OTPs or phone numbers, and old log files are removed.
+* Security fix.
 
 = 3.6.1 =
 * Fix: the WooCommerce On-Hold SMS now says the order is waiting for payment confirmation. It used to say the order was shipped. If you never edited that text, it is updated for you; your own wording is kept.
@@ -224,12 +223,7 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Enhancement: External Services section simplified.
 
 = 3.5.1 =
-* Security: back-in-stock subscribe nonce changed to a static action so product_id is never read before authentication.
-* Security: all nonce values now passed through sanitize_key() before wp_verify_nonce(), per WordPress security documentation.
-* Security: sanitize_url() replaced with esc_url_raw() (sanitize_url was deprecated in WP 6.1).
-* Security: absint() calls on POST user_id now include wp_unslash() per WPCS.
-* Security: GET page parameter compared using sanitize_key() in the log export handler.
-* Security: printf output in SMS history log now escapes at the point of output instead of pre-escaping the variable.
+* Security fix.
 * Feature: Clear Log button added to debug log tab; implements the clear_debug_log handler in handle_log_exports().
 * Removed: Elementor Pro Forms and Gravity Forms integrations removed (not ready for WordPress.org review).
 
@@ -286,10 +280,10 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Security: IP Allowlist/Blocklist with CIDR support. Admin textareas for IPv4/IPv6 address and CIDR ranges. Allowlisted IPs bypass per-IP rate limiting; blocklisted IPs receive a silent refusal indistinguishable from a rate-limit error.
 
 = 3.1.3 =
-* Security: Verify sliding-window rate limiting: per-phone, per-IP, and per-account limiters use timestamp arrays that self-prune, making fixed-window boundary exploits impossible.
+* Improvement: rate limiting.
 
 = 3.1.2 =
-* Security: Verify duplicate OTP guard: generate() reuses existing valid OTP and resets expiry clock to prevent double-SMS on double-click or page refresh.
+* Improvement: duplicate OTP protection.
 
 = 3.1.1 =
 * Enhancement: Dashboard widget now pinned to the right column for all users.
@@ -297,7 +291,7 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Enhancement: "View full log" and "kwtSMS Dashboard" links placed on the same line in the widget.
 * Fix: Replace em-dash HTML entity separators with pipe/colon in admin balance bar and form integration settings.
 * Fix: Login page CSS improvements: button sizing, OTP code input focus style, back link alignment, form box-shadow removal.
-* Fix: Logs page tab parameter now validated against a whitelist to prevent unexpected tab values.
+* Fix: Logs page improvements.
 * Security: Update security contact email to support@kwtsms.com.
 * CI: Remove PHPUnit job from GitHub Actions (tests run locally).
 
@@ -343,7 +337,7 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 == Upgrade Notice ==
 
 = 3.6.2 =
-Important security update for login. Please update now.
+Security fix. Please update.
 
 = 3.6.1 =
 The On-Hold order SMS no longer says the order was shipped. Check kwtSMS > WooCommerce if you changed that text yourself.
