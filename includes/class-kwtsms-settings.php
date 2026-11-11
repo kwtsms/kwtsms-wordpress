@@ -51,6 +51,10 @@ class KwtSMS_Settings {
 			'ip_allowlist'          => '',         // Newline-separated IPs or CIDRs. Allowlisted IPs skip rate limiting and proxy checks.
 			'ip_blocklist'          => '',         // Newline-separated IPs or CIDRs. Blocklisted IPs receive a silent rate-limit response.
 			'otp_required_roles'    => array( 'editor', 'author', 'contributor', 'subscriber' ), // Administrator excluded by default.
+			// 2026-11-11 20:43 +03: users in required roles with no phone saved: 'block' (show a message to
+			// contact the site admin) or 'allow' (log in without OTP, the old behaviour). Upgrades have no
+			// stored value, so get() falls back to 'block' here as well, task wp-363.
+			'no_phone_action'       => 'block',
 			'welcome_sms_enabled'   => 0,           // Send welcome SMS to new registrations.
 			'registration_otp_gate' => 'disabled',  // Options: disabled, optional, required.
 			'iphub_api_key'         => '',

@@ -111,7 +111,23 @@ class KwtSMS_Login_OTP {
 		$phone = get_user_meta( $user->ID, 'kwtsms_phone', true );
 
 		// If user has no phone, honour admin setting for bypass.
+		// 2026-11-11 20:43 +03: setting general.no_phone_action. 'block' (default, also on upgrade)
+		// stops the login with a message to contact the site admin; 'allow' keeps the old login
+		// without OTP. While the gateway has no username, password or Sender ID, OTP is not active
+		// yet (a send would fail with no credentials and the login goes on), so the user is let in
+		// as before; this keeps a fresh install from locking out its own users, task wp-363.
 		if ( empty( $phone ) ) {
+			$no_phone_action = $this->plugin->settings->get( 'general.no_phone_action', 'block' );
+			$gateway_ready   = '' !== (string) $this->plugin->settings->get( 'gateway.api_username', '' )
+				&& '' !== (string) $this->plugin->settings->get( 'gateway.api_password', '' )
+				&& '' !== (string) $this->plugin->settings->get( 'gateway.sender_id', '' );
+			if ( 'allow' !== $no_phone_action && $gateway_ready ) {
+				$this->plugin->api->write_debug_log( 'login_otp', 'Login stopped for user #' . $user->ID . ': required role, no phone number on file' );
+				return new WP_Error(
+					'kwtsms_no_phone',
+					__( 'Your account needs a phone number for SMS verification, and none is saved. Please contact the site administrator.', 'kwtsms' )
+				);
+			}
 			$this->plugin->api->write_debug_log( 'login_otp', 'Bypassed 2FA for user #' . $user->ID . ' (' . $user->user_login . '): no phone number on file' );
 			return $user;
 		}

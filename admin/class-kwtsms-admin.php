@@ -414,6 +414,10 @@ class KwtSMS_Admin {
 			'ip_allowlist'          => $this->sanitize_ip_list( wp_unslash( $raw['ip_allowlist'] ?? '' ) ),
 			'ip_blocklist'          => $this->sanitize_ip_list( wp_unslash( $raw['ip_blocklist'] ?? '' ) ),
 			'otp_required_roles'    => $otp_required_roles,
+			// 2026-11-11 20:43 +03: users in required roles without a phone: block or allow, task wp-363.
+			'no_phone_action'       => in_array( $raw['no_phone_action'] ?? '', array( 'block', 'allow' ), true )
+				? $raw['no_phone_action']
+				: 'block',
 			'welcome_sms_enabled'   => ! empty( $raw['welcome_sms_enabled'] ) ? 1 : 0,
 			'registration_otp_gate' => in_array(
 				$raw['registration_otp_gate'] ?? 'disabled',
