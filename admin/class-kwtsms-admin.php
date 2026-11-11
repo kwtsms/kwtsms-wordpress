@@ -1160,17 +1160,13 @@ class KwtSMS_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'You do not have permission to access this page.', 'kwtsms' ) );
 		}
-		// Parse navigation params from the request URI using WordPress URL functions.
-		// This avoids direct $_GET access which the scanner flags.
-		$query_string = wp_parse_url( esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ), PHP_URL_QUERY );
-		$query_params = array();
-		if ( $query_string ) {
-			wp_parse_str( $query_string, $query_params );
-		}
+		// 2026-11-11 20:53 +03: tab and paged read from $_GET with sanitize_key/absint instead of
+		// parsing REQUEST_URI by hand. They only pick which list and page to show (no state change,
+		// manage_options checked above), so there is no nonce, task wp-363.
 		$valid_tabs          = array( 'sms_history', 'attempt_log', 'debug_log' );
-		$kwtsms_active_tab   = isset( $query_params['tab'] ) ? sanitize_key( $query_params['tab'] ) : 'sms_history';
+		$kwtsms_active_tab   = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'sms_history'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only view selection.
 		$kwtsms_active_tab   = in_array( $kwtsms_active_tab, $valid_tabs, true ) ? $kwtsms_active_tab : 'sms_history';
-		$kwtsms_current_page = isset( $query_params['paged'] ) ? max( 1, absint( $query_params['paged'] ) ) : 1;
+		$kwtsms_current_page = isset( $_GET['paged'] ) ? max( 1, absint( wp_unslash( $_GET['paged'] ) ) ) : 1; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only pagination.
 		include KWTSMS_OTP_DIR . 'admin/views/page-logs.php';
 	}
 
