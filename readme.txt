@@ -197,139 +197,81 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 == Changelog ==
 
 = 3.6.2 =
-* Security fix.
+* Bug fixes.
 
 = 3.6.1 =
-* Fix: the WooCommerce On-Hold SMS now says the order is waiting for payment confirmation. It used to say the order was shipped. If you never edited that text, it is updated for you; your own wording is kept.
-* New: the admin screens are fully translated into Arabic.
-* New: the plugin declares compatibility with WooCommerce up to 11.2.
-* Fix: the WordPress.org package no longer contains a hidden .git folder.
+* Change: the WooCommerce On-Hold SMS now says the order is waiting for payment confirmation.
+* New: admin screens in Arabic.
+* New: compatible with WooCommerce up to 11.2.
+* Bug fixes.
 
 = 3.6.0 =
-* Fix: checkout phone verification now works with the WooCommerce Checkout block (the default checkout since WooCommerce 8.3).
-* New: checkout phone verification has its own SMS template in English and Arabic (kwtSMS > Templates), so the code is no longer sent with the login wording.
-* New: Arabic translation for the checkout phone verification messages and the checkout template settings.
-* New: requests to kwtSMS carry the plugin name and version (no personal data).
-* Change: duplicate SMS (ERR028) message no longer promises a fixed 15 second wait.
-* Change: example phone numbers in placeholders, help text and translations now use 965XXXXXXXX.
+* New: checkout phone verification works with the WooCommerce Checkout block.
+* New: a separate checkout SMS template in English and Arabic.
+* Bug fixes.
 
 = 3.5.2 =
-* Fix: SMS sending was silently disabled after saving Gateway settings (sms_enabled overwritten to 0).
-* Fix: Remember Me checkbox now forwarded through the OTP verification flow.
-* Fix: replaced global $profileuser with prefixed alternative for WP.org compliance.
-* Fix: uninstall.php ABSPATH guard added.
-* Fix: WP.org directory assets removed from plugin zip.
-* Enhancement: WooCommerce advanced features added to readme (stock alerts, cart abandonment, multivendor, etc.).
-* Enhancement: External Services section simplified.
+* Bug fixes.
 
 = 3.5.1 =
-* Security fix.
-* Feature: Clear Log button added to debug log tab; implements the clear_debug_log handler in handle_log_exports().
-* Removed: Elementor Pro Forms and Gravity Forms integrations removed (not ready for WordPress.org review).
+* New: Clear Log button on the debug log tab.
+* Removed: Elementor Pro Forms and Gravity Forms integrations.
+* Bug fixes.
 
 = 3.3.3 =
-* Fix: Local phone numbers with a trunk prefix (e.g. Saudi 0559..., UAE 050...) are now correctly normalized by stripping the trunk digit and raising the local-number threshold to 9 digits.
+* Bug fixes.
 
 = 3.3.2 =
-* New: Country-specific phone validation for 70+ countries: local digit length and mobile prefix are now checked inside normalize_phone(), giving callers meaningful error messages instead of generic rejections.
-* Fix: OTP codes are now stored as HMAC-SHA256 hashes in transients; a database read can no longer reveal active OTP values.
-* Fix: Cart abandonment operations are now protected by a MySQL advisory lock to prevent concurrent race conditions.
-* Fix: Debug log and CSV export downloads now include the X-Content-Type-Options: nosniff header.
-* Fix: Private IP detection in rate limiting now uses the correct 172.16.0.0/12 CIDR range.
-* Fix: API password special characters are now preserved correctly on save.
-* Fix: Checkout OTP send now enforces per-phone and per-IP rate limits.
-* Fix: Cart recovery coupon codes now use a cryptographically secure random source.
-* Fix: Added missing is_ip_in_cidr() method that was causing a fatal error on every OTP attempt.
+* New: phone number checks for 70+ countries.
+* Bug fixes.
 
 = 3.3.1 =
-* New: Elementor Pro and Gravity Forms integrations are now fully active (removed "coming soon" status).
-* Fix: Admin phone fields (order status, instant order, stock alerts, admin alerts) no longer send duplicate SMS when the same number appears in both local and international format.
-* Fix: woo_admin_phone (order status admin notification) now accepts space-separated phone numbers, consistent with all other admin phone fields.
-* Fix: WooCommerce sub-tab settings (stock alerts, multivendor, cart abandonment) were reset to defaults whenever the parent WooCommerce tab was saved, because unrendered checkboxes produce no POST data. Each sub-section now only updates its own fields when its specific tab is saved.
-* Fix: Cart abandonment records with recovered=true were deleted when the cart was emptied after a successful purchase, losing recovery stats.
-* Fix: Checkout OTP first-submit notice type changed from notice to error so WooCommerce correctly halts order creation while the customer retrieves their OTP code.
-* Fix: Instant order and vendor SMS now also fire for WooCommerce block checkout orders via woocommerce_store_api_checkout_order_processed.
-* Fix: Default SMS templates are now applied when saved template values are empty strings, ensuring out-of-box SMS content without requiring manual template entry.
+* Bug fixes.
 
 = 3.3.0 =
-* New: WooCommerce HPOS (High-Performance Order Storage) compatibility declaration
-* New: COD-only OTP gate option: require OTP only for Cash on Delivery orders
-* New: Stock alert SMS: low stock, out of stock, backorder notifications to admin
-* New: New product published SMS notification to admin
-* New: Back-in-stock subscriber notifications: customers opt-in, SMS sent on restock
-* New: Instant new order SMS (fires once per order regardless of status)
-* New: Multivendor support: vendor SMS for Dokan, WCFM, WC Vendors
-* New: Cart abandonment recovery SMS with coupon code generation
-* New: Cart abandonment dashboard card with recovery stats
+* New: WooCommerce HPOS compatibility.
+* New: OTP for Cash on Delivery orders only.
+* New: stock alert, new product and back-in-stock SMS.
+* New: instant new order SMS.
+* New: multivendor SMS for Dokan, WCFM and WC Vendors.
+* New: cart abandonment SMS with recovery stats.
 
 = 3.2.0 =
-* Added: Admin Site Alerts: send SMS to admin phone(s) on new user registration, login, post publish, comment, and WordPress core update events.
-* Each alert is individually toggleable with configurable EN and AR message templates.
-* New "Admin Alerts" settings page under the kwtSMS admin menu.
+* New: admin site alerts by SMS.
 
 = 3.1.7 =
-* Security: Trusted Devices. After completing 2FA, users can trust their device for 30 days. Trusted devices skip the OTP step on subsequent logins. Tokens stored as SHA-256 hashes in user meta, never raw. Profile page shows all trusted devices with individual and bulk revoke. All trusted devices are cleared on password reset.
+* New: trusted devices for 2FA.
 
 = 3.1.6 =
-* Security: Registration OTP Gate. Verify phone number via OTP before the WordPress account is created. Supports disabled, optional, and required modes. Works for standard WordPress registration and WooCommerce My Account registration.
+* New: phone verification at registration.
 
 = 3.1.5 =
-* Security: IPHub Proxy/VPN Detection. OTP requests from known proxy or VPN IPs can be silently blocked or flagged based on admin-configured actions per block level. Result cached per IP with configurable TTL. Allowlisted IPs bypass the check entirely.
+* New: proxy and VPN detection.
 
 = 3.1.4 =
-* Security: IP Allowlist/Blocklist with CIDR support. Admin textareas for IPv4/IPv6 address and CIDR ranges. Allowlisted IPs bypass per-IP rate limiting; blocklisted IPs receive a silent refusal indistinguishable from a rate-limit error.
+* New: IP allow and block lists.
 
 = 3.1.3 =
-* Improvement: rate limiting.
+* Improvements.
 
 = 3.1.2 =
-* Improvement: duplicate OTP protection.
+* Improvements.
 
 = 3.1.1 =
-* Enhancement: Dashboard widget now pinned to the right column for all users.
-* Enhancement: kwtSMS Dashboard link added to the dashboard widget for quick credit and log access.
-* Enhancement: "View full log" and "kwtSMS Dashboard" links placed on the same line in the widget.
-* Fix: Replace em-dash HTML entity separators with pipe/colon in admin balance bar and form integration settings.
-* Fix: Login page CSS improvements: button sizing, OTP code input focus style, back link alignment, form box-shadow removal.
-* Fix: Logs page improvements.
-* Security: Update security contact email to support@kwtsms.com.
-* CI: Remove PHPUnit job from GitHub Actions (tests run locally).
+* Dashboard widget improvements.
+* Bug fixes.
 
 = 3.0.4 =
-* CI: Added GitHub Actions workflow for PHPCS, PHPStan, and PHPUnit across PHP 8.1, 8.2, and 8.3.
-* CI: Automated plugin zip release on version tag push via GitHub Actions.
-* Fix: Replace real API username placeholder with wp_username in tests for client identification.
-* Fix: PHPStan false positives in admin view files (variable $this, defensive null-coalescing, offset checks).
-* Fix: PHPUnit test for CF7 hook name updated to match wpcf7_submit (changed in 3.0.3).
-* Fix: PHPUnit test for Gravity Forms tab updated to reflect "Coming soon" status.
+* Bug fixes.
 
 = 3.0.3 =
-* Fix: password reset OTP SMS now sent correctly even when login OTP cooldown is active for the same user (cooldown is now scoped per action type).
-* Fix: WooCommerce order total placeholder {total} no longer contains HTML entities in SMS messages.
-* Fix: CF7 gate mode form auto-submit after OTP verification no longer throws TypeError when pendingForm is null.
-* Fix: WPForms gate mode phone field detection now checks label text (WPForms uses non-standard input names).
-* Fix: Settings get() method now correctly returns $fallback instead of undefined $default variable.
-* Fix: Country code dropdown on SMS login page is now properly sized (constrained width, phone field takes remaining space).
-* Fix: Admin notices and warnings from other plugins (e.g. Action Scheduler) now display above the kwtSMS logo header, not beside it.
-* Fix: Admin sub-menu page hiding now uses CSS/JS and redirect instead of remove_submenu_page, preventing redirect loops.
-* Fix: Users Without Phone page menu count badge now updates dynamically without a page reload.
-* Enhancement: CF7 notification mode now sends SMS even when SMTP email delivery fails (hooks wpcf7_submit instead of wpcf7_mail_sent).
-* Enhancement: Integrations page notes Elementor Pro requirement for form widgets.
-* Enhancement: Integrations page notes Ninja Forms phone field configuration requirement.
-* Enhancement: Gravity Forms shown on Integrations page as "Coming soon".
+* Bug fixes and improvements.
 
 = 3.0.2 =
-* Fix: remove tab navigation from form integration pages (CF7, WPForms, Elementor, Gravity Forms, Ninja Forms), both cards now always visible.
-* Fix: move Enable Integration toggle into settings table, consistent across all form integrations.
-* Fix: restore left padding on WPForms admin pages stripped by WPForms.
-* Fix: suppress WPForms injected header, flyout, and footer on kwtSMS integration pages.
-* Fix: hide page footer on all kwtSMS admin pages.
-* Docs: remove em dashes and separator hyphens from prose in readme.txt and README.md.
+* Bug fixes.
 
 = 3.0.1 =
-* Fix: resolve all PHP_CodeSniffer WordPress Coding Standards violations.
-* Fix: expand country codes data to full 250-country list.
-* Fix: alignment and spacing in OTP and passwordless login views.
+* Bug fixes.
 
 = 3.0.0 =
 * Initial public release.
@@ -337,10 +279,10 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 == Upgrade Notice ==
 
 = 3.6.2 =
-Security fix. Please update.
+Bug fixes.
 
 = 3.6.1 =
-The On-Hold order SMS no longer says the order was shipped. Check kwtSMS > WooCommerce if you changed that text yourself.
+The On-Hold order SMS text was updated. Check kwtSMS > WooCommerce if you changed that text yourself.
 
 = 3.6.0 =
 Checkout phone verification now works with the WooCommerce Checkout block; a separate checkout SMS template was added.
