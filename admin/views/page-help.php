@@ -78,7 +78,7 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 				<td>
 					<?php if ( $kwtsms_debug_logging ) : ?>
 					<span style="color:#FFA200;font-weight:600;"><?php esc_html_e( 'ON', 'kwtsms' ); ?></span>,
-					<a href="<?php echo esc_url( admin_url( 'admin.php?page=kwtsms-otp-logs&tab=debug_log' ) ); ?>"><?php echo esc_html( $kwtsms_content_dir . '/kwtsms-debug.log' ); ?></a>
+					<a href="<?php echo esc_url( admin_url( 'admin.php?page=kwtsms-otp-logs&tab=debug_log' ) ); ?>"><?php echo esc_html( $kwtsms_content_dir . '/uploads/kwtsms-logs/' ); ?></a>
 					<?php else : ?>
 					<span style="color:#757575;"><?php esc_html_e( 'OFF', 'kwtsms' ); ?></span>,
 					<a href="<?php echo esc_url( admin_url( 'admin.php?page=kwtsms-otp' ) ); ?>"><?php esc_html_e( 'Enable in General Settings ', 'kwtsms' ); ?></a>
@@ -474,7 +474,7 @@ $kwtsms_content_dir = basename( dirname( $kwtsms_upload_dir['basedir'] ) );
 			printf(
 				/* translators: 1: path to debug log file, 2: link to Logs page */
 				esc_html__( 'When Debug Logging is enabled, all API activity is recorded in %1$s. You can view, scroll, and download it directly from %2$s.', 'kwtsms' ),
-				'<code>' . esc_html( $kwtsms_content_dir . '/kwtsms-debug.log' ) . '</code>',
+				'<code>' . esc_html( $kwtsms_content_dir . '/uploads/kwtsms-logs/' ) . '</code>',
 				'<a href="' . esc_url( $kwtsms_debug_log_url ) . '">' . esc_html__( 'Logs  Debug Log', 'kwtsms' ) . '</a>'
 			);
 			?>

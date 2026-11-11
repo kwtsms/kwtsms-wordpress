@@ -88,3 +88,14 @@ $kwtsms_debug_log  = ! empty( $kwtsms_upload_dir['basedir'] ) ? $kwtsms_upload_d
 if ( $kwtsms_debug_log && file_exists( $kwtsms_debug_log ) ) {
 	wp_delete_file( $kwtsms_debug_log );
 }
+// 2026-11-11 12:51 +03: the 3.6.2 log folder (random file name, rotation, guard files) and its option.
+$kwtsms_log_dir = ! empty( $kwtsms_upload_dir['basedir'] ) ? $kwtsms_upload_dir['basedir'] . '/kwtsms-logs' : '';
+if ( $kwtsms_log_dir && is_dir( $kwtsms_log_dir ) ) {
+	foreach ( (array) glob( $kwtsms_log_dir . '/{,.}*', GLOB_BRACE ) as $kwtsms_file ) {
+		if ( is_file( $kwtsms_file ) ) {
+			wp_delete_file( $kwtsms_file );
+		}
+	}
+	rmdir( $kwtsms_log_dir ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir -- removing the plugin's own empty log folder on uninstall.
+}
+delete_option( 'kwtsms_debug_log_token' );

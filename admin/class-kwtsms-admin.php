@@ -1393,7 +1393,7 @@ class KwtSMS_Admin {
 		WP_Filesystem();
 
 		$kwtsms_uploads   = wp_upload_dir();
-		$debug_log_path   = ! empty( $kwtsms_uploads['basedir'] ) ? $kwtsms_uploads['basedir'] . '/kwtsms-debug.log' : '';
+		$debug_log_path   = KwtSMS_API::debug_log_path(); // 2026-11-11 12:51 +03: random name, security fix.
 		$debug_logging_on = (bool) $this->plugin->settings->get( 'general.debug_logging', 0 );
 		$debug_log_exists = $debug_log_path && $wp_filesystem->exists( $debug_log_path );
 		$show_debug_tab   = $debug_logging_on && $debug_log_exists;

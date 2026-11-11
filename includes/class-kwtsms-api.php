@@ -1965,7 +1965,7 @@ class KwtSMS_API {
 	 * Write a timestamped entry to the kwtsms debug log file.
 	 *
 	 * Only writes if debug_mode is enabled (admin setting: General  Debug Logging).
-	 * Log file: wp-content/kwtsms-debug.log
+	 * Log file: uploads/kwtsms-logs/kwtsms-debug-<random>.log (see debug_log_path())
 	 *
 	 * @param string $context Short label for the calling function.
 	 * @param string $message Log message (credentials are never logged).
@@ -1988,12 +1988,10 @@ class KwtSMS_API {
 			return;
 		}
 
-		$upload_dir = wp_upload_dir();
-		if ( empty( $upload_dir['basedir'] ) ) {
+		$log_path = self::debug_log_path( true );
+		if ( '' === $log_path ) {
 			return;
 		}
-
-		$log_path = $upload_dir['basedir'] . '/kwtsms-debug.log';
 
 		// Rotate when the file reaches the size limit.
 		if ( file_exists( $log_path ) && filesize( $log_path ) >= self::DEBUG_LOG_MAX_BYTES ) {
@@ -2001,8 +1999,66 @@ class KwtSMS_API {
 			rename( $log_path, $log_path . '.1' );
 		}
 
-		$line = '[' . gmdate( 'Y-m-d H:i:s' ) . '] [kwtsms-otp] [' . $context . '] ' . $message . PHP_EOL;
+		$line = '[' . gmdate( 'Y-m-d H:i:s' ) . '] [kwtsms-otp] [' . $context . '] ' . self::redact( $message ) . PHP_EOL;
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- appending to plugin log in uploads dir.
 		file_put_contents( $log_path, $line, FILE_APPEND | LOCK_EX );
+	}
+
+	/**
+	 * 2026-11-11 12:51 +03: security fix (platform audit, Onyx #1226). Mask every run of 4 or more
+	 * digits (OTP codes, phone numbers) before anything reaches the debug log, so a leaked log can never
+	 * be used to log in as a user.
+	 *
+	 * @param string $message Raw log text.
+	 * @return string Text with long digit runs masked.
+	 */
+	public static function redact( $message ) {
+		return (string) preg_replace( '/\d{4,}/', '[redacted]', (string) $message );
+	}
+
+	/**
+	 * 2026-11-11 12:51 +03: security fix (platform audit, Onyx #1226). The debug log used to sit at
+	 * uploads/kwtsms-debug.log, a guessable, web-readable name. It now lives in uploads/kwtsms-logs/ with a
+	 * random file name kept in an option, and the folder carries deny rules (.htaccess for Apache, an empty
+	 * index.php for listing). Callers use only this helper for the path.
+	 *
+	 * @param bool $create Create the folder and its guard files when missing.
+	 * @return string Absolute path, or '' when uploads are unavailable.
+	 */
+	public static function debug_log_path( $create = false ) {
+		$upload_dir = wp_upload_dir();
+		if ( empty( $upload_dir['basedir'] ) ) {
+			return '';
+		}
+		$dir   = trailingslashit( $upload_dir['basedir'] ) . 'kwtsms-logs';
+		$token = get_option( 'kwtsms_debug_log_token', '' );
+		if ( ! is_string( $token ) || ! preg_match( '/^[a-z0-9]{32}$/', $token ) ) {
+			$token = strtolower( wp_generate_password( 32, false, false ) );
+			update_option( 'kwtsms_debug_log_token', $token, false );
+		}
+		if ( $create && ! is_dir( $dir ) ) {
+			wp_mkdir_p( $dir );
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- guard files for the log folder.
+			file_put_contents( $dir . '/.htaccess', "Require all denied\nDeny from all\n" );
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- guard files for the log folder.
+			file_put_contents( $dir . '/index.php', "<?php\n// Silence is golden.\n" );
+		}
+		return $dir . '/kwtsms-debug-' . $token . '.log';
+	}
+
+	/**
+	 * 2026-11-11 12:51 +03: security fix. Delete the old guessable log files (uploads/kwtsms-debug.log and
+	 * its rotation) left by 3.6.1 and earlier. Cheap: two file_exists checks, run on admin_init.
+	 */
+	public static function delete_legacy_debug_logs() {
+		$upload_dir = wp_upload_dir();
+		if ( empty( $upload_dir['basedir'] ) ) {
+			return;
+		}
+		foreach ( array( '/kwtsms-debug.log', '/kwtsms-debug.log.1' ) as $name ) {
+			if ( file_exists( $upload_dir['basedir'] . $name ) ) {
+				wp_delete_file( $upload_dir['basedir'] . $name );
+			}
+		}
 	}
 }

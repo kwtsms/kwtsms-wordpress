@@ -683,7 +683,7 @@ foreach ( $kwtsms_all_countries as $kwtsms_cc ) {
 						// Show relative path using wp_upload_dir() per WP.org guidelines.
 						$kwtsms_upload      = wp_upload_dir();
 						$kwtsms_content_rel = basename( dirname( $kwtsms_upload['basedir'] ) );
-						$kwtsms_log_path    = $kwtsms_content_rel . '/kwtsms-debug.log';
+						$kwtsms_log_path    = $kwtsms_content_rel . '/uploads/kwtsms-logs/'; // 2026-11-11 12:51 +03: folder only, the file name is random (security fix).
 						printf(
 							/* translators: %s: path to the debug log file */
 							esc_html__( 'Log file: %s', 'kwtsms' ),

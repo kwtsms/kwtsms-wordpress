@@ -30,7 +30,7 @@ $kwtsms_items_per_page = 20;
 // NOTE: download/clear/export handlers are registered on admin_init in KwtSMS_Admin::handle_log_exports()
 // so that Content-Type headers can be sent before any HTML output.
 $kwtsms_uploads_dir      = wp_upload_dir();
-$kwtsms_debug_log_path   = ! empty( $kwtsms_uploads_dir['basedir'] ) ? $kwtsms_uploads_dir['basedir'] . '/kwtsms-debug.log' : '';
+$kwtsms_debug_log_path   = KwtSMS_API::debug_log_path(); // 2026-11-11 12:51 +03: random name, security fix.
 $kwtsms_debug_logging_on = (bool) $this->plugin->settings->get( 'general.debug_logging', 0 );
 $kwtsms_debug_log_exists = $kwtsms_debug_log_path && file_exists( $kwtsms_debug_log_path );
 $kwtsms_show_debug_tab   = $kwtsms_debug_logging_on && $kwtsms_debug_log_exists;

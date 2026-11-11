@@ -92,6 +92,9 @@ class KwtSMS_Plugin {
 		new KwtSMS_User_Meta();
 
 		// Load login/reset OTP only when enabled in settings.
+		// 2026-11-11 12:51 +03: security fix: remove the guessable debug logs left by 3.6.1 and earlier.
+		add_action( 'admin_init', array( 'KwtSMS_API', 'delete_legacy_debug_logs' ) );
+
 		if ( $this->settings->get( 'general.login_otp', 1 ) ) {
 			new KwtSMS_Login_OTP( $this );
 		}
