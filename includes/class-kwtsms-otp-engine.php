@@ -688,7 +688,7 @@ class KwtSMS_OTP_Engine {
 	 * Write a line to the debug log when the general.debug_logging setting is on.
 	 *
 	 * Uses the same log file as KwtSMS_API::write_debug_log() so all plugin
-	 * output lands in one file: wp-content/kwtsms-debug.log.
+	 * output lands in one file: KwtSMS_API::debug_log_path().
 	 *
 	 * @param string $context Short label (e.g. 'iphub').
 	 * @param string $message Log message text.
@@ -697,21 +697,15 @@ class KwtSMS_OTP_Engine {
 		if ( ! $this->settings->get( 'general.debug_logging', false ) ) {
 			return;
 		}
-		$upload_dir = wp_upload_dir();
-		if ( empty( $upload_dir['basedir'] ) ) {
+		// 2026-11-11 13:20 +03: security fix (3.6.2 E2E test): this second writer still used the old
+		// guessable uploads/kwtsms-debug.log without masking. Same protected file and masking as the API writer now.
+		$log_path = KwtSMS_API::debug_log_path( true );
+		if ( '' === $log_path ) {
 			return;
 		}
-		$log_path = $upload_dir['basedir'] . '/kwtsms-debug.log';
-		$line     = '[' . gmdate( 'Y-m-d H:i:s' ) . '] [kwtsms-otp] [' . $context . '] ' . $message . PHP_EOL;
-
-		global $wp_filesystem;
-		if ( ! function_exists( 'WP_Filesystem' ) ) {
-			require_once ABSPATH . 'wp-admin/includes/file.php';
-		}
-		WP_Filesystem();
-
-		$existing = $wp_filesystem->exists( $log_path ) ? $wp_filesystem->get_contents( $log_path ) : '';
-		$wp_filesystem->put_contents( $log_path, $existing . $line );
+		$line = '[' . gmdate( 'Y-m-d H:i:s' ) . '] [kwtsms-otp] [' . $context . '] ' . KwtSMS_API::redact( $message ) . PHP_EOL;
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- appending to plugin log in uploads dir.
+		file_put_contents( $log_path, $line, FILE_APPEND | LOCK_EX );
 	}
 
 	// =========================================================================

@@ -45,7 +45,7 @@ class KwtSMS_Settings {
 			'referral_link'         => 0,          // Show 'SMS service by kwtSMS.com' on login pages (opt-in).
 			'default_country_code'  => 'KW',       // ISO2 default for phone dropdown.
 			'allowed_countries'     => array( 'KW', 'SA', 'AE', 'BH', 'QA', 'OM' ), // GCC default.
-			'debug_logging'         => 0,          // Write detailed logs to wp-content/kwtsms-debug.log.
+			'debug_logging'         => 0,          // Write detailed logs to uploads/kwtsms-logs/ (random file name).
 			'balance_failure_mode'  => 'block',    // block or allow: action when SMS credits run out.
 			'blocked_phones'        => '',         // Newline or comma-separated normalized phone numbers.
 			'ip_allowlist'          => '',         // Newline-separated IPs or CIDRs. Allowlisted IPs skip rate limiting and proxy checks.

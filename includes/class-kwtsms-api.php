@@ -2055,9 +2055,11 @@ class KwtSMS_API {
 		if ( empty( $upload_dir['basedir'] ) ) {
 			return;
 		}
-		foreach ( array( '/kwtsms-debug.log', '/kwtsms-debug.log.1' ) as $name ) {
-			if ( file_exists( $upload_dir['basedir'] . $name ) ) {
-				wp_delete_file( $upload_dir['basedir'] . $name );
+		// 2026-11-11 13:20 +03: also wp-content/kwtsms-debug.log, the path older versions documented.
+		$paths = array( $upload_dir['basedir'] . '/kwtsms-debug.log', $upload_dir['basedir'] . '/kwtsms-debug.log.1', WP_CONTENT_DIR . '/kwtsms-debug.log', WP_CONTENT_DIR . '/kwtsms-debug.log.1' );
+		foreach ( $paths as $path ) {
+			if ( file_exists( $path ) ) {
+				wp_delete_file( $path );
 			}
 		}
 	}
