@@ -919,37 +919,23 @@ class KwtSMS_OTP_Engine {
 	 *
 	 * Supports both IPv4 (e.g. 192.168.0.0/16) and IPv6 (e.g. ::1/128) ranges.
 	 *
+	 * 2026-11-11 20:48 +03: guard for servers without GMP. The IPv6 branch called gmp_* (an
+	 * optional extension), so an IPv6 visitor on a host without it stopped the request with a
+	 * fatal error. Both families now use the inet_pton byte comparison in ip_matches_cidr(),
+	 * plain PHP with no extension, task wp-363.
+	 *
 	 * @param string $ip   The IP address to test.
 	 * @param string $cidr The CIDR notation block to test against.
 	 * @return bool True if the IP is within the CIDR range.
 	 */
 	private function is_ip_in_cidr( $ip, $cidr ) {
-		list( $subnet, $bits ) = explode( '/', $cidr );
-
-		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) &&
-			filter_var( $subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
-			// IPv4 comparison.
-			$bits     = (int) $bits;
-			$ip_long  = ip2long( $ip );
-			$net_long = ip2long( $subnet );
-			$mask     = $bits > 0 ? ( -1 << ( 32 - $bits ) ) : 0;
-			return ( $ip_long & $mask ) === ( $net_long & $mask );
+		$parts = explode( '/', (string) $cidr, 2 );
+		if ( 2 !== count( $parts ) || ! ctype_digit( $parts[1] ) ) {
+			return false;
 		}
-
-		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) &&
-			filter_var( $subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) ) {
-			// IPv6 comparison.
-			$bits     = (int) $bits;
-			$ip_bin   = inet_pton( $ip );
-			$net_bin  = inet_pton( $subnet );
-			$ip_hex   = bin2hex( $ip_bin );
-			$net_hex  = bin2hex( $net_bin );
-			$ip_int   = gmp_init( $ip_hex, 16 );
-			$net_int  = gmp_init( $net_hex, 16 );
-			$mask_int = gmp_sub( gmp_pow( 2, 128 ), gmp_pow( 2, 128 - $bits ) );
-			return gmp_cmp( gmp_and( $ip_int, $mask_int ), gmp_and( $net_int, $mask_int ) ) === 0;
+		if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) || ! filter_var( $parts[0], FILTER_VALIDATE_IP ) ) {
+			return false;
 		}
-
-		return false;
+		return $this->ip_matches_cidr( (string) $ip, (string) $cidr );
 	}
 }
