@@ -2039,7 +2039,7 @@ class KwtSMS_API {
 		if ( $create && ! is_dir( $dir ) ) {
 			wp_mkdir_p( $dir );
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- guard files for the log folder.
-			file_put_contents( $dir . '/.htaccess', "Require all denied\nDeny from all\n" );
+			file_put_contents( $dir . '/.htaccess', "<IfModule mod_authz_core.c>\nRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\nDeny from all\n</IfModule>\n" );
 			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- guard files for the log folder.
 			file_put_contents( $dir . '/index.php', "<?php\n// Silence is golden.\n" );
 		}
