@@ -10,9 +10,15 @@
  * Author URI:        https://www.kwtsms.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * WC requires at least: 4.3
  * WC tested up to:   11.2
  * Text Domain:       kwtsms
  * Domain Path:       /languages
+ *
+ * 2026-11-11 20:52 +03: WC minimum added, task wp-363. 4.3 is the first WooCommerce with the
+ * woocommerce_checkout_order_created hook (checkout code reset, abandoned-cart recovery); all
+ * newer WooCommerce APIs used (FeaturesUtil, Store API, additional checkout fields,
+ * wc_get_page_screen_id) are behind class_exists or function_exists checks.
  *
  * @package KwtSMS_OTP
  */
