@@ -607,6 +607,13 @@ class KwtSMS_OTP_Engine {
 			return false;
 		}
 
+		// 2026-11-11 21:18 +03: an IPv4-mapped IPv6 address (::ffff:1.2.3.4) is compared as its IPv4 address,
+		// so IPv4 list entries also apply on hosts that report mapped addresses, task wp-363.
+		$mapped_prefix = str_repeat( "\x00", 10 ) . "\xFF\xFF";
+		if ( 16 === strlen( $ip_bin ) && 4 === strlen( $range_bin ) && 0 === strncmp( $ip_bin, $mapped_prefix, 12 ) ) {
+			$ip_bin = substr( $ip_bin, 12 );
+		}
+
 		$ip_len    = strlen( $ip_bin );
 		$range_len = strlen( $range_bin );
 		if ( $ip_len !== $range_len ) {
