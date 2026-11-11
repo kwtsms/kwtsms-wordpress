@@ -4,7 +4,7 @@ Tags: sms, otp, authentication, woocommerce, login
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.6.2
+Stable tag: 3.6.3
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,11 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 
 == Changelog ==
 
+= 3.6.3 =
+* New: login setting for users without a phone number.
+* New: SMS login can be limited to confirmed phone numbers.
+* Bug fixes.
+
 = 3.6.2 =
 * Bug fixes.
 
@@ -277,6 +282,9 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 3.6.3 =
+Bug fixes. New login settings; your current login behaviour is kept.
 
 = 3.6.2 =
 Bug fixes.
