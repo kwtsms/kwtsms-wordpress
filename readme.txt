@@ -197,8 +197,8 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 == Changelog ==
 
 = 3.6.2 =
-* Security: SMS (passwordless) login now always asks for the SMS code, and the SMS login page only works when you turn passwordless login on. Please update.
-* Security: the debug log is kept in a protected folder under a random name, never contains codes or phone numbers, and old log files are removed.
+* Security fix: passwordless login now always asks for the OTP, and works only when you turn passwordless login on. Please update.
+* Security fix: the debug log now sits in a protected folder, never holds OTPs or phone numbers, and old log files are removed.
 
 = 3.6.1 =
 * Fix: the WooCommerce On-Hold SMS now says the order is waiting for payment confirmation. It used to say the order was shipped. If you never edited that text, it is updated for you; your own wording is kept.
@@ -343,7 +343,7 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 == Upgrade Notice ==
 
 = 3.6.2 =
-Security release for SMS login. Please update now.
+Important security update for login. Please update now.
 
 = 3.6.1 =
 The On-Hold order SMS no longer says the order was shipped. Check kwtSMS > WooCommerce if you changed that text yourself.
