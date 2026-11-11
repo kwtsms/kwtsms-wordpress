@@ -4,7 +4,7 @@ Tags: sms, otp, authentication, woocommerce, login
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.6.1
+Stable tag: 3.6.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -196,6 +196,10 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 
 == Changelog ==
 
+= 3.6.2 =
+* Security: SMS (passwordless) login now always asks for the SMS code, and the SMS login page only works when you turn passwordless login on. Please update.
+* Security: the debug log is kept in a protected folder under a random name, never contains codes or phone numbers, and old log files are removed.
+
 = 3.6.1 =
 * Fix: the WooCommerce On-Hold SMS now says the order is waiting for payment confirmation. It used to say the order was shipped. If you never edited that text, it is updated for you; your own wording is kept.
 * New: the admin screens are fully translated into Arabic.
@@ -337,6 +341,9 @@ International sending is disabled by default on kwtSMS accounts. Log in to your 
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 3.6.2 =
+Security release for SMS login. Please update now.
 
 = 3.6.1 =
 The On-Hold order SMS no longer says the order was shipped. Check kwtSMS > WooCommerce if you changed that text yourself.
