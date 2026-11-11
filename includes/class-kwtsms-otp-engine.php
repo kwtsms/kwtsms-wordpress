@@ -347,6 +347,35 @@ class KwtSMS_OTP_Engine {
 		set_transient( $this->cooldown_key( $identifier, $action ), 1, self::SEND_COOLDOWN );
 	}
 
+	// 2026-11-11 20:40 +03: send-time helpers, so the passwordless form takes about as long for
+	// every phone (a phone with no account gets no SMS but waits like one that does), task wp-363.
+
+	/**
+	 * Remember how long the last OTP send took (milliseconds, capped at 5000).
+	 *
+	 * @param float $seconds Duration of the send() call in seconds.
+	 */
+	public function note_send_duration( float $seconds ): void {
+		$ms = (int) round( $seconds * 1000 );
+		set_transient( 'kwtsms_last_send_ms', max( 1, min( 5000, $ms ) ), DAY_IN_SECONDS );
+	}
+
+	/**
+	 * Wait about as long as a real OTP send takes, with +/- 20% jitter.
+	 *
+	 * Uses the duration saved by note_send_duration(); 400 ms when none is saved yet,
+	 * never more than 3 seconds.
+	 */
+	public function pause_like_send(): void {
+		$ms = (int) get_transient( 'kwtsms_last_send_ms' );
+		if ( $ms <= 0 ) {
+			$ms = 400;
+		}
+		$ms     = min( 3000, $ms );
+		$jitter = random_int( -intdiv( $ms, 5 ), intdiv( $ms, 5 ) );
+		usleep( max( 0, $ms + $jitter ) * 1000 );
+	}
+
 	// =========================================================================
 	// Message building
 	// =========================================================================

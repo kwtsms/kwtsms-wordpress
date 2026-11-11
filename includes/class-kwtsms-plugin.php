@@ -741,6 +741,53 @@ class KwtSMS_Plugin {
 			return;
 		}
 
+		// 2026-11-11 20:40 +03: same response for every phone. A passwordless session for a phone
+		// with no account ('otp_id' set) answers resend like a real one: same limits, same cooldown,
+		// same success text, similar timing, a fresh code slot, and no SMS, task wp-363.
+		if ( 'login' === $context && ! empty( $partial['otp_id'] ) ) {
+			$otp_id      = sanitize_text_field( $partial['otp_id'] );
+			$decoy_phone = sanitize_text_field( $partial['phone'] ?? '' );
+			$cooldown    = $this->settings->get( 'general.resend_cooldown', 60 );
+			if ( $this->otp->is_rate_limited( $decoy_phone ) ) {
+				wp_send_json_error(
+					array(
+						'message'  => __( 'Too many requests. Please wait before trying again.', 'kwtsms' ),
+						'cooldown' => $cooldown,
+					)
+				);
+				return;
+			}
+			if ( $this->otp->is_ip_rate_limited( $otp_action, null, $decoy_phone ) ) {
+				wp_send_json_error(
+					array(
+						'message'  => __( 'Too many requests from this location. Please wait before trying again.', 'kwtsms' ),
+						'cooldown' => $cooldown,
+					)
+				);
+				return;
+			}
+			if ( $this->otp->is_send_cooldown_active( $otp_id, $otp_action ) ) {
+				wp_send_json_error(
+					array(
+						'message'  => __( 'Please wait before requesting another code.', 'kwtsms' ),
+						'cooldown' => $cooldown,
+					)
+				);
+				return;
+			}
+			$this->api->write_debug_log( 'passwordless', 'Resend not sent: no account has this phone number' );
+			$this->otp->generate( $otp_id, $otp_action ); // Code is discarded on purpose.
+			$this->otp->pause_like_send();
+			$this->otp->set_send_cooldown( $otp_id, $otp_action );
+			wp_send_json_success(
+				array(
+					'message'  => __( 'A new code has been sent to your phone.', 'kwtsms' ),
+					'cooldown' => $cooldown,
+				)
+			);
+			return;
+		}
+
 		$user_id = absint( $partial['user_id'] );
 		$phone   = get_user_meta( $user_id, 'kwtsms_phone', true );
 

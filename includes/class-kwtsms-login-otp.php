@@ -383,7 +383,15 @@ class KwtSMS_Login_OTP {
 			exit;
 		}
 
-		$result = $this->plugin->otp->verify( $user_id, $submitted, $otp_action, $user_id, $otp_phone );
+		// 2026-11-11 20:40 +03: a passwordless session for a phone with no account keeps its code
+		// in its own slot ('otp_id'), so attempts and lockout count the same as a real session.
+		// user_id 0 never logs in, task wp-363.
+		$otp_id = isset( $partial['otp_id'] ) ? sanitize_text_field( $partial['otp_id'] ) : $user_id;
+
+		$result = $this->plugin->otp->verify( $otp_id, $submitted, $otp_action, $user_id, $otp_phone );
+		if ( 'valid' === $result && 0 === $user_id ) {
+			$result = 'invalid';
+		}
 
 		switch ( $result ) {
 			case 'valid':
@@ -394,7 +402,7 @@ class KwtSMS_Login_OTP {
 				break;
 
 			case 'invalid':
-				$remaining = $this->plugin->otp->get_remaining_attempts( $user_id );
+				$remaining = $this->plugin->otp->get_remaining_attempts( $otp_id );
 				if ( 0 === $remaining ) {
 					// Transient expired between verify() and get_remaining_attempts(): treat as expired.
 					$this->render_otp_page(
@@ -489,8 +497,8 @@ class KwtSMS_Login_OTP {
 	 * Handle passwordless phone-number form submission.
 	 *
 	 * Looks up user by phone meta, generates OTP, redirects to OTP entry.
-	 * Shows the same "check your phone" message regardless of whether the
-	 * phone is registered (anti-enumeration).
+	 * 2026-11-11 20:40 +03: every valid phone gets the same redirect to the code entry page, known
+	 * or not, with similar timing; only a known phone gets an SMS, task wp-363.
 	 */
 	private function handle_passwordless_submission() {
 		if ( ! wp_verify_nonce(
@@ -536,8 +544,17 @@ class KwtSMS_Login_OTP {
 			exit;
 		}
 
-		// Generic response: prevents phone enumeration.
-		$generic_message = __( 'If an account is associated with this number, an OTP will be sent shortly.', 'kwtsms' );
+		// 2026-11-11 20:40 +03: same response for every phone. A missing gateway setup is a
+		// site-wide state, so it is checked here, before the phone lookup, and every phone gets
+		// the same answer, task wp-363.
+		$gateway_ready = '' !== (string) $this->plugin->settings->get( 'gateway.api_username', '' )
+			&& '' !== (string) $this->plugin->settings->get( 'gateway.api_password', '' )
+			&& '' !== (string) $this->plugin->settings->get( 'gateway.sender_id', '' );
+		if ( ! $gateway_ready ) {
+			$this->plugin->api->write_debug_log( 'passwordless', 'Passwordless SMS not sent: gateway credentials or Sender ID not configured' );
+			$this->render_passwordless_page( __( 'SMS login is not available. Please contact the site administrator.', 'kwtsms' ) );
+			exit;
+		}
 
 		// Look up user by kwtsms_phone meta.
 		$users = get_users(
@@ -549,10 +566,12 @@ class KwtSMS_Login_OTP {
 			)
 		);
 
+		// 2026-11-11 20:40 +03: same response for every phone. A phone with no account now gets
+		// the same redirect to the code entry page as a known phone (no SMS is sent), instead of
+		// a different message, task wp-363.
 		if ( empty( $users ) ) {
-			// No match: show generic message, no OTP sent.
-			$this->render_passwordless_page( '', $generic_message );
-			exit;
+			$this->plugin->api->write_debug_log( 'passwordless', 'Passwordless SMS not sent: no account has this phone number' );
+			$this->passwordless_same_response( $normalized );
 		}
 
 		$user_id = (int) $users[0];
@@ -562,7 +581,8 @@ class KwtSMS_Login_OTP {
 		// the only factor, so it is never skipped: the old role check here issued auth cookies for a
 		// phone number alone.
 
-		// Per-account rate-limit check now that user_id is known.
+		// Per-account rate-limit check now that user_id is known. The text is the same as the
+		// per-phone limit above, which an unknown phone reaches after the same number of tries.
 		if ( $this->plugin->otp->is_user_rate_limited( $user_id, 'passwordless', $normalized ) ) {
 			$this->render_passwordless_page(
 				__( 'Too many requests. Please wait a few minutes before trying again.', 'kwtsms' )
@@ -570,18 +590,17 @@ class KwtSMS_Login_OTP {
 			exit;
 		}
 
-		// Anti-enumeration: silently succeed for blocked phones without sending SMS.
+		// Blocked phone: same response as every other phone, no SMS.
 		if ( $this->plugin->otp->is_phone_blocked( $normalized ) ) {
-			$this->render_passwordless_page( '', $generic_message );
-			exit;
+			$this->plugin->api->write_debug_log( 'passwordless', 'Passwordless SMS not sent: phone is on the blocked list' );
+			$this->passwordless_same_response( $normalized );
 		}
 
-		// IP blocklist: silently pretend success (anti-enumeration).
+		// IP blocklist: same response as every other phone, no SMS.
 		$client_ip = $this->plugin->otp->get_client_ip();
 		if ( '' !== $client_ip && $this->plugin->otp->is_ip_blocklisted( $client_ip ) ) {
 			$this->plugin->api->write_debug_log( 'passwordless', 'Blocklisted IP attempted OTP: ' . $client_ip );
-			$this->render_passwordless_page( '', $generic_message );
-			exit;
+			$this->passwordless_same_response( $normalized );
 		}
 
 		// Send SMS only if outside the send-cooldown (prevents double-send on double-click/race).
@@ -591,46 +610,31 @@ class KwtSMS_Login_OTP {
 
 			$otp_code = $this->plugin->otp->generate( $user_id, 'passwordless' );
 			$message  = $this->plugin->otp->build_message( $otp_code, 'login_otp' );
+			$started  = microtime( true );
 			$result   = $this->plugin->api->send(
 				$normalized,
 				$this->plugin->settings->get( 'gateway.sender_id', '' ),
 				$message,
 				'passwordless'
 			);
+			// 2026-11-11 20:40 +03: keep the send time so other phones wait about as long, task wp-363.
+			$this->plugin->otp->note_send_duration( microtime( true ) - $started );
 
 			if ( is_wp_error( $result ) ) {
 				$error_code = $result->get_error_code();
 				$this->plugin->api->write_debug_log( 'login_otp', 'Passwordless SMS failed: ' . $result->get_error_message() );
 
-				// Gateway not configured: show actionable error on the phone form.
-				if ( in_array( $error_code, array( 'kwtsms_no_credentials', 'kwtsms_missing_sender_id' ), true ) ) {
-					$this->render_passwordless_page( __( 'SMS login is not available. Please contact the site administrator.', 'kwtsms' ) );
-					exit;
-				}
-
-				// Insufficient credits: alert admin; mode decides whether to block or allow.
+				// 2026-11-11 20:40 +03: same response for every phone. Every send error now ends on
+				// the code entry page like any other phone (the user is not logged in and gets no
+				// code); the reason is in the debug log and, for a zero balance, in the admin email.
+				// Before, each error showed its own message only for registered phones, task wp-363.
 				if ( 'no_balance' === $error_code ) {
 					$this->notify_admin_no_balance();
-					$mode = $this->plugin->settings->get( 'general.balance_failure_mode', 'block' );
-					if ( 'allow' !== $mode ) {
-						$this->render_passwordless_page( __( 'Your verification code could not be sent. Please contact the site administrator.', 'kwtsms' ) );
-						exit;
-					}
-					// 'allow' mode: fall through and show OTP screen (user will not receive a code
-					// but is not logged in; this is safer than auto-logging-in without a phone lookup).
 				}
-
-				// Country blocked or SMS disabled: user's phone is in a disallowed country.
-				// Anti-enumeration: show generic success but do not create a session.
-				if ( in_array( $error_code, array( 'country_not_allowed', 'kwtsms_sms_disabled' ), true ) ) {
-					$this->plugin->api->write_debug_log( 'passwordless', 'Country-blocked phone attempted passwordless OTP: ' . $normalized );
-					$this->render_passwordless_page( '', $generic_message );
-					exit;
-				}
-
-				// Temporary failure: proceed to OTP screen; user cannot complete it
-				// but is not logged in either, which is safer than showing nothing.
 			}
+		} else {
+			// No new SMS inside the cooldown: wait like a send so the timing matches.
+			$this->plugin->otp->pause_like_send();
 		}
 
 		// Sliding-window counters are recorded inside is_rate_limited(),
@@ -650,7 +654,46 @@ class KwtSMS_Login_OTP {
 			15 * MINUTE_IN_SECONDS
 		);
 		$this->set_partial_auth_cookie( $token );
+		$this->redirect_to_passwordless_otp();
+	}
 
+	/**
+	 * Answer the passwordless form exactly like a known phone, without sending an SMS.
+	 *
+	 * 2026-11-11 20:40 +03: same response for every phone, task wp-363. Waits about as long as a
+	 * real send, opens a session with the same fields as a real one plus 'otp_id', a code slot
+	 * whose code nobody receives, so wrong codes, attempt counts, lockout, expiry and resend behave
+	 * the same as for a known phone. user_id 0 can never log in (see handle_otp_submission()).
+	 *
+	 * @param string $normalized Normalized phone number the visitor typed.
+	 */
+	private function passwordless_same_response( $normalized ) {
+		$this->plugin->otp->pause_like_send();
+
+		$token  = wp_generate_password( 40, false );
+		$otp_id = 'pwl_' . $token;
+		$this->plugin->otp->generate( $otp_id, 'passwordless' ); // Code is discarded on purpose.
+		set_transient(
+			'kwtsms_partial_auth_' . $token,
+			array(
+				'user_id'    => 0,
+				'action'     => 'passwordless',
+				'phone'      => $normalized,
+				'rememberme' => false,
+				'otp_id'     => $otp_id,
+			),
+			15 * MINUTE_IN_SECONDS
+		);
+		$this->set_partial_auth_cookie( $token );
+		$this->redirect_to_passwordless_otp();
+	}
+
+	/**
+	 * Redirect to the passwordless code entry page and stop.
+	 *
+	 * 2026-11-11 20:40 +03: shared by every passwordless outcome so the redirect is identical, task wp-363.
+	 */
+	private function redirect_to_passwordless_otp() {
 		$otp_url = add_query_arg(
 			array(
 				'action'  => 'kwtsms_otp',
