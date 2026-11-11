@@ -293,6 +293,13 @@ class KwtSMS_Login_OTP {
 		}
 
 		if ( 'kwtsms_passwordless' === $kwtsms_action ) {
+			// 2026-11-11 12:43 +03: security fix (platform audit). The passwordless screen and
+			// its POST handler answered on every site, whatever the OTP mode. Serve them only when the
+			// admin chose passwordless or both; otherwise fall through to the normal login screen.
+			$mode = $this->plugin->settings->get( 'general.otp_mode', '2fa' );
+			if ( ! in_array( $mode, array( 'passwordless', 'both' ), true ) ) {
+				return;
+			}
 			if ( 'POST' === sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ?? '' ) ) ) {
 				$this->handle_passwordless_submission();
 			}
@@ -550,24 +557,10 @@ class KwtSMS_Login_OTP {
 
 		$user_id = (int) $users[0];
 
-		// Per-role enforcement: check whether this user's role requires OTP.
-		// If a non-empty role list is configured and the user's role is not in
-		// it, skip OTP entirely and log them in directly via auth cookies.
-		$required_roles = $this->plugin->settings->get( 'general.otp_required_roles', array() );
-		if ( ! empty( $required_roles ) ) {
-			$user_obj   = get_userdata( $user_id );
-			$user_roles = $user_obj ? $user_obj->roles : array();
-			// On multisite, super admins have an empty roles array;
-			// treat them as 'administrator' for the purpose of this check.
-			if ( empty( $user_roles ) && function_exists( 'is_super_admin' ) && is_super_admin( $user_id ) ) {
-				$user_roles = array( 'administrator' );
-			}
-			$intersect = array_intersect( $user_roles, (array) $required_roles );
-			if ( empty( $intersect ) ) {
-				// User's role is not subject to OTP: issue auth cookies directly.
-				$this->issue_auth_and_redirect( $user_id );
-			}
-		}
+		// 2026-11-11 12:43 +03: security fix (platform audit). The per-role list only decides who
+		// needs a SECOND factor after a correct password (2FA). In passwordless login the SMS code is
+		// the only factor, so it is never skipped: the old role check here issued auth cookies for a
+		// phone number alone.
 
 		// Per-account rate-limit check now that user_id is known.
 		if ( $this->plugin->otp->is_user_rate_limited( $user_id, 'passwordless', $normalized ) ) {
