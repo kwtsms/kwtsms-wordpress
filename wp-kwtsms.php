@@ -183,6 +183,13 @@ add_action(
 				KWTSMS_OTP_FILE,
 				true
 			);
+			// 2026-11-11 20:52 +03: the Cart and Checkout blocks are supported (Store API hooks and the
+			// additional checkout field in class-kwtsms-woo.php), so say so to WooCommerce, task wp-363.
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+				'cart_checkout_blocks',
+				KWTSMS_OTP_FILE,
+				true
+			);
 		}
 	}
 );
