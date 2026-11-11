@@ -485,7 +485,10 @@ class KwtSMS_Login_OTP {
 		// Issue a trusted device cookie if the user checked "Trust this device".
 		// Only available in the 2FA flow (not password reset).
 		// Nonce was verified in handle_otp_submission() which is the only caller of this method.
-		if ( wp_verify_nonce( sanitize_key( wp_unslash( $_POST['kwtsms_otp_nonce'] ?? '' ) ), 'kwtsms_otp_nonce' ) &&
+		// 2026-11-11 20:49 +03: same nonce action as the OTP form (views/page-otp.php wp_nonce_field
+		// 'kwtsms_otp_submit'); the old 'kwtsms_otp_nonce' never matched, so "Trust this device"
+		// was never saved, task wp-363.
+		if ( wp_verify_nonce( sanitize_key( wp_unslash( $_POST['kwtsms_otp_nonce'] ?? '' ) ), 'kwtsms_otp_submit' ) &&
 			! empty( $_POST['kwtsms_trust_device'] ) ) {
 			$trusted   = new KwtSMS_Trusted_Devices();
 			$old_token = $trusted->get_cookie_token( $user_id ); // '' if no existing cookie.
