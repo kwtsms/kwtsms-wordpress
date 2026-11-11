@@ -117,7 +117,8 @@ class KwtSMS_Login_OTP {
 		// yet (a send would fail with no credentials and the login goes on), so the user is let in
 		// as before; this keeps a fresh install from locking out its own users, task wp-363.
 		if ( empty( $phone ) ) {
-			$no_phone_action = $this->plugin->settings->get( 'general.no_phone_action', 'block' );
+			// 2026-11-11 21:02 +03: fallback is the 3.6.2 behaviour; fresh installs store 'block', task wp-363.
+			$no_phone_action = $this->plugin->settings->get( 'general.no_phone_action', 'allow' );
 			$gateway_ready   = '' !== (string) $this->plugin->settings->get( 'gateway.api_username', '' )
 				&& '' !== (string) $this->plugin->settings->get( 'gateway.api_password', '' )
 				&& '' !== (string) $this->plugin->settings->get( 'gateway.sender_id', '' );
@@ -580,15 +581,19 @@ class KwtSMS_Login_OTP {
 		// 2026-11-11 20:47 +03: look up the user by the SMS-verified phone only (rule in
 		// KwtSMS_User_Meta::mark_phone_verified()), and confirm it is still the phone on the account.
 		// A phone saved without an SMS code gets the same response as an unknown phone, task wp-363.
-		$users = get_users(
+		// 2026-11-11 21:02 +03: owner decision: only while general.pwl_verified_only is on (fresh
+		// installs). Off (upgrades, fallback) = 3.6.2 lookup: any saved kwtsms_phone. The verified flag
+		// is recorded either way, so switching it on later works for users who confirmed since, task wp-363.
+		$verified_only = (bool) $this->plugin->settings->get( 'general.pwl_verified_only', 0 );
+		$users         = get_users(
 			array(
-				'meta_key'   => KwtSMS_User_Meta::VERIFIED_META_KEY, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_key'   => $verified_only ? KwtSMS_User_Meta::VERIFIED_META_KEY : 'kwtsms_phone', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 				'meta_value' => $normalized, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'number'     => 1,
 				'fields'     => 'ids',
 			)
 		);
-		if ( ! empty( $users ) && ! KwtSMS_User_Meta::is_phone_verified( (int) $users[0], $normalized ) ) {
+		if ( $verified_only && ! empty( $users ) && ! KwtSMS_User_Meta::is_phone_verified( (int) $users[0], $normalized ) ) {
 			$users = array();
 		}
 
@@ -596,7 +601,7 @@ class KwtSMS_Login_OTP {
 		// the same redirect to the code entry page as a known phone (no SMS is sent), instead of
 		// a different message, task wp-363.
 		if ( empty( $users ) ) {
-			$this->plugin->api->write_debug_log( 'passwordless', 'Passwordless SMS not sent: no account has this phone number verified by SMS' );
+			$this->plugin->api->write_debug_log( 'passwordless', $verified_only ? 'Passwordless SMS not sent: no account has this phone number confirmed by a code' : 'Passwordless SMS not sent: no account has this phone number' );
 			$this->passwordless_same_response( $normalized );
 		}
 

@@ -60,6 +60,8 @@ class KwtSMS_Admin {
 		add_action( 'admin_init', array( $this, 'handle_log_exports' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'admin_notices', array( $this, 'show_admin_notices' ) );
+		// 2026-11-11 21:02 +03: per-user dismissal of the stricter-login notice, task wp-363.
+		add_action( 'admin_init', array( $this, 'maybe_dismiss_strict_login_notice' ) );
 		add_action( 'wp_dashboard_setup', array( $this, 'register_dashboard_widget' ) );
 		add_filter( 'get_user_option_meta-box-order_dashboard', array( $this, 'force_widget_side_column' ) );
 		add_action( 'wp_ajax_kwtsms_get_coverage', array( $this, 'ajax_get_coverage' ) );
@@ -415,9 +417,15 @@ class KwtSMS_Admin {
 			'ip_blocklist'          => $this->sanitize_ip_list( wp_unslash( $raw['ip_blocklist'] ?? '' ) ),
 			'otp_required_roles'    => $otp_required_roles,
 			// 2026-11-11 20:43 +03: users in required roles without a phone: block or allow, task wp-363.
+			// 2026-11-11 21:02 +03: a missing or unknown value keeps what is stored (never flips the
+			// upgrade value); the checkbox below counts as unticked only when this form posted the
+			// radio next to it, task wp-363.
 			'no_phone_action'       => in_array( $raw['no_phone_action'] ?? '', array( 'block', 'allow' ), true )
 				? $raw['no_phone_action']
-				: 'block',
+				: $this->plugin->settings->get( 'general.no_phone_action', 'allow' ),
+			'pwl_verified_only'     => isset( $raw['no_phone_action'] )
+				? ( ! empty( $raw['pwl_verified_only'] ) ? 1 : 0 )
+				: (int) $this->plugin->settings->get( 'general.pwl_verified_only', 0 ),
 			'welcome_sms_enabled'   => ! empty( $raw['welcome_sms_enabled'] ) ? 1 : 0,
 			'registration_otp_gate' => in_array(
 				$raw['registration_otp_gate'] ?? 'disabled',
@@ -1005,6 +1013,74 @@ class KwtSMS_Admin {
 		if ( $is_plugin_page ) {
 			return;
 		}
+
+		// 2026-11-11 21:02 +03: upgrade notice about stricter login settings, task wp-363.
+		$this->render_strict_login_notice( false );
+	}
+
+	// 2026-11-11 21:02 +03: notice for upgraded sites that stricter login settings exist, task wp-363.
+	// Shown only when: the upgrade stored the 3.6.2 values (option kwtsms_otp_strict_notice), either
+	// setting still has its 3.6.2 value, the user can manage the plugin settings, and this user has
+	// not dismissed it (user meta kwtsms_strict_notice_dismissed).
+
+	/**
+	 * Whether the stricter-login notice should be shown to this user.
+	 *
+	 * @param int $user_id User ID.
+	 *
+	 * @return bool
+	 */
+	public function should_show_strict_login_notice( $user_id ) {
+		if ( ! get_option( 'kwtsms_otp_strict_notice' ) ) {
+			return false;
+		}
+		if ( ! user_can( (int) $user_id, 'manage_options' ) ) {
+			return false;
+		}
+		if ( get_user_meta( (int) $user_id, 'kwtsms_strict_notice_dismissed', true ) ) {
+			return false;
+		}
+		$old_no_phone = 'allow' === $this->plugin->settings->get( 'general.no_phone_action', 'allow' );
+		$old_pwl      = ! $this->plugin->settings->get( 'general.pwl_verified_only', 0 );
+		return $old_no_phone || $old_pwl;
+	}
+
+	/**
+	 * Print the stricter-login notice when it applies.
+	 *
+	 * @param bool $inline True on plugin pages (keeps the notice above the plugin header).
+	 */
+	public function render_strict_login_notice( $inline ) {
+		if ( ! $this->should_show_strict_login_notice( get_current_user_id() ) ) {
+			return;
+		}
+		$settings_url = admin_url( 'admin.php?page=kwtsms-otp#kwtsms-strict-login' );
+		$dismiss_url  = wp_nonce_url( add_query_arg( 'kwtsms_dismiss_strict_login', '1' ), 'kwtsms_dismiss_strict_login' );
+		printf(
+			'<div class="notice notice-info%s"><p>%s <a href="%s">%s</a> | <a href="%s">%s</a></p></div>',
+			$inline ? ' inline' : '',
+			esc_html__( 'kwtSMS: stricter login settings are available.', 'kwtsms' ),
+			esc_url( $settings_url ),
+			esc_html__( 'Review settings', 'kwtsms' ),
+			esc_url( $dismiss_url ),
+			esc_html__( 'Dismiss', 'kwtsms' )
+		);
+	}
+
+	/**
+	 * Save the dismissal of the stricter-login notice for the current user (admin_init).
+	 */
+	public function maybe_dismiss_strict_login_notice() {
+		if ( ! isset( $_GET['kwtsms_dismiss_strict_login'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- presence check only; the nonce is checked next.
+			return;
+		}
+		check_admin_referer( 'kwtsms_dismiss_strict_login' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		update_user_meta( get_current_user_id(), 'kwtsms_strict_notice_dismissed', 1 );
+		wp_safe_redirect( remove_query_arg( array( 'kwtsms_dismiss_strict_login', '_wpnonce' ) ) );
+		exit;
 	}
 
 	/**
@@ -1025,6 +1101,9 @@ class KwtSMS_Admin {
 		// Add 'inline' so WP admin JS doesn't relocate the notice into our flex header.
 		$se_html = str_replace( "class='notice ", "class='notice inline ", $se_html );
 		echo wp_kses_post( $se_html );
+
+		// 2026-11-11 21:02 +03: upgrade notice about stricter login settings, task wp-363.
+		$this->render_strict_login_notice( true );
 
 		// Notice: site is not HTTPS; suppressed on localhost/127.0.0.1 dev environments.
 		// The 'inline' class prevents WP admin JS from relocating the notice

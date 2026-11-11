@@ -79,6 +79,12 @@ function kwtsms_otp_activate() {
 	// Set installed version for future upgrade routines.
 	update_option( 'kwtsms_otp_version', KWTSMS_OTP_VERSION );
 
+	// 2026-11-11 21:02 +03: existing settings (re-activation of an older install, possibly with new
+	// files): fill the strict-login keys the upgrade way, never changing a saved value, task wp-363.
+	if ( get_option( 'kwtsms_otp_general' ) ) {
+		KwtSMS_Settings::migrate_strict_login_defaults();
+	}
+
 	// Seed default settings if not already present.
 	if ( ! get_option( 'kwtsms_otp_general' ) ) {
 		update_option(
@@ -96,6 +102,9 @@ function kwtsms_otp_activate() {
 				'referral_link'         => 0,
 				'default_country_code'  => 'KW',
 				'allowed_countries'     => array( 'KW', 'SA', 'AE', 'BH', 'QA', 'OM' ),
+				// 2026-11-11 21:02 +03: fresh install: strict login settings, task wp-363.
+				'no_phone_action'       => 'block',
+				'pwl_verified_only'     => 1,
 			)
 		);
 	}
@@ -164,6 +173,11 @@ function kwtsms_otp_maybe_upgrade() {
 			}
 			update_option( 'kwtsms_otp_integrations', $integrations );
 		}
+	}
+	// 2026-11-11 21:02 +03: sites from before 3.6.3 keep their login behaviour: the strict-login
+	// settings are stored with the 3.6.2 values (saved values are never changed), task wp-363.
+	if ( version_compare( $installed, '3.6.3', '<' ) ) {
+		KwtSMS_Settings::migrate_strict_login_defaults();
 	}
 	update_option( 'kwtsms_otp_version', KWTSMS_OTP_VERSION );
 }

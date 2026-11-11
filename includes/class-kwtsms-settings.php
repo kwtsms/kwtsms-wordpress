@@ -52,9 +52,14 @@ class KwtSMS_Settings {
 			'ip_blocklist'          => '',         // Newline-separated IPs or CIDRs. Blocklisted IPs receive a silent rate-limit response.
 			'otp_required_roles'    => array( 'editor', 'author', 'contributor', 'subscriber' ), // Administrator excluded by default.
 			// 2026-11-11 20:43 +03: users in required roles with no phone saved: 'block' (show a message to
-			// contact the site admin) or 'allow' (log in without OTP, the old behaviour). Upgrades have no
-			// stored value, so get() falls back to 'block' here as well, task wp-363.
-			'no_phone_action'       => 'block',
+			// contact the site admin) or 'allow' (log in without OTP, the old behaviour), task wp-363.
+			// 2026-11-11 21:02 +03: owner decision: the fallback here is the 3.6.2 behaviour ('allow').
+			// A fresh install stores 'block' on activation; an upgrade stores 'allow' once through
+			// migrate_strict_login_defaults(). Both write the value, so it never flips later, task wp-363.
+			'no_phone_action'       => 'allow',
+			// 2026-11-11 21:02 +03: SMS-only login accepts only phones confirmed by a code (1) or any
+			// saved phone (0, the 3.6.2 behaviour, used as fallback). Fresh install stores 1, task wp-363.
+			'pwl_verified_only'     => 0,
 			'welcome_sms_enabled'   => 0,           // Send welcome SMS to new registrations.
 			'registration_otp_gate' => 'disabled',  // Options: disabled, optional, required.
 			'iphub_api_key'         => '',
@@ -251,6 +256,53 @@ class KwtSMS_Settings {
 	 * @var array
 	 */
 	private $cache = array();
+
+	/**
+	 * Login settings that are strict on a fresh install and keep the 3.6.2 behaviour on upgrade.
+	 *
+	 * 2026-11-11 21:02 +03: key => array( upgrade value, fresh-install value ), task wp-363.
+	 *
+	 * @var array
+	 */
+	const STRICT_LOGIN_DEFAULTS = array(
+		'no_phone_action'   => array( 'allow', 'block' ),
+		'pwl_verified_only' => array( 0, 1 ),
+	);
+
+	/**
+	 * Store the strict-login settings once, without touching a value already saved.
+	 *
+	 * 2026-11-11 21:02 +03: owner decision, task wp-363. Called from the upgrade routine and on
+	 * activation. A key already in kwtsms_otp_general is never changed. For a missing key: when any
+	 * kwtSMS settings already exist (an upgrade) the 3.6.2 value is stored and the option
+	 * kwtsms_otp_strict_notice is set, so admins see a notice that stricter settings exist; with no
+	 * kwtSMS settings at all (a fresh install) the strict value is stored.
+	 *
+	 * @return bool True when the upgrade values were stored.
+	 */
+	public static function migrate_strict_login_defaults() {
+		$general      = get_option( 'kwtsms_otp_general', false );
+		$has_settings = is_array( $general ) || false !== get_option( 'kwtsms_otp_gateway', false );
+		$general      = is_array( $general ) ? $general : array();
+		$changed      = false;
+
+		foreach ( self::STRICT_LOGIN_DEFAULTS as $key => $values ) {
+			if ( array_key_exists( $key, $general ) ) {
+				continue;
+			}
+			$general[ $key ] = $has_settings ? $values[0] : $values[1];
+			$changed         = true;
+		}
+
+		if ( ! $changed ) {
+			return false;
+		}
+		update_option( 'kwtsms_otp_general', $general );
+		if ( $has_settings ) {
+			update_option( 'kwtsms_otp_strict_notice', 1, false );
+		}
+		return $has_settings;
+	}
 
 	/**
 	 * Retrieve a setting value using dot-notation key.
