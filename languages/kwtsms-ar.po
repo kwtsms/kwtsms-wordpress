@@ -4206,3 +4206,7 @@ msgstr "السماح بتسجيل الدخول دون رمز التحقق"
 #, php-format
 msgid "%1$d user(s) in OTP-required roles have no phone number saved and cannot log in until one is added. %2$sAdd phone numbers now.%3$s"
 msgstr "%1$d مستخدم في أدوار تتطلب رمز التحقق ليس لديهم رقم هاتف محفوظ ولا يمكنهم تسجيل الدخول حتى تتم إضافته. %2$sأضف أرقام الهواتف الآن.%3$s"
+
+#: includes/class-kwtsms-plugin.php
+msgid "Phone verification is not enabled on this site."
+msgstr "التحقق من رقم الهاتف غير مفعّل في هذا الموقع."

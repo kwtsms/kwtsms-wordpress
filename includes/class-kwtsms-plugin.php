@@ -292,6 +292,15 @@ class KwtSMS_Plugin {
 	public function ajax_form_send_otp() {
 		check_ajax_referer( 'kwtsms_form_otp_nonce', 'nonce' );
 
+		// 2026-11-11 20:52 +03: send a form code only while a form gate is on (CF7, WPForms or
+		// Ninja Forms in gate mode); otherwise this public endpoint sent SMS with no form using
+		// it, task wp-363.
+		if ( ! $this->is_form_gate_enabled() ) {
+			$this->api->write_debug_log( 'form_otp', 'Form code not sent: no form integration is in gate mode' );
+			wp_send_json_error( array( 'message' => __( 'Phone verification is not enabled on this site.', 'kwtsms' ) ) );
+			return;
+		}
+
 		$raw_phone = sanitize_text_field( wp_unslash( $_POST['phone'] ?? '' ) );
 		$form_id   = absint( wp_unslash( $_POST['form_id'] ?? 0 ) );
 		if ( empty( $raw_phone ) ) {
@@ -435,12 +444,14 @@ class KwtSMS_Plugin {
 	// =========================================================================
 
 	/**
-	 * Enqueue form-otp.js on the frontend only when at least one integration
-	 * is configured in gate mode and its integration is enabled.
+	 * Whether at least one form integration is enabled and set to gate mode.
 	 *
-	 * Hooked to wp_enqueue_scripts so it only runs on public pages.
+	 * 2026-11-11 20:52 +03: shared by the script loader and ajax_form_send_otp(), which now
+	 * refuses to send when no form gate is on, task wp-363.
+	 *
+	 * @return bool
 	 */
-	public function enqueue_form_otp_assets() {
+	public function is_form_gate_enabled() {
 		$cf7_gate     = ( 'gate' === $this->settings->get( 'integrations.cf7_mode', 'notification' ) )
 			&& $this->settings->get( 'integrations.cf7_enabled', 1 );
 		$wpforms_gate = ( 'gate' === $this->settings->get( 'integrations.wpforms_mode', 'notification' ) )
@@ -448,7 +459,17 @@ class KwtSMS_Plugin {
 		$nf_gate      = ( 'gate' === $this->settings->get( 'integrations.nf_mode', 'notification' ) )
 			&& $this->settings->get( 'integrations.nf_enabled', 1 );
 
-		if ( ! $cf7_gate && ! $wpforms_gate && ! $nf_gate ) {
+		return $cf7_gate || $wpforms_gate || $nf_gate;
+	}
+
+	/**
+	 * Enqueue form-otp.js on the frontend only when at least one integration
+	 * is configured in gate mode and its integration is enabled.
+	 *
+	 * Hooked to wp_enqueue_scripts so it only runs on public pages.
+	 */
+	public function enqueue_form_otp_assets() {
+		if ( ! $this->is_form_gate_enabled() ) {
 			return;
 		}
 
