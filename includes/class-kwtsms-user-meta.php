@@ -37,6 +37,56 @@ class KwtSMS_User_Meta {
 		add_action( 'user_register', array( $this, 'save_registration_phone' ) );
 	}
 
+	// 2026-11-11 20:47 +03: SMS-verified phone flag, task wp-363.
+	// Rule: user meta kwtsms_phone_verified holds the normalized phone number to which this user
+	// received an SMS code AND entered it correctly (registration gate, 2FA login, password reset,
+	// passwordless login). A phone saved any other way (profile, admin, Add New User, plain
+	// registration field, WooCommerce billing phone) is not verified. The flag counts only while it
+	// equals the current kwtsms_phone, so changing the phone drops it. Passwordless login only
+	// accepts a verified phone.
+
+	/**
+	 * Meta key of the SMS-verified phone number.
+	 */
+	const VERIFIED_META_KEY = 'kwtsms_phone_verified';
+
+	/**
+	 * Mark the user's current phone as verified by SMS.
+	 *
+	 * Only stores the flag when $phone is the phone saved on the account.
+	 *
+	 * @param int    $user_id User ID.
+	 * @param string $phone   Normalized phone the code was sent to.
+	 */
+	public static function mark_phone_verified( $user_id, $phone ) {
+		$user_id = (int) $user_id;
+		$phone   = (string) $phone;
+		if ( $user_id <= 0 || '' === $phone ) {
+			return;
+		}
+		if ( (string) get_user_meta( $user_id, 'kwtsms_phone', true ) !== $phone ) {
+			return;
+		}
+		update_user_meta( $user_id, self::VERIFIED_META_KEY, $phone );
+	}
+
+	/**
+	 * Whether $phone is the user's current phone and was verified by SMS.
+	 *
+	 * @param int    $user_id User ID.
+	 * @param string $phone   Normalized phone.
+	 *
+	 * @return bool
+	 */
+	public static function is_phone_verified( $user_id, $phone ) {
+		$phone = (string) $phone;
+		if ( '' === $phone ) {
+			return false;
+		}
+		return (string) get_user_meta( (int) $user_id, 'kwtsms_phone', true ) === $phone
+			&& (string) get_user_meta( (int) $user_id, self::VERIFIED_META_KEY, true ) === $phone;
+	}
+
 	/**
 	 * Render the phone number field on the user profile page.
 	 *

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: kwtSMS: OTP & SMS Notifications 3.6.0\n"
+"Project-Id-Version: kwtSMS: OTP & SMS Notifications 3.6.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/kwtsms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-05T18:18:07+00:00\n"
+"POT-Creation-Date: 2026-11-11T19:06:30+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: kwtsms\n"
@@ -39,41 +39,41 @@ msgstr ""
 msgid "https://www.kwtsms.com"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:79
-#: admin/class-kwtsms-admin.php:80
-#: admin/class-kwtsms-admin.php:1498
+#: admin/class-kwtsms-admin.php:81
+#: admin/class-kwtsms-admin.php:82
+#: admin/class-kwtsms-admin.php:1577
 msgid "kwtSMS"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:90
-#: admin/views/page-general.php:77
+#: admin/class-kwtsms-admin.php:92
+#: admin/views/page-general.php:82
 #: admin/views/page-users-no-phone.php:130
 msgid "General Settings"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:91
+#: admin/class-kwtsms-admin.php:93
 msgid "General"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:99
+#: admin/class-kwtsms-admin.php:101
 #: admin/views/page-alerts.php:42
 msgid "Admin Alerts"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:100
+#: admin/class-kwtsms-admin.php:102
 msgid "Alerts"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:108
+#: admin/class-kwtsms-admin.php:110
 #: admin/views/page-gateway.php:46
 msgid "Gateway Settings"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:109
+#: admin/class-kwtsms-admin.php:111
 msgid "Gateway"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:117
+#: admin/class-kwtsms-admin.php:119
 #: admin/views/page-alerts.php:105
 #: admin/views/page-help.php:237
 #: admin/views/page-int-woo.php:593
@@ -81,34 +81,34 @@ msgstr ""
 msgid "SMS Templates"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:118
+#: admin/class-kwtsms-admin.php:120
 msgid "Templates"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:126
-#: admin/class-kwtsms-admin.php:127
+#: admin/class-kwtsms-admin.php:128
+#: admin/class-kwtsms-admin.php:129
 #: admin/views/page-integrations.php:71
 msgid "Integrations"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:142
+#: admin/class-kwtsms-admin.php:144
 #: admin/views/page-integrations.php:21
 msgid "WooCommerce"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:143
+#: admin/class-kwtsms-admin.php:145
 #: admin/views/page-int-form.php:28
 #: admin/views/page-integrations.php:30
 msgid "Contact Form 7"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:144
+#: admin/class-kwtsms-admin.php:146
 #: admin/views/page-int-form.php:38
 #: admin/views/page-integrations.php:39
 msgid "WPForms"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:145
+#: admin/class-kwtsms-admin.php:147
 #: admin/views/page-int-form.php:47
 #: admin/views/page-integrations.php:48
 msgid "Ninja Forms"
@@ -116,91 +116,91 @@ msgstr ""
 
 #. translators: %s: integration name (e.g. WooCommerce)
 #. translators: %s: integration label e.g. "WPForms"
-#: admin/class-kwtsms-admin.php:155
+#: admin/class-kwtsms-admin.php:157
 #: admin/views/page-int-form.php:84
 #, php-format
 msgid "%s Settings"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:165
+#: admin/class-kwtsms-admin.php:167
 msgid "kwtSMS Logs"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:166
+#: admin/class-kwtsms-admin.php:168
 #: admin/views/page-help.php:264
 #: admin/views/page-logs.php:100
 msgid "Logs"
 msgstr ""
 
 #. translators: %s: HTML span element containing the count of users missing a phone number.
-#: admin/class-kwtsms-admin.php:206
+#: admin/class-kwtsms-admin.php:208
 #, php-format
 msgid "Users %s"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:210
+#: admin/class-kwtsms-admin.php:212
 msgid "Users"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:217
+#: admin/class-kwtsms-admin.php:219
 #: admin/views/page-users-no-phone.php:98
 msgid "Users Without Phone"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:257
+#: admin/class-kwtsms-admin.php:259
 msgid "kwtSMS Help & Support"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:258
+#: admin/class-kwtsms-admin.php:260
 msgid "Help"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:286
+#: admin/class-kwtsms-admin.php:288
 msgid "OTP Behaviour"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:293
-#: admin/views/page-general.php:441
+#: admin/class-kwtsms-admin.php:295
+#: admin/views/page-general.php:492
 msgid "CAPTCHA Protection"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:495
+#: admin/class-kwtsms-admin.php:507
 msgid "API Username appears to be a phone number. Please enter your kwtSMS API username, not your phone number. Sign up at kwtsms.com to obtain API access."
 msgstr ""
 
 #. translators: %s: error message from kwtSMS API
-#: admin/class-kwtsms-admin.php:563
+#: admin/class-kwtsms-admin.php:575
 #, php-format
 msgid "API credentials could not be verified: %s"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:592
+#: admin/class-kwtsms-admin.php:604
 msgid "API credentials verified successfully."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:947
-#: includes/class-kwtsms-plugin.php:474
+#: admin/class-kwtsms-admin.php:959
+#: includes/class-kwtsms-plugin.php:498
 msgid "Verifying..."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:948
+#: admin/class-kwtsms-admin.php:960
 msgid "Credentials verified!"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:949
+#: admin/class-kwtsms-admin.php:961
 msgid "Verification failed."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:950
-#: includes/class-kwtsms-plugin.php:471
+#: admin/class-kwtsms-admin.php:962
+#: includes/class-kwtsms-plugin.php:495
 msgid "Sending..."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:951
+#: admin/class-kwtsms-admin.php:963
 msgid "Test SMS sent! Check your phone."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:952
+#: admin/class-kwtsms-admin.php:964
 #: admin/views/page-alerts.php:175
 #: admin/views/page-alerts.php:191
 #: admin/views/page-int-form.php:212
@@ -212,7 +212,7 @@ msgstr ""
 msgid "characters"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:953
+#: admin/class-kwtsms-admin.php:965
 #: admin/views/page-alerts.php:176
 #: admin/views/page-alerts.php:192
 #: admin/views/page-int-form.php:213
@@ -224,255 +224,267 @@ msgstr ""
 msgid "SMS page(s)"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:954
+#: admin/class-kwtsms-admin.php:966
 msgid "This looks like a phone number. Your API Username must be your kwtSMS account username, not a phone number. Sign up at kwtsms.com to obtain API credentials."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:955
+#: admin/class-kwtsms-admin.php:967
 msgid "Loading coverage..."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:956
+#: admin/class-kwtsms-admin.php:968
 msgid "Could not load coverage data."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:957
+#: admin/class-kwtsms-admin.php:969
 msgid "Please enter your API username and password, then click \"Save Settings\" before performing this action."
 msgstr ""
 
 #. translators: %s: API username
-#: admin/class-kwtsms-admin.php:959
+#: admin/class-kwtsms-admin.php:971
 #: admin/views/page-gateway.php:125
 #, php-format
 msgid "Connected as %s"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:960
+#: admin/class-kwtsms-admin.php:972
 #: admin/views/page-gateway.php:116
 #: admin/views/page-gateway.php:137
 msgid "Reload"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:961
+#: admin/class-kwtsms-admin.php:973
 msgid "Reloading..."
 msgstr ""
 
 #. translators: %s: total purchased SMS credits
-#: admin/class-kwtsms-admin.php:963
+#: admin/class-kwtsms-admin.php:975
 #, php-format
 msgid "· of %s purchased"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:964
+#: admin/class-kwtsms-admin.php:976
 msgid "Please enter a test phone number first."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:965
+#: admin/class-kwtsms-admin.php:977
 msgid "Number is too short. Enter the country code followed by the full local number, e.g. 96512345678 (Kuwait: 965 + 8 digits)."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:966
+#: admin/class-kwtsms-admin.php:978
 msgid "Test mode ON: message queued in kwtSMS account queue, will not be delivered. Delete to recover credits."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:967
+#: admin/class-kwtsms-admin.php:979
 msgid "SMS delivered to %phone%. Check your messages."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:968
+#: admin/class-kwtsms-admin.php:980
 msgid "Send failed. Check your API credentials and phone number."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:969
+#: admin/class-kwtsms-admin.php:981
 msgid "Unsaved Changes"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:970
+#: admin/class-kwtsms-admin.php:982
 msgid "You have unsaved changes. Leaving this page will discard them."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:971
+#: admin/class-kwtsms-admin.php:983
 msgid "Save Changes"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:972
+#: admin/class-kwtsms-admin.php:984
 msgid "Leave Page"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1035
+#: admin/class-kwtsms-admin.php:1062
+msgid "kwtSMS: stricter login settings are available."
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1064
+msgid "Review settings"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1066
+msgid "Dismiss"
+msgstr ""
+
+#: admin/class-kwtsms-admin.php:1118
 msgid "kwtSMS Warning:"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1036
+#: admin/class-kwtsms-admin.php:1119
 msgid "Your site is not served over HTTPS. OTP codes may be intercepted in transit. Enable SSL for security."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1045
+#: admin/class-kwtsms-admin.php:1128
 msgid "kwtSMS:"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1046
+#: admin/class-kwtsms-admin.php:1129
 msgid "API credentials are not configured."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1048
+#: admin/class-kwtsms-admin.php:1131
 msgid "Configure now"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1049
+#: admin/class-kwtsms-admin.php:1132
 #: admin/views/page-gateway.php:69
 msgid "Don't have a kwtSMS account?"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1051
+#: admin/class-kwtsms-admin.php:1134
 msgid "Sign up for free"
 msgstr ""
 
 #. translators: %s: link to kwtSMS account dashboard
-#: admin/class-kwtsms-admin.php:1059
+#: admin/class-kwtsms-admin.php:1142
 #, php-format
 msgid "kwtSMS is in Test Mode. SMS messages will be queued but not delivered. Delete from %s queue to recover credits."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1060
+#: admin/class-kwtsms-admin.php:1143
 #: admin/views/page-gateway.php:214
 msgid "kwtSMS account"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1074
-#: admin/class-kwtsms-admin.php:1084
-#: admin/class-kwtsms-admin.php:1094
-#: admin/class-kwtsms-admin.php:1104
-#: admin/class-kwtsms-admin.php:1114
-#: admin/class-kwtsms-admin.php:1124
-#: admin/class-kwtsms-admin.php:1135
-#: admin/class-kwtsms-admin.php:1146
 #: admin/class-kwtsms-admin.php:1157
-#: admin/class-kwtsms-admin.php:1178
-#: admin/class-kwtsms-admin.php:1188
-#: admin/class-kwtsms-admin.php:1201
+#: admin/class-kwtsms-admin.php:1167
+#: admin/class-kwtsms-admin.php:1177
+#: admin/class-kwtsms-admin.php:1187
+#: admin/class-kwtsms-admin.php:1197
+#: admin/class-kwtsms-admin.php:1207
+#: admin/class-kwtsms-admin.php:1218
+#: admin/class-kwtsms-admin.php:1229
+#: admin/class-kwtsms-admin.php:1240
+#: admin/class-kwtsms-admin.php:1257
+#: admin/class-kwtsms-admin.php:1267
+#: admin/class-kwtsms-admin.php:1280
 #: admin/views/page-logs.php:20
 msgid "You do not have permission to access this page."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1219
-#: admin/class-kwtsms-admin.php:1249
-#: admin/class-kwtsms-admin.php:1290
-#: includes/class-kwtsms-plugin.php:500
-#: includes/class-kwtsms-plugin.php:648
-#: includes/class-kwtsms-plugin.php:976
-#: includes/class-kwtsms-plugin.php:1003
-#: includes/class-kwtsms-plugin.php:1020
+#: admin/class-kwtsms-admin.php:1298
+#: admin/class-kwtsms-admin.php:1328
+#: admin/class-kwtsms-admin.php:1369
+#: includes/class-kwtsms-plugin.php:524
+#: includes/class-kwtsms-plugin.php:672
+#: includes/class-kwtsms-plugin.php:1047
+#: includes/class-kwtsms-plugin.php:1074
+#: includes/class-kwtsms-plugin.php:1091
 msgid "Insufficient permissions."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1301
+#: admin/class-kwtsms-admin.php:1380
 msgid "Phone number is too long."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1308
+#: admin/class-kwtsms-admin.php:1387
 msgid "Invalid user."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1313
-#: includes/class-kwtsms-plugin.php:295
+#: admin/class-kwtsms-admin.php:1392
+#: includes/class-kwtsms-plugin.php:307
 msgid "Phone number is required."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1322
+#: admin/class-kwtsms-admin.php:1401
 msgid "Phone number must contain digits."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1344
+#: admin/class-kwtsms-admin.php:1423
 msgid "Phone saved."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1573
+#: admin/class-kwtsms-admin.php:1652
 msgid "Test mode is active."
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1580
+#: admin/class-kwtsms-admin.php:1659
 msgid "Balance:"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1581
+#: admin/class-kwtsms-admin.php:1660
 msgid "credits"
 msgstr ""
 
 #. translators: %s: time elapsed since balance was last fetched
-#: admin/class-kwtsms-admin.php:1583
+#: admin/class-kwtsms-admin.php:1662
 #, php-format
 msgid "updated %s ago"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1589
+#: admin/class-kwtsms-admin.php:1668
 msgid "OTPs sent today:"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1592
+#: admin/class-kwtsms-admin.php:1671
 msgid "failed"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1600
+#: admin/class-kwtsms-admin.php:1679
 msgid "Time"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1601
+#: admin/class-kwtsms-admin.php:1680
 #: admin/views/page-logs.php:171
 #: admin/views/page-logs.php:223
 #: includes/integrations/class-kwtsms-woo-metabox.php:134
 msgid "Phone"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1602
+#: admin/class-kwtsms-admin.php:1681
 #: admin/views/page-gateway.php:160
 #: admin/views/page-help.php:56
 #: admin/views/page-logs.php:169
 msgid "Sender ID"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1603
+#: admin/class-kwtsms-admin.php:1682
 #: admin/views/page-logs.php:173
 msgid "Status"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1613
+#: admin/class-kwtsms-admin.php:1692
 #: admin/views/page-logs.php:186
 msgid "Sent"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1613
+#: admin/class-kwtsms-admin.php:1692
 #: admin/views/page-int-woo.php:80
 #: admin/views/page-logs.php:186
 msgid "Failed"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1620
+#: admin/class-kwtsms-admin.php:1699
 msgid "View full log"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1621
-#: admin/class-kwtsms-admin.php:1625
+#: admin/class-kwtsms-admin.php:1700
+#: admin/class-kwtsms-admin.php:1704
 msgid "kwtSMS Dashboard &rsaquo;"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1637
+#: admin/class-kwtsms-admin.php:1716
 msgid "Cart Abandonment (all time)"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1639
+#: admin/class-kwtsms-admin.php:1718
 msgid "Abandoned carts"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1640
+#: admin/class-kwtsms-admin.php:1719
 msgid "Recovery SMS sent"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1641
+#: admin/class-kwtsms-admin.php:1720
 msgid "Recovered"
 msgstr ""
 
-#: admin/class-kwtsms-admin.php:1642
+#: admin/class-kwtsms-admin.php:1721
 msgid "Recovery rate"
 msgstr ""
 
@@ -557,17 +569,17 @@ msgid "Save Alert Settings"
 msgstr ""
 
 #: admin/views/page-gateway.php:56
-#: admin/views/page-general.php:93
+#: admin/views/page-general.php:98
 msgid "Available balance:"
 msgstr ""
 
 #: admin/views/page-gateway.php:59
-#: admin/views/page-general.php:96
+#: admin/views/page-general.php:101
 msgid "Total purchased:"
 msgstr ""
 
 #: admin/views/page-gateway.php:61
-#: admin/views/page-general.php:98
+#: admin/views/page-general.php:103
 #: admin/views/page-help.php:110
 msgid "Recharge/Buy credits "
 msgstr ""
@@ -651,7 +663,7 @@ msgid "Test Mode is ON. SMS will be queued but NOT delivered to phones."
 msgstr ""
 
 #: admin/views/page-gateway.php:230
-#: admin/views/page-general.php:716
+#: admin/views/page-general.php:767
 #: admin/views/page-int-form.php:244
 msgid "Save Settings"
 msgstr ""
@@ -700,449 +712,480 @@ msgstr ""
 msgid "Send Test SMS"
 msgstr ""
 
-#: admin/views/page-general.php:83
+#: admin/views/page-general.php:88
 msgid "kwtSMS is a Kuwaiti SMS gateway trusted by top businesses to deliver messages anywhere in the world, with private Sender ID, free API testing, non-expiring credits, and competitive flat-rate pricing. Secure, simple to integrate, built to last."
 msgstr ""
 
-#: admin/views/page-general.php:86
+#: admin/views/page-general.php:91
 msgid "Open a free account easily under 1 minute, no papers or payment required."
 msgstr ""
 
-#: admin/views/page-general.php:87
+#: admin/views/page-general.php:92
 msgid "🚀 Click here to get started "
 msgstr ""
 
-#: admin/views/page-general.php:107
+#: admin/views/page-general.php:112
 msgid "Plugin Status"
 msgstr ""
 
-#: admin/views/page-general.php:112
+#: admin/views/page-general.php:117
 msgid "SMS Sending"
 msgstr ""
 
-#: admin/views/page-general.php:117
+#: admin/views/page-general.php:122
 msgid "Enable SMS sending across the entire plugin"
 msgstr ""
 
-#: admin/views/page-general.php:120
+#: admin/views/page-general.php:125
 msgid "This is the master switch for kwtSMS. When turned off, all SMS features are paused: OTP login codes, password resets, WooCommerce order notifications, form verifications, and admin alerts. No SMS credits are consumed while disabled."
 msgstr ""
 
-#: admin/views/page-general.php:124
+#: admin/views/page-general.php:129
 msgid "SMS is currently OFF. All SMS features are paused."
 msgstr ""
 
-#: admin/views/page-general.php:136
+#: admin/views/page-general.php:141
 msgid "Login Behaviour"
 msgstr ""
 
-#: admin/views/page-general.php:142
+#: admin/views/page-general.php:147
 msgid "Enable Login OTP"
 msgstr ""
 
-#: admin/views/page-general.php:146
+#: admin/views/page-general.php:151
 msgid "Require OTP on login"
 msgstr ""
 
-#: admin/views/page-general.php:152
+#: admin/views/page-general.php:157
 msgid "Enable Password Reset OTP"
 msgstr ""
 
-#: admin/views/page-general.php:156
+#: admin/views/page-general.php:161
 msgid "Use SMS OTP for password reset (instead of email link)"
 msgstr ""
 
-#: admin/views/page-general.php:162
+#: admin/views/page-general.php:167
 msgid "Enable Registration OTP"
 msgstr ""
 
-#: admin/views/page-general.php:165
+#: admin/views/page-general.php:170
 msgid "Disabled"
 msgstr ""
 
-#: admin/views/page-general.php:166
+#: admin/views/page-general.php:171
 msgid "Optional (verify phone if provided)"
 msgstr ""
 
-#: admin/views/page-general.php:167
+#: admin/views/page-general.php:172
 msgid "Required (phone and OTP mandatory)"
 msgstr ""
 
-#: admin/views/page-general.php:169
+#: admin/views/page-general.php:174
 msgid "Require OTP phone verification before creating a new user account. Works for standard WordPress registration and WooCommerce My Account registration."
 msgstr ""
 
-#: admin/views/page-general.php:174
+#: admin/views/page-general.php:179
 msgid "Enable Welcome SMS"
 msgstr ""
 
-#: admin/views/page-general.php:179
+#: admin/views/page-general.php:184
 msgid "Send a welcome SMS to every new user when they register."
 msgstr ""
 
 #. translators: %s: link to Templates page
-#: admin/views/page-general.php:185
+#: admin/views/page-general.php:190
 #, php-format
 msgid "Configure the message text on the %s."
 msgstr ""
 
-#: admin/views/page-general.php:186
+#: admin/views/page-general.php:191
 msgid "Templates page"
 msgstr ""
 
-#: admin/views/page-general.php:194
+#: admin/views/page-general.php:199
 msgid "OTP Mode"
 msgstr ""
 
-#: admin/views/page-general.php:198
+#: admin/views/page-general.php:203
 msgid "Two-Factor Authentication (2FA): password + OTP"
 msgstr ""
 
-#: admin/views/page-general.php:199
+#: admin/views/page-general.php:204
 msgid "Passwordless: phone + OTP only"
 msgstr ""
 
-#: admin/views/page-general.php:200
+#: admin/views/page-general.php:205
 msgid "Both: users can choose"
 msgstr ""
 
-#: admin/views/page-general.php:215
+#: admin/views/page-general.php:220
 msgid "Require OTP for"
 msgstr ""
 
-#: admin/views/page-general.php:227
+#: admin/views/page-general.php:232
 msgid "Check roles that must complete OTP verification. Unchecked roles log in directly without OTP. Administrators are unchecked by default to prevent lockout. On multisite, super admins are treated as administrators."
 msgstr ""
 
 #. translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag
-#: admin/views/page-general.php:234
+#: admin/views/page-general.php:241
 #, php-format
 msgid "%1$d user(s) in OTP-required roles have no phone number saved and will bypass OTP. %2$sAdd phone numbers now.%3$s"
 msgstr ""
 
-#: admin/views/page-general.php:246
-msgid "OTP Code Length"
-msgstr ""
-
+#. translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag
 #: admin/views/page-general.php:249
-msgid "4 digits"
+#, php-format
+msgid "%1$d user(s) in OTP-required roles have no phone number saved and cannot log in until one is added. %2$sAdd phone numbers now.%3$s"
 msgstr ""
 
-#: admin/views/page-general.php:250
-msgid "6 digits (recommended)"
-msgstr ""
-
-#: admin/views/page-general.php:256
-msgid "Code Expiry"
-msgstr ""
-
-#: admin/views/page-general.php:260
-msgid "minutes"
-msgstr ""
-
-#: admin/views/page-general.php:261
-msgid "Recommended: 5 minutes. Shorter = more secure, longer = more user-friendly."
-msgstr ""
-
-#: admin/views/page-general.php:266
-msgid "Max Verification Attempts"
+#: admin/views/page-general.php:264
+msgid "Users in required roles without a phone number"
 msgstr ""
 
 #: admin/views/page-general.php:270
-msgid "Number of wrong OTP attempts before the code is invalidated."
+msgid "Block login and show a message to contact the site admin"
 msgstr ""
 
 #: admin/views/page-general.php:275
-msgid "Resend Cooldown"
+msgid "Allow login without OTP"
 msgstr ""
 
-#: admin/views/page-general.php:279
-#: admin/views/page-general.php:649
-msgid "seconds"
+#: admin/views/page-general.php:283
+msgid "SMS login uses only phone numbers confirmed by a code"
 msgstr ""
 
-#: admin/views/page-general.php:280
-msgid "Minimum time between resend requests per user. Recommended: 120 seconds."
+#: admin/views/page-general.php:288
+#: admin/views/page-integrations.php:137
+msgid "On"
 msgstr ""
 
 #: admin/views/page-general.php:291
+msgid "A phone number counts as confirmed after its owner enters a code sent to it (registration, two-step login or password reset)."
+msgstr ""
+
+#: admin/views/page-general.php:297
+msgid "OTP Code Length"
+msgstr ""
+
+#: admin/views/page-general.php:300
+msgid "4 digits"
+msgstr ""
+
+#: admin/views/page-general.php:301
+msgid "6 digits (recommended)"
+msgstr ""
+
+#: admin/views/page-general.php:307
+msgid "Code Expiry"
+msgstr ""
+
+#: admin/views/page-general.php:311
+msgid "minutes"
+msgstr ""
+
+#: admin/views/page-general.php:312
+msgid "Recommended: 5 minutes. Shorter = more secure, longer = more user-friendly."
+msgstr ""
+
+#: admin/views/page-general.php:317
+msgid "Max Verification Attempts"
+msgstr ""
+
+#: admin/views/page-general.php:321
+msgid "Number of wrong OTP attempts before the code is invalidated."
+msgstr ""
+
+#: admin/views/page-general.php:326
+msgid "Resend Cooldown"
+msgstr ""
+
+#: admin/views/page-general.php:330
+#: admin/views/page-general.php:700
+msgid "seconds"
+msgstr ""
+
+#: admin/views/page-general.php:331
+msgid "Minimum time between resend requests per user. Recommended: 120 seconds."
+msgstr ""
+
+#: admin/views/page-general.php:342
 msgid "Phone & Country Settings"
 msgstr ""
 
-#: admin/views/page-general.php:298
+#: admin/views/page-general.php:349
 msgid "Default Country Code"
 msgstr ""
 
-#: admin/views/page-general.php:309
+#: admin/views/page-general.php:360
 msgid "This is pre-filled as the default dial code on login forms. Users only need to enter their local phone number without the country code. GeoIP detection will override this automatically when available."
 msgstr ""
 
-#: admin/views/page-general.php:314
+#: admin/views/page-general.php:365
 #: admin/views/page-help.php:272
 msgid "Allowed Countries"
 msgstr ""
 
-#: admin/views/page-general.php:324
-#: admin/views/page-general.php:823
+#: admin/views/page-general.php:375
+#: admin/views/page-general.php:874
 msgid "Remove"
 msgstr ""
 
-#: admin/views/page-general.php:334
+#: admin/views/page-general.php:385
 msgid "Add a country"
 msgstr ""
 
-#: admin/views/page-general.php:344
+#: admin/views/page-general.php:395
 msgid "Add"
 msgstr ""
 
-#: admin/views/page-general.php:354
+#: admin/views/page-general.php:405
 msgid "Controls which countries appear in the OTP login dial-code dropdown and which phone numbers this plugin will accept."
 msgstr ""
 
-#: admin/views/page-general.php:357
+#: admin/views/page-general.php:408
 msgid "Important:"
 msgstr ""
 
 #. translators: %s: link to the Gateway page
-#: admin/views/page-general.php:361
+#: admin/views/page-general.php:412
 #, php-format
 msgid "Adding a country here does NOT enable SMS delivery to that country. Delivery depends on which countries are active in your kwtSMS account coverage. Check your %s to see which countries you can currently send to. If a country is listed here but not covered in your account, SMS will silently fail."
 msgstr ""
 
-#: admin/views/page-general.php:362
+#: admin/views/page-general.php:413
 msgid "Gateway page (SMS Coverage section)"
 msgstr ""
 
-#: admin/views/page-general.php:376
+#: admin/views/page-general.php:427
 msgid "On Balance Failure"
 msgstr ""
 
-#: admin/views/page-general.php:380
+#: admin/views/page-general.php:431
 msgid "Decides what happens when kwtSMS cannot send an OTP because your SMS credit balance is zero. An admin email is always sent when this condition is first detected."
 msgstr ""
 
-#: admin/views/page-general.php:385
+#: admin/views/page-general.php:436
 msgid "When credits run out"
 msgstr ""
 
-#: admin/views/page-general.php:391
+#: admin/views/page-general.php:442
 msgid "Block logins (Recommended)"
 msgstr ""
 
-#: admin/views/page-general.php:393
+#: admin/views/page-general.php:444
 msgid "Users who require OTP cannot log in until the account is recharged. This keeps OTP enforcement intact and makes the outage visible."
 msgstr ""
 
-#: admin/views/page-general.php:399
+#: admin/views/page-general.php:450
 msgid "Allow login without OTP (password only)"
 msgstr ""
 
-#: admin/views/page-general.php:401
+#: admin/views/page-general.php:452
 msgid "Users bypass OTP and log in with password alone until credits are restored. Choose this only if uninterrupted access is more important than 2FA enforcement."
 msgstr ""
 
-#: admin/views/page-general.php:415
+#: admin/views/page-general.php:466
 msgid "Attribution Footer"
 msgstr ""
 
-#: admin/views/page-general.php:421
+#: admin/views/page-general.php:472
 msgid "Show credit link"
 msgstr ""
 
-#: admin/views/page-general.php:426
+#: admin/views/page-general.php:477
 msgid "Display \"SMS by kwtSMS.com\" footer on login pages (opt-in)"
 msgstr ""
 
-#: admin/views/page-general.php:428
+#: admin/views/page-general.php:479
 msgid "The link text is fixed and cannot be customized."
 msgstr ""
 
-#: admin/views/page-general.php:447
+#: admin/views/page-general.php:498
 msgid "CAPTCHA Provider"
 msgstr ""
 
-#: admin/views/page-general.php:451
+#: admin/views/page-general.php:502
 msgid "None"
 msgstr ""
 
-#: admin/views/page-general.php:452
+#: admin/views/page-general.php:503
 msgid "Google reCAPTCHA v3 (invisible)"
 msgstr ""
 
-#: admin/views/page-general.php:453
+#: admin/views/page-general.php:504
 msgid "Cloudflare Turnstile"
 msgstr ""
 
-#: admin/views/page-general.php:469
+#: admin/views/page-general.php:520
 msgid "reCAPTCHA v3 Keys"
 msgstr ""
 
-#: admin/views/page-general.php:473
-#: admin/views/page-general.php:490
+#: admin/views/page-general.php:524
+#: admin/views/page-general.php:541
 msgid "Site Key"
 msgstr ""
 
-#: admin/views/page-general.php:476
-#: admin/views/page-general.php:493
+#: admin/views/page-general.php:527
+#: admin/views/page-general.php:544
 msgid "Secret Key"
 msgstr ""
 
-#: admin/views/page-general.php:479
+#: admin/views/page-general.php:530
 msgid "Get keys from Google reCAPTCHA Admin Console "
 msgstr ""
 
-#: admin/views/page-general.php:486
+#: admin/views/page-general.php:537
 msgid "Turnstile Keys"
 msgstr ""
 
-#: admin/views/page-general.php:496
+#: admin/views/page-general.php:547
 msgid "Get keys from Cloudflare Dashboard "
 msgstr ""
 
-#: admin/views/page-general.php:509
+#: admin/views/page-general.php:560
 #: admin/views/page-help.php:256
 msgid "Security"
 msgstr ""
 
-#: admin/views/page-general.php:516
+#: admin/views/page-general.php:567
 msgid "Blocked Phone Numbers"
 msgstr ""
 
-#: admin/views/page-general.php:524
+#: admin/views/page-general.php:575
 msgid "One per line or comma-separated, with country code (digits only). These numbers will never receive OTP SMS. Blocked requests return a silent success to prevent enumeration."
 msgstr ""
 
-#: admin/views/page-general.php:536
+#: admin/views/page-general.php:587
 msgid "IP Rules"
 msgstr ""
 
-#: admin/views/page-general.php:540
+#: admin/views/page-general.php:591
 msgid "One IPv4 or IPv6 address or CIDR per line (e.g. 192.168.1.0/24). Allowlisted IPs skip per-IP rate limiting. Blocklisted IPs receive a silent refusal."
 msgstr ""
 
-#: admin/views/page-general.php:546
+#: admin/views/page-general.php:597
 msgid "IP Allowlist"
 msgstr ""
 
-#: admin/views/page-general.php:553
+#: admin/views/page-general.php:604
 msgid "These IPs skip the per-IP rate limit and proxy detection (when enabled). OTP is still required."
 msgstr ""
 
-#: admin/views/page-general.php:560
+#: admin/views/page-general.php:611
 msgid "IP Blocklist"
 msgstr ""
 
-#: admin/views/page-general.php:567
+#: admin/views/page-general.php:618
 msgid "These IPs are silently refused. The response is identical to a rate-limit error to prevent enumeration of this list."
 msgstr ""
 
-#: admin/views/page-general.php:579
+#: admin/views/page-general.php:630
 msgid "Proxy and VPN Detection (IPHub)"
 msgstr ""
 
 #. translators: %s: IPHub website link
-#: admin/views/page-general.php:586
+#: admin/views/page-general.php:637
 #, php-format
 msgid "Uses the %s API to identify and act on OTP requests from known proxy or VPN IP addresses. Allowlisted IPs (above) always bypass this check."
 msgstr ""
 
-#: admin/views/page-general.php:594
+#: admin/views/page-general.php:645
 msgid "Enable IPHub Detection"
 msgstr ""
 
-#: admin/views/page-general.php:599
+#: admin/views/page-general.php:650
 msgid "Check each OTP request IP against the IPHub reputation database."
 msgstr ""
 
-#: admin/views/page-general.php:605
+#: admin/views/page-general.php:656
 msgid "IPHub API Key"
 msgstr ""
 
-#: admin/views/page-general.php:610
+#: admin/views/page-general.php:661
 msgid "Paste your IPHub API key here"
 msgstr ""
 
-#: admin/views/page-general.php:613
+#: admin/views/page-general.php:664
 msgid "Get a free API key from IPHub.info (up to 1,000 lookups/day on the free plan) "
 msgstr ""
 
-#: admin/views/page-general.php:620
+#: admin/views/page-general.php:671
 msgid "Action for Level 1 (Proxy/VPN)"
 msgstr ""
 
-#: admin/views/page-general.php:623
+#: admin/views/page-general.php:674
 msgid "Block silently (recommended)"
 msgstr ""
 
-#: admin/views/page-general.php:624
+#: admin/views/page-general.php:675
 msgid "Log only, allow through"
 msgstr ""
 
-#: admin/views/page-general.php:625
-#: admin/views/page-general.php:637
+#: admin/views/page-general.php:676
+#: admin/views/page-general.php:688
 msgid "Allow (no action)"
 msgstr ""
 
-#: admin/views/page-general.php:627
+#: admin/views/page-general.php:678
 msgid "IP identified as a confirmed proxy or VPN exit node."
 msgstr ""
 
-#: admin/views/page-general.php:632
+#: admin/views/page-general.php:683
 msgid "Action for Level 2 (Mixed)"
 msgstr ""
 
-#: admin/views/page-general.php:635
+#: admin/views/page-general.php:686
 msgid "Log only, allow through (recommended)"
 msgstr ""
 
-#: admin/views/page-general.php:636
+#: admin/views/page-general.php:687
 msgid "Block silently"
 msgstr ""
 
-#: admin/views/page-general.php:639
+#: admin/views/page-general.php:690
 msgid "IP from a range that contains a mix of residential and proxy traffic."
 msgstr ""
 
-#: admin/views/page-general.php:644
+#: admin/views/page-general.php:695
 msgid "Cache TTL"
 msgstr ""
 
-#: admin/views/page-general.php:651
+#: admin/views/page-general.php:702
 msgid "How long to cache each IP reputation result (min: 1 hour = 3600 s, max: 7 days = 604800 s, default: 86400 s = 1 day). Cached results avoid repeated API calls for the same IP."
 msgstr ""
 
-#: admin/views/page-general.php:663
+#: admin/views/page-general.php:714
 msgid "Developer Tools"
 msgstr ""
 
-#: admin/views/page-general.php:669
+#: admin/views/page-general.php:720
 #: admin/views/page-help.php:77
 msgid "Debug Logging"
 msgstr ""
 
-#: admin/views/page-general.php:674
+#: admin/views/page-general.php:725
 msgid "Enable detailed logging for troubleshooting."
 msgstr ""
 
-#: admin/views/page-general.php:678
+#: admin/views/page-general.php:729
 msgid "⚠ Debug Logging is ON, disable this on production sites."
 msgstr ""
 
 #. translators: %s: path to the debug log file
-#: admin/views/page-general.php:689
+#: admin/views/page-general.php:740
 #, php-format
 msgid "Log file: %s"
 msgstr ""
 
-#: admin/views/page-general.php:694
+#: admin/views/page-general.php:745
 msgid "See Help page for troubleshooting guide "
 msgstr ""
 
-#: admin/views/page-general.php:710
+#: admin/views/page-general.php:761
 msgid "Show Advanced Options"
 msgstr ""
 
-#: admin/views/page-general.php:712
+#: admin/views/page-general.php:763
 msgid "CAPTCHA, Security, IP Rules, Proxy Detection, Developer Tools"
 msgstr ""
 
@@ -1997,17 +2040,17 @@ msgid "Sent immediately when a paid order is placed (credit card, PayPal, COD). 
 msgstr ""
 
 #: admin/views/page-int-woo.php:50
-msgid "Shipped"
+msgid "On Hold"
 msgstr ""
 
 #: admin/views/page-int-woo.php:51
 #: admin/views/page-int-woo.php:167
 #: admin/views/page-int-woo.php:371
-msgid "Order Shipped (On-Hold)"
+msgid "Order On Hold (awaiting payment)"
 msgstr ""
 
 #: admin/views/page-int-woo.php:52
-msgid "Sent when the order status is set to On-Hold, typically used to indicate the order has been shipped."
+msgid "Sent when the order status is set to On-Hold. In WooCommerce this means the order waits for payment confirmation, for example a bank transfer."
 msgstr ""
 
 #: admin/views/page-int-woo.php:56
@@ -2204,7 +2247,7 @@ msgid "Fires when the payment attempt fails and the order is not confirmed. Disa
 msgstr ""
 
 #: admin/views/page-int-woo.php:168
-msgid "Fires when the order status is set to On-Hold, typically used to indicate the order has been shipped."
+msgid "Fires when the order status is set to On-Hold: the order waits for payment confirmation, for example a bank transfer."
 msgstr ""
 
 #: admin/views/page-int-woo.php:172
@@ -2467,10 +2510,6 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: admin/views/page-integrations.php:137
-msgid "On"
-msgstr ""
-
 #: admin/views/page-integrations.php:139
 msgid "Off"
 msgstr ""
@@ -2703,8 +2742,8 @@ msgid "Phone Number"
 msgstr ""
 
 #: admin/views/page-users-no-phone.php:200
-#: includes/class-kwtsms-plugin.php:479
-#: includes/class-kwtsms-user-meta.php:281
+#: includes/class-kwtsms-plugin.php:503
+#: includes/class-kwtsms-user-meta.php:331
 #: includes/integrations/class-kwtsms-woo-metabox.php:142
 #: includes/integrations/class-kwtsms-woo.php:308
 msgid "e.g. 965XXXXXXXX"
@@ -2951,261 +2990,268 @@ msgstr ""
 msgid "Security check failed. Please try again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:132
+#: includes/class-kwtsms-login-otp.php:129
+msgid "Your account needs a phone number for SMS verification, and none is saved. Please contact the site administrator."
+msgstr ""
+
+#: includes/class-kwtsms-login-otp.php:149
 msgid "Too many OTP requests for this number. Please wait a few minutes before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:138
+#: includes/class-kwtsms-login-otp.php:155
 msgid "Too many OTP requests from this location. Please wait a few minutes before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:144
+#: includes/class-kwtsms-login-otp.php:161
 msgid "Too many OTP requests for this account. Please wait a few minutes before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:200
-#: includes/class-kwtsms-login-otp.php:623
+#: includes/class-kwtsms-login-otp.php:217
 msgid "Your verification code could not be sent. Please contact the site administrator."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:315
+#: includes/class-kwtsms-login-otp.php:339
 msgid "Login with SMS OTP"
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:335
-#: includes/class-kwtsms-login-otp.php:493
+#: includes/class-kwtsms-login-otp.php:359
+#: includes/class-kwtsms-login-otp.php:530
 #: includes/class-kwtsms-reset-otp.php:244
 msgid "Security check failed. Please go back and try again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:341
-#: includes/class-kwtsms-login-otp.php:348
-#: includes/class-kwtsms-plugin.php:731
+#: includes/class-kwtsms-login-otp.php:365
+#: includes/class-kwtsms-login-otp.php:372
+#: includes/class-kwtsms-plugin.php:755
 msgid "Session expired. Please log in again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:375
+#: includes/class-kwtsms-login-otp.php:399
 #: includes/class-kwtsms-reset-otp.php:278
 msgid "Please enter your verification code."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:394
-#: includes/class-kwtsms-login-otp.php:416
+#: includes/class-kwtsms-login-otp.php:428
+#: includes/class-kwtsms-login-otp.php:450
 msgid "Your code has expired. Click \"Resend\" to get a new one."
 msgstr ""
 
 #. translators: %d: number of remaining attempts
 #. translators: %d: remaining attempts
-#: includes/class-kwtsms-login-otp.php:401
-#: includes/class-kwtsms-reset-otp.php:325
+#: includes/class-kwtsms-login-otp.php:435
+#: includes/class-kwtsms-reset-otp.php:327
 #, php-format
 msgid "Incorrect code. %d attempt remaining."
 msgid_plural "Incorrect code. %d attempts remaining."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-kwtsms-login-otp.php:425
+#: includes/class-kwtsms-login-otp.php:459
 msgid "Too many incorrect attempts. Please log in again to request a new code."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:430
-#: includes/class-kwtsms-reset-otp.php:352
+#: includes/class-kwtsms-login-otp.php:464
+#: includes/class-kwtsms-reset-otp.php:354
 msgid "Something went wrong. Please try again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:521
-#: includes/class-kwtsms-login-otp.php:575
+#: includes/class-kwtsms-login-otp.php:558
+#: includes/class-kwtsms-login-otp.php:619
 #: includes/class-kwtsms-reset-otp.php:127
 msgid "Too many requests. Please wait a few minutes before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:527
+#: includes/class-kwtsms-login-otp.php:564
 msgid "Too many requests from this location. Please wait a few minutes before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:533
-msgid "If an account is associated with this number, an OTP will be sent shortly."
-msgstr ""
-
-#: includes/class-kwtsms-login-otp.php:614
+#: includes/class-kwtsms-login-otp.php:577
 msgid "SMS login is not available. Please contact the site administrator."
 msgstr ""
 
 #. translators: %s: site name
-#: includes/class-kwtsms-login-otp.php:773
+#: includes/class-kwtsms-login-otp.php:840
 #, php-format
 msgid "[%s] kwtSMS: OTP delivery failed, account balance is zero"
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:779
+#: includes/class-kwtsms-login-otp.php:846
 msgid "Users are currently allowed to log in without OTP (password only) until credits are restored."
 msgstr ""
 
-#: includes/class-kwtsms-login-otp.php:780
+#: includes/class-kwtsms-login-otp.php:847
 msgid "Users who require OTP cannot log in until the account is recharged."
 msgstr ""
 
 #. translators: 1: site name, 2: gateway URL, 3: recharge URL, 4: behavior description
-#: includes/class-kwtsms-login-otp.php:784
+#: includes/class-kwtsms-login-otp.php:851
 #, php-format
 msgid "Hello,\\n\\nkwtSMS on %1$s could not send OTP verification codes because your account has no SMS credits.\\n\\n%4$s\\n\\nTo restore OTP, please top up your kwtSMS account:\\n%3$s\\n\\nOnce recharged, OTP will resume automatically. You can also check your current balance on the Gateway settings page:\\n%2$s\\n\\nThis is an automated alert from the kwtSMS WordPress plugin."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:152
+#: includes/class-kwtsms-plugin.php:155
 msgid "SMS by kwtSMS.com"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:309
-#: includes/class-kwtsms-plugin.php:313
+#: includes/class-kwtsms-plugin.php:300
+msgid "Phone verification is not enabled on this site."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:321
+#: includes/class-kwtsms-plugin.php:325
 msgid "Too many requests. Please try again later."
 msgstr ""
 
 #. translators: 1: site name, 2: OTP code
-#: includes/class-kwtsms-plugin.php:342
+#: includes/class-kwtsms-plugin.php:354
 #, php-format
 msgid "%1$s: Your verification code is %2$s. Valid for 15 minutes."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:388
+#: includes/class-kwtsms-plugin.php:400
 msgid "Token and code are required."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:394
+#: includes/class-kwtsms-plugin.php:406
 msgid "Invalid token."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:402
+#: includes/class-kwtsms-plugin.php:414
 msgid "Session expired. Please request a new code."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:410
+#: includes/class-kwtsms-plugin.php:422
 msgid "Too many incorrect attempts. Please request a new code."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:419
+#: includes/class-kwtsms-plugin.php:431
 msgid "Incorrect code. Please try again."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:427
+#: includes/class-kwtsms-plugin.php:439
 msgid "Phone number verified successfully."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:469
+#: includes/class-kwtsms-plugin.php:493
 msgid "Enter your phone number to verify"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:470
+#: includes/class-kwtsms-plugin.php:494
 msgid "Send Code"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:472
+#: includes/class-kwtsms-plugin.php:496
 msgid "Enter the code sent to your phone"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:473
+#: includes/class-kwtsms-plugin.php:497
 msgid "Verify"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:475
+#: includes/class-kwtsms-plugin.php:499
 msgid "Phone verified!"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:476
+#: includes/class-kwtsms-plugin.php:500
 msgid "Resend Code"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:477
+#: includes/class-kwtsms-plugin.php:501
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:480
+#: includes/class-kwtsms-plugin.php:504
 msgid "6-digit code"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:481
+#: includes/class-kwtsms-plugin.php:505
 msgid "Phone Verification Required"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:482
+#: includes/class-kwtsms-plugin.php:506
 msgid "Your phone has been verified. Submitting form..."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:508
+#: includes/class-kwtsms-plugin.php:532
 msgid "Username and password are required."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:657
+#: includes/class-kwtsms-plugin.php:681
 msgid "No API credentials saved. Please save your credentials first."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:715
+#: includes/class-kwtsms-plugin.php:739
 msgid "Invalid session."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:725
+#: includes/class-kwtsms-plugin.php:749
 msgid "Session expired. Please start the password reset process again."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:745
-msgid "No phone number on this account."
-msgstr ""
-
-#: includes/class-kwtsms-plugin.php:753
+#: includes/class-kwtsms-plugin.php:775
+#: includes/class-kwtsms-plugin.php:824
 msgid "Too many requests. Please wait before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:762
+#: includes/class-kwtsms-plugin.php:784
+#: includes/class-kwtsms-plugin.php:833
 msgid "Too many requests from this location. Please wait before trying again."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:771
-msgid "Too many requests for this account. Please wait before trying again."
-msgstr ""
-
-#: includes/class-kwtsms-plugin.php:783
-#: includes/class-kwtsms-plugin.php:825
-msgid "A new code has been sent to your phone."
-msgstr ""
-
-#: includes/class-kwtsms-plugin.php:795
+#: includes/class-kwtsms-plugin.php:793
+#: includes/class-kwtsms-plugin.php:866
 msgid "Please wait before requesting another code."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:869
+#: includes/class-kwtsms-plugin.php:805
+#: includes/class-kwtsms-plugin.php:854
+#: includes/class-kwtsms-plugin.php:896
+msgid "A new code has been sent to your phone."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:816
+msgid "No phone number on this account."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:842
+msgid "Too many requests for this account. Please wait before trying again."
+msgstr ""
+
+#: includes/class-kwtsms-plugin.php:940
 msgid "Trusted Devices"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:875
+#: includes/class-kwtsms-plugin.php:946
 msgid "No trusted devices."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:880
+#: includes/class-kwtsms-plugin.php:951
 msgid "Last seen"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:881
+#: includes/class-kwtsms-plugin.php:952
 msgid "Device"
 msgstr ""
 
 #. translators: %s: human-readable time difference
-#: includes/class-kwtsms-plugin.php:891
+#: includes/class-kwtsms-plugin.php:962
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:900
+#: includes/class-kwtsms-plugin.php:971
 msgid "Revoke"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:911
+#: includes/class-kwtsms-plugin.php:982
 msgid "Revoke all trusted devices"
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:982
+#: includes/class-kwtsms-plugin.php:1053
 msgid "Invalid token hash."
 msgstr ""
 
-#: includes/class-kwtsms-plugin.php:1043
+#: includes/class-kwtsms-plugin.php:1114
 msgid "Phone number is too short. Enter the country code followed by the full local number, e.g. 96512345678 (Kuwait: 965 + 8 digits, 11 digits total)."
 msgstr ""
 
@@ -3246,42 +3292,42 @@ msgstr ""
 msgid "Too many failed attempts. Please start over."
 msgstr ""
 
-#: includes/class-kwtsms-registration-otp-gate.php:461
+#: includes/class-kwtsms-registration-otp-gate.php:463
 msgid "Unable to send verification code. Please try again."
 msgstr ""
 
-#: includes/class-kwtsms-registration-otp-gate.php:590
-#: includes/class-kwtsms-registration-otp-gate.php:603
+#: includes/class-kwtsms-registration-otp-gate.php:592
+#: includes/class-kwtsms-registration-otp-gate.php:605
 msgid "Verify Your Phone Number"
 msgstr ""
 
 #. translators: 1: number of digits, 2: masked phone number
 #. translators: %s: partially masked phone number
-#: includes/class-kwtsms-registration-otp-gate.php:610
+#: includes/class-kwtsms-registration-otp-gate.php:612
 #: includes/views/page-otp.php:92
 #, php-format
 msgid "We sent a %1$d-digit code to %2$s"
 msgstr ""
 
 #. translators: %d: number of digits
-#: includes/class-kwtsms-registration-otp-gate.php:621
+#: includes/class-kwtsms-registration-otp-gate.php:623
 #: includes/views/page-otp.php:103
 #, php-format
 msgid "Enter the %d-digit code sent to your phone."
 msgstr ""
 
-#: includes/class-kwtsms-registration-otp-gate.php:639
+#: includes/class-kwtsms-registration-otp-gate.php:641
 #: includes/views/page-otp.php:136
 msgid "Verification code"
 msgstr ""
 
-#: includes/class-kwtsms-registration-otp-gate.php:657
+#: includes/class-kwtsms-registration-otp-gate.php:659
 msgid "Verify and Create Account"
 msgstr ""
 
-#: includes/class-kwtsms-registration-otp-gate.php:662
+#: includes/class-kwtsms-registration-otp-gate.php:664
 #: includes/views/page-otp.php:196
-#: includes/views/page-passwordless.php:160
+#: includes/views/page-passwordless.php:161
 msgid "Back to login"
 msgstr ""
 
@@ -3294,59 +3340,59 @@ msgstr ""
 msgid "Session expired. Please start over."
 msgstr ""
 
-#: includes/class-kwtsms-reset-otp.php:298
+#: includes/class-kwtsms-reset-otp.php:300
 msgid "Could not generate reset link. Please try again."
 msgstr ""
 
-#: includes/class-kwtsms-reset-otp.php:319
-#: includes/class-kwtsms-reset-otp.php:339
+#: includes/class-kwtsms-reset-otp.php:321
+#: includes/class-kwtsms-reset-otp.php:341
 msgid "Your code has expired. Please go back and request a new one."
 msgstr ""
 
-#: includes/class-kwtsms-reset-otp.php:347
+#: includes/class-kwtsms-reset-otp.php:349
 msgid "Too many incorrect attempts. Please start the password reset process again."
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:91
+#: includes/class-kwtsms-user-meta.php:141
 msgid "SMS OTP Authentication"
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:95
+#: includes/class-kwtsms-user-meta.php:145
 msgid "Phone Number (for SMS OTP)"
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:115
-#: includes/views/page-passwordless.php:145
+#: includes/class-kwtsms-user-meta.php:165
+#: includes/views/page-passwordless.php:146
 msgid "Local number"
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:123
+#: includes/class-kwtsms-user-meta.php:173
 msgid "Enter your phone number with country code. Used to receive OTP codes for login and password reset."
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:127
+#: includes/class-kwtsms-user-meta.php:177
 msgid "Saved:"
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:179
-#: includes/class-kwtsms-user-meta.php:305
+#: includes/class-kwtsms-user-meta.php:229
+#: includes/class-kwtsms-user-meta.php:355
 msgid "Security check failed. Please reload the page and try again."
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:271
+#: includes/class-kwtsms-user-meta.php:321
 msgid "Phone Number (SMS OTP)"
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:284
+#: includes/class-kwtsms-user-meta.php:334
 msgid "Optional. Full international phone number (digits only, no + or spaces)."
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:343
+#: includes/class-kwtsms-user-meta.php:393
 #: includes/integrations/class-kwtsms-woo.php:298
 msgid "Phone Number (optional)"
 msgstr ""
 
-#: includes/class-kwtsms-user-meta.php:356
+#: includes/class-kwtsms-user-meta.php:406
 msgid "Enter your phone with country code. Used for SMS verification."
 msgstr ""
 
@@ -3504,7 +3550,7 @@ msgid "Resend code (%d)"
 msgstr ""
 
 #: includes/views/page-otp.php:210
-#: includes/views/page-passwordless.php:171
+#: includes/views/page-passwordless.php:172
 msgid "SMS service by kwtSMS.com"
 msgstr ""
 
@@ -3520,10 +3566,10 @@ msgstr ""
 msgid "Enter your registered phone number to receive a one-time login code."
 msgstr ""
 
-#: includes/views/page-passwordless.php:119
+#: includes/views/page-passwordless.php:120
 msgid "Search country..."
 msgstr ""
 
-#: includes/views/page-passwordless.php:156
+#: includes/views/page-passwordless.php:157
 msgid "Send OTP Code"
 msgstr ""

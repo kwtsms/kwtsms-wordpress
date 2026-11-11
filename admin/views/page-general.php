@@ -37,6 +37,11 @@ $kwtsms_iphub_action_block2   = $kwtsms_general['iphub_action_block2'] ?? 'log';
 $kwtsms_iphub_cache_ttl       = (int) ( $kwtsms_general['iphub_cache_ttl'] ?? 86400 );
 $kwtsms_all_wp_roles          = wp_roles()->get_names();
 
+// 2026-11-11 20:43 +03: users in required roles without a phone: block or allow, task wp-363.
+// 2026-11-11 21:02 +03: missing keys show the 3.6.2 behaviour, same fallback as the login code, task wp-363.
+$kwtsms_no_phone_action   = $kwtsms_general['no_phone_action'] ?? 'allow';
+$kwtsms_pwl_verified_only = ! empty( $kwtsms_general['pwl_verified_only'] );
+
 // Count users in OTP-required roles who have no phone number saved.
 $kwtsms_no_phone_count = 0;
 if ( ! empty( $kwtsms_otp_required_roles ) ) {
@@ -229,16 +234,62 @@ foreach ( $kwtsms_all_countries as $kwtsms_cc ) {
 					<?php if ( $kwtsms_no_phone_count > 0 ) : ?>
 					<p class="description" style="margin-top:8px;background:#fff8ed;border-left:3px solid #FFA200;padding:8px 12px;border-radius:0 3px 3px 0;">
 						<?php
-						printf(
-							/* translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag */
-							esc_html__( '%1$d user(s) in OTP-required roles have no phone number saved and will bypass OTP. %2$sAdd phone numbers now.%3$s', 'kwtsms' ),
-							(int) $kwtsms_no_phone_count,
-							'<a href="' . esc_url( admin_url( 'admin.php?page=kwtsms-otp-users' ) ) . '">',
-							'</a>'
-						);
+						// 2026-11-11 20:43 +03: the notice follows the no-phone setting below, task wp-363.
+						if ( 'allow' === $kwtsms_no_phone_action ) {
+							printf(
+								/* translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag */
+								esc_html__( '%1$d user(s) in OTP-required roles have no phone number saved and will bypass OTP. %2$sAdd phone numbers now.%3$s', 'kwtsms' ),
+								(int) $kwtsms_no_phone_count,
+								'<a href="' . esc_url( admin_url( 'admin.php?page=kwtsms-otp-users' ) ) . '">',
+								'</a>'
+							);
+						} else {
+							printf(
+								/* translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag */
+								esc_html__( '%1$d user(s) in OTP-required roles have no phone number saved and cannot log in until one is added. %2$sAdd phone numbers now.%3$s', 'kwtsms' ),
+								(int) $kwtsms_no_phone_count,
+								'<a href="' . esc_url( admin_url( 'admin.php?page=kwtsms-otp-users' ) ) . '">',
+								'</a>'
+							);
+						}
 						?>
 					</p>
 					<?php endif; ?>
+				</td>
+			</tr>
+
+			<?php // 2026-11-11 20:43 +03: what happens to users in required roles with no phone saved, task wp-363. ?>
+			<?php // 2026-11-11 21:02 +03: id is the target of the upgrade notice link, task wp-363. ?>
+			<tr id="kwtsms-strict-login">
+				<th scope="row"><?php esc_html_e( 'Users in required roles without a phone number', 'kwtsms' ); ?></th>
+				<td>
+					<fieldset>
+						<label style="display:block;margin-bottom:6px;">
+							<input type="radio" name="kwtsms_otp_general[no_phone_action]" value="block"
+								<?php checked( $kwtsms_no_phone_action, 'block' ); ?> />
+							<?php esc_html_e( 'Block login and show a message to contact the site admin', 'kwtsms' ); ?>
+						</label>
+						<label style="display:block;">
+							<input type="radio" name="kwtsms_otp_general[no_phone_action]" value="allow"
+								<?php checked( $kwtsms_no_phone_action, 'allow' ); ?> />
+							<?php esc_html_e( 'Allow login without OTP', 'kwtsms' ); ?>
+						</label>
+					</fieldset>
+				</td>
+			</tr>
+
+			<?php // 2026-11-11 21:02 +03: SMS-only login uses only phones confirmed by a code, task wp-363. ?>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'SMS login uses only phone numbers confirmed by a code', 'kwtsms' ); ?></th>
+				<td>
+					<label>
+						<input type="checkbox" name="kwtsms_otp_general[pwl_verified_only]" value="1"
+							<?php checked( $kwtsms_pwl_verified_only ); ?> />
+						<?php esc_html_e( 'On', 'kwtsms' ); ?>
+					</label>
+					<p class="description">
+						<?php esc_html_e( 'A phone number counts as confirmed after its owner enters a code sent to it (registration, two-step login or password reset).', 'kwtsms' ); ?>
+					</p>
 				</td>
 			</tr>
 

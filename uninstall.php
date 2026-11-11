@@ -22,7 +22,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  * - All kwtsms_phone user meta from wp_usermeta
  * - All kwtsms_otp_* and kwtsms_partial_auth_* transients
  * - Scheduled cron events (kwtsms_check_abandoned_carts)
- * - Debug log file (wp-content/kwtsms-debug.log)
+ * - Debug log files (uploads/kwtsms-debug.log, .log.1 and the uploads/kwtsms-logs/ folder)
+ *   (2026-11-11 20:50 +03: list updated for the .log.1 copy, task wp-363)
  *
  * @package KwtSMS_OTP
  */
@@ -57,6 +58,11 @@ foreach ( $kwtsms_options as $kwtsms_option ) {
 delete_metadata( 'user', 0, 'kwtsms_phone', '', true );
 delete_metadata( 'user', 0, 'kwtsms_dismissed_version', '', true );
 delete_metadata( 'user', 0, 'kwtsms_trusted_devices', '', true );
+// 2026-11-11 20:47 +03: SMS-verified phone flag added in this release, task wp-363.
+delete_metadata( 'user', 0, 'kwtsms_phone_verified', '', true );
+// 2026-11-11 21:02 +03: stricter-login notice dismissal and its site flag, task wp-363.
+delete_metadata( 'user', 0, 'kwtsms_strict_notice_dismissed', '', true );
+delete_option( 'kwtsms_otp_strict_notice' );
 
 // -------------------------------------------------------------------------
 // 3. Remove product post meta (back-in-stock subscribers).
@@ -87,6 +93,10 @@ $kwtsms_upload_dir = wp_upload_dir();
 $kwtsms_debug_log  = ! empty( $kwtsms_upload_dir['basedir'] ) ? $kwtsms_upload_dir['basedir'] . '/kwtsms-debug.log' : '';
 if ( $kwtsms_debug_log && file_exists( $kwtsms_debug_log ) ) {
 	wp_delete_file( $kwtsms_debug_log );
+}
+// 2026-11-11 20:50 +03: also the rotated copy of the old uploads log (kwtsms-debug.log.1), task wp-363.
+if ( $kwtsms_debug_log && file_exists( $kwtsms_debug_log . '.1' ) ) {
+	wp_delete_file( $kwtsms_debug_log . '.1' );
 }
 // 2026-11-11 12:51 +03: the 3.6.2 log folder (random file name, rotation, guard files) and its option.
 $kwtsms_log_dir = ! empty( $kwtsms_upload_dir['basedir'] ) ? $kwtsms_upload_dir['basedir'] . '/kwtsms-logs' : '';

@@ -3,16 +3,22 @@
  * Plugin Name:       kwtSMS: OTP & SMS Notifications
  * Plugin URI:        https://www.kwtsms.com/integrations.html
  * Description:       Replace passwords with SMS codes, send WooCommerce order updates automatically, and verify phone numbers on any contact form, all in one plugin. Supports 2FA, passwordless login, WooCommerce order update, and OTP-gated forms for CF7, WPForms, and Ninja Forms. Arabic support included.
- * Version:           3.6.2
+ * Version:           3.6.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            kwtsms
  * Author URI:        https://www.kwtsms.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * WC requires at least: 4.3
  * WC tested up to:   11.2
  * Text Domain:       kwtsms
  * Domain Path:       /languages
+ *
+ * 2026-11-11 20:52 +03: WC minimum added, task wp-363. 4.3 is the first WooCommerce with the
+ * woocommerce_checkout_order_created hook (checkout code reset, abandoned-cart recovery); all
+ * newer WooCommerce APIs used (FeaturesUtil, Store API, additional checkout fields,
+ * wc_get_page_screen_id) are behind class_exists or function_exists checks.
  *
  * @package KwtSMS_OTP
  */
@@ -23,7 +29,8 @@ defined( 'ABSPATH' ) || exit;
 // 2026-11-05 21:08 +03: 3.5.1 to 3.6.0, match the plugin header for the 3.6.0 release (constant lagged the 3.5.2 header), wp-release-360.
 // 2026-11-07 00:09 +03: 3.6.1 (On-Hold text fix with its upgrade step, full Arabic, package fix), task wp-release-361.
 // 2026-11-11 12:55 +03: 3.6.2 security release (passwordless login, debug log), task wp-sec-362.
-define( 'KWTSMS_OTP_VERSION', '3.6.2' );
+// 2026-11-11 21:27 +03: 3.6.3 (login settings, fixes); the version change runs the upgrade step, task wp-363.
+define( 'KWTSMS_OTP_VERSION', '3.6.3' );
 define( 'KWTSMS_OTP_FILE', __FILE__ );
 define( 'KWTSMS_OTP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'KWTSMS_OTP_URL', plugin_dir_url( __FILE__ ) );
@@ -73,6 +80,12 @@ function kwtsms_otp_activate() {
 	// Set installed version for future upgrade routines.
 	update_option( 'kwtsms_otp_version', KWTSMS_OTP_VERSION );
 
+	// 2026-11-11 21:02 +03: existing settings (re-activation of an older install, possibly with new
+	// files): fill the strict-login keys the upgrade way, never changing a saved value, task wp-363.
+	if ( get_option( 'kwtsms_otp_general' ) ) {
+		KwtSMS_Settings::migrate_strict_login_defaults();
+	}
+
 	// Seed default settings if not already present.
 	if ( ! get_option( 'kwtsms_otp_general' ) ) {
 		update_option(
@@ -90,6 +103,9 @@ function kwtsms_otp_activate() {
 				'referral_link'         => 0,
 				'default_country_code'  => 'KW',
 				'allowed_countries'     => array( 'KW', 'SA', 'AE', 'BH', 'QA', 'OM' ),
+				// 2026-11-11 21:02 +03: fresh install: strict login settings, task wp-363.
+				'no_phone_action'       => 'block',
+				'pwl_verified_only'     => 1,
 			)
 		);
 	}
@@ -159,6 +175,11 @@ function kwtsms_otp_maybe_upgrade() {
 			update_option( 'kwtsms_otp_integrations', $integrations );
 		}
 	}
+	// 2026-11-11 21:02 +03: sites from before 3.6.3 keep their login behaviour: the strict-login
+	// settings are stored with the 3.6.2 values (saved values are never changed), task wp-363.
+	if ( version_compare( $installed, '3.6.3', '<' ) ) {
+		KwtSMS_Settings::migrate_strict_login_defaults();
+	}
 	update_option( 'kwtsms_otp_version', KWTSMS_OTP_VERSION );
 }
 add_action( 'plugins_loaded', 'kwtsms_otp_maybe_upgrade', 5 );
@@ -180,6 +201,13 @@ add_action(
 		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
 			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
 				'custom_order_tables',
+				KWTSMS_OTP_FILE,
+				true
+			);
+			// 2026-11-11 20:52 +03: the Cart and Checkout blocks are supported (Store API hooks and the
+			// additional checkout field in class-kwtsms-woo.php), so say so to WooCommerce, task wp-363.
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+				'cart_checkout_blocks',
 				KWTSMS_OTP_FILE,
 				true
 			);

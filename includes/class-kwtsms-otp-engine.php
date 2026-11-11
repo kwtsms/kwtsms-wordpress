@@ -347,6 +347,35 @@ class KwtSMS_OTP_Engine {
 		set_transient( $this->cooldown_key( $identifier, $action ), 1, self::SEND_COOLDOWN );
 	}
 
+	// 2026-11-11 20:40 +03: send-time helpers, so the passwordless form takes about as long for
+	// every phone (a phone with no account gets no SMS but waits like one that does), task wp-363.
+
+	/**
+	 * Remember how long the last OTP send took (milliseconds, capped at 5000).
+	 *
+	 * @param float $seconds Duration of the send() call in seconds.
+	 */
+	public function note_send_duration( float $seconds ): void {
+		$ms = (int) round( $seconds * 1000 );
+		set_transient( 'kwtsms_last_send_ms', max( 1, min( 5000, $ms ) ), DAY_IN_SECONDS );
+	}
+
+	/**
+	 * Wait about as long as a real OTP send takes, with +/- 20% jitter.
+	 *
+	 * Uses the duration saved by note_send_duration(); 400 ms when none is saved yet,
+	 * never more than 3 seconds.
+	 */
+	public function pause_like_send(): void {
+		$ms = (int) get_transient( 'kwtsms_last_send_ms' );
+		if ( $ms <= 0 ) {
+			$ms = 400;
+		}
+		$ms     = min( 3000, $ms );
+		$jitter = random_int( -intdiv( $ms, 5 ), intdiv( $ms, 5 ) );
+		usleep( max( 0, $ms + $jitter ) * 1000 );
+	}
+
 	// =========================================================================
 	// Message building
 	// =========================================================================
@@ -576,6 +605,13 @@ class KwtSMS_OTP_Engine {
 
 		if ( false === $ip_bin || false === $range_bin ) {
 			return false;
+		}
+
+		// 2026-11-11 21:18 +03: an IPv4-mapped IPv6 address (::ffff:1.2.3.4) is compared as its IPv4 address,
+		// so IPv4 list entries also apply on hosts that report mapped addresses, task wp-363.
+		$mapped_prefix = str_repeat( "\x00", 10 ) . "\xFF\xFF";
+		if ( 16 === strlen( $ip_bin ) && 4 === strlen( $range_bin ) && 0 === strncmp( $ip_bin, $mapped_prefix, 12 ) ) {
+			$ip_bin = substr( $ip_bin, 12 );
 		}
 
 		$ip_len    = strlen( $ip_bin );
@@ -890,37 +926,23 @@ class KwtSMS_OTP_Engine {
 	 *
 	 * Supports both IPv4 (e.g. 192.168.0.0/16) and IPv6 (e.g. ::1/128) ranges.
 	 *
+	 * 2026-11-11 20:48 +03: guard for servers without GMP. The IPv6 branch called gmp_* (an
+	 * optional extension), so an IPv6 visitor on a host without it stopped the request with a
+	 * fatal error. Both families now use the inet_pton byte comparison in ip_matches_cidr(),
+	 * plain PHP with no extension, task wp-363.
+	 *
 	 * @param string $ip   The IP address to test.
 	 * @param string $cidr The CIDR notation block to test against.
 	 * @return bool True if the IP is within the CIDR range.
 	 */
 	private function is_ip_in_cidr( $ip, $cidr ) {
-		list( $subnet, $bits ) = explode( '/', $cidr );
-
-		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) &&
-			filter_var( $subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
-			// IPv4 comparison.
-			$bits     = (int) $bits;
-			$ip_long  = ip2long( $ip );
-			$net_long = ip2long( $subnet );
-			$mask     = $bits > 0 ? ( -1 << ( 32 - $bits ) ) : 0;
-			return ( $ip_long & $mask ) === ( $net_long & $mask );
+		$parts = explode( '/', (string) $cidr, 2 );
+		if ( 2 !== count( $parts ) || ! ctype_digit( $parts[1] ) ) {
+			return false;
 		}
-
-		if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) &&
-			filter_var( $subnet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) ) {
-			// IPv6 comparison.
-			$bits     = (int) $bits;
-			$ip_bin   = inet_pton( $ip );
-			$net_bin  = inet_pton( $subnet );
-			$ip_hex   = bin2hex( $ip_bin );
-			$net_hex  = bin2hex( $net_bin );
-			$ip_int   = gmp_init( $ip_hex, 16 );
-			$net_int  = gmp_init( $net_hex, 16 );
-			$mask_int = gmp_sub( gmp_pow( 2, 128 ), gmp_pow( 2, 128 - $bits ) );
-			return gmp_cmp( gmp_and( $ip_int, $mask_int ), gmp_and( $net_int, $mask_int ) ) === 0;
+		if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) || ! filter_var( $parts[0], FILTER_VALIDATE_IP ) ) {
+			return false;
 		}
-
-		return false;
+		return $this->ip_matches_cidr( (string) $ip, (string) $cidr );
 	}
 }

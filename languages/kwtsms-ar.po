@@ -4184,3 +4184,49 @@ msgstr "تُرسل عند تغيير حالة الطلب إلى قيد الان�
 
 msgid "Fires when the order status is set to On-Hold: the order waits for payment confirmation, for example a bank transfer."
 msgstr "تُرسل عند تغيير حالة الطلب إلى قيد الانتظار: الطلب بانتظار تأكيد الدفع، مثل التحويل البنكي."
+
+#: includes/class-kwtsms-login-otp.php
+msgid "Your account needs a phone number for SMS verification, and none is saved. Please contact the site administrator."
+msgstr "يتطلب حسابك رقم هاتف للتحقق عبر SMS، ولا يوجد رقم محفوظ. يرجى التواصل مع مدير الموقع."
+
+#: admin/views/page-general.php
+msgid "Users in required roles without a phone number"
+msgstr "المستخدمون في الأدوار المطلوبة دون رقم هاتف"
+
+#: admin/views/page-general.php
+msgid "Block login and show a message to contact the site admin"
+msgstr "منع تسجيل الدخول وعرض رسالة للتواصل مع مدير الموقع"
+
+#: admin/views/page-general.php
+msgid "Allow login without OTP"
+msgstr "السماح بتسجيل الدخول دون رمز التحقق"
+
+#. translators: 1: number of users without phone, 2: opening link tag, 3: closing link tag
+#: admin/views/page-general.php
+#, php-format
+msgid "%1$d user(s) in OTP-required roles have no phone number saved and cannot log in until one is added. %2$sAdd phone numbers now.%3$s"
+msgstr "%1$d مستخدم في أدوار تتطلب رمز التحقق ليس لديهم رقم هاتف محفوظ ولا يمكنهم تسجيل الدخول حتى تتم إضافته. %2$sأضف أرقام الهواتف الآن.%3$s"
+
+#: includes/class-kwtsms-plugin.php
+msgid "Phone verification is not enabled on this site."
+msgstr "التحقق من رقم الهاتف غير مفعّل في هذا الموقع."
+
+#: admin/views/page-general.php
+msgid "SMS login uses only phone numbers confirmed by a code"
+msgstr "تسجيل الدخول عبر SMS يستخدم فقط أرقام الهواتف المؤكدة برمز"
+
+#: admin/views/page-general.php
+msgid "A phone number counts as confirmed after its owner enters a code sent to it (registration, two-step login or password reset)."
+msgstr "يُعدّ رقم الهاتف مؤكداً بعد أن يُدخل صاحبه رمزاً أُرسل إليه (التسجيل، أو التحقق بخطوتين عند تسجيل الدخول، أو إعادة تعيين كلمة المرور)."
+
+#: admin/class-kwtsms-admin.php
+msgid "kwtSMS: stricter login settings are available."
+msgstr "kwtSMS: تتوفر إعدادات أكثر صرامة لتسجيل الدخول."
+
+#: admin/class-kwtsms-admin.php
+msgid "Review settings"
+msgstr "مراجعة الإعدادات"
+
+#: admin/class-kwtsms-admin.php
+msgid "Dismiss"
+msgstr "إخفاء"
