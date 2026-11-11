@@ -57,6 +57,8 @@ foreach ( $kwtsms_options as $kwtsms_option ) {
 delete_metadata( 'user', 0, 'kwtsms_phone', '', true );
 delete_metadata( 'user', 0, 'kwtsms_dismissed_version', '', true );
 delete_metadata( 'user', 0, 'kwtsms_trusted_devices', '', true );
+// 2026-11-11 20:47 +03: SMS-verified phone flag added in this release, task wp-363.
+delete_metadata( 'user', 0, 'kwtsms_phone_verified', '', true );
 
 // -------------------------------------------------------------------------
 // 3. Remove product post meta (back-in-stock subscribers).

@@ -414,6 +414,8 @@ class KwtSMS_Login_OTP {
 				$rememberme = ! empty( sanitize_key( wp_unslash( $_POST['kwtsms_rememberme'] ?? '' ) ) );
 				delete_transient( 'kwtsms_partial_auth_' . $token );
 				$this->clear_partial_auth_cookie();
+				// 2026-11-11 20:47 +03: the code reached this phone, mark it verified, task wp-363.
+				KwtSMS_User_Meta::mark_phone_verified( $user_id, $otp_phone );
 				$this->issue_auth_and_redirect( $user_id, $rememberme );
 				break;
 
@@ -572,21 +574,26 @@ class KwtSMS_Login_OTP {
 			exit;
 		}
 
-		// Look up user by kwtsms_phone meta.
+		// 2026-11-11 20:47 +03: look up the user by the SMS-verified phone only (rule in
+		// KwtSMS_User_Meta::mark_phone_verified()), and confirm it is still the phone on the account.
+		// A phone saved without an SMS code gets the same response as an unknown phone, task wp-363.
 		$users = get_users(
 			array(
-				'meta_key'   => 'kwtsms_phone', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+				'meta_key'   => KwtSMS_User_Meta::VERIFIED_META_KEY, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 				'meta_value' => $normalized, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				'number'     => 1,
 				'fields'     => 'ids',
 			)
 		);
+		if ( ! empty( $users ) && ! KwtSMS_User_Meta::is_phone_verified( (int) $users[0], $normalized ) ) {
+			$users = array();
+		}
 
 		// 2026-11-11 20:40 +03: same response for every phone. A phone with no account now gets
 		// the same redirect to the code entry page as a known phone (no SMS is sent), instead of
 		// a different message, task wp-363.
 		if ( empty( $users ) ) {
-			$this->plugin->api->write_debug_log( 'passwordless', 'Passwordless SMS not sent: no account has this phone number' );
+			$this->plugin->api->write_debug_log( 'passwordless', 'Passwordless SMS not sent: no account has this phone number verified by SMS' );
 			$this->passwordless_same_response( $normalized );
 		}
 

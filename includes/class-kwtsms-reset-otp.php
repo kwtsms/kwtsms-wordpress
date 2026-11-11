@@ -285,6 +285,8 @@ class KwtSMS_Reset_OTP {
 			case 'valid':
 				delete_transient( self::RESET_TRANSIENT_PREFIX . $token );
 				$this->clear_reset_cookie();
+				// 2026-11-11 20:47 +03: the code reached this phone, mark it verified, task wp-363.
+				KwtSMS_User_Meta::mark_phone_verified( $user_id, $reset_phone );
 
 				// Generate a WP password reset key so the user can use the standard reset form.
 				$user = get_userdata( $user_id );

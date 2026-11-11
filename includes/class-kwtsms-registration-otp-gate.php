@@ -424,6 +424,8 @@ class KwtSMS_Registration_OTP_Gate {
 
 		// Save verified phone to user meta.
 		update_user_meta( $user_id, 'kwtsms_phone', $phone );
+		// 2026-11-11 20:47 +03: this phone just passed an SMS code, mark it verified, task wp-363.
+		KwtSMS_User_Meta::mark_phone_verified( $user_id, $phone );
 
 		// Log the user in immediately.
 		wp_set_current_user( $user_id );
