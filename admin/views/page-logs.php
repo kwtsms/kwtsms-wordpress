@@ -34,6 +34,11 @@ $kwtsms_debug_log_path   = KwtSMS_API::debug_log_path(); // 2026-11-11 12:51 +03
 $kwtsms_debug_logging_on = (bool) $this->plugin->settings->get( 'general.debug_logging', 0 );
 $kwtsms_debug_log_exists = $kwtsms_debug_log_path && file_exists( $kwtsms_debug_log_path );
 $kwtsms_show_debug_tab   = $kwtsms_debug_logging_on && $kwtsms_debug_log_exists;
+// 2026-11-12 12:21 +03: ?tab=debug_log while the Debug Log tab is hidden (logging off or no file) showed an empty
+// panel with no active tab; fall back to SMS History, task wp-debuglog-tab.
+if ( 'debug_log' === $kwtsms_active_tab && ! $kwtsms_show_debug_tab ) {
+	$kwtsms_active_tab = 'sms_history';
+}
 
 // -------------------------------------------------------------------------
 // Load log data for display.
