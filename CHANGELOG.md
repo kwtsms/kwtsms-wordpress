@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+- Bug fixes.
+
 ## [3.6.3] - 2026-11-11
 - New: login setting for users without a phone number.
 - New: SMS login can be limited to confirmed phone numbers.
