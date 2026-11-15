@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 - Bug fixes.
+- Arabic wording fixes.
 
 ## [3.6.3] - 2026-11-11
 - New: login setting for users without a phone number.

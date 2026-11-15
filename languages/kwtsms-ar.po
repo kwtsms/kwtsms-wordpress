@@ -431,7 +431,7 @@ msgstr "الهاتف"
 #: admin/class-kwtsms-admin.php:1602 admin/views/page-gateway.php:160
 #: admin/views/page-help.php:56 admin/views/page-logs.php:169
 msgid "Sender ID"
-msgstr "معرّف المرسل"
+msgstr "اسم المرسل"
 
 #: admin/class-kwtsms-admin.php:1603 admin/views/page-logs.php:173
 msgid "Status"
@@ -633,7 +633,7 @@ msgstr ""
 
 #: admin/views/page-gateway.php:187
 msgid "Register or request a Sender ID at kwtSMS "
-msgstr "سجّل أو اطلب معرّف المرسل في kwtSMS ←"
+msgstr "سجّل أو اطلب اسم المرسل في kwtSMS ←"
 
 #: admin/views/page-gateway.php:200 admin/views/page-help.php:67
 msgid "Test Mode"
@@ -3411,7 +3411,7 @@ msgstr "مستلمون كثيرون جداً. يرجى المحاولة مرة �
 msgid ""
 "The configured sender ID is not allowed. Please contact the site "
 "administrator."
-msgstr "معرّف المرسل المهيّأ غير مسموح به. يرجى التواصل مع مدير الموقع."
+msgstr "اسم المرسل المهيّأ غير مسموح به. يرجى التواصل مع مدير الموقع."
 
 #: includes/class-kwtsms-api.php:1806
 msgid "SMS template is empty. Please contact the site administrator."
