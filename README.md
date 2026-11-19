@@ -10,6 +10,8 @@
 
 Replace passwords with SMS codes, automate WooCommerce order updates, and verify phone numbers on any contact form. Built on the [kwtSMS](https://www.kwtsms.com) gateway.
 
+Setup guide and use cases: [kwtsms.com/integrations/wordpress.html](https://www.kwtsms.com/integrations/wordpress.html)
+
 > Don't have a kwtSMS account? [Sign up at kwtsms.com →](https://www.kwtsms.com/signup)
 
 ---
