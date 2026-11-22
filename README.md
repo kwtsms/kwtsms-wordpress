@@ -62,7 +62,7 @@ After activation:
 3. Click **Login** to verify credentials. The Sender ID dropdown will populate automatically.
 4. Select your **Sender ID** and click **Save Settings**.
 5. Go to **kwtSMS → General** to configure OTP mode (2FA, Passwordless, or both), rate limits, and CAPTCHA.
-6. Optionally enable **Test Mode** while setting up: SMS is queued but never delivered, and the OTP code is visible under **kwtSMS → Logs → Debug Log**.
+6. Optionally enable **Test Mode** while setting up: SMS is queued but never delivered. Read the OTP code in your kwtSMS account under **Queue**.
 
 ---
 
@@ -119,7 +119,7 @@ Need a specific plugin supported? [Open an issue](https://github.com/kwtsms/kwts
 - Account balance displayed on Gateway and Help pages without re-verifying credentials
 - Pre-send balance check: warns before sending if credits are zero
 - Test phone country code validation with hint text
-- Test Mode: SMS is queued but never delivered. Credits are deducted; recover them by deleting queued messages from your kwtSMS dashboard. OTP code is visible under kwtSMS → Logs → Debug Log.
+- Test Mode: SMS is queued but never delivered. Credits are deducted; recover them by deleting queued messages from your kwtSMS dashboard. Read the OTP code in your kwtSMS account under Queue.
 
 ### Admin
 - 6 admin pages under the **kwtSMS** menu: General, Gateway, Templates, Integrations, Logs, Help
@@ -200,7 +200,7 @@ Yes. Sign up free at [kwtsms.com](https://www.kwtsms.com/signup). API credential
 
 **2. What is the difference between Test Mode and Live Mode?**
 
-In Test Mode, messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS dashboard and delete the queued messages from the outbox. The OTP code is visible under **kwtSMS → Logs → Debug Log** so you can complete flows during development without a real phone. In Live Mode, the SMS is delivered and credits are deducted. Always develop with Test Mode on, then disable it before going live.
+In Test Mode, messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS dashboard and delete the queued messages from the outbox. To read a test OTP code, open **Queue** in your kwtSMS account: the held test message shows the full text. The plugin's own logs hide the code. In Live Mode, the SMS is delivered and credits are deducted. Always develop with Test Mode on, then disable it before going live.
 
 **3. My SMS status shows OK but the recipient did not receive it. What happened?**
 
