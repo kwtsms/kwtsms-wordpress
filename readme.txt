@@ -86,7 +86,7 @@ Requests to kwtSMS carry the integration name and version (no personal data) so 
 
 = Test Mode =
 
-Enable **Test Mode** in the Gateway settings to test without receiving real SMS messages. Messages are queued on the kwtSMS server but never delivered to the phone. Credits are still deducted. To recover them, log in to your kwtSMS account dashboard and delete the queued messages. The OTP code is visible under kwtSMS > Logs > Debug Log so you can complete flows during development.
+Enable **Test Mode** in the Gateway settings to test without receiving real SMS messages. Messages are queued on the kwtSMS server but never delivered to the phone. Credits are still deducted. To recover them, log in to your kwtSMS account dashboard and delete the queued messages. The plugin hides OTP codes in its own logs for security. To read a test code: log in to kwtsms.com and open Queue: the held test message shows the full text with the code. Delete it there to get the credit back.
 
 = Languages =
 
@@ -143,7 +143,7 @@ Yes. You need an active kwtSMS account with API access. Sign up at [kwtsms.com](
 
 = What is the difference between Test Mode and Live Mode? =
 
-In **Test Mode** (enabled in Gateway Settings), messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS account dashboard and delete the queued messages from the outbox. The OTP code is visible under kwtSMS > Logs > Debug Log so you can complete authentication flows during development without a real phone. In **Live Mode**, the SMS is delivered to the recipient's phone and credits are deducted. Always develop with Test Mode on, then disable it before going live.
+In **Test Mode** (enabled in Gateway Settings), messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS account dashboard and delete the queued messages from Queue. To read a test OTP code, open Queue in your kwtSMS account: the held test message shows the full text. The plugin's own logs hide the code. In **Live Mode**, the SMS is delivered to the recipient's phone and credits are deducted. Always develop with Test Mode on, then disable it before going live.
 
 = Does the plugin work without WooCommerce? =
 
