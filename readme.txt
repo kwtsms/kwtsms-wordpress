@@ -143,7 +143,7 @@ Yes. You need an active kwtSMS account with API access. Sign up at [kwtsms.com](
 
 = What is the difference between Test Mode and Live Mode? =
 
-In **Test Mode** (enabled in Gateway Settings), messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS account dashboard and delete the queued messages from the outbox. To read a test OTP code, open Queue in your kwtSMS account: the held test message shows the full text. The plugin's own logs hide the code. In **Live Mode**, the SMS is delivered to the recipient's phone and credits are deducted. Always develop with Test Mode on, then disable it before going live.
+In **Test Mode** (enabled in Gateway Settings), messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS account dashboard and delete the queued messages from Queue. To read a test OTP code, open Queue in your kwtSMS account: the held test message shows the full text. The plugin's own logs hide the code. In **Live Mode**, the SMS is delivered to the recipient's phone and credits are deducted. Always develop with Test Mode on, then disable it before going live.
 
 = Does the plugin work without WooCommerce? =
 

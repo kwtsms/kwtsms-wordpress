@@ -200,7 +200,7 @@ Yes. Sign up free at [kwtsms.com](https://www.kwtsms.com/signup). API credential
 
 **2. What is the difference between Test Mode and Live Mode?**
 
-In Test Mode, messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS dashboard and delete the queued messages from the outbox. To read a test OTP code, open **Queue** in your kwtSMS account: the held test message shows the full text. The plugin's own logs hide the code. In Live Mode, the SMS is delivered and credits are deducted. Always develop with Test Mode on, then disable it before going live.
+In Test Mode, messages are queued on the kwtSMS server but never delivered to the recipient's phone. Credits are still deducted. To recover them, log in to your kwtSMS dashboard and delete the queued messages from **Queue**. To read a test OTP code, open **Queue** in your kwtSMS account: the held test message shows the full text. The plugin's own logs hide the code. In Live Mode, the SMS is delivered and credits are deducted. Always develop with Test Mode on, then disable it before going live.
 
 **3. My SMS status shows OK but the recipient did not receive it. What happened?**
 
