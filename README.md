@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/readme-header-dark.png">
-  <img alt="kwtSMS for WordPress" src=".github/assets/readme-header-light.png">
+  <img alt="kwtSMS for WordPress and WooCommerce" src=".github/assets/readme-header-light.png">
 </picture>
 
 # kwtSMS: OTP & SMS Notifications, WordPress Plugin
