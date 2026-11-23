@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/readme-header-dark.png">
+  <img alt="kwtSMS for WordPress" src=".github/assets/readme-header-light.png">
+</picture>
+
 # kwtSMS: OTP & SMS Notifications, WordPress Plugin
 
 [![CI](https://github.com/kwtsms/kwtsms-wordpress/actions/workflows/ci.yml/badge.svg)](https://github.com/kwtsms/kwtsms-wordpress/actions/workflows/ci.yml)
